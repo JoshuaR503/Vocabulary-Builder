@@ -33,7 +33,7 @@ class _LexiaHomeState extends State<LexiaHome> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     final MainModel model = MainModel();
-
+    
     return ScopedModel <MainModel> (
       model: model,
       child: MaterialApp(
@@ -48,7 +48,6 @@ class _LexiaHomeState extends State<LexiaHome> with SingleTickerProviderStateMix
         }
       ),
     ); 
-    
   }
 }
 

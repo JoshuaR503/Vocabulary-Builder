@@ -35,19 +35,19 @@ class _MainScreen extends State<MainScreen> {
           ),
           ListTile(
             leading: Icon(Icons.bookmark),
-            title: Text('Palabras Guardadas'),
-            onTap: () => Navigator.pushReplacementNamed(context, '/saved')
+            title: Text(savedSection),
+            onTap: () => Navigator.pushNamed(context, '/saved')
           ),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('Configuración'),
-            onTap: () => Navigator.pushReplacementNamed(context, '/settings')
+            title: Text(settingsSection),
+            onTap: () => Navigator.pushNamed(context, '/settings')
           ),
           Divider(),
           ListTile(
             leading: Icon(Icons.info),
-            title: Text('Información'),
-            onTap: () => Navigator.pushReplacementNamed(context, '/about')
+            title: Text(infoSection),
+            onTap: () => Navigator.pushNamed(context, '/about')
           ),
           
           ListTile(

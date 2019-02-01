@@ -1,7 +1,7 @@
 # American English Words - Moblie
 
-A Flutter project.
+A Flutter project for American Enlgish Words
 
 ## Getting Started
 
-This project is in beta and its main purpose is to develop a mobile version of American English Words which its is only a Progressive Web App.
+This project is in beta and its main purpose is to develop a mobile version of American English Words which is intent to help people learning English Increase their vocabulary.

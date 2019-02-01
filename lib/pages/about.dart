@@ -19,17 +19,13 @@ class AboutScreenState extends State<AboutScreen> {
       return WillPopScope(
 
         onWillPop: () {
-          Navigator.pop(context, false);
+          Navigator.pop(context);
         },
         
         child: Scaffold(
           appBar: AppBar(
             title: Text('Información'),
             centerTitle: true,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-				      onPressed: () => Navigator.pop(context, false)
-		        ),
           ),  
           body: Scrollbar(
             child: ListView(children: <Widget>[
@@ -46,9 +42,9 @@ class AboutScreenState extends State<AboutScreen> {
               ),
               Separator.divider(height: 0.0, indent: 74.0),
               ListCell(
-                leading: const Icon(Icons.person, size: 42.0),
-                title: ('Licencias de Codigo Libre'),
-                subtitle: ('American Enlgish Words utiliza licensias de codigo abierto'),
+                leading: const Icon(Icons.lock_open, size: 42.0),
+                title: ('Licencias de código abierto'),
+                subtitle: ('Información sobre las licencias de código abierto'),
               )
             ])
           )

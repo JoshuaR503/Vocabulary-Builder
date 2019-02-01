@@ -3,10 +3,26 @@ import 'package:flutter/material.dart';
 class SettingsScreen extends StatelessWidget {
   @override 
   Widget build(BuildContext context) {
-    return new Center(
-        child: new Text("SETTINGS", 
-        style: new TextStyle(fontSize: 20.0),
-      ),
+    return WillPopScope(
+      
+      onWillPop: () {
+        Navigator.pop(context);
+      },
+
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Configuración'),
+          centerTitle: true,
+		      
+        ),
+        body: Scrollbar(
+          child: ListView(
+            children: <Widget>[
+              
+            ],
+          )
+        ),
+      )
     );
   }
 }

@@ -18,6 +18,9 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreen extends State<MainScreen> {
 
+  AnimationController controller;
+  Animation<double> animation;
+
   @override
   initState() {
     widget.model.obtenerPalabras();

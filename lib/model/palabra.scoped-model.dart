@@ -6,7 +6,6 @@ import './palabra.model.dart';
 import 'dart:convert';
 import 'dart:async';
 
-
 mixin ConnectedModel on Model {
   bool _isLoading = true;
   List _palabras = [];
@@ -54,10 +53,6 @@ mixin PalabrasModel on ConnectedModel {
         notifyListeners();
         return;
       });
-  }
-
-  Future<Null> fetchPalabrasGuardadas() async {
-    
   }
 } 
 

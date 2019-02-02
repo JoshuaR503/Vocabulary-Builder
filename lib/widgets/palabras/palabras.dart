@@ -5,10 +5,9 @@ import './palabras.card.dart';
 import '../../model/palabra.model.dart';
 import '../../model/main.dart';
 
-
 class Palabras extends StatelessWidget {
   
-  Widget _buildProductList(List<Palabra> palabras) {
+  Widget _buildPalabrasList(List<Palabra> palabras) {
 
     Widget palabrasCard;
 
@@ -28,9 +27,7 @@ class Palabras extends StatelessWidget {
   Widget build(BuildContext context) {
     print('[Products Widget] build()');
     return ScopedModelDescendant<MainModel>(
-      builder: (BuildContext context, Widget child, MainModel model) {
-        return _buildProductList(model.allPalabras);
-      },
+      builder: (BuildContext context, Widget child, MainModel model) => _buildPalabrasList(model.allPalabras)
     );
   }
 }

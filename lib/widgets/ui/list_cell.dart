@@ -43,8 +43,6 @@ class ListCell extends StatelessWidget {
   }
 }
 
-/// MISSION NUMBER WIDGET
-/// Trailing widget which displays the number of a specific mission.
 class MissionNumber extends StatelessWidget {
   final String missionNumber;
 
@@ -56,7 +54,7 @@ class MissionNumber extends StatelessWidget {
       padding: const EdgeInsets.only(right: 6.0),
       child: Text(
         missionNumber,
-        style: TextStyle(fontSize: 18.0),
+        style: TextStyle(fontSize: 15.0),
         textAlign: TextAlign.center,
       ),
     );

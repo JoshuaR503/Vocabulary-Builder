@@ -1,72 +1,93 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/animation.dart';
+
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:intl/intl.dart';
 
 import '../../model/palabra.model.dart';
 import '../../model/palabra_guardada.model.dart';
 import '../../utils/db.helper.dart';
+import '../../utils/settings.dart';
 
-class PalabraCard extends StatelessWidget {
-
-  final FlutterTts flutterTts = new FlutterTts();
+class PalabraCard extends StatefulWidget {
   final Palabra palabra;
   
   PalabraCard(this.palabra);
 
+  @override
+    State<StatefulWidget> createState() => _PalabraCardState();
+}
+
+class _PalabraCardState extends State<PalabraCard> with TickerProviderStateMixin {
+
+
   final DatabaseHelper helper = DatabaseHelper();
+  final FlutterTts flutterTts = new FlutterTts();
+  AnimationController controller;
+  Animation<double> animation;
+
+  initState() {
+    super.initState();
+    controller = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
+    animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
+    controller.forward();
+  }
 
   Widget _buildDataRow(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      width: double.infinity,
+    return FadeTransition(
+      opacity: animation,
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        width: double.infinity,
 
-      child: Material(
-        elevation: 5.0,
-        borderRadius: BorderRadius.circular(7.0),
+        child: Material(
+          elevation: 5.0,
+          borderRadius: BorderRadius.circular(7.0),
 
-        child: Container(
-          height: 110.0,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+          child: Container(
+            height: 120.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
 
-              ButtonBar(
-                alignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  FlatButton(
-                    onPressed: () => _save(
-                      dataPalabra: palabra.palabra, 
-                      dataTraduccion: palabra.traduccion,
-                      context: context
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          child: Text(
-                            palabra.palabra,
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w300
+                ButtonBar(
+                  alignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    FlatButton(
+                      onPressed: () => _save(
+                        dataPalabra: widget.palabra.palabra, 
+                        dataTraduccion: widget.palabra.traduccion,
+                        context: context
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            child: Text(
+                              widget.palabra.palabra,
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w300
+                              ),
                             ),
+                            padding: EdgeInsets.only(right: 2.0),
                           ),
-                          padding: EdgeInsets.only(right: 2.0),
-                        ),
-                        Icon(Icons.bookmark_border),
-                      ],
+                          Icon(Icons.bookmark_border),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
 
-              SizedBox(height: 4.0),
-              Padding(
-                padding: EdgeInsets.only(bottom: 10.0),
-                child: Text(palabra.traduccion),
-              )
-            ],
+                SizedBox(height: 4.0),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: Text(widget.palabra.traduccion),
+                )
+              ],
+            ),
           ),
-        ),
-      )
+        )
+      ),
     );
   }
 
@@ -75,12 +96,12 @@ class PalabraCard extends StatelessWidget {
       alignment: MainAxisAlignment.center,
       children: <Widget>[
         FlatButton(
-          onPressed: () => _speak(palabra.palabra),     
+          onPressed: () => _speak(widget.palabra.palabra),     
           child: Row(
             children: <Widget>[
               Padding(
                 child: Text(
-                  'Escuchar Pronunciación',
+                  buttonName,
                   style: TextStyle(
                     fontSize: 14.0,
                     fontWeight: FontWeight.w300
@@ -95,7 +116,6 @@ class PalabraCard extends StatelessWidget {
       ],
     );
   }
-
 
   void _speak(String text) { 
     flutterTts.setLanguage("en-US");
@@ -112,16 +132,27 @@ class PalabraCard extends StatelessWidget {
       traduccion: dataTraduccion,
       date: DateFormat.yMMMd().format(DateTime.now())
     );
-    
-    print(singlePalabra);
 
     result = await helper.savePalabra(singlePalabra);
 
     if (result != 0) {
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Palabra guardada correctamente')));
-		} else {
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Hubo un problema al guardar los datos!')));
-		}
+      _buildSnackBar(context, success: true);
+    } else {
+      _buildSnackBar(context, success: false);
+    } 
+  }
+
+  void _buildSnackBar(BuildContext context, {bool success}) {
+    
+    Widget snackbar = Container();
+
+    if(success) {
+      snackbar = SnackBar(content: Text(onSuccessMessage));
+    } else {
+      snackbar = SnackBar(content: Text(onErrorMessage));
+    }
+
+    Scaffold.of(context).showSnackBar(snackbar);
   }
   
   @override

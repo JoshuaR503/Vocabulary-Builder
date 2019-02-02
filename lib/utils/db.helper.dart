@@ -79,7 +79,4 @@ class DatabaseHelper {
 		return savedDataList;
 	}
 
-
-
-
 }

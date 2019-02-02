@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:intl/intl.dart';
 
 import '../../model/palabra.model.dart';
+import '../../model/palabra_guardada.model.dart';
+import '../../utils/db.helper.dart';
 
 class PalabraCard extends StatelessWidget {
 
@@ -10,36 +13,15 @@ class PalabraCard extends StatelessWidget {
   
   PalabraCard(this.palabra);
 
-  Widget _renderContainer({bool traduccion = false}) {
+  final DatabaseHelper helper = DatabaseHelper();
 
-    Widget content = Container();
-
-    if (traduccion) {
-      content = Container(
-        child: Text(palabra.traduccion),
-      );
-    } else {
-      content = Container(
-        child: Text(
-          palabra.palabra,
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.w300
-          ),
-        ),
-      );
-    }
-
-    return content;
-  }
-
-  Widget _buildPalabraRow() {
+  Widget _buildDataRow(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10.0),
       width: double.infinity,
 
       child: Material(
-        elevation: 3.0,
+        elevation: 5.0,
         borderRadius: BorderRadius.circular(7.0),
 
         child: Container(
@@ -47,11 +29,40 @@ class PalabraCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 6.0),
-              _renderContainer(),
-              SizedBox(height: 20.0),
-              _renderContainer(traduccion: true),
-              SizedBox(height: 6.0),
+
+              ButtonBar(
+                alignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FlatButton(
+                    onPressed: () => _save(
+                      dataPalabra: palabra.palabra, 
+                      dataTraduccion: palabra.traduccion,
+                      context: context
+                    ),
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          child: Text(
+                            palabra.palabra,
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w300
+                            ),
+                          ),
+                          padding: EdgeInsets.only(right: 2.0),
+                        ),
+                        Icon(Icons.bookmark_border),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 4.0),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10.0),
+                child: Text(palabra.traduccion),
+              )
             ],
           ),
         ),
@@ -85,6 +96,7 @@ class PalabraCard extends StatelessWidget {
     );
   }
 
+
   void _speak(String text) { 
     flutterTts.setLanguage("en-US");
     flutterTts.setPitch(1.0);
@@ -92,15 +104,36 @@ class PalabraCard extends StatelessWidget {
     flutterTts.speak(text);
   }
 
+  void _save({String dataPalabra, String dataTraduccion, BuildContext context}) async {
+    int result;
+
+    PalabraGuardada singlePalabra = PalabraGuardada(
+      palabra: dataPalabra,
+      traduccion: dataTraduccion,
+      date: DateFormat.yMMMd().format(DateTime.now())
+    );
+    
+    print(singlePalabra);
+
+    result = await helper.savePalabra(singlePalabra);
+
+    if (result != 0) {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Palabra guardada correctamente')));
+		} else {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Hubo un problema al guardar los datos!')));
+		}
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Column(
         children: <Widget>[
-          _buildPalabraRow(),
+          _buildDataRow(context),
           _buildActionButtons(context)
         ],
       ),
     );
   }
+  
 }

@@ -6,9 +6,9 @@ class SettingsScreen extends StatelessWidget {
     return WillPopScope(
       
       onWillPop: () {
-        Navigator.pop(context);
+        Navigator.pop(context, false);
       },
-
+      
       child: Scaffold(
         appBar: AppBar(
           title: Text('Configuración'),

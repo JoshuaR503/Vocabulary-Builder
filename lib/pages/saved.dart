@@ -1,40 +1,128 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
-import '../model/main.dart';
-
+import '../model/palabra_guardada.model.dart';
+import '../utils/db.helper.dart';
+import '../utils/settings.dart';
+import 'dart:async';
 
 class SavedScreen extends StatefulWidget {
-
-  // final MainModel model;
-
-  // SavedScreen(this.model);
-
   @override
-  State<StatefulWidget> createState() => _SavedScreen();
+    State<StatefulWidget> createState() => _SavedScreen();
 }
 
-class _SavedScreen extends State<SavedScreen> { 
+class _SavedScreen extends State<SavedScreen> {
+
+  DatabaseHelper databaseHelper = DatabaseHelper();
+  FlutterTts flutterTts = new FlutterTts();
+
+  List<PalabraGuardada> dataList;
+	int count = 0;
+
   @override
   Widget build(BuildContext context) {
+
+    if (dataList == null) {
+			dataList = List<PalabraGuardada>();
+			_updateListView();
+		}
+
     return WillPopScope(
-      
       onWillPop: () {
-        Navigator.pop(context);
+        Navigator.pop(context, false);
       },
 
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Palabras Guardadas'),
+          title: Text(savedSection),
           centerTitle: true,
         ),
-        body: Scrollbar(
-          child: ListView(
-            children: <Widget>[
-
-            ],
-          )
-        ),
+        body: _builListView()
       )
     );
+  }
+
+  Widget _buildCircleAvatar(bool eliminar) {
+
+    Widget circleAvatar = Container();
+    final color = Colors.white;
+
+    if (eliminar) {
+      circleAvatar = CircleAvatar(
+        backgroundColor: Colors.red,
+        child: Icon(
+          Icons.delete, 
+          color: color
+        ),
+      );
+    } else {
+      circleAvatar = CircleAvatar(
+				backgroundColor: Colors.amber,
+				child: Icon(
+          Icons.volume_up,
+          color: color
+        )
+			);
+    }
+
+    return circleAvatar;
+  }
+
+  ListView _builListView() {
+
+		TextStyle titleStyle = Theme.of(context).textTheme.subhead;
+
+		return ListView.builder(
+			itemCount: count,
+			itemBuilder: (BuildContext context, int index) {
+				return Card(
+					elevation: 2.0,
+					child: ListTile(
+						leading: _buildCircleAvatar(false),
+
+            trailing: GestureDetector (
+              child: _buildCircleAvatar(true),
+							onTap: () {
+                _deleteData(context, dataList[index]);
+              }
+						),
+
+						title: Text(this.dataList[index].palabra, style: titleStyle,),
+						subtitle: Text(this.dataList[index].traduccion),
+            onTap: () => _speak(this.dataList[index].palabra)
+					),
+				);
+			},
+		);
+  }
+
+  void _updateListView() {
+		final Future<Database> dbFuture = databaseHelper.initializeDatabase();
+		dbFuture.then((database) {
+
+			Future<List<PalabraGuardada>> dataListFuture = databaseHelper.fetchSavedDataList();
+			dataListFuture.then((dataList) {
+				setState(() {
+				  this.dataList = dataList;
+				  this.count = dataList.length;
+				});
+			});
+		});
+  }
+
+  void _deleteData(BuildContext context, PalabraGuardada palabra) async {
+    int result = await databaseHelper.deletePalabra(palabra.id);
+		if (result != 0) {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Palabra eliminada exitosamente')));
+			_updateListView();
+		}
+  }
+
+  void _speak(String text) { 
+    flutterTts.setLanguage("en-US");
+    flutterTts.setPitch(1.0);
+    flutterTts.setSpeechRate(0.8);
+    flutterTts.speak(text);
   }
 }

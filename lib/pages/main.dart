@@ -4,7 +4,6 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import '../widgets/palabras/palabras.dart';
 import '../model/main.dart';
-import '../utils/colors.dart';
 import '../utils/settings.dart';
 
 class MainScreen extends StatefulWidget {
@@ -34,7 +33,7 @@ class _MainScreen extends State<MainScreen> {
             title: Text(appname),
           ),
           ListTile(
-            leading: Icon(Icons.bookmark),
+            leading: Icon(Icons.bookmark_border),
             title: Text(savedSection),
             onTap: () => Navigator.pushNamed(context, '/saved')
           ),
@@ -53,13 +52,13 @@ class _MainScreen extends State<MainScreen> {
           ListTile(
             leading: Icon(Icons.feedback),
             title: Text('Comentarios'),
-            onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback, androidToolbarColor: ligthBlue)
+            onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback)
             
           ),
           ListTile(
             leading: Icon(Icons.people),
             title: Text('Contribuciones'),
-            onTap: () => FlutterWebBrowser.openWebPage(url: urlSendContributions, androidToolbarColor: ligthBlue)
+            onTap: () => FlutterWebBrowser.openWebPage(url: urlSendContributions)
           ),
         ],
       ),

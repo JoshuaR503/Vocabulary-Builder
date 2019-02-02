@@ -21,8 +21,9 @@ dependencies:
   http: ^0.11.3+17
   flutter_web_browser: ^0.9.0+1
   cupertino_icons: ^0.1.2
-  sqflite: any
-  path_provider: any
+  sqflite: ^1.0.0
+  intl: ^0.15.7
+  path_provider: ^0.5.0
 
 dev_dependencies:
   flutter_test:
@@ -40,12 +41,3 @@ flutter:
           weight: 600
         - asset: assets/fonts/Poppins-Regular.ttf
           weight: 400
-
-  assets:
-    - assets/img/mars.png
-    - assets/img/neptune.png
-    - assets/img/moon.png
-    - assets/img/earth.png
-    - assets/img/mercury.png
-    - assets/img/ic_distance.png
-    - assets/img/ic_gravity.png

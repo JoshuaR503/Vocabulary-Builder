@@ -10,7 +10,6 @@ import 'dart:async';
 mixin ConnectedModel on Model {
   bool _isLoading = true;
   List _palabras = [];
-  List _palabrasGuardadas = []; 
 }
 
 mixin PalabrasModel on ConnectedModel {

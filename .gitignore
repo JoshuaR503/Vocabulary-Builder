@@ -16,9 +16,6 @@
 *.iws
 .idea/
 
-# Keytool stuff
-**/android/key.jks
-
 # Visual Studio Code related
 .vscode/
 

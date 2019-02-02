@@ -1,0 +1,25 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+### First commit
+- HTTP request to GET added
+- First theme and Design added
+- Pull to refresh added
+
+### Second commit 
+- Navigation fixed
+- Layout improvements
+
+### Third commit
+- Added functionality to save words and delete them
+
+### Fourth commit
+- Added animations
+- Some code cleaning
+
+### Fifth commit 
+- Added app icon 
+- Added app ID
+
+### Sixth commit
+- Added changelog

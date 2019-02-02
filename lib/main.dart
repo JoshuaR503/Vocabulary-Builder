@@ -4,7 +4,6 @@ import 'package:scoped_model/scoped_model.dart';
 import './pages/main.dart';
 import './pages/saved.dart';
 import './pages/about.dart';
-import './pages/settings.dart';
 
 import './model/main.dart';
 import './utils/colors.dart';
@@ -14,7 +13,7 @@ void main() => runApp(new LexiaHome());
 
 class LexiaHome extends StatefulWidget {
   @override
-    _LexiaHomeState createState() => new _LexiaHomeState();
+  _LexiaHomeState createState() => new _LexiaHomeState();
 }
 
 class _LexiaHomeState extends State<LexiaHome> with SingleTickerProviderStateMixin {
@@ -43,11 +42,12 @@ class _LexiaHomeState extends State<LexiaHome> with SingleTickerProviderStateMix
         routes: {
           '/': (BuildContext context) => MainScreen(model),
           '/saved': (BuildContext context) => SavedScreen(),
-          '/settings': (BuildContext context) => SettingsScreen(),
+          // '/settings': (BuildContext context) => SettingsScreen(),
           '/about':  (BuildContext context) => AboutScreen(),
         }
       ),
     ); 
   }
-}
 
+
+}

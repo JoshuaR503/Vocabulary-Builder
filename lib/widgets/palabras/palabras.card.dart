@@ -20,22 +20,28 @@ class PalabraCard extends StatefulWidget {
 
 class _PalabraCardState extends State<PalabraCard> with TickerProviderStateMixin {
 
-
   final DatabaseHelper helper = DatabaseHelper();
   final FlutterTts flutterTts = new FlutterTts();
-  AnimationController controller;
-  Animation<double> animation;
+  AnimationController _controller;
+  Animation<double> _animation;
 
-  initState() {
+  @override
+  void initState() {
     super.initState();
-    controller = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
-    animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
-    controller.forward();
+    _controller = AnimationController(duration: const Duration(milliseconds: 500), vsync: this);
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    _controller.forward();
+  }
+  
+ @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   Widget _buildDataRow(BuildContext context) {
     return FadeTransition(
-      opacity: animation,
+      opacity: _animation,
       child: Container(
         padding: EdgeInsets.all(10.0),
         width: double.infinity,
@@ -165,6 +171,5 @@ class _PalabraCardState extends State<PalabraCard> with TickerProviderStateMixin
         ],
       ),
     );
-  }
-  
+  } 
 }

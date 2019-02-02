@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import '../widgets/ui/list_cell.dart';
 import '../widgets/ui/divider.dart';
@@ -45,6 +46,7 @@ class AboutScreenState extends State<AboutScreen> {
                 leading: const Icon(Icons.lock_open, size: 42.0),
                 title: ('Licencias de código abierto'),
                 subtitle: ('Información sobre las licencias de código abierto'),
+                onTap: () => FlutterWebBrowser.openWebPage(url: urlSendContributions)
               )
             ])
           )

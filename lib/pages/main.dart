@@ -13,7 +13,7 @@ class MainScreen extends StatefulWidget {
   MainScreen(this.model);
 
   @override
-  State<StatefulWidget> createState() => _MainScreen();
+    State<StatefulWidget> createState() => _MainScreen();
 }
 
 class _MainScreen extends State<MainScreen> {
@@ -22,7 +22,7 @@ class _MainScreen extends State<MainScreen> {
   Animation<double> animation;
 
   @override
-  initState() {
+  void initState() {
     widget.model.obtenerPalabras();
     super.initState();
   }
@@ -39,12 +39,7 @@ class _MainScreen extends State<MainScreen> {
             leading: Icon(Icons.bookmark_border),
             title: Text(savedSection),
             onTap: () => Navigator.pushNamed(context, '/saved')
-          ),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text(settingsSection),
-            onTap: () => Navigator.pushNamed(context, '/settings')
-          ),
+          ),         
           Divider(),
           ListTile(
             leading: Icon(Icons.info),
@@ -69,6 +64,7 @@ class _MainScreen extends State<MainScreen> {
   }
 
   Widget _buildMainContent() {
+    
     return ScopedModelDescendant(
       builder: (BuildContext context, Widget child, MainModel model) {
 
@@ -99,7 +95,4 @@ class _MainScreen extends State<MainScreen> {
       body: _buildMainContent(),
     );
   }
-
 }
-
-

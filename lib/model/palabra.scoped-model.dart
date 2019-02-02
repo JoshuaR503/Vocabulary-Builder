@@ -1,4 +1,5 @@
 import 'package:scoped_model/scoped_model.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 import 'package:http/http.dart' as http;
 import './palabra.model.dart';
@@ -12,6 +13,8 @@ mixin ConnectedModel on Model {
 }
 
 mixin PalabrasModel on ConnectedModel {
+
+  final FlutterTts flutterTts = new FlutterTts();
 
   List<Palabra> get allPalabras {
     return List.from(_palabras);
@@ -53,6 +56,14 @@ mixin PalabrasModel on ConnectedModel {
         notifyListeners();
         return;
       });
+  }
+
+
+  void speak(String text) {
+    flutterTts.setLanguage("en-US");
+    flutterTts.setPitch(1.0);
+    flutterTts.setSpeechRate(0.8);
+    flutterTts.speak(text);
   }
 } 
 

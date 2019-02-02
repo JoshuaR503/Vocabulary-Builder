@@ -1,4 +1,4 @@
-package com.example.moblie;
+package com.herokuapp.backend.another;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

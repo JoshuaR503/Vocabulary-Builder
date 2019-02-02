@@ -11,25 +11,32 @@ import 'dart:async';
 
 class SavedScreen extends StatefulWidget {
   @override
-    State<StatefulWidget> createState() => _SavedScreen();
+    State<StatefulWidget> createState() => _SavedScreenStatus();
 }
 
-class _SavedScreen extends State<SavedScreen> with TickerProviderStateMixin {
+class _SavedScreenStatus extends State<SavedScreen> with TickerProviderStateMixin {
 
   DatabaseHelper databaseHelper = DatabaseHelper();
   FlutterTts flutterTts = new FlutterTts();
-  AnimationController controller;
-  Animation<double> animation;
+  AnimationController _controller;
+  Animation<double> _animation;
 
   List<PalabraGuardada> dataList;
   bool _isLoading = true;
 	int count = 0;
 
-  initState() {
+  @override
+  void initState() {
     super.initState();
-    controller = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
-    animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
-    controller.forward();
+    _controller = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.decelerate);
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -77,18 +84,12 @@ class _SavedScreen extends State<SavedScreen> with TickerProviderStateMixin {
     if (eliminar) {
       circleAvatar = CircleAvatar(
         backgroundColor: Colors.red,
-        child: Icon(
-          Icons.delete, 
-          color: color
-        ),
+        child: Icon(Icons.delete, color: color),
       );
     } else {
       circleAvatar = CircleAvatar(
 				backgroundColor: Colors.amber,
-				child: Icon(
-          Icons.volume_up,
-          color: color
-        )
+				child: Icon(Icons.volume_up, color: color)
 			);
     }
 
@@ -103,7 +104,7 @@ class _SavedScreen extends State<SavedScreen> with TickerProviderStateMixin {
 			itemCount: count,
 			itemBuilder: (BuildContext context, int index) {
 				return FadeTransition(
-          opacity: animation,
+          opacity: _animation,
           child: Card(
 				  	elevation: 2.0,
 				  	child: ListTile(
@@ -126,9 +127,7 @@ class _SavedScreen extends State<SavedScreen> with TickerProviderStateMixin {
 
   void _updateListView() {
 
-    setState(() {
-      _isLoading = true;
-    });
+    setState(() => _isLoading = true);
 
 		final Future<Database> dbFuture = databaseHelper.initializeDatabase();
 		dbFuture.then((database) {
@@ -143,20 +142,18 @@ class _SavedScreen extends State<SavedScreen> with TickerProviderStateMixin {
           _isLoading = false;
 				});
 			})
-      .catchError((error) {
-        setState(() {
-          _isLoading = false;
-        });
-      });
+      .catchError((error) => setState(() => _isLoading = false));
 		});
   }
 
   void _deleteData(BuildContext context, PalabraGuardada palabra) async {
     int result = await databaseHelper.deletePalabra(palabra.id);
 		if (result != 0) {
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Palabra eliminada exitosamente')));
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text(onSuccessDeletingWord)));
 			_updateListView();
-		}
+		} else {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text(onErrorDeletingMessage)));
+    }
   }
 
   void _speak(String text) { 

@@ -23,3 +23,8 @@ All notable changes to this project will be documented in this file.
 
 ### Sixth commit
 - Added changelog
+
+### 7th commit
+- Added a new screen to get extra data from the request word
+- Added new widgets and UI elements
+- Fixed a layout error in the method _buildSideDrawer

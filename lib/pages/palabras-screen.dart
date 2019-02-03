@@ -6,17 +6,17 @@ import '../widgets/palabras/palabras.dart';
 import '../model/main.dart';
 import '../utils/settings.dart';
 
-class MainScreen extends StatefulWidget {
+class PalabrasScreen extends StatefulWidget {
   
   final MainModel model;
   
-  MainScreen(this.model);
+  PalabrasScreen(this.model);
 
   @override
-    State<StatefulWidget> createState() => _MainScreen();
+    State<StatefulWidget> createState() => _PalabrasScreenState();
 }
 
-class _MainScreen extends State<MainScreen> {
+class _PalabrasScreenState extends State<PalabrasScreen> {
 
   AnimationController controller;
   Animation<double> animation;
@@ -29,7 +29,8 @@ class _MainScreen extends State<MainScreen> {
 
   Widget _buildSideDrawer(BuildContext context) {
     return Drawer(
-      child: Column(
+
+      child: ListView(
         children: <Widget>[
           AppBar(
             automaticallyImplyLeading: false,

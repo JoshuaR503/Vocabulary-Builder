@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import './pages/main.dart';
-import './pages/saved.dart';
-import './pages/about.dart';
+import './pages/palabras-screen.dart';
+import './pages/palabras-saved-screen.dart';
+import './pages/about-screen.dart';
 
 import './model/main.dart';
 import './utils/colors.dart';
@@ -40,9 +40,8 @@ class _LexiaHomeState extends State<LexiaHome> with SingleTickerProviderStateMix
         debugShowCheckedModeBanner: false,
         theme: _renderThemeData(),
         routes: {
-          '/': (BuildContext context) => MainScreen(model),
-          '/saved': (BuildContext context) => SavedScreen(),
-          // '/settings': (BuildContext context) => SettingsScreen(),
+          '/': (BuildContext context) => PalabrasScreen(model),
+          '/saved': (BuildContext context) => PalabrasSavedScreen(),
           '/about':  (BuildContext context) => AboutScreen(),
         }
       ),

@@ -9,12 +9,12 @@ import '../utils/settings.dart';
 
 import 'dart:async';
 
-class SavedScreen extends StatefulWidget {
+class PalabrasSavedScreen extends StatefulWidget {
   @override
-    State<StatefulWidget> createState() => _SavedScreenStatus();
+    State<StatefulWidget> createState() => _PalabrasSavedScreenStatus();
 }
 
-class _SavedScreenStatus extends State<SavedScreen> with TickerProviderStateMixin {
+class _PalabrasSavedScreenStatus extends State<PalabrasSavedScreen> with TickerProviderStateMixin {
 
   DatabaseHelper databaseHelper = DatabaseHelper();
   FlutterTts flutterTts = new FlutterTts();
@@ -76,26 +76,6 @@ class _SavedScreenStatus extends State<SavedScreen> with TickerProviderStateMixi
     return content;
   }
 
-  Widget _buildCircleAvatar(bool eliminar) {
-
-    Widget circleAvatar = Container();
-    final color = Colors.white;
-
-    if (eliminar) {
-      circleAvatar = CircleAvatar(
-        backgroundColor: Colors.red,
-        child: Icon(Icons.delete, color: color),
-      );
-    } else {
-      circleAvatar = CircleAvatar(
-				backgroundColor: Colors.amber,
-				child: Icon(Icons.volume_up, color: color)
-			);
-    }
-
-    return circleAvatar;
-  }
-
   ListView _builListView() {
 
 		TextStyle titleStyle = Theme.of(context).textTheme.subhead;
@@ -109,9 +89,16 @@ class _SavedScreenStatus extends State<SavedScreen> with TickerProviderStateMixi
 				  	elevation: 2.0,
 				  	child: ListTile(
               
-				  		leading: _buildCircleAvatar(false),
+				  		leading: CircleAvatar(
+			        	backgroundColor: Colors.amber,
+			        	child: Icon(Icons.volume_up, color: Colors.white)
+			        ),
+
               trailing: GestureDetector (
-                child: _buildCircleAvatar(true),
+                child: CircleAvatar(
+                  backgroundColor: Colors.red,
+                  child: Icon(Icons.delete, color: Colors.white),
+                ),
 				  		  onTap: () => _deleteData(context, dataList[index]),
 				  	  ),
 

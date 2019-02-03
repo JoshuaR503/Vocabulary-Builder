@@ -11,6 +11,15 @@ final String urlSendFeedback = 'https://another-backend.herokuapp.com/send/feedb
 // ===============================================================
 final String urlSendContributions = 'https://another-backend.herokuapp.com/send/contributions';
 // ===============================================================
+// Url de Flutter
+// ===============================================================
+final String flutterUrl = 'https://flutter.io';
+// ===============================================================
+// ===============================================================
+// Url de Flutter
+// ===============================================================
+final String outSideDictionary = 'https://dictionary.cambridge.org/dictionary/english';
+// ===============================================================
 // Nombre de la aplicación
 // ===============================================================
 final String appname = 'American English Words';
@@ -24,6 +33,6 @@ final String onSuccessMessage = 'Palabra guardada correctamente';
 final String onSuccessDeletingWord = 'Palabra eliminada correctamente';
 final String onErrorMessage = 'Hubo un problema al guardar los datos';
 final String onErrorDeletingMessage = 'Hubo un problema al eliminar los datos';
-final String buttonName = 'Escuchar Pronunciación';
+final String buttonName = 'Escuchar pronunciación';
 final String onNoSavedWords = '¡Parece que aún no has guardado ninguna palabra!';
 final String onSavedWordsError = 'Hubo un error :(';

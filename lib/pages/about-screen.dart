@@ -9,11 +9,11 @@ class AboutScreen extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return AboutScreenState();
+    return _AboutScreenState();
   }
 }
 
-class AboutScreenState extends State<AboutScreen> {
+class _AboutScreenState extends State<AboutScreen> {
 
   @override
     Widget build(BuildContext context) {
@@ -38,15 +38,15 @@ class AboutScreenState extends State<AboutScreen> {
               Separator.divider(height: 0.0, indent: 74.0),
               ListCell(
                 leading: const Icon(Icons.person, size: 42.0),
-                title: ('Desarrollado por Joshua García'),
+                title: ('Autor Joshua García'),
                 subtitle: ('Contacto: joshuagarcia@outlook.es'),
               ),
               Separator.divider(height: 0.0, indent: 74.0),
               ListCell(
-                leading: const Icon(Icons.lock_open, size: 42.0),
-                title: ('Licencias de código abierto'),
-                subtitle: ('Información sobre las licencias de código abierto'),
-                onTap: () => FlutterWebBrowser.openWebPage(url: urlSendContributions)
+                leading: const Icon(Icons.verified_user, size: 42.0),
+                title: ('Supporting Open Source'),
+                subtitle: ('El código es abierto y se puede encontrar en Github'),
+                onTap: () => FlutterWebBrowser.openWebPage(url: flutterUrl)
               )
             ])
           )

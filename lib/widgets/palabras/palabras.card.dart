@@ -4,8 +4,9 @@ import 'package:flutter/animation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:intl/intl.dart';
 
-import '../../model/palabra.model.dart';
+import '../../pages/palabra-single-screen.dart';
 import '../../model/palabra_guardada.model.dart';
+import '../../model/palabra.model.dart';
 import '../../utils/db.helper.dart';
 import '../../utils/settings.dart';
 
@@ -40,9 +41,14 @@ class _PalabraCardState extends State<PalabraCard> with TickerProviderStateMixin
   }
 
   Widget _buildDataRow(BuildContext context) {
+    String palabra = widget.palabra.palabra;
+    String traduccion = widget.palabra.traduccion;
+    TextStyle style = TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300);
+
     return FadeTransition(
       opacity: _animation,
       child: Container(
+        
         padding: EdgeInsets.all(10.0),
         width: double.infinity,
 
@@ -50,68 +56,62 @@ class _PalabraCardState extends State<PalabraCard> with TickerProviderStateMixin
           elevation: 5.0,
           borderRadius: BorderRadius.circular(7.0),
 
-          child: Container(
-            height: 120.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+            child: Container(
 
-                ButtonBar(
-                  alignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    FlatButton(
-                      onPressed: () => _save(
-                        dataPalabra: widget.palabra.palabra, 
-                        dataTraduccion: widget.palabra.traduccion,
-                        context: context
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          Padding(
-                            child: Text(
-                              widget.palabra.palabra,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w300
-                              ),
+              height: 120.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+
+                  ButtonBar(
+                    alignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      FlatButton(
+                        onPressed: () => _save(
+                          dataPalabra: palabra, 
+                          dataTraduccion: traduccion,
+                          context: context
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              child: Text(palabra, style: style),
+                              padding: EdgeInsets.only(right: 2.0),
                             ),
-                            padding: EdgeInsets.only(right: 2.0),
-                          ),
-                          Icon(Icons.bookmark_border),
-                        ],
+                            Icon(Icons.bookmark_border),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
 
-                SizedBox(height: 4.0),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 10.0),
-                  child: Text(widget.palabra.traduccion),
-                )
-              ],
+                  SizedBox(height: 4.0),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 10.0),
+                    child: Text(widget.palabra.traduccion),
+                  )
+                ],
+              ),
             ),
-          ),
+          )
         )
-      ),
     );
   }
 
   Widget _buildActionButtons(BuildContext context) {
+    String palabra = widget.palabra.palabra;
+
     return ButtonBar(
       alignment: MainAxisAlignment.center,
       children: <Widget>[
         FlatButton(
-          onPressed: () => _speak(widget.palabra.palabra),     
+          onPressed: () => _speak(palabra),     
           child: Row(
             children: <Widget>[
               Padding(
                 child: Text(
                   buttonName,
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w300
-                  ),
+                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
                 ),
                 padding: EdgeInsets.only(right: 8.0),
               ),
@@ -163,13 +163,20 @@ class _PalabraCardState extends State<PalabraCard> with TickerProviderStateMixin
   
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: <Widget>[
-          _buildDataRow(context),
-          _buildActionButtons(context)
-        ],
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => SinglePalabraScreen(widget.palabra)),
       ),
+
+      child: Card(
+        child: Column(
+          children: <Widget>[
+            _buildDataRow(context),
+            _buildActionButtons(context)
+          ],
+        ),
+      )
     );
   } 
 }

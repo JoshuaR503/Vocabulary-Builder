@@ -10,9 +10,9 @@ class SinglePalabraCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(22.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -24,7 +24,7 @@ class SinglePalabraCard extends StatelessWidget {
                 style: Theme.of(context)
                   .textTheme
                   .title
-                  .copyWith(fontWeight: FontWeight.bold),
+                  .copyWith(fontWeight: FontWeight.normal),
               ),
             ),
             body

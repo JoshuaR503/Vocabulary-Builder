@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import '../widgets/palabra/single-palabra-card.dart';
@@ -9,7 +8,6 @@ import '../widgets/ui/divider.dart';
 import '../model/palabra-info.model.dart';
 import '../model/palabra.model.dart';
 import '../utils/settings.dart';
-import '../model/main.dart';
 
 class SinglePalabraScreen extends StatelessWidget {
   final Palabra _palabra;
@@ -19,10 +17,10 @@ class SinglePalabraScreen extends StatelessWidget {
   final PalabraInfo palabra = PalabraInfo(
     palabra: 'Hola',
     traduccion: 'Hello',
-    synonyms: ['Hi', 'Hi there'],
+    synonyms: 'Hi, Hi there',
     meaning: 'used as a friendly greeting or to attract attention.',
-    examples: ['Hi there.', 'How was the fligh? Hi, how are you doing?'],
-    type: 'Verbo',
+    examples: 'How was the fligh? Hi, how are you doing?',
+    type: 'Sustantivo',
     alt: true,
   );
 
@@ -53,6 +51,7 @@ class SinglePalabraScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(children: <Widget>[
                     _buildPalabraBasicInfoCard(),
+                    Separator.spacer(),
                     _buildPalabraExtraInfoCard(),
                   ]),
                 ),
@@ -66,12 +65,14 @@ class SinglePalabraScreen extends StatelessWidget {
 
   Widget _buildPalabraExtraInfoCard() {
     return HeadCard(
-      title1: 'Significado:',
-      subtitle1: palabra.meaning,
-      title2: 'Ejemplos:',
-      subtitle2: palabra.examples.toString(),
-      title3: 'Sinonimos:',
-      subtitle3: palabra.synonyms
+      type: 'Tipo de Palabra:',
+      subType: palabra.type,
+      synonyms: 'Sinonimos:',
+      subSynonyms: palabra.synonyms,
+      definicion: 'Definición:',
+      subDefinicion: palabra.meaning,
+      examples: 'Ejemplos:',
+      subExamples: palabra.examples,
     );
   }
 

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class PalabraInfo {
   final String palabra;
   final String traduccion;
-  final List synonyms;
+  final String synonyms;
   final String meaning;
-  final List examples;
+  final String examples;
   final String type;
   final bool alt;
 

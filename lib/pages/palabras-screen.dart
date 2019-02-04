@@ -49,15 +49,9 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
           ),
           
           ListTile(
-            leading: Icon(Icons.feedback),
+            leading: Icon(Icons.people),
             title: Text('Comentarios'),
             onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback)
-            
-          ),
-          ListTile(
-            leading: Icon(Icons.people),
-            title: Text('Contribuciones'),
-            onTap: () => FlutterWebBrowser.openWebPage(url: urlSendContributions)
           ),
         ],
       ),

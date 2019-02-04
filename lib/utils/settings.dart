@@ -7,10 +7,6 @@ final String url = 'https://another-backend.herokuapp.com/palabras/azar';
 // ===============================================================
 final String urlSendFeedback = 'https://another-backend.herokuapp.com/send/feedback';
 // ===============================================================
-// Url de el Servidor para enviar contribuciones
-// ===============================================================
-final String urlSendContributions = 'https://another-backend.herokuapp.com/send/contributions';
-// ===============================================================
 // Url de Flutter
 // ===============================================================
 final String flutterUrl = 'https://flutter.io';

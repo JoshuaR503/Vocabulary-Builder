@@ -28,3 +28,7 @@ All notable changes to this project will be documented in this file.
 - Added a new screen to get extra data from the request word
 - Added new widgets and UI elements
 - Fixed a layout error in the method _buildSideDrawer
+
+### 8th commit
+- Single Palabra Screen finished
+- TODO: Clean code and add Single Palabra Screen to Saved Screen

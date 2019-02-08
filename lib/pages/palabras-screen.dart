@@ -18,9 +18,6 @@ class PalabrasScreen extends StatefulWidget {
 
 class _PalabrasScreenState extends State<PalabrasScreen> {
 
-  AnimationController controller;
-  Animation<double> animation;
-
   @override
   void initState() {
     widget.model.obtenerPalabras();
@@ -63,7 +60,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
     return ScopedModelDescendant(
       builder: (BuildContext context, Widget child, MainModel model) {
 
-        Widget content = Center(child: Text('No data found. :('));
+        Widget content = Center(child: Text(onServerConnection));
 
         if (model.allPalabras.length > 0 && !model.isLoading) {
           content = Palabras();

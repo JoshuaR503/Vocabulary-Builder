@@ -5,7 +5,6 @@ import '../widgets/palabra/single-palabra-card.dart';
 import '../widgets/ui/head-card.dart';
 import '../widgets/ui/row-item.dart';
 import '../widgets/ui/divider.dart';
-import '../model/palabra-info.model.dart';
 import '../model/palabra.model.dart';
 import '../utils/settings.dart';
 
@@ -14,18 +13,9 @@ class SinglePalabraScreen extends StatelessWidget {
 
   SinglePalabraScreen(this._palabra);
 
-  final PalabraInfo palabra = PalabraInfo(
-    palabra: 'Hola',
-    traduccion: 'Hello',
-    synonyms: 'Hi, Hi there',
-    meaning: 'used as a friendly greeting or to attract attention.',
-    examples: 'How was the fligh? Hi, how are you doing?',
-    type: 'Sustantivo',
-    alt: true,
-  );
-
   @override
   Widget build(BuildContext context) {
+    
     return WillPopScope(
       onWillPop: () {
         Navigator.pop(context, false);
@@ -48,11 +38,16 @@ class SinglePalabraScreen extends StatelessWidget {
             children: <Widget>[
               Container(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(18.0),
                   child: Column(children: <Widget>[
                     _buildPalabraBasicInfoCard(),
                     Separator.spacer(),
-                    _buildPalabraExtraInfoCard(),
+                    _buildPalabraDefinitionCard(), 
+                    Separator.spacer(),
+                    _builPalabraExamplesCard(),
+                    Separator.spacer(),
+                    _buildPalabraAntSynCard(),
+                    Separator.spacer(),
                   ]),
                 ),
               )
@@ -63,16 +58,30 @@ class SinglePalabraScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPalabraExtraInfoCard() {
+  Widget _buildPalabraDefinitionCard() {
     return HeadCard(
-      type: 'Tipo de Palabra:',
-      subType: palabra.type,
-      synonyms: 'Sinonimos:',
-      subSynonyms: palabra.synonyms,
-      definicion: 'Definición:',
-      subDefinicion: palabra.meaning,
-      examples: 'Ejemplos:',
-      subExamples: palabra.examples,
+      title: 'Breve definición:',
+      subtitle: _palabra.definicion == null ? 'No disponible' : _palabra.definicion,
+      title2: 'Breve definición en Español:',
+      subtitle2: _palabra.definicionEs == null ? 'No disponible' : _palabra.definicionEs,
+    );
+  }
+
+  Widget _builPalabraExamplesCard() {
+    return HeadCard(
+      title: 'Ejemplos de ${_palabra.palabra}',
+      subtitle: _palabra.ejemplos == null ? 'No disponible' : _palabra.ejemplos,
+      title2: '¿Hay mas traducciones?',
+      subtitle2: _palabra.alt == true ? 'Si' : 'No',
+    );
+  }
+
+  Widget _buildPalabraAntSynCard() {
+    return HeadCard(
+      title: 'Anotinmos:',
+      subtitle: _palabra.antonimos == null ? 'No disponible' : _palabra.antonimos,
+      title2: 'Sinonimos:',
+      subtitle2: _palabra.sinonimos == null ? 'No disponible' : _palabra.sinonimos,
     );
   }
 
@@ -85,19 +94,21 @@ class SinglePalabraScreen extends StatelessWidget {
             'Palabra', 
             _palabra.palabra
           ),
+          
           Separator.spacer(),
           RowItem.textRow(
             'Traduccion',
             _palabra.traduccion
           ),
+
           Separator.spacer(),
           RowItem.textRow(
-            '¿Hay otra traducción?',
-            palabra.alt == true ? 'Si' : 'No' 
+            'Categoría gramatical', 
+            _palabra.tipo == null ? 'No disponible' : _palabra.tipo,
           ),
+
         ],
       ),
     );
   }
-
 }

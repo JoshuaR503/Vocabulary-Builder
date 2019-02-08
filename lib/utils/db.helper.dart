@@ -15,6 +15,12 @@ class DatabaseHelper {
 	String colId = 'id';
 	String colPalabra = 'palabra';
 	String colTraduccion = 'traduccion';
+  String colDefinition = 'definicion';
+  String colDefinitionEs = 'definicionEs';
+  String colSynonyms = 'sinonimos';
+  String colAntonyms = 'antonimos';
+  String colExamples = 'ejemplos';
+  String colType = 'tipo';
   String colDate = 'date';
 
   DatabaseHelper._createInstance();
@@ -35,17 +41,14 @@ class DatabaseHelper {
 
   Future<Database> initializeDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
-		String path = directory.path + 'palabras.db';
+		String path = directory.path + 'palabras2ab.db';
 
     var notesDatabase = await openDatabase(path, version: 1, onCreate: _createDb);
 		return notesDatabase;
   }
 
-  void _createDb(Database db, int newVersion) async {
-
-		await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colDate TEXT)");
-	}
-
+  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colDefinition TEXT, $colDefinitionEs TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colExamples TEXT, $colType TEXT, $colDate TEXT)");
+	
   Future<List<Map<String, dynamic>>> fetchSavedDataMapList() async {
 		Database db = await this.database;
 
@@ -78,5 +81,4 @@ class DatabaseHelper {
 
 		return savedDataList;
 	}
-
 }

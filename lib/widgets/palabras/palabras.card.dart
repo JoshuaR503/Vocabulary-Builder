@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
-
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:intl/intl.dart';
 
@@ -23,6 +22,7 @@ class _PalabraCardState extends State<PalabraCard> with TickerProviderStateMixin
 
   final DatabaseHelper helper = DatabaseHelper();
   final FlutterTts flutterTts = new FlutterTts();
+
   AnimationController _controller;
   Animation<double> _animation;
 
@@ -40,10 +40,58 @@ class _PalabraCardState extends State<PalabraCard> with TickerProviderStateMixin
     super.dispose();
   }
 
-  Widget _buildDataRow(BuildContext context) {
-    String palabra = widget.palabra.palabra;
-    String traduccion = widget.palabra.traduccion;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => SinglePalabraScreen(widget.palabra)),
+      ),
+
+      child: Card(
+        child: Column(
+          children: <Widget>[
+            _buildDataRow(context),
+            _buildActionButtons(context)
+          ],
+        ),
+      )
+    );
+  } 
+
+  Widget _buildButtonBar() {
     TextStyle style = TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300);
+
+    return ButtonBar(
+      alignment: MainAxisAlignment.center,
+      children: <Widget>[
+        FlatButton(
+          onPressed: () => _save(
+            palabra: widget.palabra.palabra,
+            traduccion: widget.palabra.traduccion,
+            definicion: widget.palabra.definicion,
+            definicionEs: widget.palabra.definicionEs,
+            sinonimos: widget.palabra.sinonimos,
+            antonimos: widget.palabra.antonimos,
+            ejemplos: widget.palabra.ejemplos,
+            tipo: widget.palabra.tipo,
+            context: context
+          ),
+          child: Row(
+            children: <Widget>[
+              Padding(
+                child: Text(widget.palabra.palabra, style: style),
+                padding: EdgeInsets.only(right: 2.0),
+              ),
+              Icon(Icons.bookmark_border),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDataRow(BuildContext context) {
 
     return FadeTransition(
       opacity: _animation,
@@ -63,27 +111,7 @@ class _PalabraCardState extends State<PalabraCard> with TickerProviderStateMixin
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
 
-                  ButtonBar(
-                    alignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      FlatButton(
-                        onPressed: () => _save(
-                          dataPalabra: palabra, 
-                          dataTraduccion: traduccion,
-                          context: context
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Padding(
-                              child: Text(palabra, style: style),
-                              padding: EdgeInsets.only(right: 2.0),
-                            ),
-                            Icon(Icons.bookmark_border),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  _buildButtonBar(),
 
                   SizedBox(height: 4.0),
                   Padding(
@@ -130,12 +158,29 @@ class _PalabraCardState extends State<PalabraCard> with TickerProviderStateMixin
     flutterTts.speak(text);
   }
 
-  void _save({String dataPalabra, String dataTraduccion, BuildContext context}) async {
+  void _save({
+    String palabra, 
+    String traduccion, 
+    String definicion, 
+    String definicionEs, 
+    String sinonimos, 
+    String antonimos, 
+    String ejemplos, 
+    String tipo, 
+    BuildContext context
+  }) async {
+
     int result;
 
     PalabraGuardada singlePalabra = PalabraGuardada(
-      palabra: dataPalabra,
-      traduccion: dataTraduccion,
+      palabra: palabra,
+      traduccion: traduccion,
+      definicion: definicion,
+      definicionEs: definicionEs,
+      sinonimos: sinonimos,
+      antonimos: antonimos,
+      ejemplos: ejemplos,
+      tipo: tipo,      
       date: DateFormat.yMMMd().format(DateTime.now())
     );
 
@@ -161,22 +206,4 @@ class _PalabraCardState extends State<PalabraCard> with TickerProviderStateMixin
     Scaffold.of(context).showSnackBar(snackbar);
   }
   
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => SinglePalabraScreen(widget.palabra)),
-      ),
-
-      child: Card(
-        child: Column(
-          children: <Widget>[
-            _buildDataRow(context),
-            _buildActionButtons(context)
-          ],
-        ),
-      )
-    );
-  } 
 }

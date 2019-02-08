@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import './palabras.card.dart';
+import '../../utils/settings.dart';
 import '../../model/palabra.model.dart';
 import '../../model/main.dart';
 
@@ -17,7 +18,7 @@ class Palabras extends StatelessWidget {
         itemCount: palabras.length,
       );
     } else {
-      palabrasCard = Center(child: Text('No data found. :('));
+      palabrasCard = Center(child: Text(onServerConnection));
     }
 
     return palabrasCard;
@@ -25,7 +26,6 @@ class Palabras extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('[Products Widget] build()');
     return ScopedModelDescendant<MainModel>(
       builder: (BuildContext context, Widget child, MainModel model) => _buildPalabrasList(model.allPalabras)
     );

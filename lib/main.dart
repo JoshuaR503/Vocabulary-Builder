@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import './pages/palabras-screen.dart';
-import './pages/palabras-saved-screen.dart';
+import './pages/palabra-guardada-screen.dart';
 import './pages/about-screen.dart';
 
 import './model/main.dart';
@@ -41,12 +41,10 @@ class _LexiaHomeState extends State<LexiaHome> with SingleTickerProviderStateMix
         theme: _renderThemeData(),
         routes: {
           '/': (BuildContext context) => PalabrasScreen(model),
-          '/saved': (BuildContext context) => PalabrasSavedScreen(),
+          '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
           '/about':  (BuildContext context) => AboutScreen(),
         }
       ),
     ); 
   }
-
-
 }

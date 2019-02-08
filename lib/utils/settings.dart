@@ -32,3 +32,4 @@ final String onErrorDeletingMessage = 'Hubo un problema al eliminar los datos';
 final String buttonName = 'Escuchar pronunciación';
 final String onNoSavedWords = '¡Parece que aún no has guardado ninguna palabra!';
 final String onSavedWordsError = 'Hubo un error :(';
+final String onServerConnection = 'No se pudo conectar al servidor :(';

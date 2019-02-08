@@ -1,23 +1,41 @@
 import 'package:scoped_model/scoped_model.dart';
-import 'package:flutter_tts/flutter_tts.dart';
-
+import 'package:sqflite/sqflite.dart';
 import 'package:http/http.dart' as http;
-import './palabra.model.dart';
 
 import 'dart:convert';
 import 'dart:async';
 
+import './palabra_guardada.model.dart';
+import './palabra.model.dart';
+
+import '../utils/settings.dart';
+import '../utils/db.helper.dart';
+
 mixin ConnectedModel on Model {
   bool _isLoading = true;
+  bool _palabrasGuardadasIsLoading = true;
+
+  int _selPalabraGuardadaId;
   List _palabras = [];
+  List _palabrasGuardadas = [];
 }
 
 mixin PalabrasModel on ConnectedModel {
+  
+  DatabaseHelper _dbh = DatabaseHelper();
 
-  final FlutterTts flutterTts = new FlutterTts();
+  List<Palabra> get allPalabras => List.from(_palabras);
+  List<PalabraGuardada> get allPalabrasGuardadas => List.from(_palabrasGuardadas);
 
-  List<Palabra> get allPalabras {
-    return List.from(_palabras);
+  int get selectedPalabraIndex => _palabrasGuardadas.indexWhere((palabra) => palabra.id == _selPalabraGuardadaId);
+  int get selectedPalabraId => _selPalabraGuardadaId;
+
+  PalabraGuardada get selectedPalabra {
+    if (selectedPalabraId == null) {
+      return null;
+    }
+
+    return _palabrasGuardadas.firstWhere((palabra) => palabra.id == _selPalabraGuardadaId);
   }
 
   Future<Null> obtenerPalabras() async {
@@ -25,7 +43,7 @@ mixin PalabrasModel on ConnectedModel {
     notifyListeners();
 
     return http
-      .get('https://another-backend.herokuapp.com/palabras/azar')
+      .get(url)
       .then<Null>((http.Response response) {
 
         final List<Palabra> fetchedPalabrasList = [];
@@ -42,6 +60,13 @@ mixin PalabrasModel on ConnectedModel {
           final Palabra singlePalabra = Palabra(
             palabra: palabraData['palabra'],
             traduccion: palabraData['traduccion'],
+            definicion: palabraData['definicion'],
+            definicionEs: palabraData['definicionEs'],
+            sinonimos: palabraData['sinonimos'],
+            antonimos: palabraData['antonimos'],
+            ejemplos: palabraData['ejemplos'],
+            tipo: palabraData['tipo'],
+            alt: palabraData['alt'],
           );
 
           fetchedPalabrasList.add(singlePalabra);
@@ -58,17 +83,51 @@ mixin PalabrasModel on ConnectedModel {
       });
   }
 
+  Future<Null> obtenerPalabrasGuardadas() async { 
+    _palabrasGuardadasIsLoading = true;
+    notifyListeners();
 
-  void speak(String text) {
-    flutterTts.setLanguage("en-US");
-    flutterTts.setPitch(1.0);
-    flutterTts.setSpeechRate(0.8);
-    flutterTts.speak(text);
+    Future<Database> dbFuture = _dbh.initializeDatabase();
+
+		dbFuture.then((database) {
+
+			Future<List<PalabraGuardada>> dataListFuture = _dbh.fetchSavedDataList();
+
+			dataListFuture
+        .then((response) {
+          _palabrasGuardadas = response;
+          _palabrasGuardadasIsLoading = false;
+          notifyListeners();
+        })
+        .catchError((error) {
+          _palabrasGuardadasIsLoading = false;
+          notifyListeners();
+          return;
+        });
+
+		}).catchError((error) {
+      _palabrasGuardadasIsLoading = false;
+      notifyListeners();
+      return;
+    });
+  }
+
+  void deletePalabraGuardada() {
+    _palabrasGuardadas.removeAt(selectedPalabraIndex);
+    _dbh.deletePalabra(selectedPalabra.id);
+    _selPalabraGuardadaId = null;
+  }
+
+  void selectPalabra(int palabraId) {
+    _selPalabraGuardadaId = palabraId;
+
+    if (palabraId != null) {
+      notifyListeners();
+    }
   }
 } 
 
 mixin UtilityModel on ConnectedModel {
-  bool get isLoading {
-    return _isLoading;
-  }
+  bool get isLoading => _isLoading;
+  bool get palabrasGuardadasIsLoading => _palabrasGuardadasIsLoading;
 }

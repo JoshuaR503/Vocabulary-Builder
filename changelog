@@ -32,3 +32,12 @@ All notable changes to this project will be documented in this file.
 ### 8th commit
 - Single Palabra Screen finished
 - TODO: Clean code and add Single Palabra Screen to Saved Screen
+
+### 9th commit
+- Added Connection to Single Palabra Screen from the saved Section
+- Added Swipe to delete in Saved Section
+- Updated Palabra Model
+- TODO: Clean code
+- TODO: Fix Navigation
+- TODO: Work in Navigation Bug
+- REESTRUCTURED SCROPED MODEL

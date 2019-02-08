@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/animation.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 import '../model/palabra_guardada.model.dart';
+import '../pages/palabra-single-screen.dart';
+import '../model/palabra.model.dart';
 import '../utils/db.helper.dart';
 import '../utils/settings.dart';
 
@@ -14,30 +15,14 @@ class PalabrasSavedScreen extends StatefulWidget {
     State<StatefulWidget> createState() => _PalabrasSavedScreenStatus();
 }
 
-class _PalabrasSavedScreenStatus extends State<PalabrasSavedScreen> with TickerProviderStateMixin {
+class _PalabrasSavedScreenStatus extends State<PalabrasSavedScreen> {
 
   DatabaseHelper databaseHelper = DatabaseHelper();
   FlutterTts flutterTts = new FlutterTts();
-  AnimationController _controller;
-  Animation<double> _animation;
 
   List<PalabraGuardada> dataList;
   bool _isLoading = true;
 	int count = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.decelerate);
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +61,18 @@ class _PalabrasSavedScreenStatus extends State<PalabrasSavedScreen> with TickerP
     return content;
   }
 
+  Widget stackBehindDismiss() {
+    return Container(
+      alignment: Alignment.centerRight,
+      padding: EdgeInsets.only(right: 20.0),
+      color: Colors.red,
+      child: Icon(
+        Icons.delete,
+        color: Colors.white,
+      ),
+    );
+  }
+
   ListView _builListView() {
 
 		TextStyle titleStyle = Theme.of(context).textTheme.subhead;
@@ -83,30 +80,55 @@ class _PalabrasSavedScreenStatus extends State<PalabrasSavedScreen> with TickerP
 		return ListView.builder(
 			itemCount: count,
 			itemBuilder: (BuildContext context, int index) {
-				return FadeTransition(
-          opacity: _animation,
-          child: Card(
-				  	elevation: 2.0,
-				  	child: ListTile(
-              
-				  		leading: CircleAvatar(
-			        	backgroundColor: Colors.amber,
-			        	child: Icon(Icons.volume_up, color: Colors.white)
-			        ),
 
-              trailing: GestureDetector (
-                child: CircleAvatar(
-                  backgroundColor: Colors.red,
-                  child: Icon(Icons.delete, color: Colors.white),
-                ),
-				  		  onTap: () => _deleteData(context, dataList[index]),
-				  	  ),
+        final Palabra singlePalabra =  Palabra(
+          palabra: dataList[index].palabra,
+          traduccion: dataList[index].traduccion,
+          definicion: dataList[index].definicion,
+          definicionEs: dataList[index].definicionEs,
+          sinonimos: dataList[index].sinonimos,
+          antonimos: dataList[index].antonimos,
+          ejemplos: dataList[index].ejemplos,
+          alt: false,
+          tipo: dataList[index].tipo,
+        );
 
-				  		title: Text(this.dataList[index].palabra, style: titleStyle,),
-				  		subtitle: Text(this.dataList[index].traduccion),
-              onTap: () => _speak(this.dataList[index].palabra)
-				  	),
-				  ),
+        return Dismissible(
+          key: ObjectKey(dataList[index]),
+          background: stackBehindDismiss(),
+          
+          onDismissed: (direction) => _deleteData(context, dataList[index]),
+  
+          child: GestureDetector(
+            
+            child: Card(
+				    	elevation: 2.0,
+				    	child: ListTile(
+
+				    		leading: CircleAvatar(
+			          	backgroundColor: Colors.amber,
+			          	child: Icon(Icons.volume_up, color: Colors.white),
+                  
+			          ),
+
+                trailing: GestureDetector (
+                  child: CircleAvatar(
+                    backgroundColor: Colors.red,
+                    child: Icon(Icons.arrow_forward, color: Colors.white),
+                  ),
+				    		  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => SinglePalabraScreen(singlePalabra)),
+                  ),
+				    	  ),
+
+				    		title: Text(dataList[index].palabra, style: titleStyle,),
+				    		subtitle: Text(dataList[index].traduccion),
+                onTap: () => _speak(dataList[index].palabra)
+				    	),
+
+				    ),
+          )
         );
 			},
 		);

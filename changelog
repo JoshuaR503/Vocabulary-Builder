@@ -45,3 +45,4 @@ All notable changes to this project will be documented in this file.
 ### 10th commit
 - Created a folder (.old) to put old and redundant files that I don't want to delete
 - Fixed an error that would prevent the user to delete a word. Not sure if it will work so I'm going to commit
+- Added Speak function from the main model

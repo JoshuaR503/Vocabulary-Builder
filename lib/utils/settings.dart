@@ -11,11 +11,6 @@ final String urlSendFeedback = 'https://another-backend.herokuapp.com/send/feedb
 // ===============================================================
 final String flutterUrl = 'https://flutter.io';
 // ===============================================================
-// ===============================================================
-// Url de Flutter
-// ===============================================================
-final String outSideDictionary = 'https://dictionary.cambridge.org/dictionary/english';
-// ===============================================================
 // Nombre de la aplicación
 // ===============================================================
 final String appname = 'American English Words';

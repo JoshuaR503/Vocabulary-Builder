@@ -8,13 +8,13 @@ import '../../model/main.dart';
 
 class Palabras extends StatelessWidget {
   
-  Widget _buildPalabrasList(List<Palabra> palabras) {
+  Widget _buildPalabrasList(List<Palabra> palabras, MainModel model) {
 
     Widget palabrasCard;
 
     if (palabras.length > 0) {
       palabrasCard = ListView.builder(
-        itemBuilder: (BuildContext context, int index) => PalabraCard(palabras[index]),
+        itemBuilder: (BuildContext context, int index) => PalabraCard(palabras[index], model),
         itemCount: palabras.length,
       );
     } else {
@@ -27,7 +27,7 @@ class Palabras extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<MainModel>(
-      builder: (BuildContext context, Widget child, MainModel model) => _buildPalabrasList(model.allPalabras)
+      builder: (BuildContext context, Widget child, MainModel model) => _buildPalabrasList(model.allPalabras, model)
     );
   }
 }

@@ -26,7 +26,7 @@ class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
     return ScopedModelDescendant(
       builder: (BuildContext context, Widget child, MainModel model) {
 
-        Widget content = Center(child: Text(onErrorMessage));
+        Widget content = Center(child: Text(onNoSavedWords));
 
         if (model.allPalabrasGuardadas.length > 0 && !model.palabrasGuardadasIsLoading) {
           content = PalabrasGuardadas();

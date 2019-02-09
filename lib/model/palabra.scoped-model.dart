@@ -1,6 +1,8 @@
 import 'package:scoped_model/scoped_model.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 import 'dart:convert';
 import 'dart:async';
@@ -14,14 +16,14 @@ import '../utils/db.helper.dart';
 mixin ConnectedModel on Model {
   bool _isLoading = true;
   bool _palabrasGuardadasIsLoading = true;
-
+  
   int _selPalabraGuardadaId;
   List _palabras = [];
   List _palabrasGuardadas = [];
 }
 
 mixin PalabrasModel on ConnectedModel {
-  
+  FlutterTts _flutterTts = FlutterTts();
   DatabaseHelper _dbh = DatabaseHelper();
 
   List<Palabra> get allPalabras => List.from(_palabras);
@@ -89,8 +91,8 @@ mixin PalabrasModel on ConnectedModel {
 
     Future<Database> dbFuture = _dbh.initializeDatabase();
 
-		dbFuture.then((database) {
-
+		dbFuture
+    .then((database) {
 			Future<List<PalabraGuardada>> dataListFuture = _dbh.fetchSavedDataList();
 
 			dataListFuture
@@ -104,17 +106,50 @@ mixin PalabrasModel on ConnectedModel {
           notifyListeners();
           return;
         });
-
-		}).catchError((error) {
+		})
+    .catchError((error) {
       _palabrasGuardadasIsLoading = false;
       notifyListeners();
       return;
     });
   }
 
+  Future<int> save({
+    String palabra, 
+    String traduccion, 
+    String definicion, 
+    String definicionEs, 
+    String sinonimos, 
+    String antonimos, 
+    String ejemplos, 
+    String tipo
+  }) async {
+
+    PalabraGuardada singlePalabra = PalabraGuardada(
+      palabra: palabra,
+      traduccion: traduccion,
+      definicion: definicion,
+      definicionEs: definicionEs,
+      sinonimos: sinonimos,
+      antonimos: antonimos,
+      ejemplos: ejemplos,
+      tipo: tipo,
+      date: DateFormat.yMMMd().format(DateTime.now())
+    );
+
+    int result = await _dbh.savePalabra(singlePalabra);
+
+    return result;
+  }
+
   void deletePalabraGuardada() {
-    _palabrasGuardadas.removeAt(selectedPalabraIndex);
+    print(selectedPalabra.id);
+    print(selectedPalabraIndex);
+
+
+    // THIS MIGHT FAIL
     _dbh.deletePalabra(selectedPalabra.id);
+    _palabrasGuardadas.removeAt(selectedPalabraIndex);
     _selPalabraGuardadaId = null;
   }
 
@@ -124,6 +159,13 @@ mixin PalabrasModel on ConnectedModel {
     if (palabraId != null) {
       notifyListeners();
     }
+  }
+
+  void speak(String text) { 
+    _flutterTts.setLanguage("en-US");
+    _flutterTts.setPitch(1.0);
+    _flutterTts.setSpeechRate(0.8);
+    _flutterTts.speak(text);
   }
 } 
 

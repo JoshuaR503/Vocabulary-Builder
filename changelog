@@ -41,3 +41,7 @@ All notable changes to this project will be documented in this file.
 - TODO: Fix Navigation
 - TODO: Work in Navigation Bug
 - REESTRUCTURED SCROPED MODEL
+
+### 10th commit
+- Created a folder (.old) to put old and redundant files that I don't want to delete
+- Fixed an error that would prevent the user to delete a word. Not sure if it will work so I'm going to commit

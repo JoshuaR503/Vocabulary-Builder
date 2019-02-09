@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import '../widgets/palabra/single-palabra-card.dart';
 import '../widgets/ui/head-card.dart';
 import '../widgets/ui/row-item.dart';
 import '../widgets/ui/divider.dart';
 import '../model/palabra.model.dart';
-import '../utils/settings.dart';
 
 class SinglePalabraScreen extends StatelessWidget {
   final Palabra _palabra;
@@ -18,21 +16,15 @@ class SinglePalabraScreen extends StatelessWidget {
     
     return WillPopScope(
       onWillPop: () {
-        Navigator.pop(context, false);
+        Navigator.of(context).pop(false);
       },
-
+        
       child: Scaffold(
         appBar: AppBar( 
           title: Text(_palabra.palabra),
           centerTitle: true,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () => FlutterWebBrowser
-                .openWebPage(url: '$outSideDictionary/${_palabra.palabra}')
-            ),
-          ],
         ),
+
         body: Builder(
           builder: (context) => ListView(
             children: <Widget>[
@@ -106,7 +98,6 @@ class SinglePalabraScreen extends StatelessWidget {
             'Categoría gramatical', 
             _palabra.tipo == null ? 'No disponible' : _palabra.tipo,
           ),
-
         ],
       ),
     );

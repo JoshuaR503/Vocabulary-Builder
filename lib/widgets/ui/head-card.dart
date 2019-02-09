@@ -58,7 +58,6 @@ class HeadCard extends StatelessWidget {
                       Text(subtitle2, style: subStyle)
                     ],
                   ),
-
                 ],
               ),
             ),

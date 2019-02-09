@@ -34,7 +34,13 @@ class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
           content = Center(child: CircularProgressIndicator());
         }
 
-        return content;
+        return WillPopScope(
+          onWillPop: () {
+            Navigator.pop(context, true);
+          },
+
+          child: content
+        );
       }
     );
   }

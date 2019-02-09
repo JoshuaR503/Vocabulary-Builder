@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:sentry/sentry.dart';
 
 import './pages/palabras-screen.dart';
 import './pages/palabra-guardada-screen.dart';
@@ -12,6 +13,9 @@ import './utils/settings.dart';
 void main() => runApp(new LexiaHome());
 
 class LexiaHome extends StatefulWidget {
+
+  final SentryClient sentry = new SentryClient(dsn: 'https://6fde3857a1bc4a33be3f1e79ae947b3f@sentry.io/1390352');
+
   @override
   _LexiaHomeState createState() => new _LexiaHomeState();
 }

@@ -3,8 +3,8 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import '../widgets/palabras/palabras.dart';
-import '../model/main.dart';
 import '../utils/settings.dart';
+import '../model/main.dart';
 
 class PalabrasScreen extends StatefulWidget {
   

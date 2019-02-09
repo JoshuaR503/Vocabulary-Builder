@@ -15,16 +15,22 @@ final String flutterUrl = 'https://flutter.io';
 // ===============================================================
 final String appname = 'American English Words';
 // ===============================================================
-// Rutas de la aplicación
+// Nombres de la aplicación
 // ===============================================================
 final String savedSection = 'Palabras Guardadas';
 final String settingsSection = 'Configuración';
 final String infoSection = 'Información';
+final String buttonName = 'Escuchar pronunciación';
+// ===============================================================
+// Success messages
+// ===============================================================
 final String onSuccessMessage = 'Palabra guardada correctamente';
 final String onSuccessDeletingWord = 'Palabra eliminada correctamente';
+// ===============================================================
+// Error messages
+// ===============================================================
 final String onErrorMessage = 'Hubo un problema al guardar los datos';
 final String onErrorDeletingMessage = 'Hubo un problema al eliminar los datos';
-final String buttonName = 'Escuchar pronunciación';
 final String onNoSavedWords = '¡Parece que aún no has guardado ninguna palabra!';
 final String onSavedWordsError = 'Hubo un error :(';
 final String onServerConnection = 'No se pudo conectar al servidor :(';

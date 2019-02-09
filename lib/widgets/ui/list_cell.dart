@@ -42,21 +42,3 @@ class ListCell extends StatelessWidget {
     );
   }
 }
-
-class MissionNumber extends StatelessWidget {
-  final String missionNumber;
-
-  MissionNumber(this.missionNumber);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 6.0),
-      child: Text(
-        missionNumber,
-        style: TextStyle(fontSize: 15.0),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-}

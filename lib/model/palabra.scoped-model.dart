@@ -24,7 +24,7 @@ mixin ConnectedModel on Model {
 
 mixin PalabrasModel on ConnectedModel {
   FlutterTts _flutterTts = FlutterTts();
-  DatabaseHelper _dbh = DatabaseHelper();
+  DatabaseHelper _dbh = DatabaseHelper();  
 
   List<Palabra> get allPalabras => List.from(_palabras);
   List<PalabraGuardada> get allPalabrasGuardadas => List.from(_palabrasGuardadas);
@@ -143,11 +143,6 @@ mixin PalabrasModel on ConnectedModel {
   }
 
   void deletePalabraGuardada() {
-    print(selectedPalabra.id);
-    print(selectedPalabraIndex);
-
-
-    // THIS MIGHT FAIL
     _dbh.deletePalabra(selectedPalabra.id);
     _palabrasGuardadas.removeAt(selectedPalabraIndex);
     _selPalabraGuardadaId = null;
@@ -161,7 +156,7 @@ mixin PalabrasModel on ConnectedModel {
     }
   }
 
-  void speak(String text) { 
+  void speak(String text) async { 
     _flutterTts.setLanguage("en-US");
     _flutterTts.setPitch(1.0);
     _flutterTts.setSpeechRate(0.8);

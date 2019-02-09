@@ -20,7 +20,7 @@ class _AboutScreenState extends State<AboutScreen> {
       return WillPopScope(
 
         onWillPop: () {
-          Navigator.pop(context, false);
+          Navigator.pop(context, true);
         },
         
         child: Scaffold(

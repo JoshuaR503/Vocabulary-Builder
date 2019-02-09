@@ -47,7 +47,7 @@ class _PalabraGuardadaCardState extends State<PalabraGuardadaCard> with TickerPr
       definicionEs: widget.palabra.definicionEs,
       sinonimos: widget.palabra.sinonimos,
       antonimos: widget.palabra.antonimos,
-      ejemplos: widget.palabra.ejemplos,
+      ejemplos: widget.palabra.ejemplos, 
       alt: false,
       tipo: widget.palabra.tipo,
     );

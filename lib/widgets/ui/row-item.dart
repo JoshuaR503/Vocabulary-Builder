@@ -41,7 +41,7 @@ class RowItem extends StatelessWidget {
     String description,
     ScopedModel screen,
   }) {
-      return RowItem(title, _getText(description));
+    return RowItem(title, _getText(description));
   }
 
   static Widget _getIcon(bool status) {

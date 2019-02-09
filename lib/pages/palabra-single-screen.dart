@@ -16,7 +16,7 @@ class SinglePalabraScreen extends StatelessWidget {
     
     return WillPopScope(
       onWillPop: () {
-        Navigator.of(context).pop(false);
+        Navigator.pop(context, true);
       },
         
       child: Scaffold(
@@ -50,6 +50,32 @@ class SinglePalabraScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildPalabraBasicInfoCard() {
+    return SinglePalabraCard(
+      title: 'Detalles adicionales',
+      body: Column(
+        children: <Widget>[
+          RowItem.textRow(
+            'Palabra', 
+            _palabra.palabra
+          ),
+          
+          Separator.spacer(),
+          RowItem.textRow(
+            'Traducción',
+            _palabra.traduccion
+          ),
+
+          Separator.spacer(),
+          RowItem.textRow(
+            'Categoría gramatical', 
+            _palabra.tipo == null ? 'No disponible' : _palabra.tipo,
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildPalabraDefinitionCard() {
     return HeadCard(
       title: 'Breve definición:',
@@ -61,7 +87,7 @@ class SinglePalabraScreen extends StatelessWidget {
 
   Widget _builPalabraExamplesCard() {
     return HeadCard(
-      title: 'Ejemplos de ${_palabra.palabra}',
+      title: '${_palabra.palabra} en una oración:',
       subtitle: _palabra.ejemplos == null ? 'No disponible' : _palabra.ejemplos,
       title2: '¿Hay mas traducciones?',
       subtitle2: _palabra.alt == true ? 'Si' : 'No',
@@ -77,29 +103,5 @@ class SinglePalabraScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPalabraBasicInfoCard() {
-    return SinglePalabraCard(
-      title: 'Detalles adicionales',
-      body: Column(
-        children: <Widget>[
-          RowItem.textRow(
-            'Palabra', 
-            _palabra.palabra
-          ),
-          
-          Separator.spacer(),
-          RowItem.textRow(
-            'Traduccion',
-            _palabra.traduccion
-          ),
-
-          Separator.spacer(),
-          RowItem.textRow(
-            'Categoría gramatical', 
-            _palabra.tipo == null ? 'No disponible' : _palabra.tipo,
-          ),
-        ],
-      ),
-    );
-  }
+  
 }

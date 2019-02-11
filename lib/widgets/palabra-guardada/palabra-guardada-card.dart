@@ -43,6 +43,11 @@ class _PalabraGuardadaCardState extends State<PalabraGuardadaCard> with TickerPr
     final Palabra singlePalabra =  Palabra(
       palabra: widget.palabra.palabra,
       traduccion: widget.palabra.traduccion,
+      pasado: widget.palabra.pasado,
+      presente: widget.palabra.presente,
+      presenteContinuo: widget.palabra.presenteContinuo,
+      thirdPerson: widget.palabra.thirdPerson,
+      futuro: widget.palabra.futuro,
       definicion: widget.palabra.definicion,
       definicionEs: widget.palabra.definicionEs,
       sinonimos: widget.palabra.sinonimos,
@@ -67,7 +72,7 @@ class _PalabraGuardadaCardState extends State<PalabraGuardadaCard> with TickerPr
             trailing: GestureDetector (
               child: CircleAvatar(
                 backgroundColor: Colors.red,
-                child: Icon(Icons.arrow_forward, color: Colors.white),
+                child: Icon(Icons.remove_red_eye, color: Colors.white),
               ),
               onTap: () => Navigator.push(
                 context,

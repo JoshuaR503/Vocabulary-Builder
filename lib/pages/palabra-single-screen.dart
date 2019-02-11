@@ -13,7 +13,7 @@ class SinglePalabraScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
     return WillPopScope(
       onWillPop: () {
         Navigator.pop(context, true);
@@ -40,6 +40,7 @@ class SinglePalabraScreen extends StatelessWidget {
                     Separator.spacer(),
                     _buildPalabraAntSynCard(),
                     Separator.spacer(),
+                    _buildConjugationCard(tipo: _palabra.tipo)
                   ]),
                 ),
               )
@@ -76,6 +77,42 @@ class SinglePalabraScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildConjugationCard({String tipo}) {
+
+    Widget card = Container();
+
+    if (tipo == 'Verbo') {
+      card = SinglePalabraCard(
+        title: 'Conjugación de ${_palabra.palabra}',
+        body: Column(
+          children: <Widget>[
+            RowItem.textRow(
+              'Presente',
+              _palabra.presente == null ? 'No disponible' : _palabra.presente,
+            ),
+            Separator.spacer(),
+            RowItem.textRow(
+              'Presente Continuo',
+              _palabra.presenteContinuo == null ? 'No disponible' : _palabra.presenteContinuo,
+            ),
+            Separator.spacer(),
+            RowItem.textRow(
+              'Pasado', 
+              _palabra.pasado == null ? 'No disponible' : _palabra.pasado,
+            ),
+            Separator.spacer(),
+            RowItem.textRow(
+              'Futuro', 
+              _palabra.futuro == null ? 'No disponible' : _palabra.futuro,
+            ),
+          ],
+        ),
+      );
+    } 
+
+    return card;
+  }
+
   Widget _buildPalabraDefinitionCard() {
     return HeadCard(
       title: 'Breve definición:',
@@ -95,13 +132,21 @@ class SinglePalabraScreen extends StatelessWidget {
   }
 
   Widget _buildPalabraAntSynCard() {
-    return HeadCard(
-      title: 'Anotinmos:',
-      subtitle: _palabra.antonimos == null ? 'No disponible' : _palabra.antonimos,
-      title2: 'Sinonimos:',
-      subtitle2: _palabra.sinonimos == null ? 'No disponible' : _palabra.sinonimos,
-    );
-  }
 
-  
+    Widget card = Container();
+
+    if (_palabra.antonimos == null && _palabra.sinonimos == null) {
+      card = Container();
+    
+    } else {
+      card = HeadCard(
+        title: 'Anotinmos:',
+        subtitle: _palabra.antonimos == null ? 'No disponible' : _palabra.antonimos,
+        title2: 'Sinonimos:',
+        subtitle2: _palabra.sinonimos == null? 'No disponible' : _palabra.sinonimos
+      ); 
+    }
+    
+    return card;
+  }
 }

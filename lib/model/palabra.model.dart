@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 class Palabra {
   final String palabra;
   final String traduccion;
+  final String pasado;
+  final String presente;
+  final String presenteContinuo;
+  final String thirdPerson;
+  final String futuro;
   final String definicion;
   final String definicionEs;
   final String sinonimos;
@@ -14,10 +19,15 @@ class Palabra {
   Palabra({
     @required this.palabra, 
     @required this.traduccion,
-    @required this.definicion,
-    @required this.definicionEs,
-    @required this.sinonimos,
-    @required this.antonimos,
+    this.pasado,
+    this.presente,
+    this.presenteContinuo,
+    this.thirdPerson,
+    this.futuro,
+    this.definicion,
+    this.definicionEs,
+    this.sinonimos,
+    this.antonimos,
     @required this.ejemplos,
     @required this.tipo,
     @required this.alt, 

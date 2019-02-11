@@ -107,6 +107,11 @@ class PalabraCard extends StatelessWidget {
     await model.save(
       palabra: palabra.palabra,
       traduccion: palabra.traduccion,
+      pasado: palabra.pasado,
+      presente: palabra.presente,
+      presenteContinuo: palabra.presenteContinuo,
+      thirdPerson: palabra.thirdPerson,
+      futuro: palabra.futuro,
       definicion: palabra.definicion,
       definicionEs: palabra.definicionEs,
       sinonimos: palabra.sinonimos,

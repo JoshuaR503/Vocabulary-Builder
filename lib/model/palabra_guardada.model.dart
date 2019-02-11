@@ -2,6 +2,11 @@ class PalabraGuardada {
   int id;
   String palabra;
   String traduccion;
+  String pasado;
+  String presente;
+  String presenteContinuo;
+  String thirdPerson;
+  String futuro;
   String definicion;
   String definicionEs;
   String sinonimos;
@@ -13,6 +18,11 @@ class PalabraGuardada {
   PalabraGuardada({
     this.palabra, 
     this.traduccion,
+    this.pasado,
+    this.presente,
+    this.presenteContinuo,
+    this.thirdPerson,
+    this.futuro,
     this.definicion,
     this.definicionEs,
     this.sinonimos,
@@ -24,8 +34,13 @@ class PalabraGuardada {
 
   PalabraGuardada.withId(
     this.id,
-    this.palabra, 
+    this.palabra,
     this.traduccion,
+    this.pasado,
+    this.presente,
+    this.presenteContinuo,
+    this.thirdPerson,
+    this.futuro,
     this.definicion,
     this.definicionEs,
     this.sinonimos,
@@ -42,6 +57,11 @@ class PalabraGuardada {
     
 		map['palabra'] = palabra;
 		map['traduccion'] = traduccion;
+    map['pasado'] = pasado;
+    map['presente'] = presente;
+    map['presenteContinuo'] = presenteContinuo;
+    map['thirdPerson'] = thirdPerson;
+    map['futuro'] = futuro;
     map['definicion'] = definicion;
     map['definicionEs'] = definicionEs;
     map['sinonimos'] = sinonimos;
@@ -57,6 +77,11 @@ class PalabraGuardada {
 		this.id = map['id'];
 		this.palabra = map['palabra'];
 		this.traduccion = map['traduccion'];
+    this.pasado = map['pasado'];
+    this.presente = map['presente'];
+    this.presenteContinuo = map['presenteContinuo'];
+    this.thirdPerson = map['thirdPerson'];
+    this.futuro = map['futuro'];
     this.definicion = map['definicion'];
     this.definicionEs = map['definicionEs'];
     this.sinonimos = map['sinonimos'];

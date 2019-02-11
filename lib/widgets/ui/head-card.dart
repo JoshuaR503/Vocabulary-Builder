@@ -7,25 +7,26 @@ class HeadCard extends StatelessWidget {
   final String title2, subtitle2;
 
   HeadCard({
-    this.title,
-    this.subtitle,
-    this.title2,
-    this.subtitle2,
+    @required this.title,
+    @required this.subtitle,
+    @required this.title2,
+    @required this.subtitle2,
   });
+
+  final style = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 17.0
+  );
+
+  final subStyle = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 14.0,
+    color: secondaryText
+  );
 
   @override
   Widget build(BuildContext context) {
-    final style = TextStyle(
-      fontWeight: FontWeight.normal,
-      fontSize: 17.0
-    );
-
-    final subStyle = TextStyle(
-      fontWeight: FontWeight.normal,
-      fontSize: 14.0,
-      color: secondaryText
-    );
-
+    
     return Card(
       elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -40,24 +41,14 @@ class HeadCard extends StatelessWidget {
 
                   Text(title, style: style),
                   Separator.spacer(height: 12.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(subtitle, style: subStyle)
-                    ],
-                  ),
+                  _buildSubtitle(data: subtitle),
 
                   Separator.spacer(height: 12.0),
                   Separator.spacer(height: 12.0),
 
                   Text(title2, style: style),
                   Separator.spacer(height: 12.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(subtitle2, style: subStyle)
-                    ],
-                  ),
+                  _buildSubtitle(data: subtitle2)
                 ],
               ),
             ),
@@ -65,5 +56,23 @@ class HeadCard extends StatelessWidget {
         ]),
       ),
     );
+  }
+
+  Widget _buildSubtitle({String data}) {
+    Widget content = Container();
+
+    if (data != null) {
+      content = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            data,
+            style: subStyle
+          )
+        ],
+      );
+    }
+
+    return content;
   }
 }

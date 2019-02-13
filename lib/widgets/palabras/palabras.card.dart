@@ -16,7 +16,7 @@ class PalabraCard extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => SinglePalabraScreen(palabra)),
+        MaterialPageRoute(builder: (_) => SinglePalabraScreen(palabra, model)),
       ),
 
       child: Card(
@@ -52,7 +52,7 @@ class PalabraCard extends StatelessWidget {
                 alignment: MainAxisAlignment.center,
                 children: <Widget>[
                   FlatButton(
-                    onPressed: () => _save(context),
+                    onPressed: () => _save(context, palabra),
                     child: Row(
                       children: <Widget>[
                         Padding(
@@ -102,27 +102,14 @@ class PalabraCard extends StatelessWidget {
 
   }
 
-  void _save(BuildContext context) async {
+  void _save(BuildContext context, Palabra palabra) async {
 
-    await model.save(
-      palabra: palabra.palabra,
-      traduccion: palabra.traduccion,
-      pasado: palabra.pasado,
-      presente: palabra.presente,
-      presenteContinuo: palabra.presenteContinuo,
-      thirdPerson: palabra.thirdPerson,
-      futuro: palabra.futuro,
-      definicion: palabra.definicion,
-      definicionEs: palabra.definicionEs,
-      sinonimos: palabra.sinonimos,
-      antonimos: palabra.antonimos,
-      ejemplos: palabra.ejemplos,
-      tipo: palabra.tipo
-    )
+    await model
+    .save(palabraData: palabra)
     .then((response) {
-      if (response != 0) 
-      
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text(onSuccessMessage)));
+      if (response != 0) {
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text(onSuccessMessage)));
+      }
       
     }).catchError((error) {
       Scaffold.of(context).showSnackBar(SnackBar(content: Text(onErrorMessage)));

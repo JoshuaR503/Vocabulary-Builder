@@ -4,12 +4,15 @@ import '../widgets/palabra/single-palabra-card.dart';
 import '../widgets/ui/head-card.dart';
 import '../widgets/ui/row-item.dart';
 import '../widgets/ui/divider.dart';
+import '../utils/settings.dart';
 import '../model/palabra.model.dart';
+import '../model/main.dart';
 
 class SinglePalabraScreen extends StatelessWidget {
   final Palabra _palabra;
+  final MainModel model;
 
-  SinglePalabraScreen(this._palabra);
+  SinglePalabraScreen(this._palabra, this.model);
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +26,33 @@ class SinglePalabraScreen extends StatelessWidget {
         appBar: AppBar( 
           title: Text(_palabra.palabra),
           centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.bookmark_border),
+              onPressed: () => _save(_palabra, context),
+            )
+          ],
         ),
 
         body: Builder(
+          
           builder: (context) => ListView(
             children: <Widget>[
               Container(
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Column(children: <Widget>[
+                    
                     _buildPalabraBasicInfoCard(),
+                    Separator.spacer(),
+                    _buildConjugationCard(tipo: _palabra.tipo),
                     Separator.spacer(),
                     _buildPalabraDefinitionCard(), 
                     Separator.spacer(),
                     _builPalabraExamplesCard(),
                     Separator.spacer(),
-                    _buildPalabraAntSynCard(),
-                    Separator.spacer(),
-                    _buildConjugationCard(tipo: _palabra.tipo)
+                    _buildPalabraAntSynCard(),      
+                         
                   ]),
                 ),
               )
@@ -148,5 +160,29 @@ class SinglePalabraScreen extends StatelessWidget {
     }
     
     return card;
+  }
+
+  void _save(Palabra palabra, BuildContext context) async {
+
+    await model
+    .save(palabraData: palabra)
+    .then((response) => showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Palabra Guardada Correctamente'),
+          content: Text('La palabra se ha guardado'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      }
+    ))
+    .catchError((error) => print(error));
   }
 }

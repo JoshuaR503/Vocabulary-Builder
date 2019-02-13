@@ -57,3 +57,9 @@ All notable changes to this project will be documented in this file.
 
 ### 14th commit
 - Small enhancements
+
+### 15th commit 
+- Code cleaning
+- Color theme added
+- Settings Screen Added
+- TODO: Work on color themes

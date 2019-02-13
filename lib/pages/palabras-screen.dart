@@ -44,6 +44,13 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             title: Text(infoSection),
             onTap: () => Navigator.pushNamed(context, '/about')
           ),
+
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text(infoSection),
+            onTap: () => Navigator.pushNamed(context, '/settings')
+          ),
           
           ListTile(
             leading: Icon(Icons.people),

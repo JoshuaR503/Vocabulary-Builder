@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// ===============================================================
+// Default theme
+// ===============================================================
 const primaryColor = const Color(0xFF151515);
 const accentColor = const Color(0xFFFFBC02D);
 const backgroundColor = const Color(0xFF212121);
@@ -16,7 +19,6 @@ const nullIcon = const Color(0xFF607D8B);
 const highlightColor = const Color(0xFF424242);
 const dividerColor = const Color(0xFF616161);
 
-const locationPin = const Color(0xFFD32F2F);
-
-const disabledFab = const Color(0xFF757575);
-const ligthBlue = const Color(0xFF0277BD);
+// ===============================================================
+// White theme
+// ===============================================================

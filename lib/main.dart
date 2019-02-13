@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:sentry/sentry.dart';
 
 import './pages/palabras-screen.dart';
 import './pages/palabra-guardada-screen.dart';
 import './pages/about-screen.dart';
+import './pages/settings-screen.dart';
 
 import './model/main.dart';
 import './utils/colors.dart';
@@ -33,21 +35,51 @@ class _LexiaHomeState extends State<LexiaHome> with SingleTickerProviderStateMix
     highlightColor: highlightColor,
   );
 
+   ThemeData _buildTheme(Brightness brightness) {
+    return brightness == Brightness.dark
+      ? ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: primaryColor,
+        accentColor: accentColor,
+        canvasColor: backgroundColor,
+        cardColor: cardColor,
+        dialogBackgroundColor: cardColor,
+        dividerColor: dividerColor,
+        highlightColor: highlightColor
+      )
+      : ThemeData(  
+        brightness: Brightness.dark,            // WORK ON THIS
+        primaryColor: primaryColor,             // WORK ON THIS
+        accentColor: accentColor,               // WORK ON THIS
+        canvasColor: backgroundColor,           // WORK ON THIS
+        cardColor: cardColor,                   // WORK ON THIS
+        dialogBackgroundColor: cardColor,       // WORK ON THIS
+        dividerColor: dividerColor,             // WORK ON THIS
+        highlightColor: highlightColor          // WORK ON THIS
+      );
+
+  }
+
   @override
   Widget build(BuildContext context) {
     final MainModel model = MainModel();
     
     return ScopedModel <MainModel> (
       model: model,
-      child: MaterialApp(
-        title: appname,
-        debugShowCheckedModeBanner: false,
-        theme: _renderThemeData(),
-        routes: {
-          '/': (BuildContext context) => PalabrasScreen(model),
-          '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
-          '/about':  (BuildContext context) => AboutScreen(),
-        }
+      child: DynamicTheme(
+        defaultBrightness: Brightness.light,
+        data: (brightness) => _buildTheme(brightness),
+        themedWidgetBuilder: (context, theme) => MaterialApp (
+          theme: theme,
+          title: appname,
+          debugShowCheckedModeBanner: false,
+          routes: {
+            '/': (BuildContext context) => PalabrasScreen(model),
+            '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
+            '/about':  (BuildContext context) => AboutScreen(),
+            '/settings':  (BuildContext context) => SettingScreen(),
+          }
+        ),
       ),
     ); 
   }

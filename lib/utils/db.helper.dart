@@ -8,6 +8,8 @@ import 'dart:io';
 
 class DatabaseHelper {
 
+  final pathName = 'palabras2abcdeq.db';
+
   static DatabaseHelper _databaseHelper;
 	static Database _database;
 
@@ -46,14 +48,14 @@ class DatabaseHelper {
 
   Future<Database> initializeDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
-		String path = directory.path + 'palabras2abcdeq.db';
+		String path = directory.path + pathName;
 
     var notesDatabase = await openDatabase(path, version: 1, onCreate: _createDb);
 		return notesDatabase;
   }
 
   void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colPasado TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colThirdPerson TEXT, $colFuturo TEXT, $colDefinition TEXT, $colDefinitionEs TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colExamples TEXT, $colType TEXT, $colDate TEXT)");
-	
+ 
   Future<List<Map<String, dynamic>>> fetchSavedDataMapList() async {
 		Database db = await this.database;
 
@@ -72,6 +74,12 @@ class DatabaseHelper {
 		int result = await db.rawDelete('DELETE FROM $wordsTable WHERE $colId = $id');
 		return result;
 	}
+
+  Future <int> deleteTable() async {
+    var db = await this.database;
+    int result = await db.rawDelete('DROP TABLE $wordsTable');
+		return result;
+  }
 
   Future<List<PalabraGuardada>> fetchSavedDataList() async {
 

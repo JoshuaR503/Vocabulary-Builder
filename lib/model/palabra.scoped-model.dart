@@ -119,36 +119,22 @@ mixin PalabrasModel on ConnectedModel {
     });
   }
 
-  Future<int> save({
-    String palabra, 
-    String traduccion,
-    String pasado,
-    String presente,
-    String presenteContinuo,
-    String thirdPerson,
-    String futuro,
-    String definicion, 
-    String definicionEs, 
-    String sinonimos, 
-    String antonimos, 
-    String ejemplos, 
-    String tipo
-  }) async {
+  Future<int> save({Palabra palabraData}) async {
 
     PalabraGuardada singlePalabra = PalabraGuardada(
-      palabra: palabra,
-      traduccion: traduccion,
-      pasado: pasado,
-      presente: presente,
-      presenteContinuo: presenteContinuo,
-      thirdPerson: thirdPerson,
-      futuro: futuro,
-      definicion: definicion,
-      definicionEs: definicionEs,
-      sinonimos: sinonimos,
-      antonimos: antonimos,
-      ejemplos: ejemplos,
-      tipo: tipo,
+      palabra: palabraData.palabra,
+      traduccion: palabraData.traduccion,
+      pasado: palabraData.pasado,
+      presente: palabraData.presente,
+      presenteContinuo: palabraData.presenteContinuo,
+      thirdPerson: palabraData.thirdPerson,
+      futuro: palabraData.futuro,
+      definicion: palabraData.definicion,
+      definicionEs: palabraData.definicionEs,
+      sinonimos: palabraData.sinonimos,
+      antonimos: palabraData.antonimos,
+      ejemplos: palabraData.ejemplos,
+      tipo: palabraData.tipo,
       date: DateFormat.yMMMd().format(DateTime.now())
     );
 

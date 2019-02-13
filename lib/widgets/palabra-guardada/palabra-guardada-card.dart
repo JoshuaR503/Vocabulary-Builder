@@ -76,7 +76,7 @@ class _PalabraGuardadaCardState extends State<PalabraGuardadaCard> with TickerPr
               ),
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => SinglePalabraScreen(singlePalabra)),
+                MaterialPageRoute(builder: (_) => SinglePalabraScreen(singlePalabra, widget.model)),
               ),
 		    	  ),
             

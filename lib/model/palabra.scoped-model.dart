@@ -23,6 +23,7 @@ mixin ConnectedModel on Model {
 }
 
 mixin PalabrasModel on ConnectedModel {
+  
   FlutterTts _flutterTts = FlutterTts();
   DatabaseHelper _dbh = DatabaseHelper();  
 
@@ -40,13 +41,19 @@ mixin PalabrasModel on ConnectedModel {
     return _palabrasGuardadas.firstWhere((palabra) => palabra.id == _selPalabraGuardadaId);
   }
 
-  Future<Null> obtenerPalabras() async {
-    _isLoading = true;
-    notifyListeners();
-
+  Future<Null> obtenerPalabras({bool loadingIndicator = false}) async {
+    
     return http
       .get(url)
       .then<Null>((http.Response response) {
+
+        if (loadingIndicator) {
+          _isLoading = true;
+          notifyListeners();
+        } else {
+          _isLoading = false;
+          notifyListeners();
+        }
 
         final List<Palabra> fetchedPalabrasList = [];
         final List<dynamic> palabraListData = json.decode(response.body);
@@ -77,11 +84,14 @@ mixin PalabrasModel on ConnectedModel {
           );
 
           fetchedPalabrasList.add(singlePalabra);
-        });  
+        });
 
         _palabras = fetchedPalabrasList; 
-        _isLoading = false;
-        notifyListeners();        
+
+        if (loadingIndicator) {
+          _isLoading = false;
+          notifyListeners();
+        }       
       })
       .catchError((error) {
         _isLoading = false;

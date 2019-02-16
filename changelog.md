@@ -63,3 +63,6 @@ All notable changes to this project will be documented in this file.
 - Color theme added
 - Settings Screen Added
 - TODO: Work on color themes
+
+### 16th commit 
+- I don't even know what I did

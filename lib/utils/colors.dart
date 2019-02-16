@@ -20,5 +20,9 @@ const highlightColor = const Color(0xFF424242);
 const dividerColor = const Color(0xFF616161);
 
 // ===============================================================
-// White theme
+// Light theme
 // ===============================================================
+const primaryLightColor = const Color(0xFF122C34);
+const accentLightColor = const Color(0xFF122C34);
+const backgroundLightColor = const Color(0x0D1B2A);
+const cardLightColor = const Color(0xFF122C34);

@@ -4,7 +4,6 @@ import '../widgets/palabra/single-palabra-card.dart';
 import '../widgets/ui/head-card.dart';
 import '../widgets/ui/row-item.dart';
 import '../widgets/ui/divider.dart';
-import '../utils/settings.dart';
 import '../model/palabra.model.dart';
 import '../model/main.dart';
 

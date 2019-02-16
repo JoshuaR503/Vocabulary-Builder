@@ -22,20 +22,10 @@ class LexiaHome extends StatefulWidget {
   _LexiaHomeState createState() => new _LexiaHomeState();
 }
 
-class _LexiaHomeState extends State<LexiaHome> with SingleTickerProviderStateMixin {
+class _LexiaHomeState extends State<LexiaHome> {
 
-  ThemeData _renderThemeData() => ThemeData(
-    brightness: Brightness.dark,
-    primaryColor: primaryColor,
-    accentColor: accentColor,
-    canvasColor: backgroundColor,
-    cardColor: cardColor,
-    dialogBackgroundColor: cardColor,
-    dividerColor: dividerColor,
-    highlightColor: highlightColor,
-  );
+  ThemeData _buildTheme(Brightness brightness) {
 
-   ThemeData _buildTheme(Brightness brightness) {
     return brightness == Brightness.dark
       ? ThemeData(
         brightness: Brightness.dark,
@@ -48,16 +38,15 @@ class _LexiaHomeState extends State<LexiaHome> with SingleTickerProviderStateMix
         highlightColor: highlightColor
       )
       : ThemeData(  
-        brightness: Brightness.dark,            // WORK ON THIS
-        primaryColor: primaryColor,             // WORK ON THIS
-        accentColor: accentColor,               // WORK ON THIS
-        canvasColor: backgroundColor,           // WORK ON THIS
-        cardColor: cardColor,                   // WORK ON THIS
-        dialogBackgroundColor: cardColor,       // WORK ON THIS
-        dividerColor: dividerColor,             // WORK ON THIS
-        highlightColor: highlightColor          // WORK ON THIS
+        brightness: Brightness.light,           
+        primaryColor: primaryLightColor,             
+        accentColor: accentLightColor,               
+        canvasColor: backgroundLightColor,           
+        cardColor: cardLightColor,                   
+        dialogBackgroundColor: cardColor,       
+        dividerColor: dividerColor,             
+        highlightColor: highlightColor          
       );
-
   }
 
   @override

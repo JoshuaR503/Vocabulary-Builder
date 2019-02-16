@@ -20,7 +20,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
 
   @override
   void initState() {
-    widget.model.obtenerPalabras();
+    widget.model.obtenerPalabras(loadingIndicator: true);
     super.initState();
   }
 
@@ -45,13 +45,6 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             onTap: () => Navigator.pushNamed(context, '/about')
           ),
 
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text(infoSection),
-            onTap: () => Navigator.pushNamed(context, '/settings')
-          ),
-          
           ListTile(
             leading: Icon(Icons.people),
             title: Text('Comentarios'),

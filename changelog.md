@@ -66,3 +66,9 @@ All notable changes to this project will be documented in this file.
 
 ### 16th commit 
 - I don't even know what I did
+
+### 17th commit 
+- Added a Slider for new users
+- Fixed an error in the Drawer
+- Cleaned files
+- Added two need methods in the Scoped Model

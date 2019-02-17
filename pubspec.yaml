@@ -44,7 +44,15 @@ flutter_icons:
 
 flutter:
   uses-material-design: true
-  
+
+  assets:
+    - assets/icon.png
+    - assets/books.png
+    - assets/shield.png
+    - assets/lace.png
+    - assets/heart.png
+    - assets/plan.png
+
   fonts:
     - family: Poppins
       fonts:

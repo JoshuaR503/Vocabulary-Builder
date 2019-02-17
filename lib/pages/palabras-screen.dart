@@ -84,7 +84,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
         title: Text(appname),
         centerTitle: true,
       ),
-      body: _buildMainContent(),
+      body: _buildMainContent()
     );
   }
 }

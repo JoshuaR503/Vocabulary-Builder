@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
-import '../widgets/ui/list_cell.dart';
-import '../widgets/ui/divider.dart';
-import '../utils/settings.dart';
+import '../../widgets/ui/list_cell.dart';
+import '../../widgets/ui/divider.dart';
+import '../../utils/settings.dart';
 
 class AboutScreen extends StatefulWidget {
 

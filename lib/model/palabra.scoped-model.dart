@@ -1,3 +1,4 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:sqflite/sqflite.dart';
@@ -16,14 +17,15 @@ import '../utils/db.helper.dart';
 mixin ConnectedModel on Model {
   bool _isLoading = true;
   bool _palabrasGuardadasIsLoading = true;
-  
+  bool _seen = false;
+
   int _selPalabraGuardadaId;
   List _palabras = [];
   List _palabrasGuardadas = [];
 }
 
 mixin PalabrasModel on ConnectedModel {
-  
+
   FlutterTts _flutterTts = FlutterTts();
   DatabaseHelper _dbh = DatabaseHelper();  
 
@@ -178,4 +180,24 @@ mixin PalabrasModel on ConnectedModel {
 mixin UtilityModel on ConnectedModel {
   bool get isLoading => _isLoading;
   bool get palabrasGuardadasIsLoading => _palabrasGuardadasIsLoading;
+  bool get seen => _seen;
+
+  void obtenerData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool response = prefs.getBool('seen');
+
+    if (response) {
+      _seen = true;
+    } else {
+      _seen = false;
+    }
+
+    print(_seen);
+
+  }
+
+  void setData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('seen', true);
+  }
 }

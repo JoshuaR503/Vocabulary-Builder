@@ -9,8 +9,8 @@ class HeadCard extends StatelessWidget {
   HeadCard({
     @required this.title,
     @required this.subtitle,
-    @required this.title2,
-    @required this.subtitle2,
+    this.title2,
+    this.subtitle2,
   });
 
   final style = TextStyle(
@@ -31,7 +31,7 @@ class HeadCard extends StatelessWidget {
       elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(children: <Widget>[
           Row(children: <Widget>[
             Expanded(
@@ -45,6 +45,7 @@ class HeadCard extends StatelessWidget {
 
                   Separator.spacer(height: 12.0),
                   Separator.spacer(height: 12.0),
+
 
                   Text(title2, style: style),
                   Separator.spacer(height: 12.0),

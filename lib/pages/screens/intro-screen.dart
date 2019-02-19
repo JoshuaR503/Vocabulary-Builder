@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../model/main.dart';
-import '../../widgets/ui/slider.dart';
+import '../../widgets/ui/elements/slider.dart';
 
 class IntroScreen extends StatefulWidget {
 
@@ -51,13 +50,7 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) =>
     IntroSlider(
       slides: slides,
-      onDonePress: () {
-        widget.model.setData();
-        Navigator.pushReplacementNamed(context, '/palabras');
-      },
-      onSkipPress: () {
-        widget.model.setData();
-        Navigator.pushReplacementNamed(context, '/palabras');
-      },
+      onDonePress: () => widget.model.setData().then((_) => Navigator.pushReplacementNamed(context, '/home')),
+      onSkipPress: () => widget.model.setData().then((_) => Navigator.pushReplacementNamed(context, '/home')),
     );
 }

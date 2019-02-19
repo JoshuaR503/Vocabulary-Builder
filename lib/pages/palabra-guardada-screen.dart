@@ -17,10 +17,10 @@ class PalabraGuardadaScreen extends StatefulWidget {
 class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
 
   @override
-  void initState() {
-    widget.model.obtenerPalabrasGuardadas();
-    super.initState();
-  }
+    void initState() {
+      widget.model.obtenerPalabrasGuardadas();
+      super.initState();
+    }
 
   Widget _buildMainContent() {
     return ScopedModelDescendant(
@@ -34,13 +34,7 @@ class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
           content = Center(child: CircularProgressIndicator());
         }
 
-        return WillPopScope(
-          onWillPop: () {
-            Navigator.pop(context, true);
-          },
-
-          child: content
-        );
+        return content;
       }
     );
   }
@@ -48,10 +42,6 @@ class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( 
-        title: Text(savedSection),
-        centerTitle: true,
-      ),
       body: _buildMainContent(),
     );
   }

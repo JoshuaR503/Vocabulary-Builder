@@ -9,8 +9,12 @@ import '../../model/main.dart';
 class PalabrasGuardadas extends StatelessWidget {
 
   @override
-  Widget build(BuildContext context) => ScopedModelDescendant<MainModel> (
-    builder: (BuildContext context, Widget child, MainModel model) => _buildPalabrasList(model.allPalabrasGuardadas, model, context));
+  Widget build(BuildContext context) {
+    return ScopedModelDescendant<MainModel> (
+      builder: (BuildContext context, Widget child, MainModel model) =>
+        _buildPalabrasList(model.allPalabrasGuardadas, model, context)
+    );
+  }
 
   Widget _buildPalabrasList(List<PalabraGuardada> palabras, MainModel model, BuildContext context) {
 
@@ -20,7 +24,6 @@ class PalabrasGuardadas extends StatelessWidget {
       palabrasCard = ListView.builder(
         itemCount: palabras.length,
         itemBuilder: (BuildContext context, int index)  {
-
           return Dismissible(
             key: Key(palabras[index].palabra),
             background: _renderBackground(),
@@ -28,11 +31,11 @@ class PalabrasGuardadas extends StatelessWidget {
               model.selectPalabra(model.allPalabrasGuardadas[index].id);
               model.deletePalabraGuardada();
             },
-            
             child: PalabraGuardadaCard(palabras[index], model)
           );
         },
       );
+ 
     } else {
       palabrasCard = Center(child: Text(onSavedWordsError));
     }

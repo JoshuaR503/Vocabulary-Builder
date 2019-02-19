@@ -9,22 +9,25 @@ class SinglePalabraCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6.0,
+      elevation: 8.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(bottom: 24.0),
+              padding: EdgeInsets.only(bottom: 20.0),
               child: Text(
                 title,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.start,
                 style: Theme.of(context)
                   .textTheme
                   .title
-                  .copyWith(fontWeight: FontWeight.normal),
+                  .copyWith(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20.0,
+                  ),
               ),
             ),
             body

@@ -60,3 +60,22 @@ flutter:
           weight: 600
         - asset: assets/fonts/Poppins-Regular.ttf
           weight: 400
+
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/Raleway-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Raleway-Regular.ttf
+          weight: 400
+    - family: Signika
+      fonts:
+        - asset: assets/fonts/Signika-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Signika-Regular.ttf
+          weight: 400
+    - family: Catamaran
+      fonts:
+        - asset: assets/fonts/Catamaran-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Catamaran-Regular.ttf
+          weight: 400

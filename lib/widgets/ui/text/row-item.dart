@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import '../../utils/colors.dart';
+import '../../../utils/colors.dart';
 
 class RowItem extends StatelessWidget {
   final String title;

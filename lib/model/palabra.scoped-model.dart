@@ -191,12 +191,9 @@ mixin UtilityModel on ConnectedModel {
     } else {
       _seen = false;
     }
-
-    print(_seen);
-
   }
 
-  void setData() async {
+  Future<Null> setData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('seen', true);
   }

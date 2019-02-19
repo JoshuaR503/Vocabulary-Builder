@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import '../widgets/palabras/palabras.dart';
 import '../utils/settings.dart';
@@ -24,37 +23,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
     super.initState();
   }
 
-  Widget _buildSideDrawer(BuildContext context) {
-    return Drawer(
-
-      child: ListView(
-        children: <Widget>[
-          AppBar(
-            automaticallyImplyLeading: false,
-            title: Text(appname),
-          ),
-          ListTile(
-            leading: Icon(Icons.bookmark_border),
-            title: Text(savedSection),
-            onTap: () => Navigator.pushNamed(context, '/saved')
-          ),         
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.info),
-            title: Text(infoSection),
-            onTap: () => Navigator.pushNamed(context, '/about')
-          ),
-
-          ListTile(
-            leading: Icon(Icons.people),
-            title: Text('Comentarios'),
-            onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback)
-          ),
-        ],
-      ),
-    );
-  }
-
+  
   Widget _buildMainContent() {
     
     return ScopedModelDescendant(
@@ -79,11 +48,6 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: _buildSideDrawer(context),
-      appBar: AppBar( 
-        title: Text(appname),
-        centerTitle: true,
-      ),
       body: _buildMainContent()
     );
   }

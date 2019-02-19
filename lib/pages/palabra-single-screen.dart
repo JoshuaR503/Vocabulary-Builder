@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/palabra/single-palabra-card.dart';
 import '../widgets/ui/head-card.dart';
-import '../widgets/ui/row-item.dart';
+import '../widgets/ui/text/row-item.dart';
 import '../widgets/ui/divider.dart';
 import '../model/palabra.model.dart';
 import '../model/main.dart';
@@ -25,38 +25,29 @@ class SinglePalabraScreen extends StatelessWidget {
         appBar: AppBar( 
           title: Text(_palabra.palabra),
           centerTitle: true,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.bookmark_border),
-              onPressed: () => _save(_palabra, context),
-            )
-          ],
         ),
 
-        body: Builder(
-          
-          builder: (context) => ListView(
-            children: <Widget>[
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Column(children: <Widget>[
-                    
+        body: ListView(
+          children: <Widget>[
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  children: <Widget>[              
                     _buildPalabraBasicInfoCard(),
                     Separator.spacer(),
                     _buildConjugationCard(tipo: _palabra.tipo),
-                    Separator.spacer(),
-                    _buildPalabraDefinitionCard(), 
+                    
+                    _buildPalabraDefinitionCard(definicion: _palabra.definicion, definicionEs: _palabra.definicionEs),
                     Separator.spacer(),
                     _builPalabraExamplesCard(),
                     Separator.spacer(),
-                    _buildPalabraAntSynCard(),      
-                         
-                  ]),
+                    _buildPalabraAntSynCard(),                
+                  ]
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         )
       ),
     );
@@ -97,24 +88,30 @@ class SinglePalabraScreen extends StatelessWidget {
         title: 'Conjugación de ${_palabra.palabra}',
         body: Column(
           children: <Widget>[
+            
             RowItem.textRow(
-              'Presente',
-              _palabra.presente == null ? 'No disponible' : _palabra.presente,
+              'Presente Continuo',
+              _palabra.presenteContinuo ?? _palabra.presenteContinuo,
             ),
             Separator.spacer(),
             RowItem.textRow(
-              'Presente Continuo',
-              _palabra.presenteContinuo == null ? 'No disponible' : _palabra.presenteContinuo,
+              'Tercera Persona',
+              _palabra.thirdPerson ?? _palabra.thirdPerson,
+            ),
+            Separator.spacer(),
+            RowItem.textRow(
+              'Presente',
+              _palabra.presente ?? _palabra.presente,
             ),
             Separator.spacer(),
             RowItem.textRow(
               'Pasado', 
-              _palabra.pasado == null ? 'No disponible' : _palabra.pasado,
+              _palabra.pasado ?? _palabra.pasado,
             ),
             Separator.spacer(),
             RowItem.textRow(
               'Futuro', 
-              _palabra.futuro == null ? 'No disponible' : _palabra.futuro,
+              _palabra.futuro ?? _palabra.futuro,
             ),
           ],
         ),
@@ -124,13 +121,26 @@ class SinglePalabraScreen extends StatelessWidget {
     return card;
   }
 
-  Widget _buildPalabraDefinitionCard() {
-    return HeadCard(
-      title: 'Breve definición:',
-      subtitle: _palabra.definicion == null ? 'No disponible' : _palabra.definicion,
-      title2: 'Breve definición en Español:',
-      subtitle2: _palabra.definicionEs == null ? 'No disponible' : _palabra.definicionEs,
-    );
+  Widget _buildPalabraDefinitionCard({String definicion, String definicionEs}) {
+
+    Widget card = Container();
+
+    if (definicion != null && definicionEs != null) {
+      card = Column(
+        children: <Widget>[
+          Separator.spacer(),
+
+          HeadCard (
+            title: 'Breve definición:',
+            subtitle: _palabra.definicion == null ? 'No disponible' : _palabra.definicion,
+            title2: 'Breve definición en Español:',
+            subtitle2: _palabra.definicionEs == null ? 'No disponible' : _palabra.definicionEs,
+          )
+        ],
+      );
+    }
+
+    return card;
   }
 
   Widget _builPalabraExamplesCard() {
@@ -148,8 +158,7 @@ class SinglePalabraScreen extends StatelessWidget {
 
     if (_palabra.antonimos == null && _palabra.sinonimos == null) {
       card = Container();
-    
-    } else {
+    } else  {
       card = HeadCard(
         title: 'Anotinmos:',
         subtitle: _palabra.antonimos == null ? 'No disponible' : _palabra.antonimos,
@@ -157,31 +166,7 @@ class SinglePalabraScreen extends StatelessWidget {
         subtitle2: _palabra.sinonimos == null? 'No disponible' : _palabra.sinonimos
       ); 
     }
-    
+
     return card;
-  }
-
-  void _save(Palabra palabra, BuildContext context) async {
-
-    await model
-    .save(palabraData: palabra)
-    .then((response) => showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Palabra Guardada Correctamente'),
-          content: Text('La palabra se ha guardado'),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Close'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            )
-          ],
-        );
-      }
-    ))
-    .catchError((error) => print(error));
   }
 }

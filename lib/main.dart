@@ -3,11 +3,11 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:sentry/sentry.dart';
 
-import './pages/palabras-screen.dart';
 import './pages/palabra-guardada-screen.dart';
 import './pages/others/about-screen.dart';
 import './pages/others/settings-screen.dart';
 import './pages/screens/intro-screen.dart';
+import './pages/home-screen.dart';
 
 import './model/main.dart';
 import './utils/colors.dart';
@@ -38,22 +38,21 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
 
   @override
   Widget build(BuildContext context) {
+    
     final MainModel model = MainModel();
-
     model.obtenerData();
     
     return ScopedModel <MainModel> (
       model: model,
       child: DynamicTheme(
-        defaultBrightness: Brightness.light,
         data: (brightness) => _buildTheme(),
         themedWidgetBuilder: (context, theme) => MaterialApp (
           theme: theme,
           title: appname,
           debugShowCheckedModeBanner: false,
           routes: {
-            '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : IntroScreen(model),
-            '/palabras': (BuildContext context) => PalabrasScreen(model),
+            '/': (BuildContext context) => model.seen ? HomeScreen(model) : IntroScreen(model),
+            '/home': (BuildContext context) => HomeScreen(model),
             '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
             '/about':  (BuildContext context) => AboutScreen(),
             '/settings':  (BuildContext context) => SettingScreen(),

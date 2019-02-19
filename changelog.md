@@ -72,3 +72,9 @@ All notable changes to this project will be documented in this file.
 - Fixed an error in the Drawer
 - Cleaned files
 - Added two need methods in the Scoped Model
+
+### 18th commit
+- Layout Improvements
+- Code Cleaning: Intro
+- Fixed an error in the Intro Screen
+- Added some fonts for future use

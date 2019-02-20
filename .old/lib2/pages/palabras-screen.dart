@@ -63,11 +63,6 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             onTap: () => Navigator.pushNamed(context, '/creditos'),
           ),
           ListTile(
-            leading: Icon(Icons.slideshow),
-            title: Text('Ver introduction'),
-            onTap: () => Navigator.pushNamed(context, '/intro'),
-          ),
-          ListTile(
             leading: Icon(Icons.feedback),
             title: Text('Enviar comentarios'),
             onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback, androidToolbarColor: Colors.deepPurple)

@@ -29,20 +29,32 @@ class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
         Widget content = Center(child: Text(onNoSavedWords));
 
         if (model.allPalabrasGuardadas.length > 0 && !model.palabrasGuardadasIsLoading) {
-          content = PalabrasGuardadas();
+          content = Padding(
+            padding: EdgeInsets.symmetric(horizontal: 4.0),
+            child: PalabrasGuardadas(),
+          );
         } else if (model.palabrasGuardadasIsLoading) {
           content = Center(child: CircularProgressIndicator());
         }
 
-        return content;
+        return WillPopScope(
+          onWillPop: () {
+            Navigator.pop(context, false);
+          },
+          
+          child: content,
+        );
       }
     );
   }
 
   @override 
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) =>
+    Scaffold (
+      appBar: AppBar(
+        title: Text(savedSection),
+        centerTitle: true,
+      ),
       body: _buildMainContent(),
     );
-  }
 }

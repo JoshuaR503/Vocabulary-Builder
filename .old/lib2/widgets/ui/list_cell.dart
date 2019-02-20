@@ -4,7 +4,7 @@ import './divider.dart';
 class ListCell extends StatelessWidget {
   final Widget leading, trailing;
   final String title, subtitle;
-  final Function onTap;
+  final VoidCallback onTap;
 
   ListCell({
     this.leading,
@@ -32,14 +32,13 @@ class ListCell extends StatelessWidget {
           Separator.spacer(height: 6.0),
         ],
       ),
-      subtitle: Text(
-        subtitle,
-        style: TextStyle(
-          color: Colors.white70
-        )
+      subtitle: Text(subtitle,
+        style: Theme.of(context)
+          .textTheme
+          .subhead
       ),
       trailing: trailing,
-      onTap: () => onTap(),
+      onTap: onTap,
     );
   }
 }

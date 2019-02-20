@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:sentry/sentry.dart';
 
 import './pages/palabras-screen.dart';
 import './pages/palabra-guardada-screen.dart';
-import './pages/others/creditos-screen.dart';
 import './pages/others/about-screen.dart';
+import './pages/others/creditos-screen.dart';
 import './pages/screens/intro-screen.dart';
 
 import './model/main.dart';
@@ -42,23 +41,19 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
     final MainModel model = MainModel();
     model.obtenerData();
     
-    return ScopedModel <MainModel> (
+    return ScopedModel<MainModel>(
       model: model,
-      child: DynamicTheme(
-        data: (brightness) => _buildTheme(),
-        themedWidgetBuilder: (context, theme) => MaterialApp (
-          theme: theme,
-          title: appname,
-          debugShowCheckedModeBanner: false,
-          routes: {
-            '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : IntroScreen(model),
-            '/home': (BuildContext context) => PalabrasScreen(model),
-            '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
-            '/about':  (BuildContext context) => AboutScreen(),
-            '/creditos':  (BuildContext context) => CreditoScreen(),
-            '/intro':  (BuildContext context) => IntroScreen(model),
-          }
-        ),
+      child: MaterialApp (
+        debugShowCheckedModeBanner: false,
+        theme: _buildTheme(),
+        title: appname,
+        routes: {
+          '/': (BuildContext context) => model.seen == true ? PalabrasScreen(model) : IntroScreen(model),
+          '/home': (BuildContext context) => PalabrasScreen(model),
+          '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
+          '/about':  (BuildContext context) => AboutScreen(),
+          '/creditos':  (BuildContext context) => CreditoScreen(),
+        }
       ),
     ); 
   }

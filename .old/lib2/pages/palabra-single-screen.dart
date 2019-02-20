@@ -37,7 +37,7 @@ class SinglePalabraScreen extends StatelessWidget {
           children: <Widget>[
             Container(
               child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: EdgeInsets.all(12.0),
                 child: Column(
                   children: <Widget>[              
                     _buildPalabraBasicInfoCard(),

@@ -51,17 +51,18 @@ class PalabraCard extends StatelessWidget {
               ButtonBar(
                 alignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  FlatButton(
-                    onPressed: () => _save(context, palabra),
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          child: Text(palabra.palabra, style: style),
-                          padding: EdgeInsets.only(right: 2.0),
-                        ),
-                        Icon(Icons.bookmark_border),
-                      ],
-                    ),
+                  Row(
+                    children: <Widget>[
+                      Padding(
+                        child: Text(palabra.palabra, style: style),
+                        padding: EdgeInsets.only(left: 12.0),
+                      ),
+                      IconButton(
+                        onPressed: () => _save(context, palabra),
+                        icon: Icon(Icons.favorite_border),
+                        color: Colors.red,
+                      ),
+                    ],
                   ),
                 ],
               ),

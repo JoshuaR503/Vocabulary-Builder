@@ -9,7 +9,7 @@ class IntroScreen extends StatefulWidget {
   IntroScreen(this.model);
 
   @override
-    State<StatefulWidget> createState() => _IntroScreenState ();
+    State<StatefulWidget> createState() => _IntroScreenState();
 }
 
 class _IntroScreenState extends State<IntroScreen> {
@@ -42,14 +42,6 @@ class _IntroScreenState extends State<IntroScreen> {
         description: "El contenido que se muestra es lo más preciso posible, sin anuncios y una interfaz limpia.",
         pathImage: 'assets/shield.png',
         backgroundColor: Color(0xff9932CC),
-      ),
-    );
-    slides.add(
-       Slide(
-        title: "A TU MANERA",
-        description: "¡Puedes aprender nuevas palabras todos los días!",
-        pathImage: 'assets/idea.png',
-        backgroundColor: Color(0xff203152),
       ),
     );
   }

@@ -45,7 +45,7 @@ All notable changes to this project will be documented in this file.
 ### 10th commit
 - Created a folder (.old) to put old and redundant files that I don't want to delete
 - Fixed an error that would prevent the user to delete a word. Not sure if it will work so I'm going to commit
-- Added Speak function from the main model
+- Added Speak function to the main model
 
 ### 11th commit 
 - Fixed Writing
@@ -78,3 +78,11 @@ All notable changes to this project will be documented in this file.
 - Code Cleaning: Intro
 - Fixed an error in the Intro Screen
 - Added some fonts for future use
+
+### 19th commit
+- Cleaning
+- Layout Improvements
+- Added new pages to inform the user
+- Added new Icons
+- Fixed Stuff in the chnagelog
+- Fixed an error that would prevent the user to load the main screen propetly

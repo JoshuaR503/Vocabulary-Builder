@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
-
-import '../../pages/palabra-single-screen.dart';
-import '../../model/palabra_guardada.model.dart';
-import '../../model/palabra.model.dart';
-import '../../model/main.dart';
+import 'package:moblie/model/main.dart';
+import 'package:moblie/model/palabra.model.dart';
+import 'package:moblie/model/palabra_guardada.model.dart';
+import 'package:moblie/pages/palabra-single-screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PalabraGuardadaCard extends StatefulWidget {
   final PalabraGuardada palabra;
@@ -53,6 +53,7 @@ class _PalabraGuardadaCardState extends State<PalabraGuardadaCard> with TickerPr
       sinonimos: widget.palabra.sinonimos,
       antonimos: widget.palabra.antonimos,
       ejemplos: widget.palabra.ejemplos, 
+      nota: widget.palabra.nota,
       alt: false,
       tipo: widget.palabra.tipo,
     );
@@ -72,7 +73,7 @@ class _PalabraGuardadaCardState extends State<PalabraGuardadaCard> with TickerPr
             trailing: GestureDetector (
               child: CircleAvatar(
                 backgroundColor: Colors.red,
-                child: Icon(Icons.remove_red_eye, color: Colors.white),
+                child: Icon(FontAwesomeIcons.handPointUp, color: Colors.white),
               ),
               onTap: () => Navigator.push(
                 context,

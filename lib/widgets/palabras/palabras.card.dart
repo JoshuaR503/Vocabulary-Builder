@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../../pages/palabra-single-screen.dart';
-import '../../model/palabra.model.dart';
-import '../../model/main.dart';
-import '../../utils/settings.dart';
+import 'package:moblie/model/main.dart';
+import 'package:moblie/model/palabra.model.dart';
+import 'package:moblie/pages/palabra-single-screen.dart';
+import 'package:moblie/utils/settings.dart';
 
 class PalabraCard extends StatelessWidget {
   final Palabra palabra;
@@ -55,7 +54,7 @@ class PalabraCard extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         child: Text(palabra.palabra, style: style),
-                        padding: EdgeInsets.only(left: 12.0),
+                        padding: EdgeInsets.only(left: 16.0),
                       ),
                       IconButton(
                         onPressed: () => _save(context, palabra),
@@ -104,14 +103,12 @@ class PalabraCard extends StatelessWidget {
   }
 
   void _save(BuildContext context, Palabra palabra) async {
-
     await model
     .save(palabraData: palabra)
     .then((response) {
       if (response != 0) {
         Scaffold.of(context).showSnackBar(SnackBar(content: Text(onSuccessMessage)));
       }
-      
     }).catchError((error) {
       Scaffold.of(context).showSnackBar(SnackBar(content: Text(onErrorMessage)));
     });

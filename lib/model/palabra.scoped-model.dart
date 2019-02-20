@@ -82,6 +82,7 @@ mixin PalabrasModel on ConnectedModel {
             antonimos: palabraData['antonimos'],
             ejemplos: palabraData['ejemplos'],
             tipo: palabraData['tipo'],
+            nota: palabraData['nota'],
             alt: palabraData['alt'],
           );
 
@@ -147,6 +148,7 @@ mixin PalabrasModel on ConnectedModel {
       antonimos: palabraData.antonimos,
       ejemplos: palabraData.ejemplos,
       tipo: palabraData.tipo,
+      nota: palabraData.nota,
       date: DateFormat.yMMMd().format(DateTime.now())
     );
 

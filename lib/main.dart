@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
+
+import 'package:moblie/model/main.dart';
+import 'package:moblie/pages/others/about-screen.dart';
+import 'package:moblie/pages/others/creditos-screen.dart';
+import 'package:moblie/pages/palabra-guardada-screen.dart';
+import 'package:moblie/pages/palabras-screen.dart';
+import 'package:moblie/pages/screens/intro-screen.dart';
+import 'package:moblie/utils/colors.dart';
+import 'package:moblie/utils/settings.dart';
+
 import 'package:scoped_model/scoped_model.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:sentry/sentry.dart';
 
-import './pages/palabras-screen.dart';
-import './pages/palabra-guardada-screen.dart';
-import './pages/others/creditos-screen.dart';
-import './pages/others/about-screen.dart';
-import './pages/screens/intro-screen.dart';
-
-import './model/main.dart';
-import './utils/colors.dart';
-import './utils/settings.dart';
-
-void main() => runApp(new AmericanEnglishWords());
+void main() => runApp(AmericanEnglishWords());
 
 class AmericanEnglishWords extends StatefulWidget {
 
-  final SentryClient sentry = new SentryClient(dsn: 'https://6fde3857a1bc4a33be3f1e79ae947b3f@sentry.io/1390352');
+  final SentryClient sentry = SentryClient(dsn: 'https://6fde3857a1bc4a33be3f1e79ae947b3f@sentry.io/1390352');
 
   @override
-  _AmericanEnglishWordsState createState() => new _AmericanEnglishWordsState();
+  _AmericanEnglishWordsState createState() => _AmericanEnglishWordsState();
 }
 
 class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
@@ -54,8 +54,8 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
             '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : IntroScreen(model),
             '/home': (BuildContext context) => PalabrasScreen(model),
             '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
-            '/about':  (BuildContext context) => AboutScreen(),
             '/creditos':  (BuildContext context) => CreditoScreen(),
+            '/help':  (BuildContext context) => HelpScreen(),
             '/intro':  (BuildContext context) => IntroScreen(model),
           }
         ),

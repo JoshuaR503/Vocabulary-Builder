@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/settings.dart';
 import '../../model/main.dart';
 import '../../widgets/ui/elements/slider.dart';
 
@@ -23,9 +24,9 @@ class _IntroScreenState extends State<IntroScreen> {
     slides.add(
        Slide(
         title: "VOCABULARIO",
-        description: "¡Puedes aprender nuevas palabras todos los días!",
+        description: "El objetivo principal de $appname es aumentar tu vocabulario.",
         pathImage: 'assets/books.png',
-        backgroundColor: Color(0xfff5a623),
+        backgroundColor: Color(0XFF08415C),
       ),
     );
     slides.add(
@@ -37,21 +38,21 @@ class _IntroScreenState extends State<IntroScreen> {
       ),
     );
     slides.add(
+       Slide(
+        title: "A TU MANERA",
+        description: "¡Puedes aprender nuevas palabras todos los días!",
+        pathImage: 'assets/idea.png',
+        backgroundColor: Color(0XFFC41E3D),
+      ),
+    );
+    slides.add(
       Slide(
         title: "ALTA CALIDAD",
         description: "El contenido que se muestra es lo más preciso posible, sin anuncios y una interfaz limpia.",
         pathImage: 'assets/shield.png',
         backgroundColor: Color(0xff9932CC),
       ),
-    );
-    slides.add(
-       Slide(
-        title: "A TU MANERA",
-        description: "¡Puedes aprender nuevas palabras todos los días!",
-        pathImage: 'assets/idea.png',
-        backgroundColor: Color(0xff203152),
-      ),
-    );
+    ); 
   }
 
   @override

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/palabra/single-palabra-card.dart';
-import '../widgets/ui/head-card.dart';
-import '../widgets/ui/text/row-item.dart';
-import '../widgets/ui/divider.dart';
-import '../model/palabra.model.dart';
-import '../model/main.dart';
+import 'package:moblie/model/main.dart';
+import 'package:moblie/model/palabra.model.dart';
+import 'package:moblie/utils/settings.dart';
+
+import 'package:moblie/widgets/ui/divider.dart';
+import 'package:moblie/widgets/ui/head-card.dart';
+import 'package:moblie/widgets/ui/text/row-item.dart';
+import 'package:moblie/widgets/palabra/single-palabra-card.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 class SinglePalabraScreen extends StatelessWidget {
   final Palabra _palabra;
@@ -20,7 +23,7 @@ class SinglePalabraScreen extends StatelessWidget {
       onWillPop: () {
         Navigator.pop(context, true);
       },
-        
+
       child: Scaffold(
         appBar: AppBar( 
           title: Text(_palabra.palabra),
@@ -28,7 +31,11 @@ class SinglePalabraScreen extends StatelessWidget {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.info_outline),
-              onPressed: () {},
+              onPressed: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback)
+            ),
+            IconButton(
+              icon: Icon(Icons.help_outline),
+              onPressed: () => Navigator.pushNamed(context, '/help'),
             )
           ],
         ),
@@ -43,12 +50,13 @@ class SinglePalabraScreen extends StatelessWidget {
                     _buildPalabraBasicInfoCard(),
                     Separator.spacer(),
                     _buildConjugationCard(tipo: _palabra.tipo),
-                    
                     _buildPalabraDefinitionCard(definicion: _palabra.definicion, definicionEs: _palabra.definicionEs),
                     Separator.spacer(),
                     _builPalabraExamplesCard(),
                     Separator.spacer(),
-                    _buildPalabraAntSynCard(),                
+                    _buildPalabraAntSynCard(), 
+                    Separator.spacer(),
+                    _buildNotasInfo(nota: _palabra.nota),       
                   ]
                 ),
               ),
@@ -57,6 +65,26 @@ class SinglePalabraScreen extends StatelessWidget {
         )
       ),
     );
+  }
+
+  Widget _buildNotasInfo({String nota}) {
+    Widget card =Container();
+
+    if (nota !=null) {
+      card = SinglePalabraCard(
+        title: 'Nota',
+        body: Column(
+          children: <Widget>[
+            RowItem.textRow(
+              '${_palabra.palabra} es especial', 
+              _palabra.nota
+            ),
+          ],
+        ),
+      );
+    }
+
+    return card;
   }
 
   Widget _buildPalabraBasicInfoCard() {
@@ -135,7 +163,6 @@ class SinglePalabraScreen extends StatelessWidget {
       card = Column(
         children: <Widget>[
           Separator.spacer(),
-
           HeadCard (
             title: 'Breve definición:',
             subtitle: _palabra.definicion == null ? 'No disponible' : _palabra.definicion,
@@ -162,9 +189,7 @@ class SinglePalabraScreen extends StatelessWidget {
 
     Widget card = Container();
 
-    if (_palabra.antonimos == null && _palabra.sinonimos == null) {
-      card = Container();
-    } else  {
+    if (_palabra.antonimos != null && _palabra.sinonimos != null) {
       card = HeadCard(
         title: 'Anotinmos:',
         subtitle: _palabra.antonimos == null ? 'No disponible' : _palabra.antonimos,

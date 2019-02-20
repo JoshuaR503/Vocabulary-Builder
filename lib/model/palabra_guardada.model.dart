@@ -13,6 +13,7 @@ class PalabraGuardada {
   String antonimos;
   String ejemplos;
   String tipo;
+  String nota;
   String date;
 
   PalabraGuardada({
@@ -29,6 +30,7 @@ class PalabraGuardada {
     this.antonimos,
     this.ejemplos,
     this.tipo,
+    this.nota,
     this.date
   });
 
@@ -47,6 +49,7 @@ class PalabraGuardada {
     this.antonimos,
     this.ejemplos,
     this.tipo,
+    this.nota,
     this.date
   );
 
@@ -68,6 +71,7 @@ class PalabraGuardada {
     map['antonimos'] = antonimos;
     map['ejemplos'] = ejemplos;
     map['tipo'] = tipo;
+    map['nota'] = nota;
 		map['date'] = date;
 
 		return map;
@@ -88,6 +92,7 @@ class PalabraGuardada {
     this.antonimos = map['antonimos'];
     this.ejemplos =  map['ejemplos'];
     this.tipo = map['tipo'];
+    this.nota = map['nota'];
 		this.date = map['date'];
 	}
 }

@@ -86,3 +86,12 @@ All notable changes to this project will be documented in this file.
 - Added new Icons
 - Fixed Stuff in the chnagelog
 - Fixed an error that would prevent the user to load the main screen propetly
+
+### 20th commit 
+- File cleaning
+- Cleaned Imports
+- Layout Improvements (mostly icons)
+- Added Font Awesome
+- Added more content in about screen and creditos screen
+- Added new data
+- TODO: ADD ICON

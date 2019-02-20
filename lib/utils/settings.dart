@@ -7,6 +7,14 @@ final String url = 'https://another-backend.herokuapp.com/palabras/azar';
 // ===============================================================
 final String urlSendFeedback = 'https://another-backend.herokuapp.com/send/feedback';
 // ===============================================================
+// Url de la versión web
+// ===============================================================
+final String webVersion = 'https://another-backend.herokuapp.com';
+// ===============================================================
+// Correo del autor
+// ===============================================================
+final String authorEmail ='mailto:joshuagarcia000@outlook.es';
+// ===============================================================
 // Url de Flutter
 // ===============================================================
 final String flutterUrl = 'https://flutter.io';

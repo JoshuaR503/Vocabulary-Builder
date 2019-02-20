@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:moblie/model/main.dart';
+import 'package:moblie/utils/settings.dart';
+import 'package:moblie/widgets/palabras/palabras.dart';
+import 'package:moblie/widgets/ui/divider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-
-import '../widgets/palabras/palabras.dart';
-import '../utils/settings.dart';
-import '../model/main.dart';
 
 class PalabrasScreen extends StatefulWidget {
   
@@ -52,25 +53,34 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             automaticallyImplyLeading: false,
             title: Text('Opciones'),
           ),
+
+          Separator.divider(height: 0.0, indent: 74.0),
           ListTile(
-            leading: Icon(Icons.people),
-            title: Text(infoSection),
-            onTap: () => Navigator.pushNamed(context, '/about'),
+            leading: Icon(FontAwesomeIcons.play),
+            title: Text('Ver Introducción'),
+            onTap: () => Navigator.pushNamed(context, '/intro'),
+          ),
+          ListTile(
+            leading: Icon(FontAwesomeIcons.solidQuestionCircle),
+            title: Text('Preguntas Frecuentes'),
+            onTap: () => Navigator.pushNamed(context, '/help'),
+          ),
+
+          Separator.divider(height: 0.0, indent: 74.0),
+          ListTile(
+            leading: Icon(FontAwesomeIcons.globeAmericas),
+            title: Text('Versión web'),
+            onTap: () => FlutterWebBrowser.openWebPage(url: webVersion)
+          ),
+          ListTile(
+            leading: Icon(FontAwesomeIcons.comments),
+            title: Text('Enviar comentarios'),
+            onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback)
           ),
           ListTile(
             leading: Icon(Icons.people),
             title: Text('Creditos'),
             onTap: () => Navigator.pushNamed(context, '/creditos'),
-          ),
-          ListTile(
-            leading: Icon(Icons.slideshow),
-            title: Text('Ver introduction'),
-            onTap: () => Navigator.pushNamed(context, '/intro'),
-          ),
-          ListTile(
-            leading: Icon(Icons.feedback),
-            title: Text('Enviar comentarios'),
-            onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback, androidToolbarColor: Colors.deepPurple)
           ),
         ],
       ),

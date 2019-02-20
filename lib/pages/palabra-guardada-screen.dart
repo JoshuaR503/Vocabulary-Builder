@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:moblie/model/main.dart';
+import 'package:moblie/utils/settings.dart';
+import 'package:moblie/widgets/palabra-guardada/palabra-guardada.dart';
 import 'package:scoped_model/scoped_model.dart';
-
-import '../widgets/palabra-guardada/palabra-guardada.dart';
-import '../model/main.dart';
-import '../utils/settings.dart';
 
 class PalabraGuardadaScreen extends StatefulWidget {
   final MainModel model;

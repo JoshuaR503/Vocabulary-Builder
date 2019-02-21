@@ -54,7 +54,6 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             title: Text('Opciones'),
           ),
 
-          Separator.divider(height: 0.0, indent: 74.0),
           ListTile(
             leading: Icon(FontAwesomeIcons.play),
             title: Text('Ver Introducción'),
@@ -77,6 +76,8 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             title: Text('Enviar comentarios'),
             onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback)
           ),
+          
+          Separator.divider(height: 0.0, indent: 74.0),
           ListTile(
             leading: Icon(Icons.people),
             title: Text('Creditos'),

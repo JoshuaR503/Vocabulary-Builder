@@ -94,4 +94,8 @@ All notable changes to this project will be documented in this file.
 - Added Font Awesome
 - Added more content in about screen and creditos screen
 - Added new data
-- TODO: ADD ICON
+
+### 21th commit
+- Added new Icon
+- Ready for Prod
+- Fixed an error that would prevent users save worlds

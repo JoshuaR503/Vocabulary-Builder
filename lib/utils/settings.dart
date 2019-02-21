@@ -21,7 +21,7 @@ final String flutterUrl = 'https://flutter.io';
 // ===============================================================
 // Nombre de la aplicación
 // ===============================================================
-final String appname = 'American English Words';
+final String appname = 'Falcon English';
 // ===============================================================
 // Nombres de la aplicación
 // ===============================================================

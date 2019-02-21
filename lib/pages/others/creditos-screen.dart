@@ -54,7 +54,7 @@ class CreditoScreen extends StatelessWidget {
                   height: 50.0,
                   width: 50.0,
                 ),
-                title: ('Diseñador del icono del libro y icono de la aplicación.'),
+                title: ('Diseñador del icono del libro.'),
                 subtitle: ('Toca en el icono para mas información'),
                 onTap: () => FlutterWebBrowser.openWebPage(url: 'www.flaticon.com'),
               ),

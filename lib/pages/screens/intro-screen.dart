@@ -26,7 +26,7 @@ class _IntroScreenState extends State<IntroScreen> {
         title: "VOCABULARIO",
         description: "El objetivo principal de $appname es aumentar tu vocabulario.",
         pathImage: 'assets/books.png',
-        backgroundColor: Color(0XFF08415C),
+        backgroundColor: Color(0xfff5a623),
       ),
     );
     slides.add(

@@ -8,7 +8,7 @@ import 'dart:io';
 
 class DatabaseHelper {
 
-  final pathName = 'palabras2abcdeq.db';
+  final pathName = 'falconEnglish1v.db';
 
   static DatabaseHelper _databaseHelper;
 	static Database _database;
@@ -28,6 +28,7 @@ class DatabaseHelper {
   String colAntonyms = 'antonimos';
   String colExamples = 'ejemplos';
   String colType = 'tipo';
+  String colNote = 'nota';
   String colDate = 'date';
 
   DatabaseHelper._createInstance();
@@ -54,7 +55,7 @@ class DatabaseHelper {
 		return notesDatabase;
   }
 
-  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colPasado TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colThirdPerson TEXT, $colFuturo TEXT, $colDefinition TEXT, $colDefinitionEs TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colExamples TEXT, $colType TEXT, $colDate TEXT)");
+  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colPasado TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colThirdPerson TEXT, $colFuturo TEXT, $colDefinition TEXT, $colDefinitionEs TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colExamples TEXT, $colType TEXT, $colNote TEXT, $colDate TEXT)");
  
   Future<List<Map<String, dynamic>>> fetchSavedDataMapList() async {
 		Database db = await this.database;

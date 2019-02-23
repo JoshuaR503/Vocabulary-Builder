@@ -8,7 +8,10 @@ class PalabraCard extends StatelessWidget {
   final Palabra palabra;
   final MainModel model;
   
-  PalabraCard(this.palabra, this.model);
+  PalabraCard(
+    this.palabra, 
+    this.model
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +60,10 @@ class PalabraCard extends StatelessWidget {
                         padding: EdgeInsets.only(left: 16.0),
                       ),
                       IconButton(
-                        onPressed: () => _save(context, palabra),
+                        onPressed: () {
+                          _save(context, palabra);
+                          model.sendFeedback();
+                        },
                         icon: Icon(Icons.favorite_border),
                         color: Colors.red,
                       ),
@@ -110,6 +116,7 @@ class PalabraCard extends StatelessWidget {
         Scaffold.of(context).showSnackBar(SnackBar(content: Text(onSuccessMessage)));
       }
     }).catchError((error) {
+      print(error);
       Scaffold.of(context).showSnackBar(SnackBar(content: Text(onErrorMessage)));
     });
   }

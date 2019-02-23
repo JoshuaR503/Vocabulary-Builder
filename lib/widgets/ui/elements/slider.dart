@@ -141,6 +141,7 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
 
   List<Widget> tabs = List();
   List<Widget> dots = List();
+  double fontSize = 14;
 
   @override
   void initState() {
@@ -188,12 +189,6 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: primaryColor,
-        accentColor: accentColor,
-        canvasColor: backgroundColor,
-        cardColor: cardColor,
-        dialogBackgroundColor: cardColor,
-        dividerColor: dividerColor,
-        highlightColor: highlightColor
       ),
       title: appname,
       home: DefaultTabController(
@@ -222,9 +217,10 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
               ? Container(
                 child: FlatButton(
                     onPressed: onSkipPress,
-                    child: Text( "SKIP",
+                    child: Text( "SALTAR",
                       style: TextStyle(
-                        color: Colors.white
+                        color: Colors.white,
+                        fontSize: fontSize
                       ),
                     ),
                     color: Colors.transparent,
@@ -234,11 +230,11 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
                     ),
                 ),
 
-                width: 70.0,
+                width: 130.0,
                 height: 70.0,
               )
               : Container(
-                width: 80.0,
+                width: 130.0,
                 height: 70.0,
               ),
 
@@ -258,9 +254,10 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
             child: tabController.index + 1 == slides.length
               ? FlatButton(
                 onPressed: onDonePress,
-                child: Text( "DONE",
+                child: Text("LISTO",
                   style: TextStyle(
-                    color: Colors.white
+                    color: Colors.white,
+                    fontSize: fontSize
                   ),
                 ),
                 color: Colors.transparent,
@@ -272,9 +269,10 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
 
               : FlatButton(
                 onPressed: () => tabController.animateTo(tabController.index + 1),
-                child: Text( "NEXT",
+                child: Text("SIGUIENTE",
                   style: TextStyle(
-                    color: Colors.white
+                    color: Colors.white,
+                    fontSize: fontSize
                   ),
                 ),
                 color: Colors.transparent,
@@ -283,7 +281,7 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
                   borderRadius: BorderRadius.circular(30.0)
                 ),
               ),
-            width: 80.0,
+            width: 130.0,
             height: 70.0,
           ),
 
@@ -340,11 +338,9 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
                 fontSize: 30.0,
               ),
 
-              maxLines: 1,
               textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
             ),
-            margin: EdgeInsets.only(top: 60.0, bottom: 50.0, left: 20, right: 20),
+            margin: EdgeInsets.only(top: 70.0, bottom: 70.0, left: 20, right: 20),
           ),
 
           GestureDetector(
@@ -362,8 +358,6 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
               description,
               style: TextStyle(color: Colors.white, fontSize: 18.0),
               textAlign: TextAlign.center,
-              maxLines: 100,
-              overflow: TextOverflow.ellipsis,
             ),
             margin: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 50.0),
           ),

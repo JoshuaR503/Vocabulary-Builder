@@ -14,6 +14,8 @@ class Palabra {
   final String antonimos;
   final String ejemplos;
   final String tipo;
+  final String plural;
+  final String singular;
   final String nota;
   final bool alt;
 
@@ -31,6 +33,8 @@ class Palabra {
     this.antonimos,
     @required this.ejemplos,
     @required this.tipo,
+    this.singular,
+    this.plural,
     this.nota,
     @required this.alt, 
   });

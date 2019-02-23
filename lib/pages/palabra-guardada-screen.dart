@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
+import 'package:moblie/pages/screens/error-screen.dart';
 import 'package:moblie/utils/settings.dart';
 import 'package:moblie/widgets/palabra-guardada/palabra-guardada.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -25,13 +26,14 @@ class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
     return ScopedModelDescendant(
       builder: (BuildContext context, Widget child, MainModel model) {
 
-        Widget content = Center(child: Text(onNoSavedWords));
+        Widget content = ErrorScreen(
+          message: onNoSavedWords,
+          pathImage: 'assets/box.png',
+          fixMessage: onNoSavedWordsFix,
+        );
 
         if (model.allPalabrasGuardadas.length > 0 && !model.palabrasGuardadasIsLoading) {
-          content = Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4.0),
-            child: PalabrasGuardadas(),
-          );
+          content = PalabrasGuardadas();
         } else if (model.palabrasGuardadasIsLoading) {
           content = Center(child: CircularProgressIndicator());
         }

@@ -13,6 +13,8 @@ class PalabraGuardada {
   String antonimos;
   String ejemplos;
   String tipo;
+  String plural;
+  String singular;
   String nota;
   String date;
 
@@ -30,6 +32,8 @@ class PalabraGuardada {
     this.antonimos,
     this.ejemplos,
     this.tipo,
+    this.plural,
+    this.singular,
     this.nota,
     this.date
   });
@@ -49,6 +53,8 @@ class PalabraGuardada {
     this.antonimos,
     this.ejemplos,
     this.tipo,
+    this.plural,
+    this.singular,
     this.nota,
     this.date
   );
@@ -71,6 +77,8 @@ class PalabraGuardada {
     map['antonimos'] = antonimos;
     map['ejemplos'] = ejemplos;
     map['tipo'] = tipo;
+    map['plural'] = plural;
+    map['singular'] = singular;
     map['nota'] = nota;
 		map['date'] = date;
 
@@ -93,6 +101,8 @@ class PalabraGuardada {
     this.ejemplos =  map['ejemplos'];
     this.tipo = map['tipo'];
     this.nota = map['nota'];
+    this.plural = map['plural'];
+    this.singular = map['singular'];
 		this.date = map['date'];
 	}
 }

@@ -20,6 +20,9 @@ class RowItem extends StatelessWidget {
               .textTheme
               .subhead
               .copyWith(color: primaryText),
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
           ),
           description
         ],

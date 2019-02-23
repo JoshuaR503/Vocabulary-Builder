@@ -40,7 +40,7 @@ class _PalabraGuardadaCardState extends State<PalabraGuardadaCard> with TickerPr
 
     TextStyle titleStyle = Theme.of(context).textTheme.subhead;
     
-    final Palabra singlePalabra =  Palabra(
+    Palabra singlePalabra =  Palabra(
       palabra: widget.palabra.palabra,
       traduccion: widget.palabra.traduccion,
       pasado: widget.palabra.pasado,
@@ -54,6 +54,8 @@ class _PalabraGuardadaCardState extends State<PalabraGuardadaCard> with TickerPr
       antonimos: widget.palabra.antonimos,
       ejemplos: widget.palabra.ejemplos, 
       alt: false,
+      plural: widget.palabra.plural,
+      singular: widget.palabra.singular,
       nota: widget.palabra.nota,
       tipo: widget.palabra.tipo,
     );
@@ -73,7 +75,7 @@ class _PalabraGuardadaCardState extends State<PalabraGuardadaCard> with TickerPr
             trailing: GestureDetector (
               child: CircleAvatar(
                 backgroundColor: Colors.red,
-                child: Icon(FontAwesomeIcons.handPointUp, color: Colors.white),
+                child: Icon(Icons.info_outline, color: Colors.white),
               ),
               onTap: () => Navigator.push(
                 context,

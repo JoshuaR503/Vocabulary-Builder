@@ -99,3 +99,22 @@ All notable changes to this project will be documented in this file.
 - Added new Icon
 - Ready for Prod
 - Fixed an error that would prevent users save worlds
+
+## 22th commit
+- Error fixing
+- Code cleaning
+- Mini Layout Improvements
+- Ready for prod!
+
+## 23th commit
+- Added a new screen to help users
+- Added an error screen
+- Added Feedback when the user saves a word
+- Rotation Locked
+- Fixed an error in which users were not able to see extra data
+- Checks before final release
+- Added more info in the single screen 
+- Added new answers in question-screen
+- Layout Improvements
+- TODO: Clean code
+- TODO: Add a day mode

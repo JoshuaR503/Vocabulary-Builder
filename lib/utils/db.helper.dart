@@ -8,7 +8,7 @@ import 'dart:io';
 
 class DatabaseHelper {
 
-  final pathName = 'falconEnglish1v.db';
+  final pathName = 'FalconEnglishDBv1.db';
 
   static DatabaseHelper _databaseHelper;
 	static Database _database;
@@ -28,6 +28,8 @@ class DatabaseHelper {
   String colAntonyms = 'antonimos';
   String colExamples = 'ejemplos';
   String colType = 'tipo';
+  String colPlural = 'plural';
+  String colSingular = 'singular';
   String colNote = 'nota';
   String colDate = 'date';
 
@@ -55,12 +57,12 @@ class DatabaseHelper {
 		return notesDatabase;
   }
 
-  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colPasado TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colThirdPerson TEXT, $colFuturo TEXT, $colDefinition TEXT, $colDefinitionEs TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colExamples TEXT, $colType TEXT, $colNote TEXT, $colDate TEXT)");
+  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colPasado TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colThirdPerson TEXT, $colFuturo TEXT, $colDefinition TEXT, $colDefinitionEs TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colExamples TEXT, $colType TEXT, $colPlural TEXT, $colSingular TEXT, $colNote TEXT, $colDate TEXT)");
  
   Future<List<Map<String, dynamic>>> fetchSavedDataMapList() async {
 		Database db = await this.database;
 
-		var result = await db.query(wordsTable, orderBy: '$colDate ASC');
+		var result = await db.query(wordsTable, orderBy: '$colDate DESC');
 		return result;
 	}
 

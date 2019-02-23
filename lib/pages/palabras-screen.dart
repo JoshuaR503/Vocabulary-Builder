@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
+import 'package:moblie/pages/screens/error-screen.dart';
 import 'package:moblie/utils/settings.dart';
 import 'package:moblie/widgets/palabras/palabras.dart';
 import 'package:moblie/widgets/ui/divider.dart';
@@ -30,7 +31,11 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
     return ScopedModelDescendant(
       builder: (BuildContext context, Widget child, MainModel model) {
 
-        Widget content = Center(child: Text(onServerConnection));
+        Widget content = ErrorScreen(
+          message: onServerConnection,
+          pathImage: 'assets/warning.png',
+          fixMessage: onServerConnectionFix,
+        );
 
         if (model.allPalabras.length > 0 && !model.isLoading) {
           content = Palabras();
@@ -55,31 +60,31 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
           ),
 
           ListTile(
-            leading: Icon(FontAwesomeIcons.play),
-            title: Text('Ver Introducción'),
-            onTap: () => Navigator.pushNamed(context, '/intro'),
-          ),
-          ListTile(
-            leading: Icon(FontAwesomeIcons.solidQuestionCircle),
             title: Text('Preguntas Frecuentes'),
-            onTap: () => Navigator.pushNamed(context, '/help'),
+            onTap: () => Navigator.pushNamed(context, '/question'),
           ),
 
+          ListTile(
+            title: Text('Solución de problemas'),
+            onTap: () => Navigator.pushNamed(context, '/help'),
+          ),
+          
           Separator.divider(height: 0.0, indent: 74.0),
           ListTile(
-            leading: Icon(FontAwesomeIcons.globeAmericas),
             title: Text('Versión web'),
             onTap: () => FlutterWebBrowser.openWebPage(url: webVersion)
           ),
           ListTile(
-            leading: Icon(FontAwesomeIcons.comments),
             title: Text('Enviar comentarios'),
             onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback)
           ),
           
           Separator.divider(height: 0.0, indent: 74.0),
           ListTile(
-            leading: Icon(Icons.people),
+            title: Text('Repetir Introducción'),
+            onTap: () => Navigator.pushNamed(context, '/intro'),
+          ),
+          ListTile(
             title: Text('Creditos'),
             onTap: () => Navigator.pushNamed(context, '/creditos'),
           ),
@@ -93,7 +98,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
     return  Scaffold(
         drawer: _buildDrawer(),
         appBar: AppBar(
-          title: Text(appname),
+          title: Text(title),
           centerTitle: true,
           elevation: 0.0,
           actions: <Widget>[

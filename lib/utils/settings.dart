@@ -23,12 +23,14 @@ final String flutterUrl = 'https://flutter.io';
 // ===============================================================
 final String appname = 'Falcon English';
 // ===============================================================
+// ===============================================================
 // Nombres de la aplicación
 // ===============================================================
 final String savedSection = 'Palabras Guardadas';
 final String settingsSection = 'Configuración';
 final String infoSection = 'Información';
 final String buttonName = 'Escuchar pronunciación';
+final String title = 'Inicio';
 // ===============================================================
 // Success messages
 // ===============================================================
@@ -39,6 +41,14 @@ final String onSuccessDeletingWord = 'Palabra eliminada correctamente';
 // ===============================================================
 final String onErrorMessage = 'Hubo un problema al guardar los datos';
 final String onErrorDeletingMessage = 'Hubo un problema al eliminar los datos';
-final String onNoSavedWords = '¡Parece que aún no has guardado ninguna palabra!';
+// ===============================================================
+// Error and fix messages
+// ===============================================================
+final String onServerConnection = 'No se pudo conectar con el servidor';
+final String onServerConnectionFix = 'Deslizar hacia abajo para intentar de nuevo. También puedes ir a la sección de Palabras Guardadas.';
+// ===============================================================
+// Error and fix messages
+// ===============================================================
 final String onSavedWordsError = 'Hubo un error :(';
-final String onServerConnection = 'No se pudo conectar al servidor :(';
+final String onNoSavedWords = 'Parece que aún no has guardado ninguna palabra';
+final String onNoSavedWordsFix = 'Puedes tocar en el corazón al lado de una palabra para guardarla.';

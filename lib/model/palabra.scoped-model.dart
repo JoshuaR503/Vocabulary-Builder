@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:vibrate/vibrate.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -82,6 +83,8 @@ mixin PalabrasModel on ConnectedModel {
             antonimos: palabraData['antonimos'],
             ejemplos: palabraData['ejemplos'],
             tipo: palabraData['tipo'],
+            plural: palabraData['plural'],
+            singular: palabraData['singular'],
             nota: palabraData['nota'],
             alt: palabraData['alt'],
           );
@@ -148,6 +151,8 @@ mixin PalabrasModel on ConnectedModel {
       antonimos: palabraData.antonimos,
       ejemplos: palabraData.ejemplos,
       tipo: palabraData.tipo,
+      plural: palabraData.plural,
+      singular: palabraData.singular,
       nota: palabraData.nota,
       date: DateFormat.yMMMd().format(DateTime.now())
     );
@@ -198,5 +203,14 @@ mixin UtilityModel on ConnectedModel {
   Future<Null> setData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('seen', true);
+  }
+
+  void sendFeedback() async {
+
+    bool canVibrate = await Vibrate.canVibrate;
+
+    if (canVibrate) {
+      Vibrate.vibrate();
+    }
   }
 }

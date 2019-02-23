@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:moblie/model/main.dart';
-import 'package:moblie/pages/others/about-screen.dart';
 import 'package:moblie/pages/others/creditos-screen.dart';
+import 'package:moblie/pages/others/help-screen.dart';
+import 'package:moblie/pages/others/question-screen.dart';
 import 'package:moblie/pages/palabra-guardada-screen.dart';
 import 'package:moblie/pages/palabras-screen.dart';
 import 'package:moblie/pages/screens/intro-screen.dart';
@@ -13,7 +15,10 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:sentry/sentry.dart';
 
-void main() => runApp(AmericanEnglishWords());
+void main() =>
+  SystemChrome
+  .setPreferredOrientations([DeviceOrientation.portraitUp])
+  .then((_) => runApp(AmericanEnglishWords()));
 
 class AmericanEnglishWords extends StatefulWidget {
 
@@ -55,6 +60,7 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
             '/home': (BuildContext context) => PalabrasScreen(model),
             '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
             '/creditos':  (BuildContext context) => CreditoScreen(),
+            '/question':  (BuildContext context) => QuestionScreen(),
             '/help':  (BuildContext context) => HelpScreen(),
             '/intro':  (BuildContext context) => IntroScreen(model),
           }

@@ -26,6 +26,7 @@ dependencies:
   shared_preferences: ^0.5.1+1
   flutter_tts: ^0.1.2
   dynamic_theme: ^1.0.0
+  vibrate: ^0.0.4
   flutter_web_browser: ^0.9.0+1
   
 dev_dependencies:
@@ -55,3 +56,9 @@ flutter:
     - assets/plant.png
     - assets/planet.png
     - assets/info.png
+    - assets/parrot.png
+    - assets/warning.png
+    - assets/wifi.png
+    - assets/box.png
+    - assets/tree.png
+    - assets/mushroom.png

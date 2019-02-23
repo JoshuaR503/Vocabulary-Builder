@@ -21,9 +21,9 @@ class SinglePalabraScreen extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () {
-        Navigator.pop(context, true);
+       Navigator.pop(context, false);
       },
-
+    
       child: Scaffold(
         appBar: AppBar( 
           title: Text(_palabra.palabra),
@@ -35,7 +35,7 @@ class SinglePalabraScreen extends StatelessWidget {
             ),
             IconButton(
               icon: Icon(Icons.help_outline),
-              onPressed: () => Navigator.pushNamed(context, '/help'),
+              onPressed: () => Navigator.pushNamed(context, '/question'),
             )
           ],
         ),
@@ -44,19 +44,19 @@ class SinglePalabraScreen extends StatelessWidget {
           children: <Widget>[
             Container(
               child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: EdgeInsets.all(12.0),
                 child: Column(
                   children: <Widget>[              
                     _buildPalabraBasicInfoCard(),
                     Separator.spacer(),
-                    _buildConjugationCard(tipo: _palabra.tipo),
-                    _buildPalabraDefinitionCard(definicion: _palabra.definicion, definicionEs: _palabra.definicionEs),
+                    _buildConjugationCard(),
+                    _buildPalabraDefinitionCard(),
                     Separator.spacer(),
                     _builPalabraExamplesCard(),
                     Separator.spacer(),
                     _buildPalabraAntSynCard(), 
                     Separator.spacer(),
-                    _buildNotasInfo(nota: _palabra.nota),       
+                    _buildNoteCard(),
                   ]
                 ),
               ),
@@ -65,26 +65,6 @@ class SinglePalabraScreen extends StatelessWidget {
         )
       ),
     );
-  }
-
-  Widget _buildNotasInfo({String nota}) {
-    Widget card =Container();
-
-    if (nota !=null) {
-      card = SinglePalabraCard(
-        title: 'Nota',
-        body: Column(
-          children: <Widget>[
-            RowItem.textRow(
-              '${_palabra.palabra} es especial', 
-              _palabra.nota
-            ),
-          ],
-        ),
-      );
-    }
-
-    return card;
   }
 
   Widget _buildPalabraBasicInfoCard() {
@@ -106,23 +86,27 @@ class SinglePalabraScreen extends StatelessWidget {
           Separator.spacer(),
           RowItem.textRow(
             'Categoría gramatical', 
-            _palabra.tipo == null ? 'No disponible' : _palabra.tipo,
+            _palabra.tipo == null ? 'No disponible' : _palabra.tipo
           ),
         ],
       ),
     );
   }
 
-  Widget _buildConjugationCard({String tipo}) {
+  Widget _buildConjugationCard() {
 
     Widget card = Container();
+
+    String tipo = _palabra.tipo;
+    String singular = _palabra.singular;
+    String plural =_palabra.plural;
+    print(tipo);
 
     if (tipo == 'Verbo') {
       card = SinglePalabraCard(
         title: 'Conjugación de ${_palabra.palabra}',
         body: Column(
           children: <Widget>[
-            
             RowItem.textRow(
               'Presente Continuo',
               _palabra.presenteContinuo ?? _palabra.presenteContinuo,
@@ -150,29 +134,80 @@ class SinglePalabraScreen extends StatelessWidget {
           ],
         ),
       );
-    } 
+    } else if (tipo == 'Sustantivo' && plural != null && singular != null) {
+      card = SinglePalabraCard(
+        title: 'Singular y plural de ${_palabra.palabra}',
+        body: Column(
+          children: <Widget>[
+            RowItem.textRow(
+              'Singular',
+              singular
+            ),
+            Separator.spacer(),
+            RowItem.textRow(
+              'Plurar',
+              plural
+            ),
+          ],
+        ),
+      );
+    } else if (tipo == 'Sustantivo' && plural != null && singular == null) {
+      card = SinglePalabraCard(
+        title: 'Singular y plural de ${_palabra.palabra}',
+        body: Column(
+          children: <Widget>[
+            RowItem.textRow(
+              'Singular',
+              'No disponible'
+            ),
+            Separator.spacer(),
+            RowItem.textRow(
+              'Plurar',
+              plural
+            ),
+          ],
+        ),
+      );
+    } else if (tipo == 'Sustantivo' && plural == null && singular != null) {
+      card = SinglePalabraCard(
+        title: 'Singular y plural de ${_palabra.palabra}',
+        body: Column(
+          children: <Widget>[
+            RowItem.textRow(
+              'Singular',
+              singular
+            ),
+            Separator.spacer(),
+            RowItem.textRow(
+              'Plurar',
+              'No disponible'
+            ),
+          ],
+        ),
+      );
+    }
 
     return card;
   }
 
-  Widget _buildPalabraDefinitionCard({String definicion, String definicionEs}) {
+  Widget _buildPalabraDefinitionCard() {
 
     Widget card = Container();
 
-    if (definicion != null && definicionEs != null) {
+    if (_palabra.definicion != null && _palabra.definicionEs != null) {
       card = Column(
         children: <Widget>[
           Separator.spacer(),
           HeadCard (
             title: 'Breve definición:',
-            subtitle: _palabra.definicion == null ? 'No disponible' : _palabra.definicion,
+            subtitle: _palabra.definicion,
             title2: 'Breve definición en Español:',
-            subtitle2: _palabra.definicionEs == null ? 'No disponible' : _palabra.definicionEs,
+            subtitle2: _palabra.definicionEs
           )
         ],
       );
     }
-
+    
     return card;
   }
 
@@ -189,13 +224,55 @@ class SinglePalabraScreen extends StatelessWidget {
 
     Widget card = Container();
 
-    if (_palabra.antonimos != null && _palabra.sinonimos != null) {
+    String antonyms = 'Antónimos:';
+    String synonyms = 'Sinónimos:';
+    String ns = 'Parece que no hay sinónimos para esta palabra.';
+    String na = 'Parece que no hay antónimos para esta palabra.';
+
+    String antonimos = _palabra.antonimos;
+    String sinonimos = _palabra.sinonimos;
+
+    if (antonimos != null && sinonimos != null) {
       card = HeadCard(
-        title: 'Anotinmos:',
-        subtitle: _palabra.antonimos == null ? 'No disponible' : _palabra.antonimos,
-        title2: 'Sinonimos:',
-        subtitle2: _palabra.sinonimos == null? 'No disponible' : _palabra.sinonimos
-      ); 
+        title: antonyms,
+        subtitle: antonimos,
+        title2: synonyms,
+        subtitle2: sinonimos
+      );
+    } else if (antonimos == null && sinonimos != null) {
+      card = HeadCard(
+        title: antonyms,
+        subtitle: na,
+        title2: synonyms,
+        subtitle2: sinonimos
+      );
+    } else if (antonimos != null && sinonimos == null) {
+      card = HeadCard(
+        title: antonyms,
+        subtitle: antonimos,
+        title2: synonyms,
+        subtitle2: ns
+      );
+    }
+    
+    return card;
+  }
+
+  Widget _buildNoteCard() {
+    Widget card = Container();
+
+    if (_palabra.nota != null) {
+      card = Column(
+        children: <Widget>[
+          Separator.spacer(),
+          HeadCard (
+            title: 'Nota',
+            subtitle: _palabra.nota,
+            title2: 'Traducción Español:',
+            subtitle2: _palabra.traduccion
+          )
+        ],
+      );
     }
 
     return card;

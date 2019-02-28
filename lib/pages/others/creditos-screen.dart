@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import 'package:moblie/utils/settings.dart';
-import 'package:moblie/widgets/ui/divider.dart';
 import 'package:moblie/widgets/ui/list_cell.dart';
 import 'package:moblie/widgets/ui/text/subtitle.dart';
 import 'package:moblie/widgets/ui/text/title.dart';

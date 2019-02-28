@@ -4,7 +4,6 @@ import 'package:moblie/pages/screens/error-screen.dart';
 import 'package:moblie/utils/settings.dart';
 import 'package:moblie/widgets/palabras/palabras.dart';
 import 'package:moblie/widgets/ui/divider.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
@@ -42,6 +41,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
         } else if (model.isLoading) {
           content = Center(child: CircularProgressIndicator());
         }
+
         return RefreshIndicator(
           onRefresh: model.obtenerPalabras,
           child: content
@@ -69,7 +69,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             onTap: () => Navigator.pushNamed(context, '/help'),
           ),
           
-          Separator.divider(height: 0.0, indent: 74.0),
+          Separator.divider(),
           ListTile(
             title: Text('Versión web'),
             onTap: () => FlutterWebBrowser.openWebPage(url: webVersion)
@@ -79,7 +79,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback)
           ),
           
-          Separator.divider(height: 0.0, indent: 74.0),
+          Separator.divider(),
           ListTile(
             title: Text('Repetir Introducción'),
             onTap: () => Navigator.pushNamed(context, '/intro'),
@@ -102,6 +102,11 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
           centerTitle: true,
           elevation: 0.0,
           actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () => widget.model.obtenerPalabras(loadingIndicator: true)
+            ),
+            
             IconButton(
               icon: Icon(Icons.favorite_border),
               onPressed: () => Navigator.pushNamed(context, '/saved')

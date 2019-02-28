@@ -39,7 +39,6 @@ class SinglePalabraScreen extends StatelessWidget {
             )
           ],
         ),
-
         body: ListView(
           children: <Widget>[
             Container(
@@ -50,6 +49,7 @@ class SinglePalabraScreen extends StatelessWidget {
                     _buildPalabraBasicInfoCard(),
                     Separator.spacer(),
                     _buildConjugationCard(),
+                    _buildPalabraSinPlu(),
                     _buildPalabraDefinitionCard(),
                     Separator.spacer(),
                     _builPalabraExamplesCard(),
@@ -96,11 +96,8 @@ class SinglePalabraScreen extends StatelessWidget {
   Widget _buildConjugationCard() {
 
     Widget card = Container();
-
+    
     String tipo = _palabra.tipo;
-    String singular = _palabra.singular;
-    String plural =_palabra.plural;
-    print(tipo);
 
     if (tipo == 'Verbo') {
       card = SinglePalabraCard(
@@ -134,56 +131,24 @@ class SinglePalabraScreen extends StatelessWidget {
           ],
         ),
       );
-    } else if (tipo == 'Sustantivo' && plural != null && singular != null) {
-      card = SinglePalabraCard(
-        title: 'Singular y plural de ${_palabra.palabra}',
-        body: Column(
-          children: <Widget>[
-            RowItem.textRow(
-              'Singular',
-              singular
-            ),
-            Separator.spacer(),
-            RowItem.textRow(
-              'Plurar',
-              plural
-            ),
-          ],
-        ),
-      );
-    } else if (tipo == 'Sustantivo' && plural != null && singular == null) {
-      card = SinglePalabraCard(
-        title: 'Singular y plural de ${_palabra.palabra}',
-        body: Column(
-          children: <Widget>[
-            RowItem.textRow(
-              'Singular',
-              'No disponible'
-            ),
-            Separator.spacer(),
-            RowItem.textRow(
-              'Plurar',
-              plural
-            ),
-          ],
-        ),
-      );
-    } else if (tipo == 'Sustantivo' && plural == null && singular != null) {
-      card = SinglePalabraCard(
-        title: 'Singular y plural de ${_palabra.palabra}',
-        body: Column(
-          children: <Widget>[
-            RowItem.textRow(
-              'Singular',
-              singular
-            ),
-            Separator.spacer(),
-            RowItem.textRow(
-              'Plurar',
-              'No disponible'
-            ),
-          ],
-        ),
+    } 
+
+    return card;
+  }
+
+  Widget _buildPalabraSinPlu() {
+
+    Widget card = Container();
+
+    String singular = _palabra.singular;
+    String plural =_palabra.plural;
+ 
+    if (plural != null && singular != null) {
+      card = HeadCard(
+        title: '${_palabra.palabra} en Plural',
+        subtitle: plural,
+        title2: '${_palabra.palabra} en Singular',
+        subtitle2: singular
       );
     }
 
@@ -224,10 +189,10 @@ class SinglePalabraScreen extends StatelessWidget {
 
     Widget card = Container();
 
-    String antonyms = 'Antónimos:';
-    String synonyms = 'Sinónimos:';
-    String ns = 'Parece que no hay sinónimos para esta palabra.';
-    String na = 'Parece que no hay antónimos para esta palabra.';
+    String antonyms = 'Antónimos de ${_palabra.palabra}:';
+    String synonyms = 'Sinónimos de ${_palabra.palabra}:';
+    String ns = 'Parece que no hay sinónimos disponibles para esta palabra.';
+    String na = 'Parece que no hay antónimos disponibles para esta palabra.';
 
     String antonimos = _palabra.antonimos;
     String sinonimos = _palabra.sinonimos;

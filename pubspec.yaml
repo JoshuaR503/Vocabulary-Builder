@@ -20,7 +20,6 @@ dependencies:
   intl: ^0.15.7
   sqflite: ^1.0.0
   path_provider: ^0.5.0
-  font_awesome_flutter: ^8.4.0
   scoped_model: ^1.0.1
   sentry: ^2.2.0
   shared_preferences: ^0.5.1+1
@@ -62,3 +61,4 @@ flutter:
     - assets/box.png
     - assets/tree.png
     - assets/mushroom.png
+    - assets/tap.png

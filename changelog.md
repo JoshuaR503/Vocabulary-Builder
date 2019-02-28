@@ -118,3 +118,9 @@ All notable changes to this project will be documented in this file.
 - Layout Improvements
 - TODO: Clean code
 - TODO: Add a day mode
+
+## 24th commit
+- Fixed a bug that wouldn't let users see a word in its plural and singular way
+- Added a new slide and new icons
+- Added a button for users that don't get the pull to refresh feature
+- Layout improvements

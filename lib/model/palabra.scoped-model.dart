@@ -83,14 +83,19 @@ mixin PalabrasModel on ConnectedModel {
             antonimos: palabraData['antonimos'],
             ejemplos: palabraData['ejemplos'],
             tipo: palabraData['tipo'],
+
             plural: palabraData['plural'],
             singular: palabraData['singular'],
             nota: palabraData['nota'],
             alt: palabraData['alt'],
           );
 
+          print('Plural ${singlePalabra.plural}, Singular ${singlePalabra.singular}');
+          
           fetchedPalabrasList.add(singlePalabra);
         });
+
+        
 
         _palabras = fetchedPalabrasList; 
 

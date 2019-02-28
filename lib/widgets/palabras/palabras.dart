@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
 import 'package:moblie/model/palabra.model.dart';
-import 'package:moblie/utils/settings.dart';
 import 'package:moblie/widgets/palabras/palabras.card.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -23,8 +22,6 @@ class Palabras extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) => PalabraCard(palabras[index], model),
         itemCount: palabras.length,
       );
-    } else {
-      palabrasCard = Center(child: Text(onServerConnection));
     }
 
     return palabrasCard;

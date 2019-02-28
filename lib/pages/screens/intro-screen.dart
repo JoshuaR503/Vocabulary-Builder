@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/settings.dart';
 import '../../model/main.dart';
 import '../../widgets/ui/elements/slider.dart';
 
@@ -24,9 +23,18 @@ class _IntroScreenState extends State<IntroScreen> {
     slides.add(
        Slide(
         title: "VOCABULARIO",
-        description: "Aumenta tu vocabulario con palabras al azar todo el tiempo.",
+        description: "Aumenta tu vocabulario con palabras aleatorias de una manera simple.",
         pathImage: 'assets/books.png',
         backgroundColor: Color(0xfff5a623),
+      ),
+    );
+
+    slides.add(
+       Slide(
+        title: "APRENDE A TU RITMO",
+        description: "Con 15 minutos al día puedes aprender nuevas palabras.",
+        pathImage: 'assets/idea.png',
+        backgroundColor: Color(0XFFC41E3D),
       ),
     );
 
@@ -41,20 +49,12 @@ class _IntroScreenState extends State<IntroScreen> {
 
     slides.add(
        Slide(
-        title: "APRENDE A TU RITMO",
-        description: "Con 15 minutos al día puedes aprender nuevas palabras.",
-        pathImage: 'assets/idea.png',
-        backgroundColor: Color(0XFFC41E3D),
+        title: "JUST TAP IT",
+        description: "Si quieres obtener más información sobre una palabra, simplemente tócala.",        
+        pathImage: 'assets/tap.png',
+        backgroundColor: Color(0XFF00AC8F),
       ),
-    );
-    // slides.add(
-    //   Slide(
-    //     title: "ALTA CALIDAD",
-    //     description: "El contenido que se muestra es lo más preciso posible, sin anuncios y una interfaz limpia.",
-    //     pathImage: 'assets/shield.png',
-    //     backgroundColor: Color(0XFF732289),
-    //   ),
-    // ); 
+    );    
   }
 
   @override

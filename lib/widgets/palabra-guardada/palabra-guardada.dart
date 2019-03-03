@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
 import 'package:moblie/model/palabra_guardada.model.dart';
-import 'package:moblie/utils/settings.dart';
 import 'package:moblie/widgets/palabra-guardada/palabra-guardada-card.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -34,9 +33,6 @@ class PalabrasGuardadas extends StatelessWidget {
           );
         },
       );
- 
-    } else {
-      palabrasCard = Center(child: Text(onSavedWordsError));
     }
 
     return palabrasCard;

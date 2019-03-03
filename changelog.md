@@ -124,3 +124,6 @@ All notable changes to this project will be documented in this file.
 - Added a new slide and new icons
 - Added a button for users that don't get the pull to refresh feature
 - Layout improvements
+
+## 25th commit
+- Added some corrections to text

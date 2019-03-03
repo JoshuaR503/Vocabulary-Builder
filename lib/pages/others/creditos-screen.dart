@@ -31,13 +31,6 @@ class CreditoScreen extends StatelessWidget {
                 onTap: () async => await FlutterWebBrowser.openWebPage(url: authorEmail),
               ),
 
-              CommonTitle('API desarrollada por Joshua García'),
-              ListCell(
-                title: ('Toca para contactar'),
-                subtitle: ('El objetivo de la API es alimentar $appname con datos.'),
-                onTap: () async => await FlutterWebBrowser.openWebPage(url: authorEmail),
-              ),
-
               CommonTitle('Iconos Diseñados por mynamepong'),
               SubTitle('Toca en el icono para mas información'),
               ListCell(
@@ -54,6 +47,11 @@ class CreditoScreen extends StatelessWidget {
               CommonTitle('Iconos Diseñados por Freepik'),
               SubTitle('Todos los iconos de colores, excepto el hombre corriendo y el icono de la aplicación, fueron diseñados y creados por Freepik'),
               ListCell(
+                leading: Image.asset(
+                  'assets/info.png',
+                  height: 50.0,
+                  width: 50.0,
+                ),
                 title: ('Toca para obtener más información.'),
                 subtitle: ('Icons made by Freepik from www.flaticon.com'),
                 onTap: () => FlutterWebBrowser.openWebPage(url: 'https://www.flaticon.com/authors/freepik')

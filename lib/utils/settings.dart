@@ -44,7 +44,7 @@ final String onErrorDeletingMessage = 'Hubo un problema al eliminar los datos';
 // Error and fix messages
 // ===============================================================
 final String onServerConnection = 'No se pudo conectar con el servidor';
-final String onServerConnectionFix = 'Deslizar hacia abajo para intentar de nuevo. También puedes ir a la sección de Palabras Guardadas.';
+final String onServerConnectionFix = 'Deslizar hacia abajo para intentar de nuevo.';
 // ===============================================================
 // Error and fix messages
 // ===============================================================

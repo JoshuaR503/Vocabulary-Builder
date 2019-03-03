@@ -23,9 +23,6 @@ class HelpScreen extends StatelessWidget {
         body: Scrollbar(
           child: ListView(
             children: <Widget>[
-              CommonTitle('Solución de problemas'),
-              SubTitle('Esta sección está destinada a ayudar a los usuarios que tienen problemas con la aplicación.'),
-
               CommonTitle('No me aparecen palabras'),
               SubTitle('Siempre tengo el mensaje: $onServerConnection'),
               ListCell(

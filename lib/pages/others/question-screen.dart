@@ -24,13 +24,18 @@ class QuestionScreen extends StatelessWidget {
         body: Scrollbar(
           child: ListView(
             children: <Widget>[
-              CommonTitle('Preguntas frecuentes'),
-              SubTitle('Esta sección está destinada a responder algunas preguntas básicas de los usuarios.'),
+
+              CommonTitle('¿Cómo obtengo más palabras?'),
+              ListCell(
+                title: 'Una simple solución',
+                subtitle: ('Para obtener más palabras, simplemente toca el botón de recarga en la parte superior derecha o simplemente desliza tu dedo hacia abajo.'),
+                onTap: () {},
+              ),
 
               CommonTitle('¿Qué es una oración?'),
               ListCell(
-                title: ('Una breve definición de la oración'),
-                subtitle: ('La oración es la que expresa una idea o pensamiento completo. Ejemplo: el hombre esta corriendo.'),
+                title: ('Breve definición de la oración'),
+                subtitle: ('La oración es aquello que expresa una idea o pensamiento. Ejemplos: el hombre esta corriendo, estoy aprendiendo inglés.'),
                 onTap: () {},
               ),
 
@@ -42,7 +47,7 @@ class QuestionScreen extends StatelessWidget {
                   width: 50.0,
                 ),
                 title: ('Una breve definición de singular'),
-                subtitle: ('Singular se refiere a cuando hablamos de solamente una cosa en particular. Ejemplos: hongo, carro, casa'),
+                subtitle: ('Singular se refiere a cuando hablamos de solamente una cosa en particular. Ejemplos: un hongo, el carro, una casa'),
                 onTap: () {},
               ),
 
@@ -54,14 +59,14 @@ class QuestionScreen extends StatelessWidget {
                   width: 50.0,
                 ),
                 title: ('Una breve definición de plural'),
-                subtitle: ('Plural, se refiere a cuando hablamos de más de una sola cosa. Ejemplos: hongos, arboles, casas'),
+                subtitle: ('Plural, se refiere a cuando hablamos de más de una sola cosa. Ejemplos: unos hongos, los arboles, las casas'),
                 onTap: () {},
               ),
 
               CommonTitle('¿Qué son los "sinónimos"?'),
               ListCell(
                 title: ('Una breve definición de los sinónimos'),
-                subtitle: ('Los son palabras que tienen el mismo significado de otras palabras. Ejemplos: comprender - entender, fácil - sencillo, estudiante -	alumno'),
+                subtitle: ('Los sinónimos son palabras que tienen el mismo significado de otras palabras. Ejemplos: comprender - entender, fácil - sencillo, estudiante -	alumno'),
                 onTap: () {},
               ),
 
@@ -73,7 +78,7 @@ class QuestionScreen extends StatelessWidget {
               ),
 
               CommonTitle('¿Qué es el sujeto?'),
-              SubTitle('En este articulo se dara una breve definición del sujeto'),
+              SubTitle('Una breve definición del sujeto'),
               ListCell(
                 leading: Image.asset(
                   'assets/parrot.png',
@@ -86,7 +91,7 @@ class QuestionScreen extends StatelessWidget {
               ),
 
               CommonTitle('¿Qué es un verbo?'),
-              SubTitle('En este articulo se dara una breve definición del verbo'),
+              SubTitle('Una breve definición del verbo'),
               ListCell(
                 leading: Image.asset(
                   'assets/running-man.png',
@@ -99,20 +104,20 @@ class QuestionScreen extends StatelessWidget {
               ),
 
               CommonTitle('¿Qué es un sustantivo?'),
-              SubTitle('En este articulo se dara una breve definición del sustantivo'),                
+              SubTitle('Una breve definición del sustantivo'),                
               ListCell(
                 leading: Image.asset(
                   'assets/apple.png',
                   height: 50.0,
                   width: 50.0,
                 ),
-                title: ('Un sustantivo: '),
-                subtitle: ('Los sustantivos son palabras con las que se denoniman: personas, animales, cosas, ideas o pensamientos. Ejemplo: manzana, arbol, casa.'),
+                title: ('Un sustantivo:'),
+                subtitle: ('Los sustantivos son palabras con las que se denoniman personas, animales, cosas, ideas o pensamientos. Ejemplo: manzana, árbol, casa.'),
                 onTap: () {},
               ),
 
               CommonTitle('¿Qué es un adjetivo?'),
-              SubTitle('En este articulo se dara una breve definición del adjetivo'),
+              SubTitle('Una breve definición del adjetivo'),
               ListCell(
                 leading: Image.asset(
                   'assets/plant.png',
@@ -120,7 +125,7 @@ class QuestionScreen extends StatelessWidget {
                   width: 50.0,
                 ),
                 title: ('El adjetivo:'),
-                subtitle: ('Un adjetivo es la palabra que modifica al sustantivo, es el que indica alguna característica o cualidad del sustantivo. Ejemplo: verde, alto,   grande.'),
+                subtitle: ('Un adjetivo es la palabra que modifica al sustantivo, es el que indica alguna característica o cualidad del sustantivo. Ejemplo: verde, alto, grande.'),
                 onTap: () {},
               ),
 
@@ -133,7 +138,7 @@ class QuestionScreen extends StatelessWidget {
                   width: 50.0,
                 ),
                 title: ('El advervio:'),
-                subtitle: ('Un adverbio es una parte de la oración que complementa a un verbo. Los adverbios expresan circunstancias, como: modo, lugar, tiempo, cantidad, afirmación, etc.'),
+                subtitle: ('Un adverbio es una parte de la oración que complementa a un verbo. Los adverbios expresan circunstancias, como modo, lugar, tiempo, cantidad, etc.'),
                 onTap: () {},
               ),
 
@@ -148,6 +153,7 @@ class QuestionScreen extends StatelessWidget {
                 subtitle: ('Puede enviar una solicitud de nuevas funciones o nuevo contenido, toca aquí para abrir enviar una petición'),
                 onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback),
               ),
+              
             ]
           )
         ),

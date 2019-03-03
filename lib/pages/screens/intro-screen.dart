@@ -50,9 +50,9 @@ class _IntroScreenState extends State<IntroScreen> {
     slides.add(
        Slide(
         title: "JUST TAP IT",
-        description: "Si quieres obtener más información sobre una palabra, simplemente tócala.",        
+        description: "Si quieres obtener más información de una palabra, simplemente tócala.",        
         pathImage: 'assets/tap.png',
-        backgroundColor: Color(0XFF00AC8F),
+        backgroundColor: Color(0XFF008A73),
       ),
     );    
   }

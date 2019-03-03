@@ -109,6 +109,10 @@ class PalabraCard extends StatelessWidget {
 
   }
 
+  // void speak() {
+
+  // }
+
   void _save(BuildContext context, Palabra palabra) async {
     await model
     .save(palabraData: palabra)

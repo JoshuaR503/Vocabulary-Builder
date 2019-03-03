@@ -127,3 +127,7 @@ All notable changes to this project will be documented in this file.
 
 ## 25th commit
 - Added some corrections to text
+
+## 26th commit
+- Ready for prod
+- TODO: FIND A NAME

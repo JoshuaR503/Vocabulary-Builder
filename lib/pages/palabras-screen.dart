@@ -6,6 +6,7 @@ import 'package:moblie/widgets/palabras/palabras.dart';
 import 'package:moblie/widgets/ui/divider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:share/share.dart';
 
 class PalabrasScreen extends StatefulWidget {
   
@@ -67,6 +68,11 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
           ListTile(
             title: Text('Solución de problemas'),
             onTap: () => Navigator.pushNamed(context, '/help'),
+          ),
+
+          ListTile(
+            title: Text('Compartir aplicación'),
+            onTap: () => Share.share(shareApp)
           ),
           
           Separator.divider(),

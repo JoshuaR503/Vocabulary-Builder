@@ -13,7 +13,8 @@ final String webVersion = 'https://another-backend.herokuapp.com';
 // ===============================================================
 // Correo del autor
 // ===============================================================
-final String authorEmail ='mailto:joshuagarcia000@outlook.es';
+final String authorEmail ='mailto:joshuadeveloper000@gmail.com';
+final String shareApp = 'https://play.google.com/store/apps/details?id=com.herokuapp.backend.another';
 // ===============================================================
 // Url de Flutter
 // ===============================================================

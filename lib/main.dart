@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 
 import 'package:moblie/model/main.dart';
 import 'package:moblie/pages/others/creditos-screen.dart';
@@ -30,6 +32,8 @@ class AmericanEnglishWords extends StatefulWidget {
 
 class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
 
+  FirebaseAnalytics _analytics = FirebaseAnalytics();
+
   ThemeData _buildTheme() => ThemeData(
     brightness: Brightness.dark,
     primaryColor: primaryColor,
@@ -52,6 +56,9 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
       child: DynamicTheme(
         data: (brightness) => _buildTheme(),
         themedWidgetBuilder: (context, theme) => MaterialApp (
+          navigatorObservers: [
+            FirebaseAnalyticsObserver(analytics: _analytics),
+          ],
           theme: theme,
           title: appname,
           debugShowCheckedModeBanner: false,

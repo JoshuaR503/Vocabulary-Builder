@@ -131,3 +131,7 @@ All notable changes to this project will be documented in this file.
 ## 26th commit
 - Ready for prod
 - TODO: FIND A NAME
+
+## 27th commit
+- Added Firebase Analytics
+- Added Share functionality

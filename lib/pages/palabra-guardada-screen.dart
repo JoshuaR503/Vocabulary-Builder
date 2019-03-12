@@ -39,11 +39,12 @@ class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
         }
 
         return WillPopScope(
+          
           onWillPop: () {
             Navigator.pop(context, false);
           },
           
-          child: content,
+          child: content
         );
       }
     );

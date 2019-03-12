@@ -23,6 +23,7 @@ mixin ConnectedModel on Model {
   int _selPalabraGuardadaId;
   List _palabras = [];
   List _palabrasGuardadas = [];
+  List _busqueda = [];
 }
 
 mixin PalabrasModel on ConnectedModel {
@@ -31,6 +32,7 @@ mixin PalabrasModel on ConnectedModel {
   DatabaseHelper _dbh = DatabaseHelper();  
 
   List<Palabra> get allPalabras => List.from(_palabras);
+  List<Palabra> get allPalabrasEncontradas => List.from(_busqueda);
   List<PalabraGuardada> get allPalabrasGuardadas => List.from(_palabrasGuardadas);
 
   int get selectedPalabraIndex => _palabrasGuardadas.indexWhere((palabra) => palabra.id == _selPalabraGuardadaId);
@@ -44,10 +46,22 @@ mixin PalabrasModel on ConnectedModel {
     return _palabrasGuardadas.firstWhere((palabra) => palabra.id == _selPalabraGuardadaId);
   }
 
-  Future<Null> obtenerPalabras({bool loadingIndicator = false}) async {
-    
+  Future<Null> obtenerPalabras({
+    bool loadingIndicator = false, 
+    bool search = false,
+    String url
+  }) async {
+
+    String httpUrl;
+
+    if (httpUrl == null) {
+      httpUrl = apiUrl;
+    } else {
+      httpUrl = url;
+    }
+        
     return http
-      .get(url)
+      .get(httpUrl)
       .then<Null>((http.Response response) {
 
         if (loadingIndicator) {
@@ -67,7 +81,8 @@ mixin PalabrasModel on ConnectedModel {
           return;
         } 
 
-        palabraListData.forEach((dynamic palabraData) {
+        if (search) {
+          palabraListData.forEach((dynamic palabraData) {
 
           final Palabra singlePalabra = Palabra(
             palabra: palabraData['palabra'],
@@ -83,22 +98,45 @@ mixin PalabrasModel on ConnectedModel {
             antonimos: palabraData['antonimos'],
             ejemplos: palabraData['ejemplos'],
             tipo: palabraData['tipo'],
-
             plural: palabraData['plural'],
             singular: palabraData['singular'],
             nota: palabraData['nota'],
             alt: palabraData['alt'],
           );
 
-          print('Plural ${singlePalabra.plural}, Singular ${singlePalabra.singular}');
-          
-          fetchedPalabrasList.add(singlePalabra);
-        });
+            fetchedPalabrasList.add(singlePalabra);
+          });
 
-        
+          _busqueda = fetchedPalabrasList; 
+        } else {
+          palabraListData.forEach((dynamic palabraData) {
 
-        _palabras = fetchedPalabrasList; 
+            final Palabra singlePalabra = Palabra(
+              palabra: palabraData['palabra'],
+              traduccion: palabraData['traduccion'],
+              pasado: palabraData['pasado'],
+              presente: palabraData['presente'],
+              presenteContinuo: palabraData['presenteContinuo'],
+              thirdPerson: palabraData['thirdPerson'],
+              futuro: palabraData['futuro'],
+              definicion: palabraData['definicion'],
+              definicionEs: palabraData['definicionSpanish'],
+              sinonimos: palabraData['sinonimos'],
+              antonimos: palabraData['antonimos'],
+              ejemplos: palabraData['ejemplos'],
+              tipo: palabraData['tipo'],
+              plural: palabraData['plural'],
+              singular: palabraData['singular'],
+              nota: palabraData['nota'],
+              alt: palabraData['alt'],
+            );
 
+            fetchedPalabrasList.add(singlePalabra);
+          });
+
+          _palabras = fetchedPalabrasList; 
+        }
+      
         if (loadingIndicator) {
           _isLoading = false;
           notifyListeners();

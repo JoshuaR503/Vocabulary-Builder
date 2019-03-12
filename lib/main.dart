@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 
@@ -63,7 +64,8 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
           title: appname,
           debugShowCheckedModeBanner: false,
           routes: {
-            '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : IntroScreen(model),
+            // '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : IntroScreen(model),
+            '/': (BuildContext context) => PalabrasScreen(model),
             '/home': (BuildContext context) => PalabrasScreen(model),
             '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
             '/creditos':  (BuildContext context) => CreditoScreen(),

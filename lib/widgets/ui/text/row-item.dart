@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
-import '../../../utils/colors.dart';
+import 'package:moblie/utils/colors.dart';
+import 'package:moblie/model/main.dart';
+import 'package:clipboard_manager/clipboard_manager.dart';
 
 class RowItem extends StatelessWidget {
   final String title;
-  final Widget description;
+  final String description;
+  final bool showButton;
+  final MainModel model = MainModel();
 
-  RowItem(this.title, this.description);
+  RowItem(this.title, this.description, [this.showButton]);
 
   @override
   Widget build(BuildContext context) {
@@ -20,51 +23,110 @@ class RowItem extends StatelessWidget {
               .textTheme
               .subhead
               .copyWith(color: primaryText),
-            maxLines: 1,
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
           ),
-          description
+          
+          _renderButton(context)
         ],
       ),
     );
   }
 
-  factory RowItem.textRow(String title, String description) {
-    return RowItem(title, _getText(description));
+  Widget _renderButton(BuildContext context) {
+
+    Widget content;
+
+    if (showButton && showButton != null) {
+      content = GestureDetector(
+        onTap: () => model.speak(description),
+        onLongPress: () => _copy(description, context),
+        child: Text(
+          description,
+          style: Theme.of(context)
+            .textTheme
+            .subhead
+            .copyWith(color: secondaryText),
+        ),
+      );
+    } else {
+      content = GestureDetector(
+        onLongPress: () => _copy(description, context),
+        child: Text(
+          description,
+          style: Theme.of(context)
+            .textTheme
+            .subhead
+            .copyWith(color: secondaryText),
+        ),
+      );
+    }
+
+    return content;
   }
 
-  factory RowItem.iconRow(String title, bool status) {
-    return RowItem(title, _getIcon(status));
+  void _copy(String text, BuildContext context) {
+    ClipboardManager.copyToClipBoard(description)
+      .then((result) {
+
+        _createSnackBar(
+          title: 'Se pegó al portapapeles',
+          label: 'Ok!',
+          context: context
+        );
+
+        model.sendFeedback();
+      })
+      .catchError((error) => {
+        _createSnackBar(
+          title: 'Hubo un error al intentar pegar al portapapeles',
+          label: 'Ok!',
+          context: context
+        )
+      });
   }
 
-  factory RowItem.dialogRow({
-    BuildContext context,
-    String title,
-    String description,
-    ScopedModel screen,
-  }) {
-    return RowItem(title, _getText(description));
-  }
-
-  static Widget _getIcon(bool status) {
-    return Icon(
-      status == null
-          ? Icons.remove_circle
-          : (status ? Icons.check_circle : Icons.cancel),
-      color: status == null ? nullIcon : (status ? acceptIcon : denyIcon),
-      size: 19.0,
-    );
-  }
-
-  static Widget _getText(String description, [bool clickable = false]) {
-    return Text(
-      description,
-      style: TextStyle(
-        fontSize: 17.0,
-        color: secondaryText,
-        decoration: clickable ? TextDecoration.underline : TextDecoration.none,
+  void _createSnackBar({String title, String label, BuildContext context,}) {
+    final snackBar = SnackBar(
+      content: Text(title),
+      action: SnackBarAction(
+        label: label,
+        onPressed: () {},
       ),
     );
-  }
+    
+    Scaffold.of(context).showSnackBar(snackBar);
+  } 
+
+  // factory RowItem.textRow(String title, String description, [bool showButton = false]) {
+  //   return RowItem(title, _getText(description, showButton));
+  // }
+
+  // static Widget _getText(String description, [bool showButton = false]) {
+
+  //   Widget content = Container();
+
+  //   if (showButton) {
+
+  //     content = FlatButton(
+  //       onPressed: () {},
+  //       child: Text(
+  //         description,
+  //         style: TextStyle(
+  //           fontSize: 17.0,
+  //           color: secondaryText,
+  //         ),
+  //       ),
+  //     );
+
+  //   } else {
+  //     content = Text(
+  //       description,
+  //       style: TextStyle(
+  //         fontSize: 17.0,
+  //         color: secondaryText,
+  //       ),
+  //     );
+  //   }
+
+  //   return content;
+  // }
 }

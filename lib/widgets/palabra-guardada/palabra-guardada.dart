@@ -9,12 +9,17 @@ class PalabrasGuardadas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<MainModel> (
-      builder: (BuildContext context, Widget child, MainModel model) =>
-        _buildPalabrasList(model.allPalabrasGuardadas, model, context)
+      builder: (BuildContext context, Widget child, MainModel model) {
+        return _buildPalabrasList(model.allPalabrasGuardadas, model, context);
+      }
     );
   }
 
-  Widget _buildPalabrasList(List<PalabraGuardada> palabras, MainModel model, BuildContext context) {
+  Widget _buildPalabrasList(
+    List<PalabraGuardada> palabras, 
+    MainModel model, 
+    BuildContext context
+  ) {
 
     Widget palabrasCard;
 
@@ -28,7 +33,8 @@ class PalabrasGuardadas extends StatelessWidget {
             onDismissed: (DismissDirection direction) {
               model.selectPalabra(model.allPalabrasGuardadas[index].id);
               model.deletePalabraGuardada();
-            },
+            }, 
+            
             child: PalabraGuardadaCard(palabras[index], model)
           );
         },

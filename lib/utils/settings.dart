@@ -1,7 +1,9 @@
 // ===============================================================
 // Url de el Servidor para hacer peticiones
 // ===============================================================
-final String url = 'https://another-backend.herokuapp.com/palabras/azar';
+final String apiUrl = 'https://another-backend.herokuapp.com/palabras/azar';
+final String searchUrl = 'https://another-backend.herokuapp.com/search/open/';
+
 // ===============================================================
 // Url de el Servidor para enviar comentarios
 // ===============================================================

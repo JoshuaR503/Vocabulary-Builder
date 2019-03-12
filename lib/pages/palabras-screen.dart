@@ -6,6 +6,7 @@ import 'package:moblie/widgets/palabras/palabras.dart';
 import 'package:moblie/widgets/ui/divider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+
 import 'package:share/share.dart';
 
 class PalabrasScreen extends StatefulWidget {
@@ -20,6 +21,7 @@ class PalabrasScreen extends StatefulWidget {
 
 class _PalabrasScreenState extends State<PalabrasScreen> {
 
+
   @override
   void initState() {
     widget.model.obtenerPalabras(loadingIndicator: true);
@@ -27,7 +29,6 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
   }
   
   Widget _buildMainContent() {
-    
     return ScopedModelDescendant(
       builder: (BuildContext context, Widget child, MainModel model) {
 
@@ -101,25 +102,28 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
 
   @override 
   Widget build(BuildContext context) {
-    return  Scaffold(
-        drawer: _buildDrawer(),
-        appBar: AppBar(
-          title: Text(title),
-          centerTitle: true,
-          elevation: 0.0,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.refresh),
-              onPressed: () => widget.model.obtenerPalabras(loadingIndicator: true)
-            ),
-            
-            IconButton(
-              icon: Icon(Icons.favorite_border),
-              onPressed: () => Navigator.pushNamed(context, '/saved')
-            )
-          ],
-        ),
-        body: _buildMainContent(),
-    );
+    return Scaffold(
+      drawer: _buildDrawer(),
+      appBar: AppBar(
+        title: Text(title),
+        centerTitle: true,
+        elevation: 0.0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () {
+              widget.model.obtenerPalabras(loadingIndicator: true);
+            }
+          ),
+
+          IconButton(
+            icon: Icon(Icons.favorite_border),
+            onPressed: () => Navigator.pushNamed(context, '/saved')
+          ),
+
+        ],
+      ),
+      body: _buildMainContent(),
+    );  
   }
 }

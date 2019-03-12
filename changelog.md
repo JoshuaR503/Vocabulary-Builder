@@ -135,3 +135,9 @@ All notable changes to this project will be documented in this file.
 ## 27th commit
 - Added Firebase Analytics
 - Added Share functionality
+
+## 28th cmmit
+- Added A search Screen
+- Refactored Code
+- Added a new element
+- TODO: Find a way to show the user all the words in the data base

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../utils/colors.dart';
-import './divider.dart';
+import 'package:moblie/model/main.dart';
+import 'package:moblie/utils/colors.dart';
+import 'package:moblie/widgets/ui/divider.dart';
+import 'package:clipboard_manager/clipboard_manager.dart';
 
 class HeadCard extends StatelessWidget {
   final String title, subtitle;
   final String title2, subtitle2;
+  final MainModel model = MainModel();
 
   HeadCard({
     @required this.title,
@@ -41,7 +44,7 @@ class HeadCard extends StatelessWidget {
 
                   Text(title, style: style),
                   Separator.spacer(height: 12.0),
-                  _buildSubtitle(data: subtitle),
+                  _buildSubtitle(data: subtitle, context: context),
 
                   Separator.spacer(height: 12.0),
                   Separator.spacer(height: 12.0),
@@ -49,7 +52,7 @@ class HeadCard extends StatelessWidget {
 
                   Text(title2, style: style),
                   Separator.spacer(height: 12.0),
-                  _buildSubtitle(data: subtitle2)
+                  _buildSubtitle(data: subtitle2, context: context)
                 ],
               ),
             ),
@@ -59,21 +62,58 @@ class HeadCard extends StatelessWidget {
     );
   }
 
-  Widget _buildSubtitle({String data}) {
+  Widget _buildSubtitle({String data, BuildContext context}) {
     Widget content = Container();
 
     if (data != null) {
-      content = Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            data,
-            style: subStyle
-          )
-        ],
+      content = GestureDetector(
+        onLongPress: () => _copy(data, context),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              data,
+              style: subStyle
+            )
+          ],
+        ),
       );
+        
     }
 
     return content;
   }
+
+  void _copy(String text, BuildContext context) {
+    ClipboardManager.copyToClipBoard(text)
+      .then((result) {
+
+        _createSnackBar(
+          title: 'Se pegó al portapapeles',
+          label: 'Ok!',
+          context: context
+        );
+
+        model.sendFeedback();
+      })
+      .catchError((error) => {
+        _createSnackBar(
+          title: 'Hubo un error al intentar pegar al portapapeles',
+          label: 'Ok!',
+          context: context
+        )
+      });
+  }
+
+  void _createSnackBar({String title, String label, BuildContext context,}) {
+    final snackBar = SnackBar(
+      content: Text(title),
+      action: SnackBarAction(
+        label: label,
+        onPressed: () {},
+      ),
+    );
+    
+    Scaffold.of(context).showSnackBar(snackBar);
+  } 
 }

@@ -109,20 +109,34 @@ class PalabraCard extends StatelessWidget {
 
   }
 
-  // void speak() {
-
-  // }
-
   void _save(BuildContext context, Palabra palabra) async {
     await model
     .save(palabraData: palabra)
     .then((response) {
       if (response != 0) {
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text(onSuccessMessage)));
+         _createSnackBar(
+          title: onSuccessMessage,
+          label: 'Ok!',
+          context: context
+        );
       }
-    }).catchError((error) {
-      print(error);
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text(onErrorMessage)));
-    });
+    })
+    .catchError((error) => _createSnackBar(
+      title: onErrorMessage,
+      label: 'Ok!',
+      context: context
+    ));
+  }
+
+  void _createSnackBar({String title, String label, BuildContext context,}) {
+    final snackBar = SnackBar(
+      content: Text(title),
+      action: SnackBarAction(
+        label: label,
+        onPressed: () {},
+      ),
+    );
+    
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 }

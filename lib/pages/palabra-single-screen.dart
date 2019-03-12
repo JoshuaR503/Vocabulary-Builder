@@ -72,21 +72,24 @@ class SinglePalabraScreen extends StatelessWidget {
       title: 'Detalles adicionales',
       body: Column(
         children: <Widget>[
-          RowItem.textRow(
+          RowItem(
             'Palabra', 
-            _palabra.palabra
+            _palabra.palabra,
+            false
           ),
           
           Separator.spacer(),
-          RowItem.textRow(
+          RowItem(
             'Traducción',
-            _palabra.traduccion
+            _palabra.traduccion,
+            false
           ),
 
           Separator.spacer(),
-          RowItem.textRow(
+          RowItem(
             'Categoría gramatical', 
-            _palabra.tipo == null ? 'No disponible' : _palabra.tipo
+            _palabra.tipo == null ? 'No disponible' : _palabra.tipo,
+            false
           ),
         ],
       ),
@@ -104,29 +107,34 @@ class SinglePalabraScreen extends StatelessWidget {
         title: 'Conjugación de ${_palabra.palabra}',
         body: Column(
           children: <Widget>[
-            RowItem.textRow(
+            RowItem(
               'Presente Continuo',
               _palabra.presenteContinuo ?? _palabra.presenteContinuo,
+              true
             ),
             Separator.spacer(),
-            RowItem.textRow(
+            RowItem(
               'Tercera Persona',
               _palabra.thirdPerson ?? _palabra.thirdPerson,
+              true
             ),
             Separator.spacer(),
-            RowItem.textRow(
+            RowItem(
               'Presente',
               _palabra.presente ?? _palabra.presente,
+              true
             ),
             Separator.spacer(),
-            RowItem.textRow(
+            RowItem(
               'Pasado', 
               _palabra.pasado ?? _palabra.pasado,
+              true
             ),
             Separator.spacer(),
-            RowItem.textRow(
+            RowItem(
               'Futuro', 
               _palabra.futuro ?? _palabra.futuro,
+              true
             ),
           ],
         ),

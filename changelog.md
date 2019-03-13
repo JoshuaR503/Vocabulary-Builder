@@ -148,3 +148,4 @@ All notable changes to this project will be documented in this file.
 - Added a Search Screen in Palabras Guardadas
 - Refactored Code
 - Fixed error 'Unhandled Exception: Failed assertion: ModalRoute.willPop'
+- Fixed error Unhandled Exception: _MainModel&Model&ConnectedModel&PalabrasModel&UtilityModel.obtenerData

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
-import 'package:moblie/model/palabra_guardada.model.dart';
+import 'package:moblie/model/palabra.model.dart';
+
 import 'package:moblie/widgets/palabra-guardada/palabra-guardada-card.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -15,33 +16,23 @@ class PalabrasGuardadas extends StatelessWidget {
     );
   }
 
-  Widget _buildPalabrasList(
-    List<PalabraGuardada> palabras, 
-    MainModel model, 
-    BuildContext context
-  ) {
+  Widget _buildPalabrasList( List<Palabra> palabras,  MainModel model,  BuildContext context ) {
 
-    Widget palabrasCard;
-
-    if (palabras.length > 0) {
-      palabrasCard = ListView.builder(
-        itemCount: palabras.length,
-        itemBuilder: (BuildContext context, int index)  {
-          return Dismissible(
-            key: Key(palabras[index].palabra),
-            background: _renderBackground(),
-            onDismissed: (DismissDirection direction) {
-              model.selectPalabra(model.allPalabrasGuardadas[index].id);
-              model.deletePalabraGuardada();
-            }, 
-            
-            child: PalabraGuardadaCard(palabras[index], model)
-          );
-        },
-      );
-    }
-
-    return palabrasCard;
+    return ListView.builder(
+      itemCount: palabras.length,
+      itemBuilder: (BuildContext context, int index)  {
+        return Dismissible(
+          key: Key(palabras[index].palabra),
+          background: _renderBackground(),
+          onDismissed: (DismissDirection direction) {
+            model.selectPalabra(model.allPalabrasGuardadas[index].id);
+            model.deletePalabraGuardada();
+          }, 
+          
+          child: PalabraGuardadaCard(palabras[index], model)
+        );
+      },
+    );
   }
 
   Widget _renderBackground() {

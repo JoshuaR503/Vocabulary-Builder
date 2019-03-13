@@ -1,14 +1,12 @@
+import 'package:moblie/model/palabra.model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
-
-import '../model/palabra_guardada.model.dart';
-
 import 'dart:async';
 import 'dart:io';
 
 class DatabaseHelper {
 
-  final pathName = 'FalconEnglishDBv1.db';
+  final pathName = 'QuickGlish2.db';
 
   static DatabaseHelper _databaseHelper;
 	static Database _database;
@@ -66,7 +64,7 @@ class DatabaseHelper {
 		return result;
 	}
 
-  Future<int> savePalabra(PalabraGuardada palabra) async {
+  Future<int> savePalabra(Palabra palabra) async {
 		Database db = await this.database;
 		var result = await db.insert(wordsTable, palabra.toMap());
 		return result;
@@ -84,15 +82,15 @@ class DatabaseHelper {
 		return result;
   }
 
-  Future<List<PalabraGuardada>> fetchSavedDataList() async {
+  Future<List<Palabra>> fetchSavedDataList() async {
 
 		var savedDataMapList = await fetchSavedDataMapList(); 
 		int count = savedDataMapList.length;
 
-		List<PalabraGuardada> savedDataList = List<PalabraGuardada>();
+		List<Palabra> savedDataList = List<Palabra>();
 
 		for (int i = 0; i < count; i++) {
-			savedDataList.add(PalabraGuardada.fromMapObject(savedDataMapList[i]));
+			savedDataList.add(Palabra.fromMapObject(savedDataMapList[i]));
 		}
 
 		return savedDataList;

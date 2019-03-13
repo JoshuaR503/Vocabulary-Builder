@@ -136,8 +136,15 @@ All notable changes to this project will be documented in this file.
 - Added Firebase Analytics
 - Added Share functionality
 
-## 28th cmmit
+## 28th commit
 - Added A search Screen
 - Refactored Code
 - Added a new element
 - TODO: Find a way to show the user all the words in the data base
+
+## 29th commit
+- Changed Model to only one
+- Removed Search Screen in the main page
+- Added a Search Screen in Palabras Guardadas
+- Refactored Code
+- Fixed error 'Unhandled Exception: Failed assertion: ModalRoute.willPop'

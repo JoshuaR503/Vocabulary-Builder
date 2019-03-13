@@ -73,14 +73,16 @@ class RowItem extends StatelessWidget {
           context: context
         );
 
-        model.sendFeedback();
+        model.sendFeedback(false);
       })
-      .catchError((error) => {
+      .catchError((error) {
         _createSnackBar(
           title: 'Hubo un error al intentar pegar al portapapeles',
           label: 'Ok!',
           context: context
-        )
+        );
+
+        model.sendFeedback(true);
       });
   }
 
@@ -95,38 +97,4 @@ class RowItem extends StatelessWidget {
     
     Scaffold.of(context).showSnackBar(snackBar);
   } 
-
-  // factory RowItem.textRow(String title, String description, [bool showButton = false]) {
-  //   return RowItem(title, _getText(description, showButton));
-  // }
-
-  // static Widget _getText(String description, [bool showButton = false]) {
-
-  //   Widget content = Container();
-
-  //   if (showButton) {
-
-  //     content = FlatButton(
-  //       onPressed: () {},
-  //       child: Text(
-  //         description,
-  //         style: TextStyle(
-  //           fontSize: 17.0,
-  //           color: secondaryText,
-  //         ),
-  //       ),
-  //     );
-
-  //   } else {
-  //     content = Text(
-  //       description,
-  //       style: TextStyle(
-  //         fontSize: 17.0,
-  //         color: secondaryText,
-  //       ),
-  //     );
-  //   }
-
-  //   return content;
-  // }
 }

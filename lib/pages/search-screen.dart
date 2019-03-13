@@ -160,31 +160,39 @@
 
 import 'package:flutter/material.dart';
 import 'package:material_search/material_search.dart';
+import 'package:moblie/model/main.dart';
+import 'package:moblie/model/palabra.model.dart';
+import 'package:moblie/pages/palabra-single-screen.dart';
 
-searchPalabras(BuildContext context, List list) {
-  return MaterialPageRoute (
+searchPalabras(BuildContext context, List list, MainModel model) {
+  return MaterialPageRoute <Palabra> (
     builder: (context) => Material(
 
-      child: MaterialSearch(
-
+      child: MaterialSearch<Palabra>(
         barBackgroundColor: Theme.of(context).primaryColor,
         iconColor: Colors.white,
         placeholder: 'Buscar',
 
         limit: list.length,
         results: list
-          .map((palabra) => MaterialSearchResult(
+          .map((palabra) => MaterialSearchResult<Palabra>(
             icon: Icons.search,
             value: palabra,
             text: palabra.palabra,
           ))
           .toList(),
+
         filter: (dynamic value, String criteria) => value.palabra
           .toLowerCase()
           .trim()
           .contains(RegExp(r'' + criteria.toLowerCase().trim() + '')),
 
-        onSelect: (_) { print('xd'); } 
+        onSelect: (dynamic palabra) => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => SinglePalabraScreen(palabra)
+          ),
+        )
       ),
     )
   );

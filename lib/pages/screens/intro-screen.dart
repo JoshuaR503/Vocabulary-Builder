@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import '../../model/main.dart';
 import '../../widgets/ui/elements/slider.dart';
 
 class IntroScreen extends StatefulWidget {
-
-  final MainModel model;
-  IntroScreen(this.model);
-
   @override
     State<StatefulWidget> createState() => _IntroScreenState ();
 }
@@ -58,10 +55,15 @@ class _IntroScreenState extends State<IntroScreen> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-    IntroSlider(
-      slides: slides,
-      onDonePress: () => widget.model.setData().then((_) => Navigator.pushReplacementNamed(context, '/home')),
-      onSkipPress: () => widget.model.setData().then((_) => Navigator.pushReplacementNamed(context, '/home')),
+  Widget build(BuildContext context) {
+    return ScopedModelDescendant<MainModel>(
+      builder: (BuildContext context, Widget child, MainModel model) {
+        return IntroSlider(
+          slides: slides,
+          onDonePress: () => model.setData().then((_) => Navigator.pushReplacementNamed(context, '/home')),
+          onSkipPress: () => model.setData().then((_) => Navigator.pushReplacementNamed(context, '/home')),
+        );
+      }
     );
+  }
 }

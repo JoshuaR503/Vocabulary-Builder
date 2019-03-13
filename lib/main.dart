@@ -64,14 +64,14 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
           title: appname,
           debugShowCheckedModeBanner: false,
           routes: {
-            // '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : IntroScreen(model),
-            '/': (BuildContext context) => PalabrasScreen(model),
+            '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : IntroScreen(),
+            // '/': (BuildContext context) => PalabrasScreen(model),
             '/home': (BuildContext context) => PalabrasScreen(model),
             '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
             '/creditos':  (BuildContext context) => CreditoScreen(),
             '/question':  (BuildContext context) => QuestionScreen(),
             '/help':  (BuildContext context) => HelpScreen(),
-            '/intro':  (BuildContext context) => IntroScreen(model),
+            '/intro':  (BuildContext context) => IntroScreen(),
           }
         ),
       ),

@@ -78,7 +78,6 @@ class _SlimCardState extends State<SlimCard> with TickerProviderStateMixin {
               MaterialPageRoute(
                 builder: (_) => SinglePalabraScreen(
                   widget.palabra, 
-                  widget.model
                 )
               ),
             )

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
 import 'package:moblie/model/palabra.model.dart';
-import 'package:moblie/model/palabra_guardada.model.dart';
 import 'package:moblie/widgets/ui/elements/slim-card.dart';
 
 class PalabraGuardadaCard extends StatelessWidget {
-  final PalabraGuardada palabra;
+  final Palabra palabra;
   final MainModel model;
 
   PalabraGuardadaCard(this.palabra, this.model);
@@ -25,7 +24,6 @@ class PalabraGuardadaCard extends StatelessWidget {
       sinonimos: palabra.sinonimos,
       antonimos: palabra.antonimos,
       ejemplos: palabra.ejemplos, 
-      alt: false,
       plural: palabra.plural,
       singular: palabra.singular,
       nota: palabra.nota,

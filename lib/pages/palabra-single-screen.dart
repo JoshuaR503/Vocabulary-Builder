@@ -9,61 +9,63 @@ import 'package:moblie/widgets/ui/head-card.dart';
 import 'package:moblie/widgets/ui/text/row-item.dart';
 import 'package:moblie/widgets/palabra/single-palabra-card.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-class SinglePalabraScreen extends StatelessWidget {
+class SinglePalabraScreen extends StatelessWidget  {
+
   final Palabra _palabra;
-  final MainModel model;
 
-  SinglePalabraScreen(this._palabra, this.model);
+  SinglePalabraScreen(this._palabra);
 
   @override
   Widget build(BuildContext context) {
-
-    return WillPopScope(
-      onWillPop: () {
-       Navigator.pop(context, false);
-      },
-    
-      child: Scaffold(
-        appBar: AppBar( 
-          title: Text(_palabra.palabra),
-          centerTitle: true,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.info_outline),
-              onPressed: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback)
-            ),
-            IconButton(
-              icon: Icon(Icons.help_outline),
-              onPressed: () => Navigator.pushNamed(context, '/question'),
-            )
-          ],
-        ),
-        body: ListView(
-          children: <Widget>[
-            Container(
-              child: Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Column(
-                  children: <Widget>[              
-                    _buildPalabraBasicInfoCard(),
-                    Separator.spacer(),
-                    _buildConjugationCard(),
-                    _buildPalabraSinPlu(),
-                    _buildPalabraDefinitionCard(),
-                    Separator.spacer(),
-                    _builPalabraExamplesCard(),
-                    Separator.spacer(),
-                    _buildPalabraAntSynCard(), 
-                    Separator.spacer(),
-                    _buildNoteCard(),
-                  ]
-                ),
+    return ScopedModelDescendant <MainModel> (
+      builder: (BuildContext context, Widget child, MainModel model) {
+        return Scaffold(
+          appBar: AppBar( 
+            title: Text(_palabra.palabra),
+            centerTitle: true,
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.info_outline),
+                onPressed: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback)
               ),
-            )
-          ],
+              IconButton(
+                icon: Icon(Icons.help_outline),
+                onPressed: () => Navigator.pushNamed(context, '/question'),
+              )
+            ],
+          ),
+          body: _renderMainContent(),
+        );
+      },
+    );
+  }
+  // Icon(Icons.favorite_border, color: Colors.white,)
+  Widget _renderMainContent() {
+    return ListView(
+      children: <Widget>[
+        Container(
+          child: Padding(
+            padding: EdgeInsets.all(12.0),
+            child: Column(
+              children: <Widget>[              
+                _buildPalabraBasicInfoCard(),
+                Separator.spacer(),
+                _buildConjugationCard(),
+                _buildPalabraSinPlu(),
+                _buildPalabraDefinitionCard(),
+                Separator.spacer(),
+                _builPalabraExamplesCard(),
+                Separator.spacer(),
+                _buildPalabraAntSynCard(), 
+                Separator.spacer(),
+                _buildNoteCard(),
+              ]
+            ),
+          ),
         )
-      ),
+      ],
     );
   }
 
@@ -188,8 +190,8 @@ class SinglePalabraScreen extends StatelessWidget {
     return HeadCard(
       title: '${_palabra.palabra} en una oración:',
       subtitle: _palabra.ejemplos == null ? 'No disponible' : _palabra.ejemplos,
-      title2: '¿Hay mas traducciones?',
-      subtitle2: _palabra.alt == true ? 'Si' : 'No',
+      title2: 'Palabras similares',
+      subtitle2: _palabra.sinonimos == null ? 'No disponible' : _palabra.sinonimos,
     );
   }
 

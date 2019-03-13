@@ -9,7 +9,6 @@ import 'package:intl/intl.dart';
 import 'dart:convert';
 import 'dart:async';
 
-import './palabra_guardada.model.dart';
 import './palabra.model.dart';
 
 import '../utils/settings.dart';
@@ -33,12 +32,12 @@ mixin PalabrasModel on ConnectedModel {
 
   List<Palabra> get allPalabras => List.from(_palabras);
   List<Palabra> get allPalabrasEncontradas => List.from(_busqueda);
-  List<PalabraGuardada> get allPalabrasGuardadas => List.from(_palabrasGuardadas);
+  List<Palabra> get allPalabrasGuardadas => List.from(_palabrasGuardadas);
 
   int get selectedPalabraIndex => _palabrasGuardadas.indexWhere((palabra) => palabra.id == _selPalabraGuardadaId);
   int get selectedPalabraId => _selPalabraGuardadaId;
 
-  PalabraGuardada get selectedPalabra {
+  Palabra get selectedPalabra {
     if (selectedPalabraId == null) {
       return null;
     }
@@ -81,8 +80,8 @@ mixin PalabrasModel on ConnectedModel {
           return;
         } 
 
-        if (search) {
-          palabraListData.forEach((dynamic palabraData) {
+        
+        palabraListData.forEach((dynamic palabraData) {
 
           final Palabra singlePalabra = Palabra(
             palabra: palabraData['palabra'],
@@ -101,39 +100,14 @@ mixin PalabrasModel on ConnectedModel {
             plural: palabraData['plural'],
             singular: palabraData['singular'],
             nota: palabraData['nota'],
-            alt: palabraData['alt'],
           );
 
-            fetchedPalabrasList.add(singlePalabra);
-          });
+          fetchedPalabrasList.add(singlePalabra);
+        });
 
+        if (search) {
           _busqueda = fetchedPalabrasList; 
         } else {
-          palabraListData.forEach((dynamic palabraData) {
-
-            final Palabra singlePalabra = Palabra(
-              palabra: palabraData['palabra'],
-              traduccion: palabraData['traduccion'],
-              pasado: palabraData['pasado'],
-              presente: palabraData['presente'],
-              presenteContinuo: palabraData['presenteContinuo'],
-              thirdPerson: palabraData['thirdPerson'],
-              futuro: palabraData['futuro'],
-              definicion: palabraData['definicion'],
-              definicionEs: palabraData['definicionSpanish'],
-              sinonimos: palabraData['sinonimos'],
-              antonimos: palabraData['antonimos'],
-              ejemplos: palabraData['ejemplos'],
-              tipo: palabraData['tipo'],
-              plural: palabraData['plural'],
-              singular: palabraData['singular'],
-              nota: palabraData['nota'],
-              alt: palabraData['alt'],
-            );
-
-            fetchedPalabrasList.add(singlePalabra);
-          });
-
           _palabras = fetchedPalabrasList; 
         }
       
@@ -157,7 +131,7 @@ mixin PalabrasModel on ConnectedModel {
 
 		dbFuture
     .then((database) {
-			Future<List<PalabraGuardada>> dataListFuture = _dbh.fetchSavedDataList();
+			Future<List<Palabra>> dataListFuture = _dbh.fetchSavedDataList();
 
 			dataListFuture
         .then((response) {
@@ -180,7 +154,7 @@ mixin PalabrasModel on ConnectedModel {
 
   Future<int> save({Palabra palabraData}) async {
 
-    PalabraGuardada singlePalabra = PalabraGuardada(
+    Palabra singlePalabra = Palabra(
       palabra: palabraData.palabra,
       traduccion: palabraData.traduccion,
       pasado: palabraData.pasado,
@@ -236,9 +210,9 @@ mixin UtilityModel on ConnectedModel {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     bool response = prefs.getBool('seen');
 
-    if (response) {
+    if (response == true) {
       _seen = true;
-    } else {
+    } else if(response != true) {
       _seen = false;
     }
   }
@@ -248,12 +222,16 @@ mixin UtilityModel on ConnectedModel {
     prefs.setBool('seen', true);
   }
 
-  void sendFeedback() async {
+  void sendFeedback([bool error]) async {
 
     bool canVibrate = await Vibrate.canVibrate;
 
     if (canVibrate) {
-      Vibrate.vibrate();
+      if (error) {
+        Vibrate.vibrateErr();
+      } else {
+        Vibrate.vibrate();
+      }
     }
   }
 }

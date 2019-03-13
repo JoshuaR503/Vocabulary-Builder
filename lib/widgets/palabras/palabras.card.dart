@@ -3,37 +3,33 @@ import 'package:moblie/model/main.dart';
 import 'package:moblie/model/palabra.model.dart';
 import 'package:moblie/pages/palabra-single-screen.dart';
 import 'package:moblie/utils/settings.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class PalabraCard extends StatelessWidget {
   final Palabra palabra;
-  final MainModel model;
   
-  PalabraCard(
-    this.palabra, 
-    this.model
-  );
+  PalabraCard(this.palabra);
 
   @override
   Widget build(BuildContext context) {
-
-    return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => SinglePalabraScreen(palabra, model)),
-      ),
-
-      child: Card(
-        child: Column(
-          children: <Widget>[
-            _buildDataRow(context),
-            _buildActionButtons(context)
-          ],
-        ),
-      )
+    return ScopedModelDescendant <MainModel> (
+      builder: (BuildContext context, Widget child, MainModel model) {
+        return GestureDetector(
+          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => SinglePalabraScreen(palabra))),
+          child: Card(
+            child: Column(
+              children: <Widget>[
+                _buildDataRow(context, model),
+                _buildActionButtons(context, model)
+              ],
+            ),
+          )
+        );
+      }
     );
-  } 
+  }
 
-  Widget _buildDataRow(BuildContext context) {
+  Widget _buildDataRow(BuildContext context, MainModel model) {
 
     TextStyle style = TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300);
 
@@ -61,10 +57,7 @@ class PalabraCard extends StatelessWidget {
                         padding: EdgeInsets.only(left: 16.0),
                       ),
                       IconButton(
-                        onPressed: () {
-                          _save(context, palabra);
-                          model.sendFeedback();
-                        },
+                        onPressed: () => _save(context, palabra, model),
                         icon: Icon(Icons.favorite_border),
                         color: Colors.red,
                       ),
@@ -85,7 +78,7 @@ class PalabraCard extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButtons(BuildContext context) {
+  Widget _buildActionButtons(BuildContext context, MainModel model) {
     return ButtonBar(
       alignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -106,10 +99,9 @@ class PalabraCard extends StatelessWidget {
         )
       ],
     );
-
   }
 
-  void _save(BuildContext context, Palabra palabra) async {
+  void _save(BuildContext context, Palabra palabra, MainModel model) async {
     await model
     .save(palabraData: palabra)
     .then((response) {
@@ -119,16 +111,22 @@ class PalabraCard extends StatelessWidget {
           label: 'Ok!',
           context: context
         );
+
+        model.sendFeedback(false);
       }
     })
-    .catchError((error) => _createSnackBar(
-      title: onErrorMessage,
-      label: 'Ok!',
-      context: context
-    ));
+    .catchError((error) {
+      _createSnackBar(
+        title: onErrorMessage,
+        label: 'Ok!',
+        context: context
+      );
+
+      model.sendFeedback(true);
+    }); 
   }
 
-  void _createSnackBar({String title, String label, BuildContext context,}) {
+  void _createSnackBar({String title, String label, BuildContext context}) {
     final snackBar = SnackBar(
       content: Text(title),
       action: SnackBarAction(

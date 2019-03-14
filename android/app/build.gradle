@@ -39,7 +39,7 @@ android {
 
     defaultConfig {
         applicationId "com.herokuapp.backend.another"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

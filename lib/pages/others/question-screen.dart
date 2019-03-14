@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import 'package:moblie/utils/settings.dart';
 import 'package:moblie/widgets/ui/list_cell.dart';
-import 'package:moblie/widgets/ui/text/subtitle.dart';
 import 'package:moblie/widgets/ui/text/title.dart';
 
 class QuestionScreen extends StatelessWidget {
@@ -12,130 +12,142 @@ class QuestionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Preguntas Frecuentes'),
+        title: Text(FlutterI18n.translate(context, 'question_answers.title')),
         centerTitle: true,
       ),
       body: Scrollbar(
         child: ListView(
           children: <Widget>[
-            CommonTitle('¿Cómo obtengo más palabras?'),
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.question_one.question')),
             ListCell(
-              title: 'Una simple solución',
-              subtitle: ('Para obtener más palabras, simplemente toca el botón de recarga en la parte superior derecha o simplemente desliza tu dedo hacia abajo.'),
+              title: FlutterI18n.translate(context, 'question_answers.question_one.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.question_one.answer'),
               onTap: () {},
             ),
-            CommonTitle('¿Qué es una oración?'),
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.sentence.question')),
             ListCell(
-              title: ('Breve definición de la oración'),
-              subtitle: ('La oración es aquello que expresa una idea o pensamiento. Ejemplos: el hombre esta corriendo, estoy aprendiendo inglés.'),
+              title: FlutterI18n.translate(context, 'question_answers.sentence.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.sentence.answer'),
               onTap: () {},
             ),
-            CommonTitle('¿Qué significa singular?'),
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.singular.question')),
             ListCell(
               leading: Image.asset(
                 'assets/mushroom.png',
                 height: 50.0,
                 width: 50.0,
               ),
-              title: ('Una breve definición de singular'),
-              subtitle: ('Singular se refiere a cuando hablamos de solamente una cosa en particular. Ejemplos: un hongo, el carro, una casa'),
+              title: FlutterI18n.translate(context, 'question_answers.singular.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.singular.answer'),
               onTap: () {},
             ),
-            CommonTitle('¿Qué significa plural?'),
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.plural.question')),
             ListCell(
               leading: Image.asset(
                 'assets/tree.png',
                 height: 50.0,
                 width: 50.0,
               ),
-              title: ('Una breve definición de plural'),
-              subtitle: ('Plural, se refiere a cuando hablamos de más de una sola cosa. Ejemplos: unos hongos, los arboles, las casas'),
+              title: FlutterI18n.translate(context, 'question_answers.plural.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.plural.answer'),
               onTap: () {},
             ),
-            CommonTitle('¿Qué son los "sinónimos"?'),
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.antonyms.question')),
             ListCell(
-              title: ('Una breve definición de los sinónimos'),
-              subtitle: ('Los sinónimos son palabras que tienen el mismo significado de otras palabras. Ejemplos: comprender - entender, fácil - sencillo, estudiante -	alumno'),
+              title: FlutterI18n.translate(context, 'question_answers.antonyms.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.antonyms.answer'),
               onTap: () {},
             ),
-            CommonTitle('¿Qué son los "antónimos"?'),
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.synonyms.question')),
             ListCell(
-              title: ('Una breve definición de los antónimos'),
-              subtitle: ('Los antónimos son aquellas palabras cuyos significados son opuestos. Ejemplos: luz - oscuridad, alto - bajo, pequeño - grande'),
+              title: FlutterI18n.translate(context, 'question_answers.synonyms.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.synonyms.answer'),
               onTap: () {},
             ),
-            CommonTitle('¿Qué es el sujeto?'),
-            SubTitle('Una breve definición del sujeto'),
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.subject.question')),
             ListCell(
               leading: Image.asset(
                 'assets/parrot.png',
                 height: 50.0,
                 width: 50.0,
               ),
-              title: ('Una breve definición de sujeto'),
-              subtitle: ('El sujeto es la persona, animal o cosa de la que se habla en una oración. Ejemplo: el pájaro, el árbol, la casa.'),
+              title: FlutterI18n.translate(context, 'question_answers.subject.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.subject.answer'),
               onTap: () {},
             ),
-            CommonTitle('¿Qué es un verbo?'),
-            SubTitle('Una breve definición del verbo'),
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.verb.question')),
             ListCell(
               leading: Image.asset(
                 'assets/running-man.png',
                 height: 50.0,
                 width: 50.0,
               ),
-              title: ('El verbo:'),
-              subtitle: ('El verbo es la parte de la oración que expresa acción del sujeto. Ejemplo: el hombre esta corriendo, el pájaro esta cantando.'),
+              title: FlutterI18n.translate(context, 'question_answers.verb.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.verb.answer'),
               onTap: () {},
             ),
-            CommonTitle('¿Qué es un sustantivo?'),
-            SubTitle('Una breve definición del sustantivo'),                
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.noun.question')),
             ListCell(
               leading: Image.asset(
                 'assets/apple.png',
                 height: 50.0,
                 width: 50.0,
               ),
-              title: ('Un sustantivo:'),
-              subtitle: ('Los sustantivos son palabras con las que se denoniman personas, animales, cosas, ideas o pensamientos. Ejemplo: manzana, árbol, casa.'),
+              title: FlutterI18n.translate(context, 'question_answers.noun.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.noun.answer'),
               onTap: () {},
             ),
-            CommonTitle('¿Qué es un adjetivo?'),
-            SubTitle('Una breve definición del adjetivo'),
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.adjective.question')),
             ListCell(
               leading: Image.asset(
                 'assets/plant.png',
                 height: 50.0,
                 width: 50.0,
               ),
-              title: ('El adjetivo:'),
-              subtitle: ('Un adjetivo es la palabra que modifica al sustantivo, es el que indica alguna característica o cualidad del sustantivo. Ejemplo: verde, alto, grande.'),
+              title: FlutterI18n.translate(context, 'question_answers.adjective.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.adjective.answer'),
               onTap: () {},
             ),
-            CommonTitle('¿Qué es un adverbio?'),
-            SubTitle('En este articulo se dara una breve definición del adverbio'),
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.adverb.question')),
             ListCell(
               leading: Image.asset(
                 'assets/planet.png',
                 height: 50.0,
                 width: 50.0,
               ),
-              title: ('El advervio:'),
-              subtitle: ('Un adverbio es una parte de la oración que complementa a un verbo. Los adverbios expresan circunstancias, como modo, lugar, tiempo, cantidad, etc.'),
+              title: FlutterI18n.translate(context, 'question_answers.adverb.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.adverb.answer'),
               onTap: () {},
             ),
-            CommonTitle('¿No encuentras lo que estás buscando?'),
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.adverb.question')),
+            ListCell(
+              title: FlutterI18n.translate(context, 'question_answers.adverb.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.adverb.answer'),
+              onTap: () {},
+            ),
+
+            CommonTitle(FlutterI18n.translate(context, 'question_answers.not_found.question')),
             ListCell(
               leading: Image.asset(
                 'assets/info.png',
                 height: 50.0,
                 width: 50.0,
               ),
-              title: ('Envía tus comentarios'),
-              subtitle: ('Puede enviar una solicitud de nuevas funciones o nuevo contenido, toca aquí para abrir enviar una petición'),
+              title: FlutterI18n.translate(context, 'question_answers.not_found.title'),
+              subtitle: FlutterI18n.translate(context, 'question_answers.not_found.subtitle'),
               onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback),
             ),
-            
           ]
         )
       ),

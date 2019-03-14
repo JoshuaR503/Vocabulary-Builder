@@ -27,7 +27,7 @@ mixin ConnectedModel on Model {
 
 mixin PalabrasModel on ConnectedModel {
 
-  FlutterTts _flutterTts = FlutterTts();
+  FlutterTts _textToSpeech = FlutterTts();
   DatabaseHelper _dbh = DatabaseHelper();  
 
   List<Palabra> get allPalabras => List.from(_palabras);
@@ -194,10 +194,10 @@ mixin PalabrasModel on ConnectedModel {
   }
 
   void speak(String text) async { 
-    _flutterTts.setLanguage("en-US");
-    _flutterTts.setPitch(1.0);
-    _flutterTts.setSpeechRate(0.8);
-    _flutterTts.speak(text);
+    _textToSpeech.setLanguage("en-US");
+    _textToSpeech.setPitch(1.0);
+    _textToSpeech.setSpeechRate(0.8);
+    _textToSpeech.speak(text);
   }
 } 
 

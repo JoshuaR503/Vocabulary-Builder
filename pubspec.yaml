@@ -1,12 +1,5 @@
 name: moblie
 description: A new Flutter project.
-
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# Read more about versioning at semver.org.
 version: 3.0.0
 
 environment:
@@ -16,29 +9,33 @@ dependencies:
   flutter:
     sdk: flutter
 
+  ## Core modules
+  http: ^0.11.3+17
+  sqflite: ^1.0.0
+  vibrate: ^0.0.4
+  flutter_tts: ^0.1.2
+  scoped_model: ^1.0.1
+  shared_preferences: ^0.5.1+1
+
+  ## Core modules peers
+  path_provider: ^0.5.0
+
+  ## translation
+  intl: ^0.15.7
+  flutter_i18n: ^0.5.2
   flutter_localizations:
     sdk: flutter
-  
-  http: ^0.11.3+17
-  intl: ^0.15.7
-  
-  path_provider: ^0.5.0
-  scoped_model: ^1.0.1
-  sentry: ^2.2.0
+
+  ## user experience
   share: ^0.6.0+1
-  sqflite: ^1.0.0
-  shared_preferences: ^0.5.1+1
-  clipboard_manager: ^0.0.1
-
-  flutter_tts: ^0.1.2
-  flutter_web_browser: ^0.9.0+1
-  firebase_analytics: ^2.0.3
-
   dynamic_theme: ^1.0.0
-  vibrate: ^0.0.4
-
   material_search: ^0.2.8
+  clipboard_manager: ^0.0.1
+  flutter_web_browser: ^0.9.0+1
 
+  ## Developer tools
+  sentry: ^2.2.0
+  firebase_analytics: ^2.0.3
   
 dev_dependencies:
   intl_translation: ^0.17.1
@@ -74,3 +71,4 @@ flutter:
     - assets/tree.png
     - assets/mushroom.png
     - assets/tap.png
+    - assets/flutter_i18n/

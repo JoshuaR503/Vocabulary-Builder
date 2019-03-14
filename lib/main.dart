@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
@@ -18,10 +20,15 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:sentry/sentry.dart';
 
-void main() =>
+final MainModel model = MainModel();
+    
+void main() {
+  model.obtenerData();
+
   SystemChrome
   .setPreferredOrientations([DeviceOrientation.portraitUp])
   .then((_) => runApp(AmericanEnglishWords()));
+}
 
 class AmericanEnglishWords extends StatefulWidget {
 
@@ -49,17 +56,16 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
   @override
   Widget build(BuildContext context) {
     
-    final MainModel model = MainModel();
-    model.obtenerData();
-    
     return ScopedModel <MainModel> (
       model: model,
       child: DynamicTheme(
         data: (brightness) => _buildTheme(),
-        themedWidgetBuilder: (context, theme) => MaterialApp (
+        themedWidgetBuilder: (context, theme) => MaterialApp(
+
           navigatorObservers: [
             FirebaseAnalyticsObserver(analytics: _analytics),
           ],
+
           theme: theme,
           title: appname,
           debugShowCheckedModeBanner: false,
@@ -68,11 +74,16 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
             // '/': (BuildContext context) => PalabrasScreen(model),
             '/home': (BuildContext context) => PalabrasScreen(model),
             '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
-            '/creditos':  (BuildContext context) => CreditoScreen(),
-            '/question':  (BuildContext context) => QuestionScreen(),
+            '/creditos': (BuildContext context) => CreditoScreen(),
+            '/question': (BuildContext context) => QuestionScreen(),
             '/help':  (BuildContext context) => HelpScreen(),
             '/intro':  (BuildContext context) => IntroScreen(),
-          }
+          },
+          localizationsDelegates: [
+            FlutterI18nDelegate(false, 'en'),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate
+          ],
         ),
       ),
     ); 

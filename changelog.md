@@ -148,4 +148,10 @@ All notable changes to this project will be documented in this file.
 - Added a Search Screen in Palabras Guardadas
 - Refactored Code
 - Fixed error 'Unhandled Exception: Failed assertion: ModalRoute.willPop'
+
+## 30th (29th commit-v2) commit
 - Fixed error Unhandled Exception: _MainModel&Model&ConnectedModel&PalabrasModel&UtilityModel.obtenerData
+
+## 31th commit
+- Added English Language support, working on translations
+- Added Translations for the main screen and Preguntas Frecuentes

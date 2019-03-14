@@ -6,6 +6,7 @@ import 'package:moblie/widgets/palabras/palabras.dart';
 import 'package:moblie/widgets/ui/divider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'package:share/share.dart';
 
@@ -33,9 +34,9 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
       builder: (BuildContext context, Widget child, MainModel model) {
 
         Widget content = ErrorScreen(
-          message: onServerConnection,
+          message: FlutterI18n.translate(context, 'error_message.no_server_connection.message'),
           pathImage: 'assets/warning.png',
-          fixMessage: onServerConnectionFix,
+          fixMessage: FlutterI18n.translate(context, 'error_message.no_server_connection.solution'),
         );
 
         if (model.allPalabras.length > 0 && !model.isLoading) {
@@ -58,41 +59,41 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
         children: <Widget>[
           AppBar(
             automaticallyImplyLeading: false,
-            title: Text('Opciones'),
+            title: Text(FlutterI18n.translate(context, 'home.drawer.title')),
           ),
 
           ListTile(
-            title: Text('Preguntas Frecuentes'),
+            title: Text(FlutterI18n.translate(context, 'question_answers.title')),
             onTap: () => Navigator.pushNamed(context, '/question'),
           ),
 
           ListTile(
-            title: Text('Solución de problemas'),
+            title: Text(FlutterI18n.translate(context, 'troubleshooting.title')),
             onTap: () => Navigator.pushNamed(context, '/help'),
           ),
 
           ListTile(
-            title: Text('Compartir aplicación'),
+            title: Text(FlutterI18n.translate(context, 'home.drawer.thidItem')),
             onTap: () => Share.share(shareApp)
           ),
           
           Separator.divider(),
           ListTile(
-            title: Text('Versión web'),
+            title: Text(FlutterI18n.translate(context, 'home.drawer.web_version')),
             onTap: () => FlutterWebBrowser.openWebPage(url: webVersion)
           ),
           ListTile(
-            title: Text('Enviar comentarios'),
+            title: Text(FlutterI18n.translate(context, 'home.drawer.web_feedback')),
             onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback)
           ),
           
           Separator.divider(),
           ListTile(
-            title: Text('Repetir Introducción'),
+            title: Text(FlutterI18n.translate(context, 'home.drawer.show_slide')),
             onTap: () => Navigator.pushNamed(context, '/intro'),
           ),
           ListTile(
-            title: Text('Creditos'),
+            title: Text(FlutterI18n.translate(context, 'home.drawer.credits')),
             onTap: () => Navigator.pushNamed(context, '/creditos'),
           ),
         ],
@@ -105,22 +106,26 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
     return Scaffold(
       drawer: _buildDrawer(),
       appBar: AppBar(
-        title: Text(title),
+        title: Text(FlutterI18n.translate(context, 'home.title')),
         centerTitle: true,
         elevation: 0.0,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.refresh),
-            onPressed: () {
-              widget.model.obtenerPalabras(loadingIndicator: true);
-            }
-          ),
 
-          IconButton(
-            icon: Icon(Icons.favorite_border),
-            onPressed: () => Navigator.pushNamed(context, '/saved')
+          Tooltip(
+            message: FlutterI18n.translate(context, 'home.appbar.icons.refresh_tooltip'),
+            child: IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () => widget.model.obtenerPalabras(loadingIndicator: true)
+            ),
           ),
-
+          
+          Tooltip(
+            message: FlutterI18n.translate(context, 'home.appbar.icons.heart_tooltip'),
+            child: IconButton(
+              icon: Icon(Icons.favorite_border),
+              onPressed: () => Navigator.pushNamed(context, '/saved')
+            ),
+          )
         ],
       ),
       body: _buildMainContent(),

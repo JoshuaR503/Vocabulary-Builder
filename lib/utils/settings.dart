@@ -28,7 +28,9 @@ final String appname = 'QuickGlish';
 // ===============================================================
 // Nombres de la aplicación
 // ===============================================================
+
 final String savedSection = 'Palabras Guardadas';
+
 final String settingsSection = 'Configuración';
 final String infoSection = 'Información';
 final String buttonName = 'Escuchar pronunciación';
@@ -52,5 +54,3 @@ final String onServerConnectionFix = 'Deslizar hacia abajo para intentar de nuev
 // Error and fix messages
 // ===============================================================
 final String onSavedWordsError = 'Hubo un error :(';
-final String onNoSavedWords = 'Parece que aún no has guardado ninguna palabra';
-final String onNoSavedWordsFix = 'Puedes tocar en el corazón al lado de una palabra para guardarla.';

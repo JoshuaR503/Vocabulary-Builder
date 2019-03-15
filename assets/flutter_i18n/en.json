@@ -1,0 +1,182 @@
+{
+    "app": "QuickGlish",
+    "home": {
+        "title": "Home",
+        "appbar": {
+            "icons": {
+                "refresh_tooltip": "Show more words",
+                "heart_tooltip": "Favorite words section"
+            }
+        },
+        "drawer": {
+            "title": "Options",
+            "thidItem": "Share this app",
+
+            "web_version": "Web Version",
+            "web_feedback": "Send Feedback",
+
+            "show_slide": "Show Intro Slide",
+            "credits": "Credits"
+        }
+    },
+
+    "saved_words": {
+        "title": "Favorite Words",
+        "appbar": {
+            "icons": {
+                "search_tooltip": "Word Search"
+            }
+        }
+    },
+
+    "single_palabra": {
+        "verb_card": {
+            "title": "Conjugation of {palabra}",
+            "present_continuous": "Present Continuous",
+            "third_person": "Third Person",
+            "present": "Present",
+            "past": "Past",
+            "future": "Future"
+        }
+    },
+
+    "question_answers": {
+        "title": "Question and Answers",
+
+        "question_one": {
+            "question": "How do I get more words?",
+            "title": "A simple solution",
+            "answer": "To get more words, tap the refresh button on the top right corner or just slide your finger down."
+        },
+
+        "sentence": {
+            "question": "What is a sentence?",
+            "title": "Brief definition: ",
+            "answer": "A sentence is a set of words used to express an idea or thought. Examples: the man is running, I am learning another language."
+        },
+
+        "singular": {
+            "question": "What does singular mean?",
+            "title": "Brief definition:",
+            "answer": "Singular expresses a single unit of the beings or objects referred to. Examples: a mushroom, the car, a house"
+        },
+
+        "plural": {
+            "question": "What does plural mean?",
+            "title": "Brief definition: ",
+            "answer": "Plural, refers to more than one thing. Examples: mushrooms, trees, houses. It is the opposite to singular (antonym)"
+        },
+
+        "antonyms": {
+            "question": "What are antonyms?",
+            "title": "Brief definition: ",
+            "answer": "Antonyms are those words whose meanings are opposite. Examples: light - dark, high - low, small - large."
+        },
+
+        "synonyms": {
+            "question": "What are synonyms?",
+            "title": "Brief definition:",
+            "answer": "Synonyms are words that have the same meaning as other words. Examples: understand - understand, easy - simple, student - student."
+        },
+
+        "subject": {
+            "question": "What is the subject?",
+            "title": "Brief definition:",
+            "answer": "The subject is the person, animal or thing discussed in a sentence. Example: the bird, the tree, the house."
+        },
+
+        "verb": {
+            "question": "What is a verb?",
+            "title": "Brief definition:",
+            "answer": "The verb is the part of the sentence that expresses the subject's action. Example: the man is running, the bird is singing."
+        },
+
+        "noun": {
+            "question": "What is a noun?",
+            "title": "Brief definition:",
+            "answer": "Nouns are words with which people, animals, things, etc are called. Example: apple, tree, house."
+        },
+
+        "adjective": {
+            "question": "What is an adjective?",
+            "title": "Brief definition:",
+            "answer": "An adjective is the word that modifies the noun, it is the one that indicates some characteristic or quality of the noun. Example: green, tall, big."
+        },
+
+        "adverb": {
+            "question": "What is an adverb?",
+            "title": "Brief definition:",
+            "answer": "An adverb is a part of the sentence that complements a verb. Adverbs express circumstances such as mode, place, time, amount, etc."
+        },
+
+        "not_found": {
+            "question": "Couldn't find what you were looking for?",
+            "title": "Send Feedback!",
+            "subtitle": "You can send a request to add new features or new content, touch here to open send a request"
+        }
+    },
+    
+    "troubleshooting": {
+        "title": "Troubleshooting",
+
+        "no_words": {
+            "title": "Words are not showing up!",
+            "subtitle": "I always have the message: Couldn't connect to the server",
+            "response_one": "Internet connection.",
+            "solution_one": "One reason could be that internet connection may be failing or is very slow, please check the internet connection. If it doesn't work, try again later."
+        },
+
+        "no_volume": {
+            "title": "I can't hear anything!",
+            "subtitle": "In some devices, the application may show a strange behavior, but you can solve it with the following steps.",
+
+            "response_one": "Be patient.",
+            "solution_one": "This application could take a while to respond, it may take up to 20 seconds, please be patient.",
+
+            "response_two": "Check the volume.",
+            "solution_two": "It might be obvious, but have you tried increasing the volume?",
+
+            "response_three": "Do Not Distrub.",
+            "solution_three": "It is might be possible that you have activated the 'Do not disturb' mode. Try turning it off",
+
+            "response_four": "Last check",
+            "solution_four": "If none of this works, you have two options, your phone may have a speaker that does not work or your device is not compatible with the application."
+        }
+    },
+
+    "credits": {
+        "title": "Credits",
+
+        "developer": {
+            "title": "Application developed by Joshua García",
+            "title_two": "Tap to get in touch",
+            "subtitle": "The objective of this application is to help increase the vocabulary of the people who are learning Spanish, on the go."
+        },
+
+        "icon_designer_one": {
+            "title": "Icons Designed by mynamepong",
+            "title_two": "Designer man icon running.",
+            "subtitle": "Tap the icon to find out more",
+            "subtitle_two": "Icon made by mynamepong from www.flaticon.com"
+        },
+
+        "icon_designer_two": {
+            "title": "Icons Designed by Freepik",
+            "title_two": "All the colored icons, except the man running and the application icon, were designed and created by Freepik.",
+            "subtitle": "Tap the icon to find out more",
+            "subtitle_two": "Icons made by Freepik from www.flaticon.com"
+        }
+    },
+
+    "error_message": {
+        "no_server_connection": {
+            "message": "Couldn't connect to the server",
+            "solution": "Swipe down to try again."
+        },
+
+        "no_saved_words": {
+            "message": "It seems like you haven't saved any words yet",
+            "solution": "You can tap the heart next to a word to save it."
+        }
+    }
+}

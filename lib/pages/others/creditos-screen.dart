@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import 'package:moblie/utils/settings.dart';
@@ -12,40 +13,42 @@ class CreditoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Creditos'),
+        title: Text(FlutterI18n.translate(context, 'credits.title')),
         centerTitle: true,
       ),  
       body: Scrollbar(
         child: ListView(
           children: <Widget>[
-            CommonTitle('Aplicación desarrollada por Joshua García'),
+            CommonTitle(FlutterI18n.translate(context, 'credits.developer.title')),
             ListCell(
-              title: ('Toca para contactar'),
-              subtitle: ('El objetivo de esta aplicación es ayudar a aumentar el vocabulario de las peronas que estan aprendiendo Inglés, con una interfazlimpia y  sinpublicidad.'),
+              title: FlutterI18n.translate(context, 'credits.developer.title_two'),
+              subtitle: FlutterI18n.translate(context, 'credits.developer.subtitle'),
               onTap: () async => await FlutterWebBrowser.openWebPage(url: authorEmail),
             ),
-            CommonTitle('Iconos Diseñados por mynamepong'),
-            SubTitle('Toca en el icono para mas información'),
+
+            CommonTitle(FlutterI18n.translate(context, 'credits.icon_designer_one.title')),
+            SubTitle(FlutterI18n.translate(context, 'credits.icon_designer_one.subtitle')),
             ListCell(
               leading: Image.asset(
                 'assets/running-man.png',
                 height: 50.0,
                 width: 50.0,
               ),
-              title: ('Diseñador del icono del hombre corriendo.'),
-              subtitle: ('Icon made by mynamepong from www.flaticon.com'),
+              title: FlutterI18n.translate(context, 'credits.icon_designer_one.title_two'),
+              subtitle: FlutterI18n.translate(context, 'credits.icon_designer_one.subtitle_two'),
               onTap: () => FlutterWebBrowser.openWebPage(url: 'https://www.flaticon.com/authors/mynamepong'),
             ),
-            CommonTitle('Iconos Diseñados por Freepik'),
-            SubTitle('Todos los iconos de colores, excepto el hombre corriendo y el icono de la aplicación, fueron diseñados y creados por Freepik'),
+
+            CommonTitle(FlutterI18n.translate(context, 'credits.icon_designer_two.title')),
+            SubTitle(FlutterI18n.translate(context, 'credits.icon_designer_two.subtitle')),
             ListCell(
               leading: Image.asset(
-                'assets/info.png',
+                'assets/running-man.png',
                 height: 50.0,
                 width: 50.0,
               ),
-              title: ('Toca para obtener más información.'),
-              subtitle: ('Icons made by Freepik from www.flaticon.com'),
+              title: FlutterI18n.translate(context, 'credits.icon_designer_two.title_two'),
+              subtitle: FlutterI18n.translate(context, 'credits.icon_designer_two.subtitle_two'),
               onTap: () => FlutterWebBrowser.openWebPage(url: 'https://www.flaticon.com/authors/freepik')
             ),
           ]

@@ -155,3 +155,7 @@ All notable changes to this project will be documented in this file.
 ## 31th commit
 - Added English Language support, working on translations
 - Added Translations for the main screen and Preguntas Frecuentes
+
+## 32nd commit 
+- Added Translations for the help screen, créditos, palabras guardadas
+- TODO: KEEP WORKING!!!

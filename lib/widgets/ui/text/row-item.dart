@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:moblie/utils/colors.dart';
 import 'package:moblie/model/main.dart';
 import 'package:clipboard_manager/clipboard_manager.dart';
+import 'package:moblie/widgets/ui/divider.dart';
 
 class RowItem extends StatelessWidget {
   final String title;
-  final String description;
-  final bool showButton;
+  final String subtitle;
+  final bool copyClipboard;
   final MainModel model = MainModel();
 
-  RowItem(this.title, this.description, [this.showButton]);
+  RowItem({this.title, this.subtitle, this.copyClipboard});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class RowItem extends StatelessWidget {
               .copyWith(color: primaryText),
           ),
           
-          _renderButton(context)
+          _renderButton(context),
         ],
       ),
     );
@@ -35,12 +36,12 @@ class RowItem extends StatelessWidget {
 
     Widget content;
 
-    if (showButton && showButton != null) {
+    if (copyClipboard && copyClipboard != null) {
       content = GestureDetector(
-        onTap: () => model.speak(description),
-        onLongPress: () => _copy(description, context),
+        onTap: () => model.speak(subtitle),
+        onLongPress: () => _copy(subtitle, context),
         child: Text(
-          description,
+          subtitle,
           style: Theme.of(context)
             .textTheme
             .subhead
@@ -49,9 +50,9 @@ class RowItem extends StatelessWidget {
       );
     } else {
       content = GestureDetector(
-        onLongPress: () => _copy(description, context),
+        onLongPress: () => _copy(subtitle, context),
         child: Text(
-          description,
+          subtitle,
           style: Theme.of(context)
             .textTheme
             .subhead
@@ -64,7 +65,7 @@ class RowItem extends StatelessWidget {
   }
 
   void _copy(String text, BuildContext context) {
-    ClipboardManager.copyToClipBoard(description)
+    ClipboardManager.copyToClipBoard(subtitle)
       .then((result) {
 
         _createSnackBar(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'package:moblie/model/main.dart';
 import 'package:moblie/model/palabra.model.dart';
 import 'package:moblie/utils/settings.dart';
+
 
 import 'package:moblie/widgets/ui/divider.dart';
 import 'package:moblie/widgets/ui/head-card.dart';
@@ -19,6 +21,7 @@ class SinglePalabraScreen extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {
+
     return ScopedModelDescendant <MainModel> (
       builder: (BuildContext context, Widget child, MainModel model) {
         return Scaffold(
@@ -36,13 +39,13 @@ class SinglePalabraScreen extends StatelessWidget  {
               )
             ],
           ),
-          body: _renderMainContent(),
+          body: _renderMainContent(context),
         );
       },
     );
   }
   // Icon(Icons.favorite_border, color: Colors.white,)
-  Widget _renderMainContent() {
+  Widget _renderMainContent(context) {
     return ListView(
       children: <Widget>[
         Container(
@@ -50,9 +53,9 @@ class SinglePalabraScreen extends StatelessWidget  {
             padding: EdgeInsets.all(12.0),
             child: Column(
               children: <Widget>[              
-                _buildPalabraBasicInfoCard(),
+                // _buildPalabraBasicInfoCard(),
                 Separator.spacer(),
-                _buildConjugationCard(),
+                _buildConjugationCard(context),
                 _buildPalabraSinPlu(),
                 _buildPalabraDefinitionCard(),
                 Separator.spacer(),
@@ -69,79 +72,128 @@ class SinglePalabraScreen extends StatelessWidget  {
     );
   }
 
-  Widget _buildPalabraBasicInfoCard() {
-    return SinglePalabraCard(
-      title: 'Detalles adicionales',
-      body: Column(
-        children: <Widget>[
-          RowItem(
-            'Palabra', 
-            _palabra.palabra,
-            false
-          ),
+  // Widget _buildPalabraBasicInfoCard() {
+  //   return SinglePalabraCard(
+  //     title: 'Detalles adicionales',
+  //     body: Column(
+  //       children: <Widget>[
+  //         RowItem(
+  //           'Palabra', 
+  //           _palabra.palabra,
+  //           false
+  //         ),
           
-          Separator.spacer(),
-          RowItem(
-            'Traducción',
-            _palabra.traduccion,
-            false
-          ),
+  //         Separator.spacer(),
+  //         RowItem(
+  //           'Traducción',
+  //           _palabra.traduccion,
+  //           false
+  //         ),
 
-          Separator.spacer(),
-          RowItem(
-            'Categoría gramatical', 
-            _palabra.tipo == null ? 'No disponible' : _palabra.tipo,
-            false
-          ),
-        ],
-      ),
-    );
-  }
+  //         Separator.spacer(),
+  //         RowItem(
+  //           'Categoría gramatical', 
+  //           _palabra.tipo == null ? 'No disponible' : _palabra.tipo,
+  //           false
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  Widget _buildConjugationCard() {
-
+  Widget _buildConjugationCard(BuildContext context) {
+        
     Widget card = Container();
-    
-    String tipo = _palabra.tipo;
+    String palabra =_palabra.palabra;
 
-    if (tipo == 'Verbo') {
+    String presenteC =_palabra.presenteContinuo;
+    String thirdP = _palabra.thirdPerson;
+    String presente = _palabra.presente;
+    String pasado = _palabra.pasado;
+    String futuro = _palabra.futuro;
+    
+    if (presenteC != null && thirdP != null && presente != null &&  pasado != null && futuro != null) {
+      
       card = SinglePalabraCard(
-        title: 'Conjugación de ${_palabra.palabra}',
+        title: FlutterI18n.translate(context, 'single_palabra.verb_card.title', {'palabra': palabra}),
         body: Column(
           children: <Widget>[
+            
             RowItem(
-              'Presente Continuo',
-              _palabra.presenteContinuo ?? _palabra.presenteContinuo,
-              true
+              title: FlutterI18n.translate(context, 'single_palabra.verb_card.present_continuous'),
+              subtitle: presenteC,
+              copyClipboard: true
             ),
+
             Separator.spacer(),
+
             RowItem(
-              'Tercera Persona',
-              _palabra.thirdPerson ?? _palabra.thirdPerson,
-              true
+              title: FlutterI18n.translate(context, 'single_palabra.verb_card.third_person'),
+              subtitle: pasado,
+              copyClipboard: true
             ),
-            Separator.spacer(),
+
             RowItem(
-              'Presente',
-              _palabra.presente ?? _palabra.presente,
-              true
+              title: FlutterI18n.translate(context, 'single_palabra.verb_card.present'),
+              subtitle: presente,
+              copyClipboard: true
             ),
-            Separator.spacer(),
+
             RowItem(
-              'Pasado', 
-              _palabra.pasado ?? _palabra.pasado,
-              true
+              title: FlutterI18n.translate(context, 'single_palabra.verb_card.past'),
+              subtitle: pasado,
+              copyClipboard: true
             ),
-            Separator.spacer(),
+
             RowItem(
-              'Futuro', 
-              _palabra.futuro ?? _palabra.futuro,
-              true
+              title: FlutterI18n.translate(context, 'single_palabra.verb_card.future'),
+              subtitle: futuro,
+              copyClipboard: true
             ),
           ],
         ),
       );
-    } 
+    }
+    
+    // // AINT GON WORK
+    // if (futuro == 'Verbo') {
+    //   card = SinglePalabraCard(
+    //     title: 'Conjugación de ${_palabra.palabra}',
+    //     body: Column(
+    //       children: <Widget>[
+    //         RowItem(
+    //           'Presente Continuo',
+    //           _palabra.presenteContinuo ?? _palabra.presenteContinuo,
+    //           true
+    //         ),
+    //         Separator.spacer(),
+    //         RowItem(
+    //           'Tercera Persona',
+    //           _palabra.thirdPerson ?? _palabra.thirdPerson,
+    //           true
+    //         ),
+    //         Separator.spacer(),
+    //         RowItem(
+    //           'Presente',
+    //           _palabra.presente ?? _palabra.presente,
+    //           true
+    //         ),
+    //         Separator.spacer(),
+    //         RowItem(
+    //           'Pasado', 
+    //           _palabra.pasado ?? _palabra.pasado,
+    //           true
+    //         ),
+    //         Separator.spacer(),
+    //         RowItem(
+    //           'Futuro', 
+    //           _palabra.futuro ?? _palabra.futuro,
+    //           true
+    //         ),
+    //       ],
+    //     ),
+    //   );
+    // } 
 
     return card;
   }
@@ -232,6 +284,8 @@ class SinglePalabraScreen extends StatelessWidget  {
     
     return card;
   }
+
+
 
   Widget _buildNoteCard() {
     Widget card = Container();

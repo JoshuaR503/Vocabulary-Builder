@@ -18,7 +18,19 @@
 
             "show_slide": "Repetir Introducción",
             "credits": "Créditos"
-        }
+        },
+
+        "button_name": "Escuchar Pronunciación"
+    },
+
+    "settings": {
+        "title": "Ajustes",
+        "option_one": "Cambiar Idioma"
+    },
+
+    "welcome_screen": {
+        "title": "Antes de Empezar",
+        "subtitle": "¿Qué idioma estás aprendiendo?"
     },
 
     "saved_words": {
@@ -38,8 +50,44 @@
             "present": "Presente",
             "past": "Pasado",
             "future": "Futuro"
+        },
+
+        "p_s": {
+            "first_item": "{palabra} en Plural",
+            "second_item": "{palabra} en Singular"
+        },
+
+        "definition": {
+            "first_item": "Breve definición:",
+            "second_item": "Breve definición en Español:"
+        },
+
+        "example": {
+            "first_item": "{palabra} en una oración:",
+            "second_item": "Palabras similares"
+        },
+
+        "antonyms": "Antónimos de {palabra}:",
+        "synonyms": "Sinónimos de {palabra}:",
+
+        "note": "Nota",
+        "spanish_translation": "Traducción Español:",
+
+        "extra_details": {
+            "title": "Detalles adicionales",
+            "first_tiem": "Palabra",
+            "second_item": "Traducción",
+            "third_item": "Categoría gramatical"
+        },
+
+        "not_available": {
+            "title": "Not available",
+            "ns": "La base de datos no pudo encontrar sinónimos para esta palabra.",
+            "na": "La base de datos no pudo encontrar antónimos para esta palabra."
         }
     },
+
+    "search": "Busqueda",
 
     "question_answers": {
         "title": "Preguntas Frecuentes",
@@ -166,6 +214,42 @@
             "subtitle": "Toca para obtener más información.",
             "subtitle_two": "Icono hecho por Freepik de www.flaticon.com"
         }
+    },
+
+    "slide_show": {
+        "slide_one": {
+            "title": "VOCABULARIO",
+            "description": "Aumenta tu vocabulario con palabras aleatorias de una manera simple."
+        },
+
+        "slide_two": {
+            "title": "APRENDE A TU RITMO",
+            "description": "Con 15 minutos al día puedes aprender nuevas palabras."
+        },
+
+        "slide_three": {
+            "title": "MODO OFFLINE",
+            "description": "Si te gusta una palabra, toca el corazón junto a ella para verla sin conexión."
+        },
+
+        "slide_four": {
+            "title": "JUST TAP IT",
+            "description": "Para obtener más información de una palabra, simplemente tócala o presionala."
+        },
+
+        "options": {
+            "skip": "SALTAR",
+            "done": "LISTO",
+            "next": "SIGUIENTE"
+        }
+    },
+
+    "snackbar": {
+        "success_message_clipboard": "Se pegó al portapapeles",
+        "success_message_clipboard_label": "Entiendo",
+
+        "error_message_clipboard": "Hubo un error al intentar pegar al portapapeles",
+        "error_message_clipboard_label": "Entiendo"
     },
 
     "error_message": {

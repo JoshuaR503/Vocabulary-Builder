@@ -17,7 +17,7 @@ class ListCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(
+      contentPadding: EdgeInsets.symmetric(
         vertical: 8.0,
         horizontal: 16.0,
       ),

@@ -29,7 +29,7 @@ class PalabrasGuardadas extends StatelessWidget {
             model.deletePalabraGuardada();
           }, 
           
-          child: PalabraGuardadaCard(palabras[index], model)
+          child: PalabraGuardadaCard(palabras[index])
         );
       },
     );

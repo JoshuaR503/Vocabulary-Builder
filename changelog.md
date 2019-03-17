@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ### First commit
-- HTTP request to GET added
+- The HTTP request to GET added
 - First theme and Design added
 - Pull to refresh added
 
@@ -40,7 +40,7 @@ All notable changes to this project will be documented in this file.
 - TODO: Clean code
 - TODO: Fix Navigation
 - TODO: Work in Navigation Bug
-- REESTRUCTURED SCROPED MODEL
+- RESTRUCTURED SCOPED MODEL
 
 ### 10th commit
 - Created a folder (.old) to put old and redundant files that I don't want to delete
@@ -84,8 +84,8 @@ All notable changes to this project will be documented in this file.
 - Layout Improvements
 - Added new pages to inform the user
 - Added new Icons
-- Fixed Stuff in the chnagelog
-- Fixed an error that would prevent the user to load the main screen propetly
+- Fixed Stuff in the changelog
+- Fixed an error that would prevent the user to load the main screen properly
 
 ### 20th commit 
 - File cleaning
@@ -100,19 +100,19 @@ All notable changes to this project will be documented in this file.
 - Ready for Prod
 - Fixed an error that would prevent users save worlds
 
-## 22th commit
+## 22nd commit
 - Error fixing
 - Code cleaning
 - Mini Layout Improvements
 - Ready for prod!
 
-## 23th commit
+## 23rd commit
 - Added a new screen to help users
 - Added an error screen
 - Added Feedback when the user saves a word
 - Rotation Locked
 - Fixed an error in which users were not able to see extra data
-- Checks before final release
+- Checks before the final release
 - Added more info in the single screen 
 - Added new answers in question-screen
 - Layout Improvements
@@ -126,7 +126,7 @@ All notable changes to this project will be documented in this file.
 - Layout improvements
 
 ## 25th commit
-- Added some corrections to text
+- Added some corrections to the text
 
 ## 26th commit
 - Ready for prod
@@ -140,7 +140,7 @@ All notable changes to this project will be documented in this file.
 - Added A search Screen
 - Refactored Code
 - Added a new element
-- TODO: Find a way to show the user all the words in the data base
+- TODO: Find a way to show the user all the words in the database
 
 ## 29th commit
 - Changed Model to only one
@@ -152,10 +152,18 @@ All notable changes to this project will be documented in this file.
 ## 30th (29th commit-v2) commit
 - Fixed error Unhandled Exception: _MainModel&Model&ConnectedModel&PalabrasModel&UtilityModel.obtenerData
 
-## 31th commit
+## 31st commit
 - Added English Language support, working on translations
 - Added Translations for the main screen and Preguntas Frecuentes
 
 ## 32nd commit 
-- Added Translations for the help screen, créditos, palabras guardadas
+- Added Translations for the help screen, créditos, Palabras guardadas
 - TODO: KEEP WORKING!!!
+
+## 33rd commit 
+- Fixed Spelling
+- Added Translations for Search Screen, Single Palabra, Slide Screen, RowItem, HeadCard
+- Refactored code at Single Palabra Screen, Palabra Screen
+- Refactored little tiny code at Slide Screen
+- Added SPANISH AND ENGLISH SUCCESFULLY AT THE PALABRA SCREEN 
+- ADDED ENGLISH SUPPORT

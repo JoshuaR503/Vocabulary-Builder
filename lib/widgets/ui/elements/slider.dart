@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../utils/colors.dart';
-import '../../../utils/settings.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class IntroSlider extends StatefulWidget {
   /// An array of Slide object
@@ -19,7 +18,6 @@ class IntroSlider extends StatefulWidget {
   /// Rounded SKIP button
   final double borderRadiusSkipBtn;
 
-  // NEXT, DONE button
   /// Render your own NEXT button
   final Widget renderNextBtn;
 
@@ -184,14 +182,8 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: primaryColor,
-      ),
-      title: appname,
-      home: DefaultTabController(
+    return Scaffold(
+      body: DefaultTabController(
         length: slides.length,
         child: Scaffold(
           body: Stack(
@@ -217,7 +209,7 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
               ? Container(
                 child: FlatButton(
                     onPressed: onSkipPress,
-                    child: Text( "SALTAR",
+                    child: Text(FlutterI18n.translate(context, 'slide_show.options.skip'),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: fontSize
@@ -254,7 +246,7 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
             child: tabController.index + 1 == slides.length
               ? FlatButton(
                 onPressed: onDonePress,
-                child: Text("LISTO",
+                child: Text(FlutterI18n.translate(context, 'slide_show.options.done'),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: fontSize
@@ -269,7 +261,7 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
 
               : FlatButton(
                 onPressed: () => tabController.animateTo(tabController.index + 1),
-                child: Text("SIGUIENTE",
+                child: Text(FlutterI18n.translate(context, 'slide_show.options.next'),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: fontSize

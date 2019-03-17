@@ -20,6 +20,8 @@ mixin ConnectedModel on Model {
   bool _seen = false;
 
   int _selPalabraGuardadaId;
+
+  String _userLang;
   List _palabras = [];
   List _palabrasGuardadas = [];
   List _busqueda = [];
@@ -27,7 +29,6 @@ mixin ConnectedModel on Model {
 
 mixin PalabrasModel on ConnectedModel {
 
-  FlutterTts _textToSpeech = FlutterTts();
   DatabaseHelper _dbh = DatabaseHelper();  
 
   List<Palabra> get allPalabras => List.from(_palabras);
@@ -45,11 +46,7 @@ mixin PalabrasModel on ConnectedModel {
     return _palabrasGuardadas.firstWhere((palabra) => palabra.id == _selPalabraGuardadaId);
   }
 
-  Future<Null> obtenerPalabras({
-    bool loadingIndicator = false, 
-    bool search = false,
-    String url
-  }) async {
+  Future<Null> obtenerPalabras({bool loadingIndicator = false, bool search = false,String url }) async {
 
     String httpUrl;
 
@@ -192,34 +189,43 @@ mixin PalabrasModel on ConnectedModel {
       notifyListeners();
     }
   }
-
-  void speak(String text) async { 
-    _textToSpeech.setLanguage("en-US");
-    _textToSpeech.setPitch(1.0);
-    _textToSpeech.setSpeechRate(0.8);
-    _textToSpeech.speak(text);
-  }
 } 
 
 mixin UtilityModel on ConnectedModel {
+  FlutterTts _textToSpeech = FlutterTts();
+
   bool get isLoading => _isLoading;
   bool get palabrasGuardadasIsLoading => _palabrasGuardadasIsLoading;
   bool get seen => _seen;
 
+  String get userLang => _userLang;
+  
   void obtenerData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
+    
     bool response = prefs.getBool('seen');
+    String userLang = prefs.getString('user_lang'); 
 
     if (response == true) {
       _seen = true;
-    } else if(response != true) {
+    } else if (response != true) {
       _seen = false;
     }
+
+    _userLang = userLang; 
   }
 
   Future<Null> setData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('seen', true);
+  }
+
+  Future<Null> setUserPreferedLanguage({String language}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    print('User Prefered Language $language');
+
+    prefs.setString('user_lang', language);
   }
 
   void sendFeedback([bool error]) async {
@@ -234,4 +240,24 @@ mixin UtilityModel on ConnectedModel {
       }
     }
   }
+
+  void speak(String text) async { 
+
+    final String lang = _userLang;
+
+    await _textToSpeech.setPitch(1.0);
+    await _textToSpeech.setSpeechRate(0.8);
+
+    if (lang == 'es') {
+      print('Pronunciando la palabra $text en Spanish con acento Enlgish');
+      _textToSpeech.setLanguage('en_US');
+
+    } else {
+      print('Pronunciando la palabra $text en English con acento Spanish');
+      _textToSpeech.setLanguage('es_ES');
+    }
+
+    _textToSpeech.speak(text);
+  }
+
 }

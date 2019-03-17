@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
 import 'package:moblie/model/palabra.model.dart';
 import 'package:moblie/widgets/ui/elements/slim-card.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class PalabraGuardadaCard extends StatelessWidget {
   final Palabra palabra;
-  final MainModel model;
 
-  PalabraGuardadaCard(this.palabra, this.model);
+  PalabraGuardadaCard(this.palabra);
 
   Widget build(BuildContext context) {
-    
+
     Palabra singlePalabra =  Palabra(
       palabra: palabra.palabra,
       traduccion: palabra.traduccion,
@@ -30,26 +30,33 @@ class PalabraGuardadaCard extends StatelessWidget {
       tipo: palabra.tipo,
     );
 
-    return SlimCard(
-      title: singlePalabra.palabra,
-      subtitle: singlePalabra.traduccion,
+    return ScopedModelDescendant<MainModel> (
+      builder: (BuildContext context, Widget child, MainModel model) {
+        return SlimCard(
+          title: singlePalabra.palabra,
+          subtitle: singlePalabra.traduccion,
 
-      firstAvatar: CircleAvatar(
-		  	backgroundColor: Colors.amber,
-		  	child: Icon(Icons.volume_up, color: Colors.white),
-		  ),
+          firstAvatar: CircleAvatar(
+		      	backgroundColor: Colors.amber,
+		      	child: Icon(Icons.volume_up, color: Colors.white),
+		      ),
 
-      secondtAvatar: CircleAvatar(
-        backgroundColor: Colors.red,
-        child: Icon(Icons.info_outline, color: Colors.white),
-      ),
+          secondtAvatar: CircleAvatar(
+            backgroundColor: Colors.red,
+            child: Icon(Icons.info_outline, color: Colors.white),
+          ),
 
-      firstFunction: () {
-        model.speak(singlePalabra.palabra);
+          firstFunction: () {
+            // model.speak(
+            //   text: singlePalabra.palabra,
+            //   lang: model.speechLang
+            // );
+          },
+
+          palabra: singlePalabra,
+          model: model,
+        );
       },
-
-      palabra: singlePalabra,
-      model: model,
     );
   }
 }

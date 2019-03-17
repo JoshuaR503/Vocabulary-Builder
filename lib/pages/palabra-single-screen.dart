@@ -5,7 +5,6 @@ import 'package:moblie/model/main.dart';
 import 'package:moblie/model/palabra.model.dart';
 import 'package:moblie/utils/settings.dart';
 
-
 import 'package:moblie/widgets/ui/divider.dart';
 import 'package:moblie/widgets/ui/head-card.dart';
 import 'package:moblie/widgets/ui/text/row-item.dart';
@@ -21,7 +20,6 @@ class SinglePalabraScreen extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {
-
     return ScopedModelDescendant <MainModel> (
       builder: (BuildContext context, Widget child, MainModel model) {
         return Scaffold(
@@ -39,70 +37,71 @@ class SinglePalabraScreen extends StatelessWidget  {
               )
             ],
           ),
-          body: _renderMainContent(context),
+          body: ListView(
+            children: <Widget>[
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Column(
+                    children: <Widget>[              
+                      _buildPalabraBasicInfoCard(context),
+                      Separator.spacer(),
+                      _buildConjugationCard(context),
+                      Separator.spacer(),
+                      _buildPalabraForms(context),
+                      Separator.spacer(),
+                      _buildPalabraDefinitionCard(context),
+                      Separator.spacer(),
+                      _builPalabraExamplesCard(context),
+                      Separator.spacer(),
+                      _buildPalabraAntSynCard(context),
+                      Separator.spacer(),
+                      _buildNoteCard(context),
+                    ]
+                  ),
+                ),
+              )
+            ],
+          )
         );
       },
     );
   }
-  // Icon(Icons.favorite_border, color: Colors.white,)
-  Widget _renderMainContent(context) {
-    return ListView(
-      children: <Widget>[
-        Container(
-          child: Padding(
-            padding: EdgeInsets.all(12.0),
-            child: Column(
-              children: <Widget>[              
-                // _buildPalabraBasicInfoCard(),
-                Separator.spacer(),
-                _buildConjugationCard(context),
-                _buildPalabraSinPlu(),
-                _buildPalabraDefinitionCard(),
-                Separator.spacer(),
-                _builPalabraExamplesCard(),
-                Separator.spacer(),
-                _buildPalabraAntSynCard(), 
-                Separator.spacer(),
-                _buildNoteCard(),
-              ]
-            ),
+  Widget _buildPalabraBasicInfoCard(BuildContext context) {
+    String notAvailable = FlutterI18n.translate(context, 'single_palabra.not_available.title');
+    String palabra = _palabra.palabra;
+    String traduccion = _palabra.traduccion;
+    String kind = _palabra.tipo;
+
+    return SinglePalabraCard(
+      title: FlutterI18n.translate(context, 'single_palabra.extra_details.title'),
+      body: Column(
+        children: <Widget>[
+          RowItem(
+            title: FlutterI18n.translate(context, 'single_palabra.extra_details.first_tiem'),
+            subtitle: palabra,
+            copyClipboard: false,
           ),
-        )
-      ],
+          
+          Separator.spacer(),
+          RowItem(
+            title: FlutterI18n.translate(context, 'single_palabra.extra_details.second_item'),
+            subtitle: traduccion,
+            copyClipboard: false,
+          ),
+
+          Separator.spacer(),
+          RowItem(
+            title: FlutterI18n.translate(context, 'single_palabra.extra_details.third_item'),
+            subtitle: kind == null ? notAvailable : kind,
+            copyClipboard: false,
+          ),
+        ],
+      ),
     );
   }
 
-  // Widget _buildPalabraBasicInfoCard() {
-  //   return SinglePalabraCard(
-  //     title: 'Detalles adicionales',
-  //     body: Column(
-  //       children: <Widget>[
-  //         RowItem(
-  //           'Palabra', 
-  //           _palabra.palabra,
-  //           false
-  //         ),
-          
-  //         Separator.spacer(),
-  //         RowItem(
-  //           'Traducción',
-  //           _palabra.traduccion,
-  //           false
-  //         ),
-
-  //         Separator.spacer(),
-  //         RowItem(
-  //           'Categoría gramatical', 
-  //           _palabra.tipo == null ? 'No disponible' : _palabra.tipo,
-  //           false
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
   Widget _buildConjugationCard(BuildContext context) {
-        
     Widget card = Container();
     String palabra =_palabra.palabra;
 
@@ -126,25 +125,27 @@ class SinglePalabraScreen extends StatelessWidget  {
             ),
 
             Separator.spacer(),
-
             RowItem(
               title: FlutterI18n.translate(context, 'single_palabra.verb_card.third_person'),
               subtitle: pasado,
               copyClipboard: true
             ),
 
+            Separator.spacer(),
             RowItem(
               title: FlutterI18n.translate(context, 'single_palabra.verb_card.present'),
               subtitle: presente,
               copyClipboard: true
             ),
 
+            Separator.spacer(),
             RowItem(
               title: FlutterI18n.translate(context, 'single_palabra.verb_card.past'),
               subtitle: pasado,
               copyClipboard: true
             ),
 
+            Separator.spacer(),
             RowItem(
               title: FlutterI18n.translate(context, 'single_palabra.verb_card.future'),
               subtitle: futuro,
@@ -154,51 +155,11 @@ class SinglePalabraScreen extends StatelessWidget  {
         ),
       );
     }
-    
-    // // AINT GON WORK
-    // if (futuro == 'Verbo') {
-    //   card = SinglePalabraCard(
-    //     title: 'Conjugación de ${_palabra.palabra}',
-    //     body: Column(
-    //       children: <Widget>[
-    //         RowItem(
-    //           'Presente Continuo',
-    //           _palabra.presenteContinuo ?? _palabra.presenteContinuo,
-    //           true
-    //         ),
-    //         Separator.spacer(),
-    //         RowItem(
-    //           'Tercera Persona',
-    //           _palabra.thirdPerson ?? _palabra.thirdPerson,
-    //           true
-    //         ),
-    //         Separator.spacer(),
-    //         RowItem(
-    //           'Presente',
-    //           _palabra.presente ?? _palabra.presente,
-    //           true
-    //         ),
-    //         Separator.spacer(),
-    //         RowItem(
-    //           'Pasado', 
-    //           _palabra.pasado ?? _palabra.pasado,
-    //           true
-    //         ),
-    //         Separator.spacer(),
-    //         RowItem(
-    //           'Futuro', 
-    //           _palabra.futuro ?? _palabra.futuro,
-    //           true
-    //         ),
-    //       ],
-    //     ),
-    //   );
-    // } 
 
     return card;
   }
 
-  Widget _buildPalabraSinPlu() {
+  Widget _buildPalabraForms(BuildContext context) {
 
     Widget card = Container();
 
@@ -207,9 +168,9 @@ class SinglePalabraScreen extends StatelessWidget  {
  
     if (plural != null && singular != null) {
       card = HeadCard(
-        title: '${_palabra.palabra} en Plural',
+        title: FlutterI18n.translate(context, 'single_palabra.p_s.first_item', {'palabra': _palabra.palabra}),
         subtitle: plural,
-        title2: '${_palabra.palabra} en Singular',
+        title2: FlutterI18n.translate( context, 'single_palabra.p_s.second_item', {'palabra': _palabra.palabra}),
         subtitle2: singular
       );
     }
@@ -217,44 +178,49 @@ class SinglePalabraScreen extends StatelessWidget  {
     return card;
   }
 
-  Widget _buildPalabraDefinitionCard() {
+  Widget _buildPalabraDefinitionCard(BuildContext context) {
 
     Widget card = Container();
 
-    if (_palabra.definicion != null && _palabra.definicionEs != null) {
-      card = Column(
-        children: <Widget>[
-          Separator.spacer(),
-          HeadCard (
-            title: 'Breve definición:',
-            subtitle: _palabra.definicion,
-            title2: 'Breve definición en Español:',
-            subtitle2: _palabra.definicionEs
-          )
-        ],
+    String definicion = _palabra.definicion;
+    String definicionEs = _palabra.definicionEs;
+
+    if (definicion != null && definicionEs != null) {
+      card = HeadCard (
+        title: FlutterI18n.translate(context, 'single_palabra.definition.first_item'),
+        subtitle: definicion,
+        title2: FlutterI18n.translate(context, 'single_palabra.definition.second_item'),
+        subtitle2: _palabra.definicionEs
       );
     }
     
     return card;
   }
 
-  Widget _builPalabraExamplesCard() {
+  Widget _builPalabraExamplesCard(BuildContext context) {
+
+    String ejemplos = _palabra.ejemplos;
+    String sinonimos = _palabra.sinonimos;
+
+    String notAvailable = FlutterI18n.translate(context, 'single_palabra.not_available.title');
+
     return HeadCard(
-      title: '${_palabra.palabra} en una oración:',
-      subtitle: _palabra.ejemplos == null ? 'No disponible' : _palabra.ejemplos,
-      title2: 'Palabras similares',
-      subtitle2: _palabra.sinonimos == null ? 'No disponible' : _palabra.sinonimos,
+      title: FlutterI18n.translate(context, 'single_palabra.example.first_item', {'palabra': _palabra.palabra}),
+      subtitle: ejemplos == null ? notAvailable : ejemplos,
+      title2: FlutterI18n.translate(context, 'single_palabra.example.second_item'),
+      subtitle2: sinonimos == null ? notAvailable : sinonimos,
     );
   }
 
-  Widget _buildPalabraAntSynCard() {
+  Widget _buildPalabraAntSynCard(BuildContext context) {
 
     Widget card = Container();
 
-    String antonyms = 'Antónimos de ${_palabra.palabra}:';
-    String synonyms = 'Sinónimos de ${_palabra.palabra}:';
-    String ns = 'Parece que no hay sinónimos disponibles para esta palabra.';
-    String na = 'Parece que no hay antónimos disponibles para esta palabra.';
+    String antonyms = FlutterI18n.translate(context, 'single_palabra.antonyms', {'palabra': _palabra.palabra});
+    String synonyms = FlutterI18n.translate(context, 'single_palabra.synonyms', {'palabra': _palabra.palabra});
+    
+    String ns = FlutterI18n.translate(context, 'single_palabra.not_available.ns');
+    String na = FlutterI18n.translate(context, 'single_palabra.not_available.na');
 
     String antonimos = _palabra.antonimos;
     String sinonimos = _palabra.sinonimos;
@@ -267,7 +233,7 @@ class SinglePalabraScreen extends StatelessWidget  {
         subtitle2: sinonimos
       );
     } else if (antonimos == null && sinonimos != null) {
-      card = HeadCard(
+      card =HeadCard(
         title: antonyms,
         subtitle: na,
         title2: synonyms,
@@ -285,22 +251,19 @@ class SinglePalabraScreen extends StatelessWidget  {
     return card;
   }
 
+  Widget _buildNoteCard(BuildContext context) {
 
-
-  Widget _buildNoteCard() {
     Widget card = Container();
 
-    if (_palabra.nota != null) {
-      card = Column(
-        children: <Widget>[
-          Separator.spacer(),
-          HeadCard (
-            title: 'Nota',
-            subtitle: _palabra.nota,
-            title2: 'Traducción Español:',
-            subtitle2: _palabra.traduccion
-          )
-        ],
+    String nota = _palabra.nota;
+    String spanishTranslation = _palabra.traduccion;
+
+    if (nota != null && spanishTranslation != null) {
+      card = HeadCard (
+        title: FlutterI18n.translate(context, 'single_palabra.note'),
+        subtitle: nota,
+        title2: FlutterI18n.translate(context, 'single_palabra.spanish_translation'),
+        subtitle2: spanishTranslation
       );
     }
 

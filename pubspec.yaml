@@ -54,7 +54,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/icon.png
+    - assets/logo1.png
     - assets/books.png
     - assets/shield.png
     - assets/heart.png

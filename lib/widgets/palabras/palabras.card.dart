@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
+
 import 'package:moblie/model/palabra.model.dart';
 import 'package:moblie/pages/palabra-single-screen.dart';
-import 'package:moblie/utils/settings.dart';
+
 import 'package:scoped_model/scoped_model.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class PalabraCard extends StatelessWidget {
   final Palabra palabra;
+  final String language;
   
-  PalabraCard(this.palabra);
+  PalabraCard(this.palabra, this.language);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class PalabraCard extends StatelessWidget {
           child: Card(
             child: Column(
               children: <Widget>[
-                _buildDataRow(context, model),
+                _buildDataRow(context, model, language),
                 _buildActionButtons(context, model)
               ],
             ),
@@ -29,51 +32,86 @@ class PalabraCard extends StatelessWidget {
     );
   }
 
-  Widget _buildDataRow(BuildContext context, MainModel model) {
+  Widget _buildDataRow(BuildContext context, MainModel model, String language) {
 
     TextStyle style = TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300);
+
+    Widget content;
+    Widget iconButton = IconButton(
+      onPressed: () => _save(context, palabra, model),
+      icon: Icon(Icons.favorite_border),
+      color: Colors.red,
+    );
+
+    if (model.userLang == 'es') {
+      content = Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          ButtonBar(
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Padding(
+                    child: Text(
+                      palabra.palabra,
+                      style: style
+                    ),
+                    padding: EdgeInsets.only(left: 16.0),
+                  ),
+
+                  iconButton
+                ],
+              ),
+            ],
+          ),
+          SizedBox(height: 4.0),
+          Padding(
+            padding: EdgeInsets.only(bottom: 10.0),
+            child: Text(palabra.traduccion),
+          )
+        ],
+      );
+    } else {
+      content = Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          ButtonBar(
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Padding(
+                    child: Text(
+                      palabra.traduccion,
+                      style: style
+                    ),
+                    padding: EdgeInsets.only(left: 16.0),
+                  ),
+                  iconButton
+                ],
+              ),
+            ],
+          ),
+          SizedBox(height: 4.0),
+          Padding(
+            padding: EdgeInsets.only(bottom: 10.0),
+            child: Text(palabra.palabra),
+          )
+        ],
+      );
+    }
 
     return Container(
       padding: EdgeInsets.all(10.0),
       width: double.infinity,
-
       child: Material(
         elevation: 5.0,
         borderRadius: BorderRadius.circular(7.0),
-
         child: Container(
           height: 120.0,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-
-              ButtonBar(
-                alignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Padding(
-                        child: Text(palabra.palabra, style: style),
-                        padding: EdgeInsets.only(left: 16.0),
-                      ),
-                      IconButton(
-                        onPressed: () => _save(context, palabra, model),
-                        icon: Icon(Icons.favorite_border),
-                        color: Colors.red,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              SizedBox(height: 4.0),
-              Padding(
-                padding: EdgeInsets.only(bottom: 10.0),
-                child: Text(palabra.traduccion),
-              )
-            ],
-          ),
-        ),
+          child: content
+        )
       )
     );
   }
@@ -83,12 +121,14 @@ class PalabraCard extends StatelessWidget {
       alignment: MainAxisAlignment.center,
       children: <Widget>[
         FlatButton(
-          onPressed: () => model.speak(palabra.palabra),   
+          onPressed: () => model.speak(
+            model.userLang == 'es' ? palabra.palabra :palabra.traduccion ,
+          ),
           child: Row(
             children: <Widget>[
               Padding(
                 child: Text(
-                  buttonName,
+                  FlutterI18n.translate(context, 'home.button_name'),
                   style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
                 ),
                 padding: EdgeInsets.only(right: 8.0),
@@ -107,8 +147,8 @@ class PalabraCard extends StatelessWidget {
     .then((response) {
       if (response != 0) {
          _createSnackBar(
-          title: onSuccessMessage,
-          label: 'Ok!',
+          title: FlutterI18n.translate(context, 'snackbar.success_message_clipboard'),
+          label: FlutterI18n.translate(context, 'snackbar.success_message_clipboard_label'),
           context: context
         );
 
@@ -117,8 +157,8 @@ class PalabraCard extends StatelessWidget {
     })
     .catchError((error) {
       _createSnackBar(
-        title: onErrorMessage,
-        label: 'Ok!',
+        title: FlutterI18n.translate(context, 'snackbar.error_message_clipboard'),
+        label: FlutterI18n.translate(context, 'snackbar.error_message_clipboard_label'),
         context: context
       );
 

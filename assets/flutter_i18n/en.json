@@ -1,5 +1,11 @@
 {
     "app": "QuickGlish",
+
+    "welcome_screen": {
+        "title": "Welcome!",
+        "subtitle": "What language are you learning?"
+    },
+
     "home": {
         "title": "Home",
         "appbar": {
@@ -17,11 +23,18 @@
 
             "show_slide": "Show Intro Slide",
             "credits": "Credits"
-        }
+        },
+
+        "button_name": "Listen Pronunciation"
+    },
+
+    "settings": {
+        "title": "Settings",
+        "option_one": "Change Language"
     },
 
     "saved_words": {
-        "title": "Favorite Words",
+        "title": "Saved Words",
         "appbar": {
             "icons": {
                 "search_tooltip": "Word Search"
@@ -37,8 +50,46 @@
             "present": "Present",
             "past": "Past",
             "future": "Future"
+        },
+
+        "p_s": {
+            "first_item": "{palabra} in Plural",
+            "second_item": "{palabra} in Singular"
+        },
+
+        "definition": {
+            "first_item": "Quick definition:",
+            "second_item": "Quick definition in Spanish:"
+        },
+
+        "example": {
+            "first_item": "{palabra} used in a sentence",
+            "second_item": "Similar words"
+        },
+
+        "antonyms": "Antonyms of {palabra}:",
+        "synonyms": "Synonyms of {palabra}:",
+
+        "note": "Note",
+        "spanish_translation": "Spanish Translation:",
+
+        "extra_details": {
+            "title": "Additional details",
+            "first_tiem": "Word",
+            "second_item": "Translation",
+            "third_item": "Grammatical category"
+        },
+
+        "not_available": {
+            "title": "Not available",
+            "ns": "The database couldn't find synonyms for this word.",
+            "na": "The database couldn't find antonyms for this word."
         }
+
+        
     },
+
+    "search": "Search",
 
     "question_answers": {
         "title": "Question and Answers",
@@ -64,7 +115,7 @@
         "plural": {
             "question": "What does plural mean?",
             "title": "Brief definition: ",
-            "answer": "Plural, refers to more than one thing. Examples: mushrooms, trees, houses. It is the opposite to singular (antonym)"
+            "answer": "Plural refers to more than one thing. Examples: mushrooms, trees, houses. It is the opposite to singular (antonym)"
         },
 
         "antonyms": {
@@ -100,7 +151,7 @@
         "adjective": {
             "question": "What is an adjective?",
             "title": "Brief definition:",
-            "answer": "An adjective is the word that modifies the noun, it is the one that indicates some characteristic or quality of the noun. Example: green, tall, big."
+            "answer": "An adjective is a word that modifies the noun, it is the one that indicates some characteristic or quality of the noun. Example: green, tall, big."
         },
 
         "adverb": {
@@ -128,7 +179,7 @@
 
         "no_volume": {
             "title": "I can't hear anything!",
-            "subtitle": "In some devices, the application may show a strange behavior, but you can solve it with the following steps.",
+            "subtitle": "In some devices, the application may show strange behavior, but you can solve it with the following steps.",
 
             "response_one": "Be patient.",
             "solution_one": "This application could take a while to respond, it may take up to 20 seconds, please be patient.",
@@ -136,7 +187,7 @@
             "response_two": "Check the volume.",
             "solution_two": "It might be obvious, but have you tried increasing the volume?",
 
-            "response_three": "Do Not Distrub.",
+            "response_three": "Do Not Disturb.",
             "solution_three": "It is might be possible that you have activated the 'Do not disturb' mode. Try turning it off",
 
             "response_four": "Last check",
@@ -166,6 +217,42 @@
             "subtitle": "Tap the icon to find out more",
             "subtitle_two": "Icons made by Freepik from www.flaticon.com"
         }
+    },
+
+    "slide_show": {
+        "slide_one": {
+            "title": "VOCABULARY",
+            "description": "Increase your vocabulary with random words in a straightforward way."
+        },
+
+        "slide_two": {
+            "title": "LEARN ON THE GO",
+            "description": "With 15 minutes a day you can learn new words."
+        },
+
+        "slide_three": {
+            "title": "MODO OFFLINE",
+            "description": "If you like a word, touch the heart next to it to make it available offline."
+        },
+
+        "slide_four": {
+            "title": "JUST TAP IT",
+            "description": "To get more information of a word, just tap it."
+        },
+
+        "options": {
+            "skip": "SKIP",
+            "done": "DONE",
+            "next": "NEXT"
+        }
+    },
+
+    "snackbar": {
+        "success_message_clipboard": "Text copied to clipboard",
+        "success_message_clipboard_label": "Ok!",
+
+        "error_message_clipboard": "There was an error copying to clipboard",
+        "error_message_clipboard_label": "Ok!"
     },
 
     "error_message": {

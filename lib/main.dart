@@ -13,6 +13,8 @@ import 'package:moblie/pages/others/question-screen.dart';
 import 'package:moblie/pages/palabra-guardada-screen.dart';
 import 'package:moblie/pages/palabras-screen.dart';
 import 'package:moblie/pages/screens/intro-screen.dart';
+import 'package:moblie/pages/screens/settings.dart';
+import 'package:moblie/pages/screens/welcome-screen.dart';
 import 'package:moblie/utils/colors.dart';
 import 'package:moblie/utils/settings.dart';
 
@@ -70,10 +72,14 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
           title: appname,
           debugShowCheckedModeBanner: false,
           routes: {
-            '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : IntroScreen(),
+            '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : WelcomeScreen(),
             // '/': (BuildContext context) => PalabrasScreen(model),
+            // '/': (BuildContext context) => WelcomeScreen(),
+            
             '/home': (BuildContext context) => PalabrasScreen(model),
             '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
+            '/settings': (BuildContext context) => SettingScreen(),
+
             '/creditos': (BuildContext context) => CreditoScreen(),
             '/question': (BuildContext context) => QuestionScreen(),
             '/help':  (BuildContext context) => HelpScreen(),

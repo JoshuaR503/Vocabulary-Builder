@@ -26,3 +26,16 @@ const primaryLightColor = const Color(0xFF122C34);
 const accentLightColor = const Color(0xFF122C34);
 const backgroundLightColor = const Color(0x0D1B2A);
 const cardLightColor = const Color(0xFF122C34);
+
+// ===============================================================
+// // Colors for the Welcome Screen
+// ===============================================================
+const colorTopLeft = const Color(0xFF364250);
+const colorButtonRight = const Color(0xFF161C2C);
+
+// const colorTopLeft = const Color(0xFF692A6F);
+// const colorButtonRight = const Color(0xFFBF406A);
+
+// const colorTopLeft = const Color(0xFF2C1F47);
+// const colorButtonRight = const Color(0xFF161C2C);
+const transparent = const Color(0x00000000);

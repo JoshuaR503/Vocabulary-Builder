@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
 import 'package:moblie/pages/screens/error-screen.dart';
 import 'package:moblie/utils/settings.dart';
-import 'package:moblie/widgets/palabras/palabras.dart';
+import 'package:moblie/widgets/palabras/palabras.card.dart';
 import 'package:moblie/widgets/ui/divider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -22,7 +22,6 @@ class PalabrasScreen extends StatefulWidget {
 
 class _PalabrasScreenState extends State<PalabrasScreen> {
 
-
   @override
   void initState() {
     widget.model.obtenerPalabras(loadingIndicator: true);
@@ -34,13 +33,20 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
       builder: (BuildContext context, Widget child, MainModel model) {
 
         Widget content = ErrorScreen(
-          message: FlutterI18n.translate(context, 'error_message.no_server_connection.message'),
           pathImage: 'assets/warning.png',
+          message: FlutterI18n.translate(context, 'error_message.no_server_connection.message'),
           fixMessage: FlutterI18n.translate(context, 'error_message.no_server_connection.solution'),
         );
 
         if (model.allPalabras.length > 0 && !model.isLoading) {
-          content = Palabras();
+
+          // Create ListView for all Palabras
+          content =  ListView.builder(
+            itemCount: model.allPalabras.length,
+            itemBuilder: (BuildContext context, int index) => 
+              PalabraCard(model.allPalabras[index], model.userLang)
+          );
+
         } else if (model.isLoading) {
           content = Center(child: CircularProgressIndicator());
         }
@@ -95,6 +101,12 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
           ListTile(
             title: Text(FlutterI18n.translate(context, 'home.drawer.credits')),
             onTap: () => Navigator.pushNamed(context, '/creditos'),
+          ),
+
+          Separator.divider(),
+          ListTile(
+            title: Text(FlutterI18n.translate(context, 'settings.title')),
+            onTap: () => Navigator.pushNamed(context, '/settings'),
           ),
         ],
       ),

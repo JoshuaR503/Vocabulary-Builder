@@ -12,17 +12,6 @@ class WelcomeScreen extends StatelessWidget {
       builder: (BuildContext context, Widget child, MainModel model) {
         return Scaffold(
           body: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                stops: [0.1, 0.4],
-                colors: [
-                  colorTopLeft,
-                  colorButtonRight
-                ],
-              ),
-            ),
 
             width: double.infinity,
             height: double.infinity,
@@ -53,7 +42,7 @@ class WelcomeScreen extends StatelessWidget {
                 Separator.spacer(height: 20.0),
                 _renderButton(
                   name: 'Inglés',
-                  language: 'en',
+                  language: 'es',
                   model: model,
                   context: context
                 ),
@@ -61,7 +50,7 @@ class WelcomeScreen extends StatelessWidget {
                 Separator.spacer(height: 20.0),
                 _renderButton(
                   name: 'Español',
-                  language: 'es',
+                  language: 'en',
                   model: model,
                   context: context
                 )
@@ -80,7 +69,7 @@ class WelcomeScreen extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(name),
         width: 200,
-        height: 50,
+        height: 60,
       ),
       onPressed: () {
         model.setUserPreferedLanguage(language: language);

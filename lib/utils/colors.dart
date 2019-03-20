@@ -19,6 +19,8 @@ const nullIcon = const Color(0xFF607D8B);
 const highlightColor = const Color(0xFF424242);
 const dividerColor = const Color(0xFF616161);
 
+const yellowAmbarColor = const Color(0XFFFEBE2D);
+
 // ===============================================================
 // Light theme
 // ===============================================================
@@ -30,8 +32,8 @@ const cardLightColor = const Color(0xFF122C34);
 // ===============================================================
 // // Colors for the Welcome Screen
 // ===============================================================
-const colorTopLeft = const Color(0xFF364250);
-const colorButtonRight = const Color(0xFF161C2C);
+const colorTopLeft = const Color(0xFF1F4E5A);
+const colorButtonRight = const Color(0xFF009C8E);
 
 // const colorTopLeft = const Color(0xFF692A6F);
 // const colorButtonRight = const Color(0xFFBF406A);

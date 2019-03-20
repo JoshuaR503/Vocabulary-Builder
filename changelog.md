@@ -167,3 +167,6 @@ All notable changes to this project will be documented in this file.
 - Refactored little tiny code at Slide Screen
 - Added SPANISH AND ENGLISH SUCCESFULLY AT THE PALABRA SCREEN 
 - ADDED ENGLISH SUPPORT
+
+## 34th commit
+- Cleaning before realease

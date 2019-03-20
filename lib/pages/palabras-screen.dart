@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
+
 import 'package:moblie/pages/screens/error-screen.dart';
+import 'package:moblie/utils/colors.dart';
 import 'package:moblie/utils/settings.dart';
+
 import 'package:moblie/widgets/palabras/palabras.card.dart';
 import 'package:moblie/widgets/ui/divider.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
+
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import 'package:share/share.dart';
 
@@ -26,6 +30,45 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
   void initState() {
     widget.model.obtenerPalabras(loadingIndicator: true);
     super.initState();
+  }
+
+  @override 
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: _buildDrawer(),
+      appBar: AppBar(
+        title: Text(FlutterI18n.translate(context, 'home.title')),
+        centerTitle: true,
+        elevation: 0.0,
+        actions: <Widget>[
+
+          Tooltip(
+            message: FlutterI18n.translate(context, 'home.appbar.icons.refresh_tooltip'),
+            child: IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () => widget.model.obtenerPalabras(loadingIndicator: true)
+            ),
+          ),
+          
+          Tooltip(
+            message: FlutterI18n.translate(context, 'home.appbar.icons.heart_tooltip'),
+            child: IconButton(
+              icon: Icon(Icons.favorite_border),
+              onPressed: () => Navigator.pushNamed(context, '/saved')
+            ),
+          )
+        ],
+      ),
+      body: _buildMainContent()
+    );
+    //   floatingActionButton: FloatingActionButton(
+    //     child: Icon(
+    //       Icons.refresh,
+    //     ),
+    //     tooltip:  FlutterI18n.translate(context, 'home.appbar.icons.refresh_tooltip'),
+    //     onPressed: () => widget.model.obtenerPalabras(loadingIndicator: true),
+    //   ),
+    // );  
   }
   
   Widget _buildMainContent() {
@@ -68,6 +111,11 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             title: Text(FlutterI18n.translate(context, 'home.drawer.title')),
           ),
 
+          // ListTile(
+          //   title: Text(FlutterI18n.translate(context, 'settings.title')),
+          //   onTap: () => Navigator.pushNamed(context, '/settings'),
+          // ),
+
           ListTile(
             title: Text(FlutterI18n.translate(context, 'question_answers.title')),
             onTap: () => Navigator.pushNamed(context, '/question'),
@@ -102,45 +150,8 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             title: Text(FlutterI18n.translate(context, 'home.drawer.credits')),
             onTap: () => Navigator.pushNamed(context, '/creditos'),
           ),
-
-          Separator.divider(),
-          ListTile(
-            title: Text(FlutterI18n.translate(context, 'settings.title')),
-            onTap: () => Navigator.pushNamed(context, '/settings'),
-          ),
         ],
       ),
     );
-  }
-
-  @override 
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: _buildDrawer(),
-      appBar: AppBar(
-        title: Text(FlutterI18n.translate(context, 'home.title')),
-        centerTitle: true,
-        elevation: 0.0,
-        actions: <Widget>[
-
-          Tooltip(
-            message: FlutterI18n.translate(context, 'home.appbar.icons.refresh_tooltip'),
-            child: IconButton(
-              icon: Icon(Icons.refresh),
-              onPressed: () => widget.model.obtenerPalabras(loadingIndicator: true)
-            ),
-          ),
-          
-          Tooltip(
-            message: FlutterI18n.translate(context, 'home.appbar.icons.heart_tooltip'),
-            child: IconButton(
-              icon: Icon(Icons.favorite_border),
-              onPressed: () => Navigator.pushNamed(context, '/saved')
-            ),
-          )
-        ],
-      ),
-      body: _buildMainContent(),
-    );  
   }
 }

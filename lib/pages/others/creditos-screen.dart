@@ -42,11 +42,6 @@ class CreditoScreen extends StatelessWidget {
             CommonTitle(FlutterI18n.translate(context, 'credits.icon_designer_two.title')),
             SubTitle(FlutterI18n.translate(context, 'credits.icon_designer_two.subtitle')),
             ListCell(
-              leading: Image.asset(
-                'assets/running-man.png',
-                height: 50.0,
-                width: 50.0,
-              ),
               title: FlutterI18n.translate(context, 'credits.icon_designer_two.title_two'),
               subtitle: FlutterI18n.translate(context, 'credits.icon_designer_two.subtitle_two'),
               onTap: () => FlutterWebBrowser.openWebPage(url: 'https://www.flaticon.com/authors/freepik')

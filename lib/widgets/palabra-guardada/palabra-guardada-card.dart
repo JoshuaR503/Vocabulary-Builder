@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
 import 'package:moblie/model/palabra.model.dart';
+import 'package:moblie/utils/colors.dart';
 import 'package:moblie/widgets/ui/elements/slim-card.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -37,7 +38,7 @@ class PalabraGuardadaCard extends StatelessWidget {
           subtitle: singlePalabra.traduccion,
 
           firstAvatar: CircleAvatar(
-		      	backgroundColor: Colors.amber,
+		      	backgroundColor: yellowAmbarColor,
 		      	child: Icon(Icons.volume_up, color: Colors.white),
 		      ),
 
@@ -46,13 +47,7 @@ class PalabraGuardadaCard extends StatelessWidget {
             child: Icon(Icons.info_outline, color: Colors.white),
           ),
 
-          firstFunction: () {
-            // model.speak(
-            //   text: singlePalabra.palabra,
-            //   lang: model.speechLang
-            // );
-          },
-
+          firstFunction: () => model.speak(singlePalabra.palabra),
           palabra: singlePalabra,
           model: model,
         );

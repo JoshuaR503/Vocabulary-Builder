@@ -58,12 +58,12 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            resValue("bool", "FIREBASE_ANALYTICS_DEACTIVATED", "false")
+            // resValue("bool", "FIREBASE_ANALYTICS_DEACTIVATED", "false")
         }
 
-        debug {
-            resValue("bool", "FIREBASE_ANALYTICS_DEACTIVATED", "true")
-        }
+        // debug {
+        //     resValue("bool", "FIREBASE_ANALYTICS_DEACTIVATED", "true")
+        // }
     }
 }
 

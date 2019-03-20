@@ -25,7 +25,11 @@
 
     "settings": {
         "title": "Ajustes",
-        "option_one": "Cambiar Idioma"
+        "option_one": "Cambiar Idioma",
+
+        "messages": "Porfavor reinicia la aplicación",
+
+        "change_language": "Puedes cambiar el idioma de las palabras y la pronunciación."
     },
 
     "welcome_screen": {
@@ -67,8 +71,8 @@
             "second_item": "Palabras similares"
         },
 
-        "antonyms": "Antónimos de {palabra}:",
-        "synonyms": "Sinónimos de {palabra}:",
+        "antonyms": "Antónimos de {palabra}",
+        "synonyms": "Sinónimos de {palabra}",
 
         "note": "Nota",
         "spanish_translation": "Traducción Español:",

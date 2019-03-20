@@ -30,7 +30,13 @@
 
     "settings": {
         "title": "Settings",
-        "option_one": "Change Language"
+        "option_one": "Change Language",
+
+        "messages": {
+            "title": "Please reload the application now"
+        },
+
+        "change_language": "Puedes cambiar el idioma de las palabras y la pronunciación. Por favor, cierre y abra la aplicación para que los cambios puedan tener lugar."
     },
 
     "saved_words": {
@@ -67,8 +73,8 @@
             "second_item": "Similar words"
         },
 
-        "antonyms": "Antonyms of {palabra}:",
-        "synonyms": "Synonyms of {palabra}:",
+        "antonyms": "Antonyms of {palabra}",
+        "synonyms": "Synonyms of {palabra}",
 
         "note": "Note",
         "spanish_translation": "Spanish Translation:",

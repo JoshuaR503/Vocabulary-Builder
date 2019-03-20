@@ -243,19 +243,20 @@ mixin UtilityModel on ConnectedModel {
 
   void speak(String text) async { 
 
-    final String lang = _userLang;
+    // final String lang = _userLang;
 
-    await _textToSpeech.setPitch(1.0);
-    await _textToSpeech.setSpeechRate(0.8);
+    _textToSpeech.setPitch(1.0);
+    _textToSpeech.setSpeechRate(0.8);
+    _textToSpeech.setLanguage('en_US');
 
-    if (lang == 'es') {
-      print('Pronunciando la palabra $text en Spanish con acento Enlgish');
-      _textToSpeech.setLanguage('en_US');
+    // if (lang == 'es') {
+    //   print('Pronunciando la palabra $text en Spanish con acento Enlgish');
+    //   _textToSpeech.setLanguage('en_US');
 
-    } else {
-      print('Pronunciando la palabra $text en English con acento Spanish');
-      _textToSpeech.setLanguage('es_ES');
-    }
+    // } else {
+    //   print('Pronunciando la palabra $text en English con acento Spanish');
+    //   _textToSpeech.setLanguage('es_ES');
+    // }
 
     _textToSpeech.speak(text);
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:moblie/model/main.dart';
 
 import 'package:moblie/pages/screens/error-screen.dart';
-import 'package:moblie/utils/colors.dart';
 import 'package:moblie/utils/settings.dart';
 
 import 'package:moblie/widgets/palabras/palabras.card.dart';

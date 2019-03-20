@@ -170,3 +170,6 @@ All notable changes to this project will be documented in this file.
 
 ## 34th commit
 - Cleaning before realease
+
+## 35th commit 
+- Fixing some errors

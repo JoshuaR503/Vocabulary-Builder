@@ -129,14 +129,7 @@ class QuestionScreen extends StatelessWidget {
               subtitle: FlutterI18n.translate(context, 'question_answers.adverb.answer'),
               onTap: () {},
             ),
-
-            CommonTitle(FlutterI18n.translate(context, 'question_answers.adverb.question')),
-            ListCell(
-              title: FlutterI18n.translate(context, 'question_answers.adverb.title'),
-              subtitle: FlutterI18n.translate(context, 'question_answers.adverb.answer'),
-              onTap: () {},
-            ),
-
+            
             CommonTitle(FlutterI18n.translate(context, 'question_answers.not_found.question')),
             ListCell(
               leading: Image.asset(

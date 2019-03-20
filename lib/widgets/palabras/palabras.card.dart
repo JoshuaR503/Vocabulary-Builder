@@ -116,8 +116,8 @@ class PalabraCard extends StatelessWidget {
     .then((response) {
       if (response != 0) {
          _createSnackBar(
-          title: FlutterI18n.translate(context, 'snackbar.success_message_clipboard'),
-          label: FlutterI18n.translate(context, 'snackbar.success_message_clipboard_label'),
+          title: FlutterI18n.translate(context, 'snackbar.success_saving_word'),
+          label: FlutterI18n.translate(context, 'snackbar.success_saving_word_label'),
           context: context
         );
 
@@ -126,8 +126,8 @@ class PalabraCard extends StatelessWidget {
     })
     .catchError((error) {
       _createSnackBar(
-        title: FlutterI18n.translate(context, 'snackbar.error_message_clipboard'),
-        label: FlutterI18n.translate(context, 'snackbar.error_message_clipboard_label'),
+        title: FlutterI18n.translate(context, 'snackbar.error_saving_word'),
+        label: FlutterI18n.translate(context, 'snackbar.error_saving_word_label'),
         context: context
       );
 

@@ -48,6 +48,7 @@ class PalabraGuardadaCard extends StatelessWidget {
           ),
 
           firstFunction: () => model.speak(singlePalabra.palabra),
+          
           palabra: singlePalabra,
           model: model,
         );

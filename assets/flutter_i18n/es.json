@@ -249,11 +249,17 @@
     },
 
     "snackbar": {
-        "success_message_clipboard": "Se pegó al portapapeles",
-        "success_message_clipboard_label": "Entiendo",
+        "success_message_clipboard": "la palabra se guardó con éxito",
+        "success_message_clipboard_label": "Ok!",
 
         "error_message_clipboard": "Hubo un error al intentar pegar al portapapeles",
-        "error_message_clipboard_label": "Entiendo"
+        "error_message_clipboard_label": "Ok!",
+
+        "success_saving_word": "Palabra guardada correctamente",
+        "success_saving_word_label": "Ok!",
+
+        "error_saving_word": "Hubo un error al guardar la palabra.",
+        "error_saving_word_label": "Ok!"
     },
 
     "error_message": {

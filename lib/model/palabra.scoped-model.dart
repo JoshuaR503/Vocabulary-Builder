@@ -229,7 +229,7 @@ mixin UtilityModel on ConnectedModel {
   }
 
   void sendFeedback([bool error]) async {
-
+    
     bool canVibrate = await Vibrate.canVibrate;
 
     if (canVibrate) {

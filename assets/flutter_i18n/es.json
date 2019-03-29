@@ -249,7 +249,7 @@
     },
 
     "snackbar": {
-        "success_message_clipboard": "la palabra se guardó con éxito",
+        "success_message_clipboard": "Texto copiado al portapapeles con éxito",
         "success_message_clipboard_label": "Ok!",
 
         "error_message_clipboard": "Hubo un error al intentar pegar al portapapeles",

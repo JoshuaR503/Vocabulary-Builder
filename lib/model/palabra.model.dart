@@ -2,40 +2,42 @@ import 'package:flutter/material.dart';
 
 class Palabra {
   int id;
-  String palabra;
-  String traduccion;
+  @required String palabra;
+  @required String traduccion;
+  String dificultad;
+  String primeraPersona;
+  String segundaPersona;
+  String terceraPersona;
   String pasado;
   String presente;
   String presenteContinuo;
-  String thirdPerson;
   String futuro;
-  String definicion;
-  String definicionEs;
   String sinonimos;
   String antonimos;
-  String ejemplos;
-  String tipo;
-  String plural;
-  String singular;
+  String definicion;
+  String definicion2;
+  String ejemplo;
+  String categoriaGramatical;
   String nota;
   String date;
 
   Palabra({
     @required this.palabra, 
     @required this.traduccion,
+    this.dificultad,
+    this.primeraPersona,
+    this.segundaPersona,
+    this.terceraPersona,
     this.pasado,
     this.presente,
     this.presenteContinuo,
-    this.thirdPerson,
     this.futuro,
-    this.definicion,
-    this.definicionEs,
     this.sinonimos,
     this.antonimos,
-    @required this.ejemplos,
-    @required this.tipo,
-    this.singular,
-    this.plural,
+    this.ejemplo,
+    this.definicion,
+    this.definicion2,
+    String categoriaGramatical,
     this.nota,
     this.date,
   });
@@ -43,21 +45,22 @@ class Palabra {
   Palabra.withId({
     @required this.palabra, 
     @required this.traduccion,
+    this.dificultad,
+    this.primeraPersona,
+    this.segundaPersona,
+    this.terceraPersona,
     this.pasado,
     this.presente,
     this.presenteContinuo,
-    this.thirdPerson,
     this.futuro,
-    this.definicion,
-    this.definicionEs,
     this.sinonimos,
     this.antonimos,
-    @required this.ejemplos,
-    @required this.tipo,
-    this.singular,
-    this.plural,
+    this.ejemplo,
+    this.definicion,
+    this.definicion2,
     this.nota,
     this.date,
+    String categoriaGramatical,
     this.id
   });
 
@@ -68,19 +71,20 @@ class Palabra {
     
 		map['palabra'] = palabra;
 		map['traduccion'] = traduccion;
+    map['dificultad'] = dificultad;
+    map['primeraPersona'] = primeraPersona;
+    map['segundaPersona'] = segundaPersona;
+    map['terceraPersona'] = terceraPersona;
     map['pasado'] = pasado;
     map['presente'] = presente;
     map['presenteContinuo'] = presenteContinuo;
-    map['thirdPerson'] = thirdPerson;
     map['futuro'] = futuro;
-    map['definicion'] = definicion;
-    map['definicionEs'] = definicionEs;
     map['sinonimos'] = sinonimos;
     map['antonimos'] = antonimos;
-    map['ejemplos'] = ejemplos;
-    map['tipo'] = tipo;
-    map['plural'] = plural;
-    map['singular'] = singular;
+    map['definicion'] = definicion;
+    map['definicion2'] = definicion2;
+    map['ejemplo'] = ejemplo;
+    map['categoriaGramatical'] = categoriaGramatical;
     map['nota'] = nota;
 		map['date'] = date;
 
@@ -91,20 +95,21 @@ class Palabra {
 		this.id = map['id'];
 		this.palabra = map['palabra'];
 		this.traduccion = map['traduccion'];
+    this.dificultad = map['dificultad'];
+    this.primeraPersona = map['primeraPersona'];
+    this.segundaPersona = map['segundaPersona'];
+    this.terceraPersona = map['terceraPersona'];
     this.pasado = map['pasado'];
     this.presente = map['presente'];
     this.presenteContinuo = map['presenteContinuo'];
-    this.thirdPerson = map['thirdPerson'];
     this.futuro = map['futuro'];
-    this.definicion = map['definicion'];
-    this.definicionEs = map['definicionEs'];
-    this.sinonimos = map['sinonimos'];
+    this.sinonimos =  map['sinonimos'];
     this.antonimos = map['antonimos'];
-    this.ejemplos =  map['ejemplos'];
-    this.tipo = map['tipo'];
+    this.definicion = map['definicion'];
+    this.definicion2 = map['definicion2'];
+    this.ejemplo = map['ejemplo'];
+    this.categoriaGramatical = map['categoriaGramatical'];
     this.nota = map['nota'];
-    this.plural = map['plural'];
-    this.singular = map['singular'];
 		this.date = map['date'];
 	}
 }

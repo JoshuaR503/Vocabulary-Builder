@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
-import 'package:moblie/model/main.dart';
-import 'package:moblie/model/palabra.model.dart';
-import 'package:moblie/utils/settings.dart';
+import 'package:vocabulary_builder/model/main.dart';
+import 'package:vocabulary_builder/model/palabra.model.dart';
+import 'package:vocabulary_builder/utils/settings.dart';
 
-import 'package:moblie/widgets/ui/divider.dart';
-import 'package:moblie/widgets/ui/head-card.dart';
-import 'package:moblie/widgets/ui/text/row-item.dart';
-import 'package:moblie/widgets/palabra/single-palabra-card.dart';
+import 'package:vocabulary_builder/widgets/ui/divider.dart';
+import 'package:vocabulary_builder/widgets/ui/head-card.dart';
+import 'package:vocabulary_builder/widgets/ui/text/row-item.dart';
+import 'package:vocabulary_builder/widgets/palabra/single-palabra-card.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -48,8 +48,6 @@ class SinglePalabraScreen extends StatelessWidget  {
                       Separator.spacer(),
                       _buildConjugationCard(context),
                       Separator.spacer(),
-                      _buildPalabraForms(context),
-                      Separator.spacer(),
                       _buildPalabraDefinitionCard(context),
                       Separator.spacer(),
                       _builPalabraExamplesCard(context),
@@ -71,7 +69,7 @@ class SinglePalabraScreen extends StatelessWidget  {
     String notAvailable = FlutterI18n.translate(context, 'single_palabra.not_available.title');
     String palabra = _palabra.palabra;
     String traduccion = _palabra.traduccion;
-    String kind = _palabra.tipo;
+    String kind = _palabra.categoriaGramatical;
 
     return SinglePalabraCard(
       title: FlutterI18n.translate(context, 'single_palabra.extra_details.title'),
@@ -105,13 +103,22 @@ class SinglePalabraScreen extends StatelessWidget  {
     Widget card = Container();
     String palabra =_palabra.palabra;
 
-    String presenteC =_palabra.presenteContinuo;
-    String thirdP = _palabra.thirdPerson;
-    String presente = _palabra.presente;
+
+    String primeraPersona = _palabra.primeraPersona;
+    String segundaPersona = _palabra.segundaPersona;
+    String terceraPersona = _palabra.terceraPersona;
+
+    String presente =  _palabra.presente;
+    String presenteC = _palabra.presenteContinuo;
     String pasado = _palabra.pasado;
     String futuro = _palabra.futuro;
     
-    if (presenteC != null && thirdP != null && presente != null &&  pasado != null && futuro != null) {
+    if (
+      presenteC != null && 
+      terceraPersona != null && 
+      presente != null &&  
+      pasado != null && 
+      futuro != null) {
       
       card = SinglePalabraCard(
         title: FlutterI18n.translate(context, 'single_palabra.verb_card.title', {'palabra': palabra}),
@@ -159,38 +166,22 @@ class SinglePalabraScreen extends StatelessWidget  {
     return card;
   }
 
-  Widget _buildPalabraForms(BuildContext context) {
-
-    Widget card = Container();
-
-    String singular = _palabra.singular;
-    String plural =_palabra.plural;
- 
-    if (plural != null && singular != null) {
-      card = HeadCard(
-        title: FlutterI18n.translate(context, 'single_palabra.p_s.first_item', {'palabra': _palabra.palabra}),
-        subtitle: plural,
-        title2: FlutterI18n.translate( context, 'single_palabra.p_s.second_item', {'palabra': _palabra.palabra}),
-        subtitle2: singular
-      );
-    }
-
-    return card;
-  }
 
   Widget _buildPalabraDefinitionCard(BuildContext context) {
 
     Widget card = Container();
 
     String definicion = _palabra.definicion;
-    String definicionEs = _palabra.definicionEs;
+    String definicion2 = _palabra.definicion2;
 
-    if (definicion != null && definicionEs != null) {
+    print('$definicion, $definicion2');
+
+    if (definicion != null && definicion2 != null) {
       card = HeadCard (
         title: FlutterI18n.translate(context, 'single_palabra.definition.first_item'),
         subtitle: definicion,
         title2: FlutterI18n.translate(context, 'single_palabra.definition.second_item'),
-        subtitle2: _palabra.definicionEs
+        subtitle2: definicion2
       );
     }
     
@@ -199,14 +190,14 @@ class SinglePalabraScreen extends StatelessWidget  {
 
   Widget _builPalabraExamplesCard(BuildContext context) {
 
-    String ejemplos = _palabra.ejemplos;
+    String ejemplo = _palabra.ejemplo;
     String sinonimos = _palabra.sinonimos;
 
     String notAvailable = FlutterI18n.translate(context, 'single_palabra.not_available.title');
 
     return HeadCard(
       title: FlutterI18n.translate(context, 'single_palabra.example.first_item', {'palabra': _palabra.palabra}),
-      subtitle: ejemplos == null ? notAvailable : ejemplos,
+      subtitle: ejemplo == null ? notAvailable : ejemplo,
       title2: FlutterI18n.translate(context, 'single_palabra.example.second_item'),
       subtitle2: sinonimos == null ? notAvailable : sinonimos,
     );

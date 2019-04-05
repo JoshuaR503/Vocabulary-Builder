@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'package:scoped_model/scoped_model.dart';
-import 'package:moblie/model/main.dart';
-
-import 'package:moblie/pages/screens/error-screen.dart';
-import 'package:moblie/pages/search-screen.dart';
-
-import 'package:moblie/widgets/palabra-guardada/palabra-guardada.dart';
+import 'package:vocabulary_builder/model/main.dart';
+import 'package:vocabulary_builder/pages/screens/error-screen.dart';
+import 'package:vocabulary_builder/pages/search-screen.dart';
+import 'package:vocabulary_builder/widgets/palabra-guardada/palabra-guardada.dart';
 
 class PalabraGuardadaScreen extends StatefulWidget {
   final MainModel model;

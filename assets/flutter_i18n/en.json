@@ -2,8 +2,7 @@
     "app": "QuickGlish",
 
     "welcome_screen": {
-        "title": "Welcome!",
-        "subtitle": "What language are you learning?"
+        "title": "Choose a language to study"
     },
 
     "home": {
@@ -17,7 +16,7 @@
         "drawer": {
             "title": "Options",
             "thidItem": "Share this app",
-
+            "language": "Change Language",
             "web_version": "Web Version",
             "web_feedback": "Send Feedback",
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
-import 'package:moblie/model/main.dart';
-import 'package:moblie/model/palabra.model.dart';
+import 'package:vocabulary_builder/model/main.dart';
+import 'package:vocabulary_builder/model/palabra.model.dart';
 
 import 'package:material_search/material_search.dart';
-import 'package:moblie/pages/palabra-single-screen.dart';
+import 'package:vocabulary_builder/pages/palabra-single-screen.dart';
 
 searchPalabras(BuildContext context, List list, MainModel model) {
   return MaterialPageRoute <Palabra> (

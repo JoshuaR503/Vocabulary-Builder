@@ -1,4 +1,4 @@
-package com.herokuapp.backend.another;
+package com.herokuapp.builder.vocabulary;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

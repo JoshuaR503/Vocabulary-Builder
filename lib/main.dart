@@ -6,17 +6,18 @@ import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 
-import 'package:moblie/model/main.dart';
-import 'package:moblie/pages/others/creditos-screen.dart';
-import 'package:moblie/pages/others/help-screen.dart';
-import 'package:moblie/pages/others/question-screen.dart';
-import 'package:moblie/pages/palabra-guardada-screen.dart';
-import 'package:moblie/pages/palabras-screen.dart';
-import 'package:moblie/pages/screens/intro-screen.dart';
-// import 'package:moblie/pages/screens/settings.dart';
-// import 'package:moblie/pages/screens/welcome-screen.dart';
-import 'package:moblie/utils/colors.dart';
-import 'package:moblie/utils/settings.dart';
+import 'package:vocabulary_builder/model/main.dart';
+import 'package:vocabulary_builder/pages/others/creditos-screen.dart';
+import 'package:vocabulary_builder/pages/others/help-screen.dart';
+import 'package:vocabulary_builder/pages/others/question-screen.dart';
+
+import 'package:vocabulary_builder/pages/palabra-guardada-screen.dart';
+import 'package:vocabulary_builder/pages/palabras-screen.dart';
+import 'package:vocabulary_builder/pages/screens/intro-screen.dart';
+import 'package:vocabulary_builder/pages/screens/welcome-screen.dart';
+
+import 'package:vocabulary_builder/utils/colors.dart';
+import 'package:vocabulary_builder/utils/settings.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
@@ -42,7 +43,7 @@ class AmericanEnglishWords extends StatefulWidget {
 
 class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
 
-  FirebaseAnalytics _analytics = FirebaseAnalytics();
+  // FirebaseAnalytics _analytics = FirebaseAnalytics();
 
   ThemeData _buildTheme() => ThemeData(
     brightness: Brightness.dark,
@@ -57,34 +58,30 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
 
   @override
   Widget build(BuildContext context) {
-    
+
     return ScopedModel <MainModel> (
       model: model,
       child: DynamicTheme(
         data: (brightness) => _buildTheme(),
         themedWidgetBuilder: (context, theme) => MaterialApp(
 
-          navigatorObservers: [
-            FirebaseAnalyticsObserver(analytics: _analytics),
-          ],
+          // navigatorObservers: [
+          //   FirebaseAnalyticsObserver(analytics: _analytics),
+          // ],
 
           theme: theme,
           title: appname,
           debugShowCheckedModeBanner: false,
           routes: {
-            '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : IntroScreen(),
-            // '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : WelcomeScreen(),
-            // '/': (BuildContext context) => PalabrasScreen(model),
-            // '/': (BuildContext context) => WelcomeScreen(),
-      
+            // '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : IntroScreen(),
+            '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : WelcomeScreen(),
             '/home': (BuildContext context) => PalabrasScreen(model),
             '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
-            // '/settings': (BuildContext context) => SettingScreen(),
-
             '/creditos': (BuildContext context) => CreditoScreen(),
             '/question': (BuildContext context) => QuestionScreen(),
             '/help':  (BuildContext context) => HelpScreen(),
             '/intro':  (BuildContext context) => IntroScreen(),
+            '/lang': (BuildContext context) => WelcomeScreen(),
           },
           localizationsDelegates: [
             FlutterI18nDelegate(false, 'en'),

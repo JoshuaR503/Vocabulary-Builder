@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
-import 'package:moblie/model/main.dart';
-import 'package:moblie/model/palabra.model.dart';
-import 'package:moblie/pages/palabra-single-screen.dart';
+import 'package:vocabulary_builder/model/main.dart';
+import 'package:vocabulary_builder/model/palabra.model.dart';
+import 'package:vocabulary_builder/pages/palabra-single-screen.dart';
 
 class SlimCard extends StatefulWidget {
 

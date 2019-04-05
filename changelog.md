@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [36th commit] - 2019-04-4
+### Changed
+- Packages routes
+- App version
+- App id
+
+### Added
+- Support for Spanish and English
+- A new screen to change language
+
 ### First commit
 - The HTTP request to GET added
 - First theme and Design added

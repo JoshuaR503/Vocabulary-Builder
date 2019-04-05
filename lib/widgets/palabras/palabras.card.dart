@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moblie/model/main.dart';
-
-import 'package:moblie/model/palabra.model.dart';
-import 'package:moblie/pages/palabra-single-screen.dart';
+import 'package:vocabulary_builder/model/main.dart';
+import 'package:vocabulary_builder/model/palabra.model.dart';
+import 'package:vocabulary_builder/pages/palabra-single-screen.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -53,7 +52,7 @@ class PalabraCard extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   child: Text(
-                    model.userLang == 'es' ? palabra.traduccion : palabra.palabra,
+                    model.userLang == 'es' ? palabra.palabra : palabra.traduccion,
                     style: style
                   ),
                   padding: EdgeInsets.only(left: 16.0),
@@ -66,7 +65,7 @@ class PalabraCard extends StatelessWidget {
         SizedBox(height: 4.0),
         Padding(
           padding: EdgeInsets.only(bottom: 10.0),
-          child: Text(model.userLang == 'es' ? palabra.palabra : palabra.traduccion),
+          child: Text(model.userLang == 'es' ? palabra.traduccion : palabra.palabra),
         )
       ],
     );
@@ -91,7 +90,9 @@ class PalabraCard extends StatelessWidget {
       children: <Widget>[
         FlatButton(
           onPressed: () => model.speak(
-            model.userLang == 'es' ? palabra.traduccion : palabra.palabra,
+            model.userLang == 'es' 
+              ? palabra.palabra 
+              : palabra.traduccion,
           ),
           child: Row(
             children: <Widget>[
@@ -125,6 +126,9 @@ class PalabraCard extends StatelessWidget {
       }
     })
     .catchError((error) {
+
+      print(error);
+
       _createSnackBar(
         title: FlutterI18n.translate(context, 'snackbar.error_saving_word'),
         label: FlutterI18n.translate(context, 'snackbar.error_saving_word_label'),

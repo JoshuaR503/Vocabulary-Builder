@@ -1,7 +1,10 @@
 // ===============================================================
 // Url de el Servidor para hacer peticiones
 // ===============================================================
-final String apiUrl = 'https://another-backend.herokuapp.com/palabras/azar';
+final String prodURL = 'https://vocabulary-builder.herokuapp.com';
+final String localURL = 'http://localhost:5100';
+
+final String baseUrl = prodURL;
 final String searchUrl = 'https://another-backend.herokuapp.com/search/open/';
 
 // ===============================================================
@@ -24,4 +27,4 @@ final String flutterUrl = 'https://flutter.io';
 // ===============================================================
 // Nombre de la aplicación
 // ===============================================================
-final String appname = 'QuickGlish';
+final String appname = 'Vocabulario';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moblie/widgets/ui/divider.dart';
+import 'package:vocabulary_builder/widgets/ui/divider.dart';
 
 class ListCell extends StatelessWidget {
   final Widget leading, trailing;

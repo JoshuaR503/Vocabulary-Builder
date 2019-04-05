@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:moblie/model/main.dart';
+import 'package:vocabulary_builder/model/main.dart';
 
-import 'package:moblie/pages/screens/error-screen.dart';
-import 'package:moblie/utils/settings.dart';
+import 'package:vocabulary_builder/pages/screens/error-screen.dart';
+import 'package:vocabulary_builder/utils/settings.dart';
 
-import 'package:moblie/widgets/palabras/palabras.card.dart';
-import 'package:moblie/widgets/ui/divider.dart';
+import 'package:vocabulary_builder/widgets/palabras/palabras.card.dart';
+import 'package:vocabulary_builder/widgets/ui/divider.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:flutter_i18n/flutter_i18n.dart';
@@ -24,10 +24,15 @@ class PalabrasScreen extends StatefulWidget {
 }
 
 class _PalabrasScreenState extends State<PalabrasScreen> {
+  
 
   @override
-  void initState() {
-    widget.model.obtenerPalabras(loadingIndicator: true);
+  void initState() async {
+    final userLang = await widget.model.obtenerUserLang();
+
+    print('USER PREFERED LANG + $userLang');
+
+    widget.model.obtenerPalabras(loadingIndicator: true, lang: userLang);
     super.initState();
   }
 
@@ -81,12 +86,9 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
         );
 
         if (model.allPalabras.length > 0 && !model.isLoading) {
-
-          // Create ListView for all Palabras
           content =  ListView.builder(
             itemCount: model.allPalabras.length,
-            itemBuilder: (BuildContext context, int index) => 
-              PalabraCard(model.allPalabras[index], model.userLang)
+            itemBuilder: (BuildContext context, int index) => PalabraCard(model.allPalabras[index], model.userLang)
           );
 
         } else if (model.isLoading) {
@@ -94,7 +96,11 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
         }
 
         return RefreshIndicator(
-          onRefresh: model.obtenerPalabras,
+          onRefresh: () async {
+            final userLang = await widget.model.obtenerUserLang();
+
+            model.obtenerPalabras(loadingIndicator: false, lang: userLang);
+          },
           child: content
         );
       }
@@ -109,12 +115,6 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             automaticallyImplyLeading: false,
             title: Text(FlutterI18n.translate(context, 'home.drawer.title')),
           ),
-
-          // ListTile(
-          //   title: Text(FlutterI18n.translate(context, 'settings.title')),
-          //   onTap: () => Navigator.pushNamed(context, '/settings'),
-          // ),
-
           ListTile(
             title: Text(FlutterI18n.translate(context, 'question_answers.title')),
             onTap: () => Navigator.pushNamed(context, '/question'),
@@ -131,6 +131,10 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
           ),
           
           Separator.divider(),
+          ListTile(
+            title: Text(FlutterI18n.translate(context, 'home.drawer.language')),
+            onTap: () => Navigator.pushNamed(context, '/lang'),
+          ),
           ListTile(
             title: Text(FlutterI18n.translate(context, 'home.drawer.web_version')),
             onTap: () => FlutterWebBrowser.openWebPage(url: webVersion)

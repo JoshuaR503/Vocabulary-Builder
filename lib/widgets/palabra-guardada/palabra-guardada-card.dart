@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moblie/model/main.dart';
-import 'package:moblie/model/palabra.model.dart';
-import 'package:moblie/utils/colors.dart';
-import 'package:moblie/widgets/ui/elements/slim-card.dart';
+import 'package:vocabulary_builder/model/main.dart';
+import 'package:vocabulary_builder/model/palabra.model.dart';
+import 'package:vocabulary_builder/utils/colors.dart';
+import 'package:vocabulary_builder/widgets/ui/elements/slim-card.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class PalabraGuardadaCard extends StatelessWidget {
@@ -15,20 +15,22 @@ class PalabraGuardadaCard extends StatelessWidget {
     Palabra singlePalabra =  Palabra(
       palabra: palabra.palabra,
       traduccion: palabra.traduccion,
+      dificultad: palabra.dificultad,
+
+      primeraPersona: palabra.primeraPersona,
+      segundaPersona: palabra.segundaPersona,
+      terceraPersona: palabra.terceraPersona,
       pasado: palabra.pasado,
       presente: palabra.presente,
-      presenteContinuo: palabra.presenteContinuo,
-      thirdPerson: palabra.thirdPerson,
       futuro: palabra.futuro,
-      definicion: palabra.definicion,
-      definicionEs: palabra.definicionEs,
+
       sinonimos: palabra.sinonimos,
       antonimos: palabra.antonimos,
-      ejemplos: palabra.ejemplos, 
-      plural: palabra.plural,
-      singular: palabra.singular,
+      definicion: palabra.definicion,
+      definicion2: palabra.definicion2,
+      ejemplo: palabra.ejemplo,
+      categoriaGramatical: palabra.categoriaGramatical,
       nota: palabra.nota,
-      tipo: palabra.tipo,
     );
 
     return ScopedModelDescendant<MainModel> (

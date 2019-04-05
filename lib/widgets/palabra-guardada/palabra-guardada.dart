@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moblie/model/main.dart';
-import 'package:moblie/model/palabra.model.dart';
-
-import 'package:moblie/widgets/palabra-guardada/palabra-guardada-card.dart';
+import 'package:vocabulary_builder/model/main.dart';
+import 'package:vocabulary_builder/model/palabra.model.dart';
+import 'package:vocabulary_builder/widgets/palabra-guardada/palabra-guardada-card.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class PalabrasGuardadas extends StatelessWidget {

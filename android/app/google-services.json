@@ -1,39 +1,32 @@
 {
   "project_info": {
-    "project_number": "238962385647",
-    "firebase_url": "https://quick-english.firebaseio.com",
-    "project_id": "quick-english",
-    "storage_bucket": "quick-english.appspot.com"
+    "project_number": "624960248465",
+    "firebase_url": "https://vocabulary-builder-ka.firebaseio.com",
+    "project_id": "vocabulary-builder-ka",
+    "storage_bucket": "vocabulary-builder-ka.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:238962385647:android:df3ab38a07ee01f5",
+        "mobilesdk_app_id": "1:624960248465:android:bd69311231e0861c",
         "android_client_info": {
-          "package_name": "com.herokuapp.backend.another"
+          "package_name": "com.herokuapp.builder.vocabulary"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "238962385647-3m1762fae2eompp383dil4pph0o8vdpk.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCD4BOITgLPCdH1vdugXgBqPeTbZeZjy3w"
+          "current_key": "AIzaSyAbbh2Ws_8iREwmh2CIg3ghuJdJY0oJIIg"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624960248465-hss85tutvj69khcjsafkdruk7l3cnibp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -1,4 +1,4 @@
-import 'package:moblie/model/palabra.model.dart';
+import 'package:vocabulary_builder/model/palabra.model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:async';
@@ -6,7 +6,7 @@ import 'dart:io';
 
 class DatabaseHelper {
 
-  final pathName = 'QuickGlish2.db';
+  final pathName = 'vocabularyBuilderV5X.db';
 
   static DatabaseHelper _databaseHelper;
 	static Database _database;
@@ -15,19 +15,24 @@ class DatabaseHelper {
 	String colId = 'id';
 	String colPalabra = 'palabra';
 	String colTraduccion = 'traduccion';
-  String colPasado = 'pasado';
+  String colDificultad = 'dificultad';
+
+  String colPrimeraPersona = 'primeraPersona';
+  String colSegundaPersona = 'segundaPersona';
+  String colTerceraPersona = 'terceraPersona';
+
   String colPresente = 'presente';
   String colPresenteContinuo = 'presenteContinuo';
-  String colThirdPerson = 'thirdPerson';
+  String colPasado = 'pasado';
   String colFuturo = 'futuro';
-  String colDefinition = 'definicion';
-  String colDefinitionEs = 'definicionEs';
+
   String colSynonyms = 'sinonimos';
   String colAntonyms = 'antonimos';
-  String colExamples = 'ejemplos';
-  String colType = 'tipo';
-  String colPlural = 'plural';
-  String colSingular = 'singular';
+  String colDefinicion = 'definicion';
+  String colDefinicion2 = 'definicion2';
+  String colEjemplo = 'ejemplo';
+  String colCategoriaGramatical = 'categoriaGramatical';
+
   String colNote = 'nota';
   String colDate = 'date';
 
@@ -55,7 +60,7 @@ class DatabaseHelper {
 		return notesDatabase;
   }
 
-  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colPasado TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colThirdPerson TEXT, $colFuturo TEXT, $colDefinition TEXT, $colDefinitionEs TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colExamples TEXT, $colType TEXT, $colPlural TEXT, $colSingular TEXT, $colNote TEXT, $colDate TEXT)");
+  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colDificultad TEXT, $colPrimeraPersona TEXT, $colSegundaPersona TEXT, $colTerceraPersona TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colPasado TEXT, $colFuturo TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colDefinicion TEXT, $colDefinicion2 TEXT, $colEjemplo TEXT, $colCategoriaGramatical TEXT, $colNote TEXT, $colDate TEXT)");
  
   Future<List<Map<String, dynamic>>> fetchSavedDataMapList() async {
 		Database db = await this.database;

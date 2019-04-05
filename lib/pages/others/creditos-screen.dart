@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
-import 'package:moblie/utils/settings.dart';
-import 'package:moblie/widgets/ui/list_cell.dart';
-import 'package:moblie/widgets/ui/text/subtitle.dart';
-import 'package:moblie/widgets/ui/text/title.dart';
+import 'package:vocabulary_builder/utils/settings.dart';
+import 'package:vocabulary_builder/widgets/ui/list_cell.dart';
+import 'package:vocabulary_builder/widgets/ui/text/subtitle.dart';
+import 'package:vocabulary_builder/widgets/ui/text/title.dart';
 
 class CreditoScreen extends StatelessWidget {
 

@@ -1,6 +1,6 @@
-name: moblie
-description: A new Flutter project.
-version: 4.0.1
+name: vocabulary_builder
+description: An app meant to help people learning English / Spanish to increase their vocabulary
+version: 5.0.0
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
@@ -45,7 +45,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.7.0
 
 flutter_icons:
-    image_path: "assets/icon/logo1.png"
+    image_path: "assets/icon/logo.png"
     android: true
     ios: false
     adaptive_icon_background: "#FFAFAFA"
@@ -53,8 +53,14 @@ flutter_icons:
 flutter:
   uses-material-design: true
 
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+
   assets:
-    - assets/logo1.png
+    - assets/logo.png
     - assets/books.png
     - assets/shield.png
     - assets/heart.png

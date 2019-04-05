@@ -12,7 +12,7 @@
         "drawer": {
             "title": "Opciones",
             "thidItem": "Compartir aplicación",
-
+            "language": "Cambiar Idioma",
             "web_version": "Versión web",
             "web_feedback": "Enviar comentarios",
 
@@ -33,8 +33,7 @@
     },
 
     "welcome_screen": {
-        "title": "Antes de Empezar",
-        "subtitle": "¿Qué idioma estás aprendiendo?"
+        "title": "¿Qué idioma estás aprendiendo?"
     },
 
     "saved_words": {

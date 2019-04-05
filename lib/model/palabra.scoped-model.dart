@@ -46,18 +46,10 @@ mixin PalabrasModel on ConnectedModel {
     return _palabrasGuardadas.firstWhere((palabra) => palabra.id == _selPalabraGuardadaId);
   }
 
-  Future<Null> obtenerPalabras({bool loadingIndicator = false, bool search = false,String url }) async {
+  Future<Null> obtenerPalabras({bool loadingIndicator = false, bool search = false, String lang = 'en' }) async {
 
-    String httpUrl;
-
-    if (httpUrl == null) {
-      httpUrl = apiUrl;
-    } else {
-      httpUrl = url;
-    }
-        
     return http
-      .get(httpUrl)
+      .get('$baseUrl/api/v3/azar?limit=5&lang=$lang')
       .then<Null>((http.Response response) {
 
         if (loadingIndicator) {
@@ -75,39 +67,52 @@ mixin PalabrasModel on ConnectedModel {
           _isLoading = false;
           notifyListeners();
           return;
-        } 
+        }
 
-        
+        final String requestedLang = lang.toUpperCase();
+
+        String secondLang;
+
+        if (requestedLang == 'ES') {
+          secondLang = 'EN';
+        } else if (requestedLang == 'EN') {
+          secondLang = 'ES';
+        }
+
+        print('$requestedLang, $secondLang');
+
         palabraListData.forEach((dynamic palabraData) {
 
           final Palabra singlePalabra = Palabra(
             palabra: palabraData['palabra'],
             traduccion: palabraData['traduccion'],
-            pasado: palabraData['pasado'],
-            presente: palabraData['presente'],
-            presenteContinuo: palabraData['presenteContinuo'],
-            thirdPerson: palabraData['thirdPerson'],
-            futuro: palabraData['futuro'],
-            definicion: palabraData['definicion'],
-            definicionEs: palabraData['definicionSpanish'],
-            sinonimos: palabraData['sinonimos'],
-            antonimos: palabraData['antonimos'],
-            ejemplos: palabraData['ejemplos'],
-            tipo: palabraData['tipo'],
-            plural: palabraData['plural'],
-            singular: palabraData['singular'],
-            nota: palabraData['nota'],
-          );
+            dificultad: palabraData['dificultad'],
 
+            primeraPersona: palabraData['primeraPersona$requestedLang'],
+            segundaPersona: palabraData['segundaPersona$requestedLang'],
+            terceraPersona: palabraData['terceraPersona$requestedLang'],
+
+            pasado: palabraData['pasado$requestedLang'],
+            presente: palabraData['presente$requestedLang'],
+            presenteContinuo: palabraData['presenteContinuo$requestedLang'],
+            futuro: palabraData['futuro$requestedLang'],
+
+            sinonimos: palabraData['sinonimos$requestedLang'],
+            antonimos: palabraData['antonimos$requestedLang'],
+
+            definicion: palabraData['definicion$requestedLang'],
+            definicion2: palabraData['definicion$secondLang'],
+            
+            ejemplo: palabraData['ejemplo$requestedLang'],
+            categoriaGramatical: palabraData['categoriaGramatical$requestedLang'],
+            nota: palabraData['nota$requestedLang'],
+          );
+          
           fetchedPalabrasList.add(singlePalabra);
         });
 
-        if (search) {
-          _busqueda = fetchedPalabrasList; 
-        } else {
-          _palabras = fetchedPalabrasList; 
-        }
-      
+        _palabras = fetchedPalabrasList; 
+        
         if (loadingIndicator) {
           _isLoading = false;
           notifyListeners();
@@ -115,6 +120,7 @@ mixin PalabrasModel on ConnectedModel {
       })
       .catchError((error) {
         _isLoading = false;
+        print('ERROR + $error');
         notifyListeners();
         return;
       });
@@ -154,20 +160,23 @@ mixin PalabrasModel on ConnectedModel {
     Palabra singlePalabra = Palabra(
       palabra: palabraData.palabra,
       traduccion: palabraData.traduccion,
+      dificultad: palabraData.dificultad,
+
+      primeraPersona: palabraData.primeraPersona,
+      segundaPersona: palabraData.segundaPersona,
+      terceraPersona: palabraData.terceraPersona,
       pasado: palabraData.pasado,
       presente: palabraData.presente,
-      presenteContinuo: palabraData.presenteContinuo,
-      thirdPerson: palabraData.thirdPerson,
       futuro: palabraData.futuro,
-      definicion: palabraData.definicion,
-      definicionEs: palabraData.definicionEs,
+
       sinonimos: palabraData.sinonimos,
       antonimos: palabraData.antonimos,
-      ejemplos: palabraData.ejemplos,
-      tipo: palabraData.tipo,
-      plural: palabraData.plural,
-      singular: palabraData.singular,
+      definicion: palabraData.definicion,
+      definicion2: palabraData.definicion2,
+      ejemplo: palabraData.ejemplo,
+      categoriaGramatical: palabraData.categoriaGramatical,
       nota: palabraData.nota,
+
       date: DateFormat.yMMMd().format(DateTime.now())
     );
 
@@ -197,22 +206,30 @@ mixin UtilityModel on ConnectedModel {
   bool get isLoading => _isLoading;
   bool get palabrasGuardadasIsLoading => _palabrasGuardadasIsLoading;
   bool get seen => _seen;
-
   String get userLang => _userLang;
+
   
   void obtenerData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     
     bool response = prefs.getBool('seen');
-    String userLang = prefs.getString('user_lang'); 
 
     if (response == true) {
       _seen = true;
     } else if (response != true) {
       _seen = false;
     }
+  }
 
-    _userLang = userLang; 
+  Future<String> obtenerUserLang() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String userlang = prefs.get('user_lang');
+
+    _userLang = userlang;
+
+    print('USERLANG, $userlang');
+    
+    return userlang;
   }
 
   Future<Null> setData() async {
@@ -222,9 +239,6 @@ mixin UtilityModel on ConnectedModel {
 
   Future<Null> setUserPreferedLanguage({String language}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    print('User Prefered Language $language');
-
     prefs.setString('user_lang', language);
   }
 
@@ -241,24 +255,19 @@ mixin UtilityModel on ConnectedModel {
     }
   }
 
-  void speak(String text) async { 
+  void speak(String text) async {
 
-    // final String lang = _userLang;
+    final String userlang = await obtenerUserLang();
 
     _textToSpeech.setPitch(1.0);
     _textToSpeech.setSpeechRate(0.8);
-    _textToSpeech.setLanguage('en_US');
 
-    // if (lang == 'es') {
-    //   print('Pronunciando la palabra $text en Spanish con acento Enlgish');
-    //   _textToSpeech.setLanguage('en_US');
-
-    // } else {
-    //   print('Pronunciando la palabra $text en English con acento Spanish');
-    //   _textToSpeech.setLanguage('es_ES');
-    // }
+    if (userlang == 'es') {
+      _textToSpeech.setLanguage('en_US');
+    } else {
+      _textToSpeech.setLanguage('es_ES');
+    }
 
     _textToSpeech.speak(text);
   }
-
 }

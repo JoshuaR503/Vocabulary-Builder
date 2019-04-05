@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
-import 'package:moblie/model/main.dart';
-import 'package:moblie/utils/colors.dart';
-import 'package:moblie/widgets/ui/text/subtitle.dart';
+import 'package:vocabulary_builder/model/main.dart';
+import 'package:vocabulary_builder/utils/colors.dart';
+import 'package:vocabulary_builder/widgets/ui/text/subtitle.dart';
 
-import 'package:moblie/widgets/ui/text/title.dart';
+import 'package:vocabulary_builder/widgets/ui/text/title.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class SettingScreen extends StatelessWidget {

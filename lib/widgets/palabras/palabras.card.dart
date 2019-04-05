@@ -8,9 +8,8 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 
 class PalabraCard extends StatelessWidget {
   final Palabra palabra;
-  final String language;
   
-  PalabraCard(this.palabra, this.language);
+  PalabraCard(this.palabra);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class PalabraCard extends StatelessWidget {
           child: Card(
             child: Column(
               children: <Widget>[
-                _buildDataRow(context, model, language),
+                _buildDataRow(context, model),
                 _buildActionButtons(context, model)
               ],
             ),
@@ -31,7 +30,7 @@ class PalabraCard extends StatelessWidget {
     );
   }
 
-  Widget _buildDataRow(BuildContext context, MainModel model, String language) {
+  Widget _buildDataRow(BuildContext context, MainModel model) {
 
     TextStyle style = TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300);
 

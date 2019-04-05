@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [37th commit] - 2019-04-4
+### Fixed
+- An error that wouldn't show the gramatical category for a word
+- An error that wouldn't load properly the user's prefred language
+- An error that would refirect the user to the introduction page even though the user 
+had already seen that page 
+
 ## [36th commit] - 2019-04-4
 ### Changed
 - Packages routes

@@ -37,7 +37,7 @@ class Palabra {
     this.ejemplo,
     this.definicion,
     this.definicion2,
-    String categoriaGramatical,
+    this.categoriaGramatical,
     this.nota,
     this.date,
   });
@@ -60,7 +60,7 @@ class Palabra {
     this.definicion2,
     this.nota,
     this.date,
-    String categoriaGramatical,
+    this.categoriaGramatical,
     this.id
   });
 

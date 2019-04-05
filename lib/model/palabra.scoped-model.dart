@@ -49,7 +49,7 @@ mixin PalabrasModel on ConnectedModel {
   Future<Null> obtenerPalabras({bool loadingIndicator = false, bool search = false, String lang = 'en' }) async {
 
     return http
-      .get('$baseUrl/api/v3/azar?limit=5&lang=$lang')
+      .get('$baseUrl/api/v3/azar?limit=6&lang=$lang')
       .then<Null>((http.Response response) {
 
         if (loadingIndicator) {
@@ -116,7 +116,9 @@ mixin PalabrasModel on ConnectedModel {
         if (loadingIndicator) {
           _isLoading = false;
           notifyListeners();
-        }       
+        } else {
+          notifyListeners();
+        }
       })
       .catchError((error) {
         _isLoading = false;
@@ -208,28 +210,21 @@ mixin UtilityModel on ConnectedModel {
   bool get seen => _seen;
   String get userLang => _userLang;
 
-  
   void obtenerData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    
-    bool response = prefs.getBool('seen');
+
+    // Ver si el usuario ya visito la introducion
+    final bool response = prefs.getBool('seen');
 
     if (response == true) {
       _seen = true;
     } else if (response != true) {
       _seen = false;
     }
-  }
-
-  Future<String> obtenerUserLang() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String userlang = prefs.get('user_lang');
-
-    _userLang = userlang;
-
-    print('USERLANG, $userlang');
     
-    return userlang;
+    // Obtener el idioma de el usuario
+    final String userlang = prefs.getString('user_lang');
+    _userLang = userlang;
   }
 
   Future<Null> setData() async {
@@ -237,13 +232,12 @@ mixin UtilityModel on ConnectedModel {
     prefs.setBool('seen', true);
   }
 
-  Future<Null> setUserPreferedLanguage({String language}) async {
+  Future<Null> setLang(String language) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('user_lang', language);
   }
 
   void sendFeedback([bool error]) async {
-    
     bool canVibrate = await Vibrate.canVibrate;
 
     if (canVibrate) {
@@ -256,13 +250,10 @@ mixin UtilityModel on ConnectedModel {
   }
 
   void speak(String text) async {
-
-    final String userlang = await obtenerUserLang();
-
     _textToSpeech.setPitch(1.0);
     _textToSpeech.setSpeechRate(0.8);
 
-    if (userlang == 'es') {
+    if (_userLang == 'es') {
       _textToSpeech.setLanguage('en_US');
     } else {
       _textToSpeech.setLanguage('es_ES');

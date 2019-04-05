@@ -24,15 +24,10 @@ class PalabrasScreen extends StatefulWidget {
 }
 
 class _PalabrasScreenState extends State<PalabrasScreen> {
-  
 
   @override
-  void initState() async {
-    final userLang = await widget.model.obtenerUserLang();
-
-    print('USER PREFERED LANG + $userLang');
-
-    widget.model.obtenerPalabras(loadingIndicator: true, lang: userLang);
+  void initState() {
+    widget.model.obtenerPalabras(loadingIndicator: true, lang: widget.model.userLang);
     super.initState();
   }
 
@@ -88,19 +83,14 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
         if (model.allPalabras.length > 0 && !model.isLoading) {
           content =  ListView.builder(
             itemCount: model.allPalabras.length,
-            itemBuilder: (BuildContext context, int index) => PalabraCard(model.allPalabras[index], model.userLang)
+            itemBuilder: (BuildContext context, int index) => PalabraCard(model.allPalabras[index])
           );
-
         } else if (model.isLoading) {
           content = Center(child: CircularProgressIndicator());
         }
 
         return RefreshIndicator(
-          onRefresh: () async {
-            final userLang = await widget.model.obtenerUserLang();
-
-            model.obtenerPalabras(loadingIndicator: false, lang: userLang);
-          },
+          onRefresh: () => model.obtenerPalabras(loadingIndicator: false, lang: widget.model.userLang),
           child: content
         );
       }

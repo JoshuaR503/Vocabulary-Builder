@@ -38,13 +38,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 padding: EdgeInsets.only(top: 80.0, left: 20.0, right: 20.0),
                 child: Column(
                   children: <Widget>[
+
                     _renderButton(
                       name: 'Spanish',
                       language: 'en',
                       model: model,
                       context: context
                     ),
+
                     SizedBox(height: 20.0),
+
                     _renderButton(
                       name: 'Inglés',
                       language: 'es',
@@ -64,14 +67,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget _renderButton({String name, String language, model, context}) {
     return GestureDetector(
 
-      onTap: () async {
-        
-        setState(() => model.setUserPreferedLanguage(language: language));
-        
-        await model.obtenerData();
-        await model.seen
-          ? Navigator.pushReplacementNamed(context, '/home') 
-          : Navigator.pushReplacementNamed(context, '/intro');
+      onTap: () {
+        model.setLang(language).then((_) async => {
+          await model.obtenerData(),
+          await model.seen
+            ? Navigator.pushReplacementNamed(context, '/home')
+            : Navigator.pushReplacementNamed(context, '/intro')
+        });
       },
 
       child: Container(

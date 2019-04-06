@@ -20,7 +20,7 @@ class PalabrasScreen extends StatefulWidget {
   PalabrasScreen(this.model);
 
   @override
-    State<StatefulWidget> createState() => _PalabrasScreenState();
+  State<StatefulWidget> createState() => _PalabrasScreenState();
 }
 
 class _PalabrasScreenState extends State<PalabrasScreen> {
@@ -71,8 +71,13 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
   }
   
   Widget _buildMainContent() {
+    
     return ScopedModelDescendant(
       builder: (BuildContext context, Widget child, MainModel model) {
+
+        final double deviceWidth = MediaQuery.of(context).size.width;
+        final double targetWidth = deviceWidth > 768.0 ? 450.0 : deviceWidth;
+        final Orientation orientation = MediaQuery.of(context).orientation;
 
         Widget content = ErrorScreen(
           pathImage: 'assets/warning.png',
@@ -81,10 +86,28 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
         );
 
         if (model.allPalabras.length > 0 && !model.isLoading) {
-          content =  ListView.builder(
+          content = orientation == Orientation.landscape 
+
+          ? Center(
+            child: Container(
+              width: targetWidth,
+              
+              child: ListView.builder(
+                itemCount: model.allPalabras.length,
+                itemBuilder: (context, index) => 
+                 Container(
+                  padding: EdgeInsets.symmetric(vertical: 5.0),
+                  child: PalabraCard(model.allPalabras[index])
+                )
+              ),
+            )
+          )
+
+          : ListView.builder(
             itemCount: model.allPalabras.length,
-            itemBuilder: (BuildContext context, int index) => PalabraCard(model.allPalabras[index])
+            itemBuilder: (context, index) => PalabraCard(model.allPalabras[index])
           );
+           
         } else if (model.isLoading) {
           content = Center(child: CircularProgressIndicator());
         }

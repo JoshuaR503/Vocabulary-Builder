@@ -103,7 +103,7 @@ mixin PalabrasModel on ConnectedModel {
             definicion: palabraData['definicion$requestedLang'],
             definicion2: palabraData['definicion$secondLang'],
             
-            ejemplo: palabraData['ejemplo$requestedLang'],
+            ejemplo: palabraData['ejemplo$secondLang'],
             categoriaGramatical: palabraData['categoriaGramatical$requestedLang'],
             nota: palabraData['nota$requestedLang'],
           );

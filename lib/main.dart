@@ -27,10 +27,7 @@ final MainModel model = MainModel();
     
 void main() {
   model.obtenerData();
-
-  SystemChrome
-  .setPreferredOrientations([DeviceOrientation.portraitUp])
-  .then((_) => runApp(AmericanEnglishWords()));
+  runApp(AmericanEnglishWords());
 }
 
 class AmericanEnglishWords extends StatefulWidget {
@@ -73,7 +70,7 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
           title: appname,
           debugShowCheckedModeBanner: false,
           routes: {
-            // '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : IntroScreen(),
+            // '/': (BuildContext context) => QuestionScreen(),
             '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : WelcomeScreen(),
             '/home': (BuildContext context) => PalabrasScreen(model),
             '/saved': (BuildContext context) => PalabraGuardadaScreen(model),

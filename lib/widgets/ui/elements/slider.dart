@@ -2,39 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 class IntroSlider extends StatefulWidget {
-  /// An array of Slide object
+
   final List<Slide> slides;
-
-  // SKIP button
-  /// Render your own SKIP button
   final Widget renderSkipBtn;
-
-  /// Fire when press SKIP button
   final Function onSkipPress;
-
-  /// Show or hide SKIP button
   final bool isShowSkipBtn;
-
-  /// Rounded SKIP button
   final double borderRadiusSkipBtn;
 
-  /// Render your own NEXT button
   final Widget renderNextBtn;
-
-  /// Render your own DONE button
   final Widget renderDoneBtn;
-
-  /// Fire when press DONE button
   final Function onDonePress;
 
-  /// Rounded NEXT button
   final double borderRadiusNextBtn;
-
-  /// Rounded DONE button
   final double borderRadiusDoneBtn;
 
-  // Dot indicator
-  /// Show or hide dot indicator
   final bool isShowDotIndicator;
 
   IntroSlider({
@@ -52,7 +33,7 @@ class IntroSlider extends StatefulWidget {
   });
 
   @override
-  IntroSliderState createState() => new IntroSliderState(
+  IntroSliderState createState() => IntroSliderState(
     slides: this.slides,
     renderSkipBtn: this.renderSkipBtn,
     onSkipPress: this.onSkipPress,
@@ -67,49 +48,28 @@ class IntroSlider extends StatefulWidget {
 }
 
 class IntroSliderState extends State<IntroSlider> with SingleTickerProviderStateMixin {
-  /// An array of Slide object
+
   final List<Slide> slides;
 
-  // SKIP button
-  /// Render your own SKIP button
   Widget renderSkipBtn;
-
-  /// Fire when press SKIP button
   Function onSkipPress;
 
-  /// Show or hide SKIP button
   bool isShowSkipBtn;
-
-  /// Rounded SKIP button
   double borderRadiusSkipBtn;
 
-  // DONE, NEXT button
-  /// Render your own NEXT button
   Widget renderNextBtn;
-
-  /// Render your own DONE button
   Widget renderDoneBtn;
 
-  /// Fire when press DONE button
   Function onDonePress;
 
-  /// Rounded NEXT button
   double borderRadiusNextBtn;
-
-  /// Rounded DONE button
   double borderRadiusDoneBtn;
 
-  // Dot indicator
-  /// Show or hide dot indicator
   bool isShowDotIndicator = true;
 
-  /// Color for dot when passive
   Color colorDot;
-
-  /// Color for dot when active
   Color colorActiveDot;
 
-  /// Size of each dot
   double sizeDot = 8.0;
 
   IntroSliderState({
@@ -158,12 +118,10 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
       isShowSkipBtn = true;
     }
 
-    // Done button
     if (onDonePress == null) {
       onDonePress = () {};
     }
 
-    // Dot indicator
     if (isShowDotIndicator == null) {
       isShowDotIndicator = true;
     }
@@ -300,12 +258,8 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
     return tabs;
   }
 
-  Widget renderTab(
-    String title,
-    String description,
-    String pathImage,
-    Color backgroundColor,
-  ) {
+  Widget renderTab(String title, String description, String pathImage, Color backgroundColor) {
+
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -318,7 +272,8 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
         ),
       ),
 
-      child: ListView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
             // Title
@@ -332,15 +287,18 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
 
               textAlign: TextAlign.center,
             ),
-            margin: EdgeInsets.only(top: 70.0, bottom: 70.0, left: 20, right: 20),
+            margin: EdgeInsets.only(top: 20.0, bottom: 30.0, left: 20, right: 20),
           ),
 
           GestureDetector(
-            child: Image.asset(
-              pathImage,
-              width: 200.0,
-              height: 200.0,
-              fit: BoxFit.contain,
+            child: Container(
+              child: Image.asset(
+                pathImage,
+                width: 230.0,
+                height: 230.0,
+                fit: BoxFit.contain,
+              ),
+              margin: EdgeInsets.only(top: 10.0, bottom: 40.0, left: 40, right: 40),
             )
           ),
 
@@ -348,10 +306,14 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
           Container(
             child: Text(
               description,
-              style: TextStyle(color: Colors.white, fontSize: 18.0),
+              style: TextStyle(
+                color: Colors.white, 
+                fontSize: 18.0,
+                fontFamily: 'Lato'
+              ),
               textAlign: TextAlign.center,
             ),
-            margin: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 50.0),
+            margin: EdgeInsets.only(top: 00.0, bottom: 70.0, left: 20, right: 20),
           ),
         ],
       ),
@@ -375,7 +337,8 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
   Widget renderDot(double radius, Color color) {
     return Container(
       decoration: BoxDecoration(
-        color: color, borderRadius: BorderRadius.circular(radius / 2)
+        color: color, 
+        borderRadius: BorderRadius.circular(radius / 2)
       ),
       width: radius,
       height: radius,

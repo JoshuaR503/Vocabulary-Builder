@@ -227,7 +227,7 @@
     "slide_show": {
         "slide_one": {
             "title": "VOCABULARY",
-            "description": "Increase your vocabulary with random words in a straightforward way."
+            "description": "Increase your vocabulary with words that you might not know."
         },
 
         "slide_two": {
@@ -236,7 +236,7 @@
         },
 
         "slide_three": {
-            "title": "MODO OFFLINE",
+            "title": "OFFLINE MODE",
             "description": "If you like a word, touch the heart next to it to make it available offline."
         },
 

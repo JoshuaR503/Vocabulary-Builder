@@ -28,6 +28,10 @@ class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
     return ScopedModelDescendant<MainModel>(
       builder: (BuildContext context, Widget child, MainModel model) {
 
+        final double deviceWidth = MediaQuery.of(context).size.width;
+        final double targetWidth = deviceWidth > 768.0 ? 650.0 : deviceWidth;
+        final Orientation orientation = MediaQuery.of(context).orientation;
+
         Widget content = ErrorScreen(
           message: FlutterI18n.translate(context, 'error_message.no_saved_words.message'),
           pathImage: 'assets/box.png',
@@ -36,6 +40,16 @@ class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
 
         if (model.allPalabrasGuardadas.length > 0 && !model.palabrasGuardadasIsLoading) {
           content = PalabrasGuardadas();
+          content = orientation == Orientation.landscape 
+            ? Center(
+              child: Container(
+                width: targetWidth,
+                padding: EdgeInsets.symmetric(vertical: 3.0),
+                child: PalabrasGuardadas()
+              )
+            ) 
+            : PalabrasGuardadas();
+
         } else if (model.palabrasGuardadasIsLoading) {
           content = Center(child: CircularProgressIndicator());
         }

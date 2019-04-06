@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [38th commit] - 2019-04-4
+### Added
+- Responsive Design (almost all screens)
+- More fields to the database to avoid future braking changes
+
+### Fixed
+- A bug in the databse
+
 ## [37th commit] - 2019-04-4
 ### Fixed
 - An error that wouldn't show the gramatical category for a word

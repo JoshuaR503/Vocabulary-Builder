@@ -59,6 +59,13 @@ flutter:
         - asset: assets/fonts/Poppins-Regular.ttf
           weight: 400
 
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+          weight: 400
+
+          
+
   assets:
     - assets/logo.png
     - assets/books.png

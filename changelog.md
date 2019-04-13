@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [39th commit] - 2019-04-12
+### Changed 
+- App's URL to send feedback
+
 ## [38th commit] - 2019-04-4
 ### Added
 - Responsive Design (almost all screens)

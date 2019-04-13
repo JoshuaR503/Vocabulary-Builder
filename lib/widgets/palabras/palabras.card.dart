@@ -16,10 +16,13 @@ class PalabraCard extends StatelessWidget {
     return ScopedModelDescendant <MainModel> (
       builder: (BuildContext context, Widget child, MainModel model) {
         return GestureDetector(
-          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => SinglePalabraScreen(palabra))),
+          onTap: () => Navigator
+            .of(context)
+            .push(MaterialPageRoute(builder: (_) => SinglePalabraScreen(palabra))),
+
           child: Card(
             child: Column(
-              children: <Widget>[
+              children: <Widget> [
                 _buildDataRow(context, model),
                 _buildActionButtons(context, model)
               ],

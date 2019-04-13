@@ -11,6 +11,7 @@ import 'package:vocabulary_builder/widgets/ui/text/row-item.dart';
 import 'package:vocabulary_builder/widgets/palabra/single-palabra-card.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:vocabulary_builder/widgets/ui/text/title.dart';
 
 class SinglePalabraScreen extends StatelessWidget  {
 
@@ -42,9 +43,28 @@ class SinglePalabraScreen extends StatelessWidget  {
               Container(
                 child: Padding(
                   padding: EdgeInsets.all(12.0),
+                  // child: Column(
+                  //   children: <Widget>[              
+                  //     _buildPalabraBasicInfoCard(context),
+                  //     Separator.spacer(),
+                  //     _buildConjugationCard(context),
+                  //     Separator.spacer(),
+                  //     _buildPalabraDefinitionCard(context),
+                  //     Separator.spacer(),
+                  //     _builPalabraExamplesCard(context),
+                  //     Separator.spacer(),
+                  //     _buildPalabraAntSynCard(context),
+                  //     Separator.spacer(),
+                  //     _buildNoteCard(context),
+                  //   ]
+
                   child: Column(
-                    children: <Widget>[              
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      
                       _buildPalabraBasicInfoCard(context),
+                      Separator.spacer(),
+                      _buildInidicativeConjugationCard(context),
                       Separator.spacer(),
                       _buildConjugationCard(context),
                       Separator.spacer(),
@@ -55,8 +75,10 @@ class SinglePalabraScreen extends StatelessWidget  {
                       _buildPalabraAntSynCard(context),
                       Separator.spacer(),
                       _buildNoteCard(context),
-                    ]
+                      Separator.spacer(),
+                    ],
                   ),
+                  // ),
                 ),
               )
             ],
@@ -101,57 +123,46 @@ class SinglePalabraScreen extends StatelessWidget  {
 
   Widget _buildConjugationCard(BuildContext context) {
     Widget card = Container();
-    String palabra =_palabra.palabra;
 
+    final String presente =  _palabra.presente;
+    final String presenteC = _palabra.presenteContinuo;
+    final String pasado = _palabra.pasado;
+    final String futuro = _palabra.futuro;
 
-    String primeraPersona = _palabra.primeraPersona;
-    String segundaPersona = _palabra.segundaPersona;
-    String terceraPersona = _palabra.terceraPersona;
-
-    String presente =  _palabra.presente;
-    String presenteC = _palabra.presenteContinuo;
-    String pasado = _palabra.pasado;
-    String futuro = _palabra.futuro;
+    print('PRESENTE $presente, PRESENTE CONTINUO $presenteC, PASADO $pasado, FUTURO $futuro');
     
     if (
-      presenteC != null && 
-      terceraPersona != null && 
-      presente != null &&  
-      pasado != null && 
-      futuro != null) {
+      presente.length > 3 && presente != null &&
+      presenteC.length > 3 && presenteC != null &&
+      pasado.length > 3 && pasado != null &&
+      futuro.length > 3 && futuro != null
+      ) {
       
       card = SinglePalabraCard(
-        title: FlutterI18n.translate(context, 'single_palabra.verb_card.title', {'palabra': palabra}),
+        title: FlutterI18n.translate(context, 'single_palabra.verb_card.title'),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            
-            RowItem(
-              title: FlutterI18n.translate(context, 'single_palabra.verb_card.present_continuous'),
-              subtitle: presenteC,
-              copyClipboard: true
-            ),
 
-            Separator.spacer(),
-            RowItem(
-              title: FlutterI18n.translate(context, 'single_palabra.verb_card.third_person'),
-              subtitle: pasado,
-              copyClipboard: true
-            ),
-
-            Separator.spacer(),
             RowItem(
               title: FlutterI18n.translate(context, 'single_palabra.verb_card.present'),
               subtitle: presente,
               copyClipboard: true
             ),
-
             Separator.spacer(),
+
+            RowItem(
+              title: FlutterI18n.translate(context, 'single_palabra.verb_card.present_continuous'),
+              subtitle: presenteC,
+              copyClipboard: true
+            ),
+            Separator.spacer(),
+
             RowItem(
               title: FlutterI18n.translate(context, 'single_palabra.verb_card.past'),
               subtitle: pasado,
               copyClipboard: true
             ),
-
             Separator.spacer(),
             RowItem(
               title: FlutterI18n.translate(context, 'single_palabra.verb_card.future'),
@@ -166,6 +177,53 @@ class SinglePalabraScreen extends StatelessWidget  {
     return card;
   }
 
+  Widget _buildInidicativeConjugationCard(BuildContext context) {
+    Widget card = Container();
+
+    final String primeraPersona = _palabra.primeraPersona;
+    final String segundaPersona = _palabra.segundaPersona;
+    final String terceraPersona = _palabra.terceraPersona;
+
+    if (
+      primeraPersona.length > 3 && primeraPersona != null &&
+      segundaPersona.length > 3 && segundaPersona != null &&
+      terceraPersona.length > 3 && terceraPersona != null
+      ) {
+      
+      card = SinglePalabraCard(
+        title: FlutterI18n.translate(context, 'single_palabra.conjugation_indicative.title'),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+
+            
+            RowItem(
+              title: FlutterI18n.translate(context, 'single_palabra.conjugation_indicative.primera_persona'),
+              subtitle: primeraPersona,
+              copyClipboard: true
+            ),
+            Separator.spacer(),
+
+            RowItem(
+              title: FlutterI18n.translate(context, 'single_palabra.conjugation_indicative.segunda_persona'),
+              subtitle: segundaPersona,
+              copyClipboard: true
+            ),
+            Separator.spacer(),
+            
+            RowItem(
+              title: FlutterI18n.translate(context, 'single_palabra.conjugation_indicative.segunda_persona'),
+              subtitle: terceraPersona,
+              copyClipboard: true
+            ),
+            Separator.spacer(),
+          ],
+        ),
+      );
+    }
+
+    return card;
+  }
 
   Widget _buildPalabraDefinitionCard(BuildContext context) {
 

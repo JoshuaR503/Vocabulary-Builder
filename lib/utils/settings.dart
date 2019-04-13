@@ -10,11 +10,20 @@ final String searchUrl = 'https://another-backend.herokuapp.com/search/open/';
 // ===============================================================
 // Url de el Servidor para enviar comentarios
 // ===============================================================
-final String urlSendFeedback = 'https://another-backend.herokuapp.com/send/feedback';
+final String urlSendFeedback = 'https://vocabulary-builder.herokuapp.com/send/comments';
+// ===============================================================
+// Url de el Servidor para enviar comentarios
+// ===============================================================
+final String urlTerms = 'https://vocabulary-builder.herokuapp.com/privacy_policy.html';
+// ===============================================================
+// Url de el Servidor para enviar comentarios
+// ===============================================================
+final String urlConditions = 'https://vocabulary-builder.herokuapp.com/terms_and_conditions.html';
+
 // ===============================================================
 // Url de la versión web
 // ===============================================================
-final String webVersion = 'https://another-backend.herokuapp.com';
+final String webVersion = 'https://vocabulary-builder.herokuapp.com';
 // ===============================================================
 // Correo del autor
 // ===============================================================

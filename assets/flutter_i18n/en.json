@@ -21,7 +21,11 @@
             "web_feedback": "Send Feedback",
 
             "show_slide": "Show Intro Slide",
-            "credits": "Credits"
+            "credits": "Credits",
+
+            "privacy": "Privacy Policy",
+            "terms": "Terms & Conditions"
+
         },
 
         "button_name": "Listen Pronunciation"
@@ -48,12 +52,22 @@
     },
 
     "single_palabra": {
+        
+        "conjugation_indicative": {
+            "title": "Conjugación indicativa",
+            "primera_persona": "First person",
+            "segunda_persona": "Second person",
+            "tercera_persona": "Third person"
+        },
+
         "verb_card": {
-            "title": "Conjugation of {palabra}",
-            "present_continuous": "Present Continuous",
-            "third_person": "Third Person",
-            "present": "Present",
-            "past": "Past",
+            "title": "Conjugación verbal",
+
+            
+            "present": "Root Form",
+            "present_continuous": "Present Participle",
+
+            "past": "Past Participle",
             "future": "Future"
         },
 

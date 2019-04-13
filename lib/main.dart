@@ -70,7 +70,7 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
           title: appname,
           debugShowCheckedModeBanner: false,
           routes: {
-            // '/': (BuildContext context) => QuestionScreen(),
+            // '/': (BuildContext context) => WelcomeScreen(),
             '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : WelcomeScreen(),
             '/home': (BuildContext context) => PalabrasScreen(model),
             '/saved': (BuildContext context) => PalabraGuardadaScreen(model),

@@ -25,8 +25,8 @@ class SinglePalabraCard extends StatelessWidget {
                   .textTheme
                   .title
                   .copyWith(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24.0,
                   ),
               ),
             ),

@@ -46,7 +46,7 @@ mixin PalabrasModel on ConnectedModel {
     return _palabrasGuardadas.firstWhere((palabra) => palabra.id == _selPalabraGuardadaId);
   }
 
-  Future<Null> obtenerPalabras({bool loadingIndicator = false, bool search = false, String lang = 'en' }) async {
+  Future<Null> obtenerPalabras({bool loadingIndicator = false, String lang = 'en' }) async {
 
     return http
       .get('$baseUrl/api/v3/azar?limit=6&lang=$lang')
@@ -92,9 +92,9 @@ mixin PalabrasModel on ConnectedModel {
             segundaPersona: palabraData['segundaPersona$requestedLang'],
             terceraPersona: palabraData['terceraPersona$requestedLang'],
 
-            pasado: palabraData['pasado$requestedLang'],
             presente: palabraData['presente$requestedLang'],
             presenteContinuo: palabraData['presenteContinuo$requestedLang'],
+            pasado: palabraData['pasado$requestedLang'],
             futuro: palabraData['futuro$requestedLang'],
 
             sinonimos: palabraData['sinonimos$requestedLang'],

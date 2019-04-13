@@ -10,7 +10,7 @@ class Separator extends StatelessWidget {
     return body;
   }
 
-  factory Separator.spacer({double height = 12.0, double width = 0.0}) {
+  factory Separator.spacer({double height = 14.0, double width = 0.0}) {
     return Separator(SizedBox(height: height, width: width));
   }
 

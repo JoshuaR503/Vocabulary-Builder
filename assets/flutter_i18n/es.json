@@ -17,7 +17,10 @@
             "web_feedback": "Enviar comentarios",
 
             "show_slide": "Repetir Introducción",
-            "credits": "Créditos"
+            "credits": "Créditos",
+
+            "privacy": "Política de privacida",
+            "terms": "Términos y condiciones"
         },
 
         "button_name": "Escuchar Pronunciación"
@@ -46,10 +49,19 @@
     },
 
     "single_palabra": {
+
+        "conjugation_indicative": {
+            "title": "Conjugación indicativa",
+            "primera_persona": "",
+            "segunda_persona": "",
+            "tercera_persona": ""
+        },
+
+
         "verb_card": {
-            "title": "Conjugación de {palabra}",
+            "title": "Conjugación verbal",
+
             "present_continuous": "Presente Continuo",
-            "third_person": "Tercera Persona",
             "present": "Presente",
             "past": "Pasado",
             "future": "Futuro"

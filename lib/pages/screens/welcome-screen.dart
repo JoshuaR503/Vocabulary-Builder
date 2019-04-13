@@ -6,16 +6,15 @@ import 'package:scoped_model/scoped_model.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
-    State<StatefulWidget> createState() => _WelcomeScreenState();
+  State<StatefulWidget> createState() => _WelcomeScreenState();
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
 
-
   @override
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
-    final double targetWidth = deviceWidth > 768.0 ? 650.0 : deviceWidth * 0.85;
+    final double targetWidth = deviceWidth > 768.0 ? 650.0 : deviceWidth;
 
     final Orientation orientation = MediaQuery.of(context).orientation;
 
@@ -99,7 +98,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   Widget _renderButton({String name, String language, model, context}) {
     final double deviceWidth = MediaQuery.of(context).size.width;
-    final double targetWidth = deviceWidth > 768.0 ? 290.0 : deviceWidth * 0.85;
+    final double targetWidth = deviceWidth > 768.0 ? 260.0 : deviceWidth * 0.85;
 
     return GestureDetector(
       onTap: () {
@@ -133,5 +132,4 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       ),
     );
   }
-
 }

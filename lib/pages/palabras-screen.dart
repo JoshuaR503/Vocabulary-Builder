@@ -122,7 +122,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
 
   Widget _buildDrawer() {
     return Drawer(
-      child: Column(
+      child: ListView(
         children: <Widget>[
           AppBar(
             automaticallyImplyLeading: false,
@@ -141,6 +141,11 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
           ListTile(
             title: Text(FlutterI18n.translate(context, 'home.drawer.thidItem')),
             onTap: () => Share.share(shareApp)
+          ),
+
+          ListTile(
+            title: Text(FlutterI18n.translate(context, 'home.drawer.credits')),
+            onTap: () => Navigator.pushNamed(context, '/creditos'),
           ),
           
           Separator.divider(),
@@ -163,9 +168,15 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             onTap: () => Navigator.pushNamed(context, '/intro'),
           ),
           ListTile(
-            title: Text(FlutterI18n.translate(context, 'home.drawer.credits')),
-            onTap: () => Navigator.pushNamed(context, '/creditos'),
+            title: Text(FlutterI18n.translate(context, 'home.drawer.privacy')),
+            onTap: () => FlutterWebBrowser.openWebPage(url: urlConditions)
           ),
+          ListTile(
+            title: Text(FlutterI18n.translate(context, 'home.drawer.terms')),
+            onTap: () => FlutterWebBrowser.openWebPage(url: urlTerms)
+          ),
+
+          
         ],
       ),
     );

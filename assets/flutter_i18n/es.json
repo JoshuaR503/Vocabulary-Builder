@@ -79,7 +79,7 @@
 
         "example": {
             "first_item": "{palabra} en una oración:",
-            "second_item": "Palabras similares"
+            "second_item": "Otro ejemplo de {palabra}"
         },
 
         "antonyms": "Antónimos de {palabra}",

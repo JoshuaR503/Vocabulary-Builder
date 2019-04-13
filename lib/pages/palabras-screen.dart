@@ -67,7 +67,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
     //     tooltip:  FlutterI18n.translate(context, 'home.appbar.icons.refresh_tooltip'),
     //     onPressed: () => widget.model.obtenerPalabras(loadingIndicator: true),
     //   ),
-    // );  
+    // );
   }
   
   Widget _buildMainContent() {
@@ -175,8 +175,6 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             title: Text(FlutterI18n.translate(context, 'home.drawer.terms')),
             onTap: () => FlutterWebBrowser.openWebPage(url: urlTerms)
           ),
-
-          
         ],
       ),
     );

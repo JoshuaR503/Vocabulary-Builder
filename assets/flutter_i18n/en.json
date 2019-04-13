@@ -67,8 +67,8 @@
             "present": "Root Form",
             "present_continuous": "Present Participle",
 
-            "past": "Past Participle",
-            "future": "Future"
+            "past": "Past Form",
+            "future": "Future Form"
         },
 
         "p_s": {
@@ -77,13 +77,13 @@
         },
 
         "definition": {
-            "first_item": "Quick definition:",
-            "second_item": "Quick definition in Spanish:"
+            "first_item": "Brief definition:",
+            "second_item": "Brief definition in Spanish:"
         },
 
         "example": {
             "first_item": "{palabra} used in a sentence",
-            "second_item": "Similar words"
+            "second_item": "Another example of {palabra}"
         },
 
         "antonyms": "Antonyms of {palabra}",

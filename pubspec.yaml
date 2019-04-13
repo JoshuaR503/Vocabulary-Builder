@@ -64,6 +64,11 @@ flutter:
         - asset: assets/fonts/Lato-Regular.ttf
           weight: 400
 
+    - family: Heebo
+      fonts:
+        - asset: assets/fonts/Heebo-Regular.ttf
+          weight: 400
+
           
 
   assets:

@@ -18,12 +18,12 @@ class HeadCard extends StatelessWidget {
   });
 
   final style = TextStyle(
-    fontWeight: FontWeight.normal,
-    fontSize: 17.0
+    fontWeight: FontWeight.bold,
+    fontSize: 21.0,
   );
 
   final subStyle = TextStyle(
-    fontWeight: FontWeight.normal,
+    fontFamily: 'Heebo',
     fontSize: 14.0,
     color: secondaryText
   );
@@ -46,12 +46,21 @@ class HeadCard extends StatelessWidget {
                   Separator.spacer(height: 12.0),
                   _buildSubtitle(data: subtitle, context: context),
 
-                  Separator.spacer(height: 12.0),
-                  Separator.spacer(height: 12.0),
+                  title2 == null 
+                  
+                  ? Container() 
+                  : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Separator.spacer(height: 12.0),
+                      Separator.spacer(height: 12.0),
 
-                  Text(title2, style: style),
-                  Separator.spacer(height: 12.0),
-                  _buildSubtitle(data: subtitle2, context: context)
+                      Text(title2, style: style),
+                      Separator.spacer(height: 12.0),
+                      _buildSubtitle(data: subtitle2, context: context)
+                    ],
+                  )
+
                 ],
               ),
             ),

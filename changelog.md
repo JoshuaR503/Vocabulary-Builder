@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [40th commit] - 2019-04-12
+### Changed 
+- App's UI in the Single palaba screen
+
 ## [39th commit] - 2019-04-12
 ### Changed 
 - App's URL to send feedback

@@ -6,7 +6,7 @@ import 'dart:io';
 
 class DatabaseHelper {
 
-  final pathName = 'vocabularyBuilderV5II.db';
+  final pathName = 'productionVocabularyBuilderDBX1.db';
 
   static DatabaseHelper _databaseHelper;
 	static Database _database;
@@ -30,7 +30,10 @@ class DatabaseHelper {
   String colAntonyms = 'antonimos';
   String colDefinicion = 'definicion';
   String colDefinicion2 = 'definicion2';
+
   String colEjemplo = 'ejemplo';
+  String colEjemplo2 = 'ejemplo2';
+
   String colCategoriaGramatical = 'categoriaGramatical';
 
   String colNote = 'nota';
@@ -71,7 +74,7 @@ class DatabaseHelper {
 		return notesDatabase;
   }
 
-  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colDificultad TEXT, $colPrimeraPersona TEXT, $colSegundaPersona TEXT, $colTerceraPersona TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colPasado TEXT, $colFuturo TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colDefinicion TEXT, $colDefinicion2 TEXT, $colEjemplo TEXT, $colCategoriaGramatical TEXT, $colNote TEXT, $colDate TEXT, $extraSlot1 TEXT, $extraSlot2 TEXT, $extraSlot3 TEXT, $extraSlot4 TEXT, $extraSlot5 TEXT, $extraSlot6 TEXT, $extraSlot7 TEXT, $extraSlot8 TEXT, $extraSlot9 TEXT, $extraSlot10 TEXT)");
+  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colDificultad TEXT, $colPrimeraPersona TEXT, $colSegundaPersona TEXT, $colTerceraPersona TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colPasado TEXT, $colFuturo TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colDefinicion TEXT, $colDefinicion2 TEXT, $colEjemplo TEXT, $colEjemplo2 TEXT, $colCategoriaGramatical TEXT, $colNote TEXT, $colDate TEXT, $extraSlot1 TEXT, $extraSlot2 TEXT, $extraSlot3 TEXT, $extraSlot4 TEXT, $extraSlot5 TEXT, $extraSlot6 TEXT, $extraSlot7 TEXT, $extraSlot8 TEXT, $extraSlot9 TEXT, $extraSlot10 TEXT)");
  
   Future<List<Map<String, dynamic>>> fetchSavedDataMapList() async {
 		Database db = await this.database;

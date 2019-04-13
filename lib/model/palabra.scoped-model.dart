@@ -104,6 +104,7 @@ mixin PalabrasModel on ConnectedModel {
             definicion2: palabraData['definicion$secondLang'],
             
             ejemplo: palabraData['ejemplo$secondLang'],
+            ejemplo2: palabraData['ejemplo2$secondLang'],
             categoriaGramatical: palabraData['categoriaGramatical$requestedLang'],
             nota: palabraData['nota$requestedLang'],
           );
@@ -167,15 +168,21 @@ mixin PalabrasModel on ConnectedModel {
       primeraPersona: palabraData.primeraPersona,
       segundaPersona: palabraData.segundaPersona,
       terceraPersona: palabraData.terceraPersona,
-      pasado: palabraData.pasado,
+
       presente: palabraData.presente,
+      presenteContinuo: palabraData.presenteContinuo,
+      pasado: palabraData.pasado,
       futuro: palabraData.futuro,
 
       sinonimos: palabraData.sinonimos,
       antonimos: palabraData.antonimos,
+
       definicion: palabraData.definicion,
       definicion2: palabraData.definicion2,
+
       ejemplo: palabraData.ejemplo,
+      ejemplo2: palabraData.ejemplo2,
+
       categoriaGramatical: palabraData.categoriaGramatical,
       nota: palabraData.nota,
 

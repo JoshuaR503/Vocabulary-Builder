@@ -27,7 +27,8 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
 
   @override
   void initState() {
-    widget.model.obtenerPalabras(loadingIndicator: true, lang: widget.model.userLang);
+    widget.model.obtenerPalabras(loadingIndicator: true);
+
     super.initState();
   }
 
@@ -113,7 +114,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
         }
 
         return RefreshIndicator(
-          onRefresh: () => model.obtenerPalabras(loadingIndicator: false, lang: widget.model.userLang),
+          onRefresh: () => model.obtenerPalabras(loadingIndicator: false),
           child: content
         );
       }

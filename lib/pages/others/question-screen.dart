@@ -94,6 +94,18 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 onTap: () {},
               ),
 
+              CommonTitle(FlutterI18n.translate(context, 'question_answers.phasal_verbs.question')),
+              ListCell(
+                leading: Image.asset(
+                  'assets/confused.png',
+                  height: 50.0,
+                  width: 50.0,
+                ),
+                title: FlutterI18n.translate(context, 'question_answers.phasal_verbs.title'),
+                subtitle: FlutterI18n.translate(context, 'question_answers.phasal_verbs.answer'),
+                onTap: () {},
+              ),
+
               CommonTitle(FlutterI18n.translate(context, 'question_answers.verb.question')),
               ListCell(
                 leading: Image.asset(
@@ -117,6 +129,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 subtitle: FlutterI18n.translate(context, 'question_answers.noun.answer'),
                 onTap: () {},
               ),
+
+              CommonTitle(FlutterI18n.translate(context, 'question_answers.idioms.question')),
+              ListCell(
+                title: FlutterI18n.translate(context, 'question_answers.idioms.title'),
+                subtitle: FlutterI18n.translate(context, 'question_answers.idioms.answer'),
+                onTap: () {},
+              ),
+
               CommonTitle(FlutterI18n.translate(context, 'question_answers.adjective.question')),
               ListCell(
                 leading: Image.asset(

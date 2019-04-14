@@ -18,10 +18,9 @@ class ListCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(
-        vertical: 8.0,
+        vertical: 4.0,
         horizontal: 16.0,
       ),
-      leading: leading,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -32,10 +31,15 @@ class ListCell extends StatelessWidget {
           Separator.spacer(height: 6.0),
         ],
       ),
+
+      leading: leading,
+
       subtitle: Text(
         subtitle,
         style: TextStyle(
-          color: Colors.white70
+          color: Colors.white70,
+          fontFamily: 'Heebo',
+          fontWeight: FontWeight.w500,
         )
       ),
       trailing: trailing,

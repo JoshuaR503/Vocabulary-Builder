@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [41st commit] - 2019-04-13
+### Added
+- Missing translations in Spanish
+- Added Phasal Verb and Idiom meaning
+- Added new data to some screens
+- New icons
+
+### Changed
+- FontFace in ListCell widget
+- The way translations work
+- Some screens' style
+
 ## [40th commit] - 2019-04-12
 ### Changed 
 - App's UI in the Single palaba screen

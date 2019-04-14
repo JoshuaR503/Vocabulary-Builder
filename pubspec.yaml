@@ -69,8 +69,6 @@ flutter:
         - asset: assets/fonts/Heebo-Regular.ttf
           weight: 400
 
-          
-
   assets:
     - assets/logo.png
     - assets/books.png
@@ -90,3 +88,6 @@ flutter:
     - assets/mushroom.png
     - assets/tap.png
     - assets/flutter_i18n/
+    - assets/boy.png
+    - assets/confused.png
+    - assets/angry.png

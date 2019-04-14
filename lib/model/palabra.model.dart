@@ -19,6 +19,7 @@ class Palabra {
   String ejemplo;
   String ejemplo2;
   String categoriaGramatical;
+  String categoriaGramatical2;
   String nota;
   String date;
 
@@ -40,6 +41,7 @@ class Palabra {
     this.definicion,
     this.definicion2,
     this.categoriaGramatical,
+    this.categoriaGramatical2,
     this.nota,
     this.date,
   });
@@ -64,6 +66,7 @@ class Palabra {
     this.nota,
     this.date,
     this.categoriaGramatical,
+    this.categoriaGramatical2,
     this.id
   });
 
@@ -89,6 +92,7 @@ class Palabra {
     map['ejemplo'] = ejemplo;
     map['ejemplo2'] = ejemplo2;
     map['categoriaGramatical'] = categoriaGramatical;
+    map['categoriaGramatical2'] = categoriaGramatical2;
     map['nota'] = nota;
 		map['date'] = date;
 
@@ -114,6 +118,7 @@ class Palabra {
     this.ejemplo = map['ejemplo'];
     this.ejemplo2 = map['ejemplo2'];
     this.categoriaGramatical = map['categoriaGramatical'];
+    this.categoriaGramatical2 = map['categoriaGramatical2'];
     this.nota = map['nota'];
 		this.date = map['date'];
 	}

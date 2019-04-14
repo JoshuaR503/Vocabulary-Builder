@@ -19,9 +19,11 @@ class HelpScreen extends StatelessWidget {
       ),
       body: Center(
         child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 3.0),
           width: targetWidth,
           child: ListView(
             children: <Widget>[
+
               CommonTitle(FlutterI18n.translate(context, 'troubleshooting.no_words.title')),
               SubTitle(FlutterI18n.translate(context, 'troubleshooting.no_words.subtitle')),
               ListCell(
@@ -35,6 +37,18 @@ class HelpScreen extends StatelessWidget {
                 onTap: () {},
               ),
 
+              CommonTitle(FlutterI18n.translate(context, 'troubleshooting.voice.title')),
+              SubTitle(FlutterI18n.translate(context, 'troubleshooting.voice.subtitle')),
+              ListCell(
+                leading: Image.asset(
+                  'assets/angry.png',
+                  height: 50.0,
+                  width: 50.0,
+                ),
+                title: FlutterI18n.translate(context, 'troubleshooting.voice.response_one'),
+                subtitle: FlutterI18n.translate(context, 'troubleshooting.voice.solution_one'),
+                onTap: () {},
+              ),
               CommonTitle(FlutterI18n.translate(context, 'troubleshooting.no_volume.title')),
               SubTitle(FlutterI18n.translate(context, 'troubleshooting.no_volume.subtitle')),
 
@@ -59,6 +73,8 @@ class HelpScreen extends StatelessWidget {
                 subtitle: FlutterI18n.translate(context, 'troubleshooting.no_volume.solution_four'),
                 onTap: () {},
               ),
+
+              
             ]
           ),
         )

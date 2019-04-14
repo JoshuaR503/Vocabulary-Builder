@@ -29,6 +29,14 @@ mixin ConnectedModel on Model {
 
 mixin PalabrasModel on ConnectedModel {
 
+  Future<String> uLang() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String userlang = prefs.getString('user_lang');
+    _userLang = userlang;
+
+    return userlang;
+  }
+
   DatabaseHelper _dbh = DatabaseHelper();  
 
   List<Palabra> get allPalabras => List.from(_palabras);
@@ -46,7 +54,11 @@ mixin PalabrasModel on ConnectedModel {
     return _palabrasGuardadas.firstWhere((palabra) => palabra.id == _selPalabraGuardadaId);
   }
 
-  Future<Null> obtenerPalabras({bool loadingIndicator = false, String lang = 'en' }) async {
+  Future<Null> obtenerPalabras({bool loadingIndicator = false}) async {
+
+    final String lang = await uLang();
+    print('$lang');
+    
 
     return http
       .get('$baseUrl/api/v3/azar?limit=6&lang=$lang')
@@ -69,7 +81,7 @@ mixin PalabrasModel on ConnectedModel {
           return;
         }
 
-        final String requestedLang = lang.toUpperCase();
+        final String requestedLang = _userLang.toUpperCase();
 
         String secondLang;
 
@@ -97,17 +109,22 @@ mixin PalabrasModel on ConnectedModel {
             pasado: palabraData['pasado$requestedLang'],
             futuro: palabraData['futuro$requestedLang'],
 
-            sinonimos: palabraData['sinonimos$requestedLang'],
-            antonimos: palabraData['antonimos$requestedLang'],
+            sinonimos: palabraData['sinonimos$secondLang'],
+            antonimos: palabraData['antonimos$secondLang'],
 
             definicion: palabraData['definicion$requestedLang'],
             definicion2: palabraData['definicion$secondLang'],
             
             ejemplo: palabraData['ejemplo$secondLang'],
             ejemplo2: palabraData['ejemplo2$secondLang'],
+
             categoriaGramatical: palabraData['categoriaGramatical$requestedLang'],
-            nota: palabraData['nota$requestedLang'],
+
+            nota: palabraData['nota$secondLang'],
           );
+
+          print('${singlePalabra.ejemplo}');
+          
           
           fetchedPalabrasList.add(singlePalabra);
         });
@@ -184,6 +201,8 @@ mixin PalabrasModel on ConnectedModel {
       ejemplo2: palabraData.ejemplo2,
 
       categoriaGramatical: palabraData.categoriaGramatical,
+      categoriaGramatical2: palabraData.categoriaGramatical2,
+
       nota: palabraData.nota,
 
       date: DateFormat.yMMMd().format(DateTime.now())

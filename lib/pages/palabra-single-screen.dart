@@ -88,9 +88,11 @@ class SinglePalabraScreen extends StatelessWidget  {
                 copyClipboard: false,
               ),
 
+              
+
               Separator.spacer(),
               RowItem(
-                title: FlutterI18n.translate(context, 'single_palabra.extra_details.third_item'),
+                title: FlutterI18n.translate(context, 'single_palabra.extra_details.fourth_item'),
                 subtitle: kind == null ? notAvailable : kind,
                 copyClipboard: false,
               ),
@@ -139,7 +141,7 @@ class SinglePalabraScreen extends StatelessWidget  {
                 Separator.spacer(),
 
                 RowItem(
-                  title: FlutterI18n.translate(context, 'single_palabra.conjugation_indicative.segunda_persona'),
+                  title: FlutterI18n.translate(context, 'single_palabra.conjugation_indicative.tercera_persona'),
                   subtitle: terceraPersona,
                   copyClipboard: true
                 ),
@@ -259,30 +261,36 @@ class SinglePalabraScreen extends StatelessWidget  {
 
   Widget _buildPalabraAntSynCard(BuildContext context) {
 
-    String antonyms = FlutterI18n.translate(context, 'single_palabra.antonyms', {'palabra': _palabra.palabra});
-    String synonyms = FlutterI18n.translate(context, 'single_palabra.synonyms', {'palabra': _palabra.palabra});
-    
-    String ns = FlutterI18n.translate(context, 'single_palabra.not_available.ns');
-    String na = FlutterI18n.translate(context, 'single_palabra.not_available.na');
+    final String notAvailable = FlutterI18n.translate(context, 'single_palabra.not_available.title');
 
-    String antonimos = _palabra.antonimos;
-    String sinonimos = _palabra.sinonimos;
+    final String antonyms = FlutterI18n.translate(context, 'single_palabra.antonyms', {'palabra': _palabra.palabra});
+    final String synonyms = FlutterI18n.translate(context, 'single_palabra.synonyms', {'palabra': _palabra.palabra});
+ 
+    final String ns = FlutterI18n.translate(context, 'single_palabra.not_available.ns');
+    final String na = FlutterI18n.translate(context, 'single_palabra.not_available.na');
 
-    print('$antonimos, $sinonimos');
+    final String antonimos = _palabra.antonimos;
+    final String sinonimos = _palabra.sinonimos;
 
-    Widget card = Column(
+    Widget card;
+
+    if (antonimos == null && sinonimos == null) {
+      card = Container();
+    } else {
+      card = Column(
       children: <Widget>[
-        HeadCard(
-          title: antonyms,
-          subtitle: antonimos == null ? na : antonimos,
-          title2: synonyms,
-          subtitle2: sinonimos == null ? ns : sinonimos,
-        ),
+          HeadCard(
+            title: antonyms,
+            subtitle: antonimos == null ? na : antonimos.length > 1 ? antonimos : notAvailable,
+            title2: synonyms,
+            subtitle2: sinonimos == null ? ns : sinonimos.length > 1 ? sinonimos : notAvailable,
+          ),
 
-        Separator.spacer(),
-      ],
-    );
-    
+          Separator.spacer(),
+        ],
+      );
+    }
+
     return card;
   }
 

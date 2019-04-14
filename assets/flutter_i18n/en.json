@@ -1,5 +1,5 @@
 {
-    "app": "QuickGlish",
+    "app": "Vocabulario",
 
     "welcome_screen": {
         "title": "Choose a language to study"
@@ -61,7 +61,7 @@
         },
 
         "verb_card": {
-            "title": "Conjugación verbal",
+            "title": "Verb Conjugation",
 
             
             "present": "Root Form",
@@ -83,7 +83,7 @@
 
         "example": {
             "first_item": "{palabra} used in a sentence",
-            "second_item": "Another example of {palabra}"
+            "second_item": "{palabra} used in another sentence"
         },
 
         "antonyms": "Antonyms of {palabra}",
@@ -96,7 +96,8 @@
             "title": "Additional details",
             "first_tiem": "Word",
             "second_item": "Translation",
-            "third_item": "Grammatical category"
+            "third_item": "Grammatical category",
+            "fourth_item": "Categoría gramatical"
         },
 
         "not_available": {
@@ -121,61 +122,73 @@
 
         "sentence": {
             "question": "What is a sentence?",
-            "title": "Brief definition: ",
+            "title": "A set of words ",
             "answer": "A sentence is a set of words used to express an idea or thought. Examples: the man is running, I am learning another language."
         },
 
         "singular": {
             "question": "What does singular mean?",
-            "title": "Brief definition:",
+            "title": "A single object",
             "answer": "Singular expresses a single unit of the beings or objects referred to. Examples: a mushroom, the car, a house"
         },
 
         "plural": {
             "question": "What does plural mean?",
-            "title": "Brief definition: ",
+            "title": "More than one object",
             "answer": "Plural refers to more than one thing. Examples: mushrooms, trees, houses. It is the opposite to singular (antonym)"
         },
 
         "antonyms": {
             "question": "What are antonyms?",
-            "title": "Brief definition: ",
+            "title": "Opposite words",
             "answer": "Antonyms are those words whose meanings are opposite. Examples: light - dark, high - low, small - large."
         },
 
         "synonyms": {
             "question": "What are synonyms?",
-            "title": "Brief definition:",
+            "title": "Similar words",
             "answer": "Synonyms are words that have the same meaning as other words. Examples: understand - understand, easy - simple, student - student."
         },
 
         "subject": {
-            "question": "What is the subject?",
-            "title": "Brief definition:",
+            "question": "What's a subject?",
+            "title": "Who we're talk about",
             "answer": "The subject is the person, animal or thing discussed in a sentence. Example: the bird, the tree, the house."
         },
 
+        "phasal_verbs": {
+            "question": "What are phrasal verbs?",
+            "title": "Its meaning is not obvious.",
+            "answer": "These are the verbs composed by a main verb and an adverb or preposition. Examples: cheer up, calm down, break up"
+        },
+
         "verb": {
-            "question": "What is a verb?",
-            "title": "Brief definition:",
+            "question": "What's a verb?",
+            "title": "Every action",
             "answer": "The verb is the part of the sentence that expresses the subject's action. Example: the man is running, the bird is singing."
         },
 
         "noun": {
-            "question": "What is a noun?",
-            "title": "Brief definition:",
+            "question": "What's a noun?",
+            "title": "Reference to an object",
             "answer": "Nouns are words with which people, animals, things, etc are called. Example: apple, tree, house."
         },
 
         "adjective": {
-            "question": "What is an adjective?",
-            "title": "Brief definition:",
+            "question": "What's an adjective?",
+            "title": "A description",
             "answer": "An adjective is a word that modifies the noun, it is the one that indicates some characteristic or quality of the noun. Example: green, tall, big."
         },
 
+        "idioms": {
+            "question": "What are idioms?",
+            "title": "Literally translated don't make sense.",
+            "answer": "Idioms are phrases of every language that if translated literally, wouldn't make any sense. They're are also known as sayings."
+        },
+
         "adverb": {
-            "question": "What is an adverb?",
-            "title": "Brief definition:",
+            "question": "What's an adverb?",
+            "title": "the how, who, where or when",
             "answer": "An adverb is a part of the sentence that complements a verb. Adverbs express circumstances such as mode, place, time, amount, etc."
         },
 
@@ -194,6 +207,14 @@
             "subtitle": "I always have the message: Couldn't connect to the server",
             "response_one": "Internet connection.",
             "solution_one": "One reason could be that internet connection may be failing or is very slow, please check the internet connection. If it doesn't work, try again later."
+        },
+
+        "voice": {
+            "title": "The pronunciation is awful!",
+            "subtitle": "This application has experienced strange pronunciations on some Andorid devices.",
+
+            "response_one": "Operating system",
+            "solution_one": "The voice depends on the operating system and there's nothing I can not do about it but apologize. If this application is successful, you might have a brand new voice!"
         },
 
         "no_volume": {

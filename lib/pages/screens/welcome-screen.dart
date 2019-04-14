@@ -49,15 +49,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       child: Column(
                         children: <Widget>[
                           _renderButton(
-                            name: 'Spanish',
-                            language: 'en',
+                            name: 'Inglés',
+                            language: 'es',
                             model: model,
                             context: context
                           ),
                           SizedBox(height: 20.0),
                           _renderButton(
-                            name: 'Inglés',
-                            language: 'es',
+                            name: 'Spanish',
+                            language: 'en',
                             model: model,
                             context: context
                           ),

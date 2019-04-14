@@ -1,5 +1,5 @@
 {
-    "app": "QuickGlish",
+    "app": "Vocabulary",
 
     "home": {
         "title": "Inicio",
@@ -19,7 +19,7 @@
             "show_slide": "Repetir Introducción",
             "credits": "Créditos",
 
-            "privacy": "Política de privacida",
+            "privacy": "Política de privacidad",
             "terms": "Términos y condiciones"
         },
 
@@ -52,9 +52,9 @@
 
         "conjugation_indicative": {
             "title": "Conjugación indicativa",
-            "primera_persona": "",
-            "segunda_persona": "",
-            "tercera_persona": ""
+            "primera_persona": "Primera persona",
+            "segunda_persona": "Segunda persona",
+            "tercera_persona": "Tercera persona"
         },
 
 
@@ -79,7 +79,7 @@
 
         "example": {
             "first_item": "{palabra} en una oración:",
-            "second_item": "Otro ejemplo de {palabra}"
+            "second_item": "{palabra} en otra oración:"
         },
 
         "antonyms": "Antónimos de {palabra}",
@@ -92,7 +92,8 @@
             "title": "Detalles adicionales",
             "first_tiem": "Palabra",
             "second_item": "Traducción",
-            "third_item": "Categoría gramatical"
+            "third_item": "Categoría gramatical",
+            "fourth_item": "Grammatical category"
         },
 
         "not_available": {
@@ -115,62 +116,74 @@
 
         "sentence": {
             "question": "¿Qué es una oración?",
-            "title": "Breve definición de la oración",
+            "title": "Un conjunto de palabras.",
             "answer": "La oración un conjunto de palabras que expresa una idea o pensamiento. Ejemplos: el hombre esta corriendo, estoy aprendiendo otro idioma."
         },
 
         "singular": {
             "question": "¿Qué significa singular?",
-            "title": "Una breve definición de singular",
-            "answer": "Singular se refiere a cuando hablamos de solamente una cosa en particular. Ejemplos: un hongo, el carro, una casa"
+            "title": "Una sola cosa",
+            "answer": "Singular se refiere a cuando hablamos de solamente un objeto en particular. Ejemplos: un hongo, el carro, una casa"
         },
 
         "plural": {
             "question": "¿Qué significa plural?",
-            "title": "Una breve definición de plural",
+            "title": "Mas de una cosa",
             "answer": "Plural, se refiere a cuando hablamos de más de una sola cosa. Ejemplos: unos hongos, los arboles, las casas. Lo contrario a singular (antónimo)"
         },
 
         "antonyms": {
             "question": "¿Qué son los antónimos?",
-            "title": "Una breve definición de los antónimos",
+            "title": "Palabras opuestas",
             "answer": "Los antónimos son aquellas palabras cuyos significados son opuestos. Ejemplos: luz - oscuridad, alto - bajo, pequeño - grande."
         },
 
         "synonyms": {
             "question": "¿Qué son los sinónimos?",
-            "title": "Una breve definición de los sinónimos",
+            "title": "Palabras similares",
             "answer": "Los sinónimos son palabras que tienen el mismo significado de otras palabras. Ejemplos: comprender - entender, fácil - sencillo, estudiante - alumno."
         },
 
         "subject": {
             "question": "¿Qué es el sujeto?",
-            "title": "Una breve definición de sujeto",
+            "title": "De quien se habla",
             "answer": "El sujeto es la persona, animal o cosa de la que se habla en una oración. Ejemplo: el pájaro, el árbol, la casa."
+        },
+
+        "phasal_verbs": {
+            "question": "¿Qué son los verbos frasales?",
+            "title": "Su significado no es obvio.",
+            "answer": "Son los verbos compuestos por un verbo principal y un adverbio o preposición. Ejemplos: cheer up (animarse), calm down (calmarse), break up (separar)"
         },
 
         "verb": {
             "question": "¿Qué es un verbo?",
-            "title": "El verbo:",
+            "title": "Toda acción",
             "answer": "El verbo es la parte de la oración que expresa acción del sujeto. Ejemplo: el hombre esta corriendo, el pájaro esta cantando."
         },
 
         "noun": {
             "question": "¿Qué es un sustantivo?",
-            "title": "Un sustantivo:",
+            "title": "Referencia a un objeto",
             "answer": "Los sustantivos son palabras con las que se denominan personas, animales, cosas, ideas o pensamientos. Ejemplo: manzana, árbol, casa."
         },
 
         "adjective": {
             "question": "¿Qué es un adjetivo?",
-            "title": "El adjetivo:",
+            "title": "Una descripción",
             "answer": "Un adjetivo es la palabra que modifica al sustantivo, es el que indica alguna característica o cualidad del sustantivo. Ejemplo: verde, alto, grande."
+        },
+
+        "idioms": {
+            "question": "¿Qué son los modismos?",
+            "title": "Traducidos literalmente no tienen sentido",
+            "answer": "Los modismos son expresiones de cada lenguaje que de traducirse literalmente, no tendrían sentido. También son conocidos como dichos."
         },
 
         "adverb": {
             "question": "¿Qué es un adverbio?",
-            "title": "El advervio",
-            "answer": "Un adverbio es una parte de la oración que complementa a un verbo. Los adverbios expresan circunstancias como modo, lugar, tiempo, cantidad, etc."
+            "title": "El cómo, dónde o cuándo",
+            "answer": "Un adverbio es una parte de la oración que modifica: verbos, adjetivos y otros adverbios. Los adverbios expresan circunstancias como modo, lugar, tiempo, cantidad, etc."
         },
 
         "not_found": {
@@ -188,6 +201,13 @@
             "subtitle": "Siempre tengo el mensaje: No se pudo conectar con el servidor",
             "response_one": "Conexión a internet.",
             "solution_one": "Una razón podría ser que conexión a internet puede estar fallando o es muy lenta, por favor comprueba la conexión a internet. Si no funciona, intenta más tarde."
+        },
+
+        "voice": {
+            "title": "¡La voz no habla bien!",
+            "subtitle": "Esta aplicación ha experimentado extrañas pronunciaciones en algunos dispositivos.",
+            "response_one": "Sistema operativo",
+            "solution_one": "La voz depende del sistema operativo y esto cambia su pronunciación. No puedo hacer nada más que disculparme. Si esta aplicación tiene éxito, tal vez tenga una nueva voz!"
         },
 
         "no_volume": {

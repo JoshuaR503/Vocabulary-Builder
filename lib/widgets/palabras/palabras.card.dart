@@ -54,7 +54,7 @@ class PalabraCard extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   child: Text(
-                    model.userLang == 'es' ? palabra.palabra : palabra.traduccion,
+                    model.userLang == 'en' ? palabra.traduccion : palabra.palabra,
                     style: style
                   ),
                   padding: EdgeInsets.only(left: 16.0),
@@ -67,7 +67,7 @@ class PalabraCard extends StatelessWidget {
         SizedBox(height: 4.0),
         Padding(
           padding: EdgeInsets.only(bottom: 10.0),
-          child: Text(model.userLang == 'es' ? palabra.traduccion : palabra.palabra),
+          child: Text(model.userLang == 'en' ? palabra.palabra : palabra.traduccion),
         )
       ],
     );
@@ -92,9 +92,9 @@ class PalabraCard extends StatelessWidget {
       children: <Widget>[
         FlatButton(
           onPressed: () => model.speak(
-            model.userLang == 'es' 
-              ? palabra.palabra 
-              : palabra.traduccion,
+            model.userLang == 'en' 
+              ? palabra.traduccion
+              : palabra.palabra
           ),
           child: Row(
             children: <Widget>[

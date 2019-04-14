@@ -40,7 +40,7 @@ class AmericanEnglishWords extends StatefulWidget {
 
 class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
 
-  // FirebaseAnalytics _analytics = FirebaseAnalytics();
+  FirebaseAnalytics _analytics = FirebaseAnalytics();
 
   ThemeData _buildTheme() => ThemeData(
     brightness: Brightness.dark,
@@ -62,9 +62,9 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
         data: (brightness) => _buildTheme(),
         themedWidgetBuilder: (context, theme) => MaterialApp(
 
-          // navigatorObservers: [
-          //   FirebaseAnalyticsObserver(analytics: _analytics),
-          // ],
+          navigatorObservers: [
+            FirebaseAnalyticsObserver(analytics: _analytics),
+          ],
 
           theme: theme,
           title: appname,

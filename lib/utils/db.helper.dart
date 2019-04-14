@@ -6,7 +6,7 @@ import 'dart:io';
 
 class DatabaseHelper {
 
-  final pathName = 'productionVocabularyBuilderDBX1.db';
+  final pathName = 'productionVocabularyBuilderDBX2.db';
 
   static DatabaseHelper _databaseHelper;
 	static Database _database;
@@ -35,20 +35,11 @@ class DatabaseHelper {
   String colEjemplo2 = 'ejemplo2';
 
   String colCategoriaGramatical = 'categoriaGramatical';
+  String colCategoriaGramatical2 = 'categoriaGramatical2';
 
   String colNote = 'nota';
   String colDate = 'date';
 
-  String extraSlot1 = 'extraSlot1';
-  String extraSlot2 = 'extraSlot2';
-  String extraSlot3 = 'extraSlot3';
-  String extraSlot4 = 'extraSlot4';
-  String extraSlot5 = 'extraSlot5';
-  String extraSlot6 = 'extraSlot6';
-  String extraSlot7 = 'extraSlot7';
-  String extraSlot8 = 'extraSlot8';
-  String extraSlot9 = 'extraSlot9';
-  String extraSlot10 = 'extraSlot10';
 
   DatabaseHelper._createInstance();
 
@@ -74,7 +65,7 @@ class DatabaseHelper {
 		return notesDatabase;
   }
 
-  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colDificultad TEXT, $colPrimeraPersona TEXT, $colSegundaPersona TEXT, $colTerceraPersona TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colPasado TEXT, $colFuturo TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colDefinicion TEXT, $colDefinicion2 TEXT, $colEjemplo TEXT, $colEjemplo2 TEXT, $colCategoriaGramatical TEXT, $colNote TEXT, $colDate TEXT, $extraSlot1 TEXT, $extraSlot2 TEXT, $extraSlot3 TEXT, $extraSlot4 TEXT, $extraSlot5 TEXT, $extraSlot6 TEXT, $extraSlot7 TEXT, $extraSlot8 TEXT, $extraSlot9 TEXT, $extraSlot10 TEXT)");
+  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colDificultad TEXT, $colPrimeraPersona TEXT, $colSegundaPersona TEXT, $colTerceraPersona TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colPasado TEXT, $colFuturo TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colDefinicion TEXT, $colDefinicion2 TEXT, $colEjemplo TEXT, $colEjemplo2 TEXT, $colCategoriaGramatical TEXT, $colCategoriaGramatical2 TEXT, $colNote TEXT, $colDate TEXT)");
  
   Future<List<Map<String, dynamic>>> fetchSavedDataMapList() async {
 		Database db = await this.database;

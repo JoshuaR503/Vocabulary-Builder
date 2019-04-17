@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:vocabulary_builder/widgets/ui/divider.dart';
 
 import 'package:vocabulary_builder/widgets/ui/list_cell.dart';
 import 'package:vocabulary_builder/widgets/ui/text/subtitle.dart';
@@ -74,7 +75,7 @@ class HelpScreen extends StatelessWidget {
                 onTap: () {},
               ),
 
-              
+              Separator.spacer(height: 6.0),
             ]
           ),
         )

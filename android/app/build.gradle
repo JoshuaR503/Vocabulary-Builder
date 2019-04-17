@@ -13,12 +13,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '5'
+    flutterVersionCode = '10'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '5.0.0'
+    flutterVersionName = '10.0.0'
 }
 
 apply plugin: 'com.android.application'
@@ -39,7 +39,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.herokuapp.builder.vocabulary"
+        applicationId "com.herokuapp.backend.another"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()

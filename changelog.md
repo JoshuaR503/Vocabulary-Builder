@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Released]
+## [42nd commit] - 2019-04-16
+### Added
+- Missing translations in Spanish
+
+### Fixed
+- An error that wouldn't show the conjugation of a word
+
+### Changed
+- Some translations
+- Google Analytics
+
+## [Unreleased]
 ## [41st commit] - 2019-04-13
 ### Added
 - Missing translations in Spanish

@@ -48,7 +48,7 @@ class SinglePalabraScreen extends StatelessWidget  {
                       _buildPalabraBasicInfoCard(context),
                       _buildInidicativeConjugationCard(context),
                       _buildConjugationCard(context),
-                      _buildPalabraDefinitionCard(context),
+                      _buildPalabraDefinitionCard(context, model),
                       _builPalabraExamplesCard(context),
                       _buildPalabraAntSynCard(context),
                       _buildNoteCard(context),
@@ -88,11 +88,9 @@ class SinglePalabraScreen extends StatelessWidget  {
                 copyClipboard: false,
               ),
 
-              
-
               Separator.spacer(),
               RowItem(
-                title: FlutterI18n.translate(context, 'single_palabra.extra_details.fourth_item'),
+                title: FlutterI18n.translate(context, 'single_palabra.extra_details.third_item'),
                 subtitle: kind == null ? notAvailable : kind,
                 copyClipboard: false,
               ),
@@ -111,6 +109,8 @@ class SinglePalabraScreen extends StatelessWidget  {
     final String primeraPersona = _palabra.primeraPersona;
     final String segundaPersona = _palabra.segundaPersona;
     final String terceraPersona = _palabra.terceraPersona;
+
+    print('$primeraPersona, $segundaPersona, $terceraPersona');
 
     if (
       primeraPersona != null &&
@@ -165,6 +165,8 @@ class SinglePalabraScreen extends StatelessWidget  {
     final String presenteC = _palabra.presenteContinuo;
     final String pasado = _palabra.pasado;
     final String futuro = _palabra.futuro;
+
+    print('$presente, $presenteC, $pasado, $futuro');
     
     if (presente != null && presenteC != null && pasado != null && futuro != null ) {
       
@@ -213,21 +215,24 @@ class SinglePalabraScreen extends StatelessWidget  {
     return card;
   }
 
-  Widget _buildPalabraDefinitionCard(BuildContext context) {
+  Widget _buildPalabraDefinitionCard(BuildContext context, MainModel model) {
 
     Widget card = Container();
 
-    String definicion = _palabra.definicion;
-    String definicion2 = _palabra.definicion2;
+    final String definicion = _palabra.definicion;
+    final String definicion2 = _palabra.definicion2;
+    final String notAvailable = FlutterI18n.translate(context, 'single_palabra.not_available.title');
+    final String spanish = FlutterI18n.translate(context, 'single_palabra.definition.first_item');
+    final String english = FlutterI18n.translate(context, 'single_palabra.definition.second_item');
 
     if (definicion != null && definicion2 != null) {
       card = Column(
         children: <Widget>[
           HeadCard (
-            title: FlutterI18n.translate(context, 'single_palabra.definition.first_item'),
-            subtitle: definicion,
-            title2: FlutterI18n.translate(context, 'single_palabra.definition.second_item'),
-            subtitle2: definicion2
+            title: model.userLang == 'en' ? spanish : english,
+            subtitle: definicion.length > 1 ? definicion : notAvailable,
+            title2: model.userLang == 'en' ? english : spanish,
+            subtitle2: definicion2.length > 1 ? definicion2 : notAvailable,
           ),
 
           Separator.spacer(),

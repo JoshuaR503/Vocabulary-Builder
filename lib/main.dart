@@ -71,7 +71,13 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
           debugShowCheckedModeBanner: false,
           routes: {
             // '/': (BuildContext context) => WelcomeScreen(),
-            '/': (BuildContext context) => model.seen ? PalabrasScreen(model) : WelcomeScreen(),
+            '/': (BuildContext context) => model.seen 
+            
+              ? PalabrasScreen(model) 
+              : model.userLang == null 
+              ? WelcomeScreen() 
+              : IntroScreen(),
+
             '/home': (BuildContext context) => PalabrasScreen(model),
             '/saved': (BuildContext context) => PalabraGuardadaScreen(model),
             '/creditos': (BuildContext context) => CreditoScreen(),

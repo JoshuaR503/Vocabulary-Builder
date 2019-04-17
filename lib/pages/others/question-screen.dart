@@ -3,6 +3,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 import 'package:vocabulary_builder/utils/settings.dart';
+import 'package:vocabulary_builder/widgets/ui/divider.dart';
 import 'package:vocabulary_builder/widgets/ui/list_cell.dart';
 import 'package:vocabulary_builder/widgets/ui/text/title.dart';
 
@@ -172,6 +173,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 subtitle: FlutterI18n.translate(context, 'question_answers.not_found.subtitle'),
                 onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback),
               ),
+
+              Separator.spacer(height: 6.0),
             ]
           )
         ),

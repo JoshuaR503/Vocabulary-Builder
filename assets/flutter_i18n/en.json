@@ -54,7 +54,7 @@
     "single_palabra": {
         
         "conjugation_indicative": {
-            "title": "Conjugación indicativa",
+            "title": "Indicative Conjugation",
             "primera_persona": "First person",
             "segunda_persona": "Second person",
             "tercera_persona": "Third person"
@@ -62,11 +62,9 @@
 
         "verb_card": {
             "title": "Verb Conjugation",
-
             
             "present": "Root Form",
             "present_continuous": "Present Participle",
-
             "past": "Past Form",
             "future": "Future Form"
         },
@@ -77,8 +75,8 @@
         },
 
         "definition": {
-            "first_item": "Brief definition:",
-            "second_item": "Brief definition in Spanish:"
+            "first_item": "Brief definition in English",
+            "second_item": "Brief definition in Spanish"
         },
 
         "example": {
@@ -96,8 +94,7 @@
             "title": "Additional details",
             "first_tiem": "Word",
             "second_item": "Translation",
-            "third_item": "Grammatical category",
-            "fourth_item": "Categoría gramatical"
+            "third_item": "Grammatical category"
         },
 
         "not_available": {

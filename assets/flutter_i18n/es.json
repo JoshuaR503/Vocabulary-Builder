@@ -73,8 +73,8 @@
         },
 
         "definition": {
-            "first_item": "Breve definición:",
-            "second_item": "Breve definición en Español:"
+            "first_item": "Breve definición en Inglés",
+            "second_item": "Breve definición en Español"
         },
 
         "example": {
@@ -92,8 +92,7 @@
             "title": "Detalles adicionales",
             "first_tiem": "Palabra",
             "second_item": "Traducción",
-            "third_item": "Categoría gramatical",
-            "fourth_item": "Grammatical category"
+            "third_item": "Categoría gramatical"
         },
 
         "not_available": {
@@ -117,25 +116,25 @@
         "sentence": {
             "question": "¿Qué es una oración?",
             "title": "Un conjunto de palabras.",
-            "answer": "La oración un conjunto de palabras que expresa una idea o pensamiento. Ejemplos: el hombre esta corriendo, estoy aprendiendo otro idioma."
+            "answer": "La oración es un conjunto de palabras que expresa una idea o pensamiento. Ejemplos: el hombre esta corriendo, estoy aprendiendo otro idioma."
         },
 
         "singular": {
             "question": "¿Qué significa singular?",
-            "title": "Una sola cosa",
+            "title": "Un solo objeto",
             "answer": "Singular se refiere a cuando hablamos de solamente un objeto en particular. Ejemplos: un hongo, el carro, una casa"
         },
 
         "plural": {
             "question": "¿Qué significa plural?",
-            "title": "Mas de una cosa",
-            "answer": "Plural, se refiere a cuando hablamos de más de una sola cosa. Ejemplos: unos hongos, los arboles, las casas. Lo contrario a singular (antónimo)"
+            "title": "Mas de un objeto",
+            "answer": "Plural, se refiere a cuando hablamos de más de una sola cosa. Ejemplos: unos hongos, los arboles, las casas; lo contrario a singular."
         },
 
         "antonyms": {
             "question": "¿Qué son los antónimos?",
             "title": "Palabras opuestas",
-            "answer": "Los antónimos son aquellas palabras cuyos significados son opuestos. Ejemplos: luz - oscuridad, alto - bajo, pequeño - grande."
+            "answer": "Los antónimos son aquellas palabras cuyos significados son opuestos. Ejemplos: luz - oscuridad, compar - vender, amar - odiar."
         },
 
         "synonyms": {
@@ -151,15 +150,15 @@
         },
 
         "phasal_verbs": {
-            "question": "¿Qué son los verbos frasales?",
+            "question": "¿Qué es un verbo frasal?",
             "title": "Su significado no es obvio.",
-            "answer": "Son los verbos compuestos por un verbo principal y un adverbio o preposición. Ejemplos: cheer up (animarse), calm down (calmarse), break up (separar)"
+            "answer": "Son verbos compuestos por un verbo principal y un adverbio o preposición. Ejemplos: cheer up (animarse), calm down (calmarse), break up (separar)"
         },
 
         "verb": {
             "question": "¿Qué es un verbo?",
-            "title": "Toda acción",
-            "answer": "El verbo es la parte de la oración que expresa acción del sujeto. Ejemplo: el hombre esta corriendo, el pájaro esta cantando."
+            "title": "Toda acción del sujeto",
+            "answer": "El verbo es la parte de la oración que expresa la acción del sujeto. Ejemplo: el hombre esta corriendo, el pájaro esta cantando."
         },
 
         "noun": {
@@ -171,12 +170,12 @@
         "adjective": {
             "question": "¿Qué es un adjetivo?",
             "title": "Una descripción",
-            "answer": "Un adjetivo es la palabra que modifica al sustantivo, es el que indica alguna característica o cualidad del sustantivo. Ejemplo: verde, alto, grande."
+            "answer": "Un adjetivo es la palabra que modifica al sustantivo, es el que indica alguna característica o cualidad del sustantivo. Ejemplo: verde, alto, grande. Todos estos son adjetivos para describir a un sustantivo"
         },
 
         "idioms": {
             "question": "¿Qué son los modismos?",
-            "title": "Traducidos literalmente no tienen sentido",
+            "title": "Literalmente no tienen sentido",
             "answer": "Los modismos son expresiones de cada lenguaje que de traducirse literalmente, no tendrían sentido. También son conocidos como dichos."
         },
 
@@ -207,7 +206,7 @@
             "title": "¡La voz no habla bien!",
             "subtitle": "Esta aplicación ha experimentado extrañas pronunciaciones en algunos dispositivos.",
             "response_one": "Sistema operativo",
-            "solution_one": "La voz depende del sistema operativo y esto cambia su pronunciación. No puedo hacer nada más que disculparme. Si esta aplicación tiene éxito, tal vez tenga una nueva voz!"
+            "solution_one": "La voz depende del sistema operativo y esto cambia su pronunciación. No puedo hacer nada más que disculparme. Si esta aplicación tiene éxito, se utilizará una voz profesional."
         },
 
         "no_volume": {
@@ -220,7 +219,7 @@
             "solution_two": "Podría ser obvio, pero ¿has intentado aumentar el volumen?",
 
             "response_three": "Modo no molestar.",
-            "solution_three": "Es posible que tenga activado el modo 'No molestar'. Intenta desactivarlo.",
+            "solution_three": "Es posible que tengas activado el modo 'No molestar', intenta desactivarlo.",
 
             "response_four": "Última revisión.",
             "solution_four": "Si nada de esto funciona, tienes dos opciones, puede que tu teléfono tenga un altavoz que no funciona o tu dispositivo no escompatible con la aplicación."
@@ -245,9 +244,9 @@
 
         "icon_designer_two": {
             "title": "Iconos Diseñados por Freepik",
-            "title_two": "Todos los iconos de colores, excepto el hombre corriendo y el icono de la aplicación, fueron diseñados y creados por Freepik.",
+            "title_two": "Iconos hecho por Freepik de www.flaticon.com",
             "subtitle": "Toca para obtener más información.",
-            "subtitle_two": "Icono hecho por Freepik de www.flaticon.com"
+            "subtitle_two": "Todos los iconos de colores, excepto el hombre corriendo y el icono de la aplicación, fueron diseñados y creados por Freepik."
         }
     },
 

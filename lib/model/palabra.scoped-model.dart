@@ -56,9 +56,7 @@ mixin PalabrasModel on ConnectedModel {
 
   Future<Null> obtenerPalabras({bool loadingIndicator = false}) async {
 
-    final String lang = await uLang();
-    print('$lang');
-    
+    final String lang = await uLang();    
 
     return http
       .get('$baseUrl/api/v3/azar?limit=6&lang=$lang')
@@ -91,23 +89,25 @@ mixin PalabrasModel on ConnectedModel {
           secondLang = 'ES';
         }
 
-        print('$requestedLang, $secondLang');
+        print('$requestedLang, $secondLang, $lang');
 
         palabraListData.forEach((dynamic palabraData) {
+
+          print(palabraData['presente$requestedLang']);
 
           final Palabra singlePalabra = Palabra(
             palabra: palabraData['palabra'],
             traduccion: palabraData['traduccion'],
             dificultad: palabraData['dificultad'],
 
-            primeraPersona: palabraData['primeraPersona$requestedLang'],
-            segundaPersona: palabraData['segundaPersona$requestedLang'],
-            terceraPersona: palabraData['terceraPersona$requestedLang'],
+            primeraPersona: palabraData['primeraPersona$secondLang'],
+            segundaPersona: palabraData['segundaPersona$secondLang'],
+            terceraPersona: palabraData['terceraPersona$secondLang'],
 
-            presente: palabraData['presente$requestedLang'],
-            presenteContinuo: palabraData['presenteContinuo$requestedLang'],
-            pasado: palabraData['pasado$requestedLang'],
-            futuro: palabraData['futuro$requestedLang'],
+            presente: palabraData['presente$secondLang'],
+            presenteContinuo: palabraData['presenteContinuo$secondLang'],
+            pasado: palabraData['pasado$secondLang'],
+            futuro: palabraData['futuro$secondLang'],
 
             sinonimos: palabraData['sinonimos$secondLang'],
             antonimos: palabraData['antonimos$secondLang'],
@@ -121,10 +121,7 @@ mixin PalabrasModel on ConnectedModel {
             categoriaGramatical: palabraData['categoriaGramatical$requestedLang'],
 
             nota: palabraData['nota$secondLang'],
-          );
-
-          print('${singlePalabra.ejemplo}');
-          
+          );          
           
           fetchedPalabrasList.add(singlePalabra);
         });

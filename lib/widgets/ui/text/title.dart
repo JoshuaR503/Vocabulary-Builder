@@ -9,7 +9,7 @@ class CommonTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 16, top: 28, bottom: 6),
+      padding: EdgeInsets.only(left: 16, top: 20, bottom: 6),
       child: Text(
         title,
         style: TextStyle(

@@ -28,7 +28,7 @@ class ErrorScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             
             ),
-            margin: EdgeInsets.only(top: 40.0, bottom: 50.0, left: 20, right: 20),
+            margin: EdgeInsets.only(top: 30.0, bottom: 50.0, left: 20, right: 20),
           ),
           Image.asset(
             pathImage,

@@ -41,8 +41,15 @@ class IntroScreen extends StatelessWidget {
             //   backgroundColor: Color(0XFF008A73),
             // ),
           ],
-          onDonePress: () => model.setData().then((_) => Navigator.pushReplacementNamed(context, '/home')),
-          onSkipPress: () => model.setData().then((_) => Navigator.pushReplacementNamed(context, '/home')),
+          onDonePress: () => 
+          model
+          .setData()
+          .then((_) => Navigator.pushReplacementNamed(context, '/home')),
+
+          onSkipPress: () => 
+          model
+          .setData()
+          .then((_) => Navigator.pushReplacementNamed(context, '/home')),
         );
       }
     );

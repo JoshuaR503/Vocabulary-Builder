@@ -149,7 +149,7 @@
 
         "subject": {
             "question": "What's a subject?",
-            "title": "Who we're talk about",
+            "title": "Who we talk about",
             "answer": "The subject is the person, animal or thing discussed in a sentence. Example: the bird, the tree, the house."
         },
 
@@ -207,7 +207,7 @@
         },
 
         "voice": {
-            "title": "The pronunciation is awful!",
+            "title": "This pronunciation is horrible!",
             "subtitle": "This application has experienced strange pronunciations on some Andorid devices.",
 
             "response_one": "Operating system",
@@ -243,8 +243,8 @@
 
         "icon_designer_one": {
             "title": "Icons Designed by mynamepong",
-            "title_two": "Designer man icon running.",
-            "subtitle": "Tap the icon to find out more",
+            "title_two": "Tap the icon to find out more",
+            "subtitle": "Designed the icon of the man running.",
             "subtitle_two": "Icon made by mynamepong from www.flaticon.com"
         },
 
@@ -259,12 +259,12 @@
     "slide_show": {
         "slide_one": {
             "title": "VOCABULARY",
-            "description": "Increase your vocabulary with words that you might not know."
+            "description": "Increase your vocabulary with random Spanish words."
         },
 
         "slide_two": {
             "title": "LEARN ON THE GO",
-            "description": "With 15 minutes a day you can learn new words."
+            "description": "With at least 5 minutes per day you can increase your vocabulary."
         },
 
         "slide_three": {
@@ -305,8 +305,8 @@
         },
 
         "no_saved_words": {
-            "message": "It seems like you haven't saved any words yet",
-            "solution": "You can tap the heart next to a word to save it."
+            "message": "Seems like you haven't saved any words yet.",
+            "solution": "To save words tap the heart next to it."
         }
     }
 }

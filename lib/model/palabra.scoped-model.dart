@@ -59,45 +59,33 @@ mixin PalabrasModel on ConnectedModel {
     final String lang = await uLang();    
 
     return http
-      .get('$baseUrl/api/v3/azar?limit=6&lang=$lang')
+      .get('$baseUrl/api/v3/palabras?limit=6&lang=$lang&key=JosshuAP50@KelReySSl@hiddenKEY')
       .then<Null>((http.Response response) {
 
-        if (loadingIndicator) {
-          _isLoading = true;
-          notifyListeners();
-        } else {
-          _isLoading = false;
-          notifyListeners();
-        }
+        this._isLoading = loadingIndicator;
+        this.notifyListeners();
 
         final List<Palabra> fetchedPalabrasList = [];
         final List<dynamic> palabraListData = json.decode(response.body);
 
         if (palabraListData == null) {
-          _isLoading = false;
-          notifyListeners();
+          this._isLoading = false;
+          this.notifyListeners();
           return;
         }
 
         final String requestedLang = _userLang.toUpperCase();
-
-        String secondLang;
-
-        if (requestedLang == 'ES') {
-          secondLang = 'EN';
-        } else if (requestedLang == 'EN') {
-          secondLang = 'ES';
-        }
+        final String secondLang = requestedLang == 'ES' ? 'EN' : 'ES';
 
         print('$requestedLang, $secondLang, $lang');
 
         palabraListData.forEach((dynamic palabraData) {
 
-          print(palabraData['presente$requestedLang']);
-
           final Palabra singlePalabra = Palabra(
             palabra: palabraData['palabra'],
+            palabraPronunciacion: palabraData['palabraPronunciacion'],
             traduccion: palabraData['traduccion'],
+            traduccionPronunciacion: palabraData['traduccionPronunciacion'],
             dificultad: palabraData['dificultad'],
 
             primeraPersona: palabraData['primeraPersona$secondLang'],
@@ -126,20 +114,20 @@ mixin PalabrasModel on ConnectedModel {
           fetchedPalabrasList.add(singlePalabra);
         });
 
-        _palabras = fetchedPalabrasList; 
-        
         if (loadingIndicator) {
-          _isLoading = false;
-          notifyListeners();
+          this._palabras = fetchedPalabrasList; 
+          this._isLoading = false;
+          this.notifyListeners();
         } else {
-          notifyListeners();
+          this._palabras = fetchedPalabrasList; 
+          this.notifyListeners();
         }
       })
       .catchError((error) {
-        _isLoading = false;
         print('ERROR + $error');
-        notifyListeners();
-        return;
+        this._isLoading = false;
+        this._palabras = [];
+        this.notifyListeners();
       });
   }
 

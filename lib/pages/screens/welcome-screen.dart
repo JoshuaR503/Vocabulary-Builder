@@ -77,8 +77,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           context: context
                         ),
                         _renderButton(
-                          name: 'Inglés',
-                          language: 'es',
+                          name: 'Spanish',
+                          language: 'en',
                           model: model,
                           context: context
                         ),
@@ -89,8 +89,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             )
           )
-          
-          
         );
       },
     );
@@ -102,7 +100,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
     return GestureDetector(
       onTap: () {
-        model.setLang(language).then((_) async => {
+        model.setLang(language)
+        .then((_) async => {
           await model.obtenerData(),
           await model.seen
             ? Navigator.pushReplacementNamed(context, '/home')

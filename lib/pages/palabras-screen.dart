@@ -10,6 +10,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 import 'package:share/share.dart';
 
@@ -25,15 +26,31 @@ class PalabrasScreen extends StatefulWidget {
 
 class _PalabrasScreenState extends State<PalabrasScreen> {
 
+  InterstitialAd _myInterstitial = InterstitialAd(
+    adUnitId: InterstitialAd.testAdUnitId,
+    targetingInfo: MobileAdTargetingInfo(
+    keywords: <String>['english', 'learning'],
+    childDirected: false,
+    testDevices: <String>[], // Android emulators are considered test devices
+  ),
+    listener: (MobileAdEvent event) {
+      print("InterstitialAd event is $event");
+    },
+  );
+
   @override
   void initState() {
     widget.model.obtenerPalabras(loadingIndicator: true);
-
+    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-2366031658994135~3587559242');
     super.initState();
   }
 
   @override 
   Widget build(BuildContext context) {
+    _myInterstitial
+    ..load()
+    ..show();
+
     return Scaffold(
       drawer: _buildDrawer(),
       appBar: AppBar(
@@ -61,56 +78,27 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
       ),
       body: _buildMainContent()
     );
-    //   floatingActionButton: FloatingActionButton(
-    //     child: Icon(
-    //       Icons.refresh,
-    //     ),
-    //     tooltip:  FlutterI18n.translate(context, 'home.appbar.icons.refresh_tooltip'),
-    //     onPressed: () => widget.model.obtenerPalabras(loadingIndicator: true),
-    //   ),
-    // );
   }
   
   Widget _buildMainContent() {
-    
     return ScopedModelDescendant(
       builder: (BuildContext context, Widget child, MainModel model) {
 
-        final double deviceWidth = MediaQuery.of(context).size.width;
-        final double targetWidth = deviceWidth > 768.0 ? 450.0 : deviceWidth;
-        final Orientation orientation = MediaQuery.of(context).orientation;
-
-        Widget content = ErrorScreen(
-          pathImage: 'assets/warning.png',
-          message: FlutterI18n.translate(context, 'error_message.no_server_connection.message'),
-          fixMessage: FlutterI18n.translate(context, 'error_message.no_server_connection.solution'),
-        );
+        Widget content;
 
         if (model.allPalabras.length > 0 && !model.isLoading) {
-          content = orientation == Orientation.landscape 
-
-          ? Center(
-            child: Container(
-              width: targetWidth,
-              
-              child: ListView.builder(
-                itemCount: model.allPalabras.length,
-                itemBuilder: (context, index) => 
-                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 5.0),
-                  child: PalabraCard(model.allPalabras[index])
-                )
-              ),
-            )
-          )
-
-          : ListView.builder(
+          content = ListView.builder(
             itemCount: model.allPalabras.length,
             itemBuilder: (context, index) => PalabraCard(model.allPalabras[index])
           );
-           
         } else if (model.isLoading) {
           content = Center(child: CircularProgressIndicator());
+        } else {
+          content = ErrorScreen(
+            pathImage: 'assets/warning.png',
+            message: FlutterI18n.translate(context, 'error_message.no_server_connection.message'),
+            fixMessage: FlutterI18n.translate(context, 'error_message.no_server_connection.solution'),
+          );
         }
 
         return RefreshIndicator(

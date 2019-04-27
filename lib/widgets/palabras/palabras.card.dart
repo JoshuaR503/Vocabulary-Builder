@@ -3,6 +3,7 @@ import 'package:vocabulary_builder/model/main.dart';
 import 'package:vocabulary_builder/model/palabra.model.dart';
 import 'package:vocabulary_builder/pages/palabra-single-screen.dart';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
@@ -91,11 +92,22 @@ class PalabraCard extends StatelessWidget {
       alignment: MainAxisAlignment.center,
       children: <Widget>[
         FlatButton(
-          onPressed: () => model.speak(
-            model.userLang == 'en' 
-              ? palabra.traduccion
-              : palabra.palabra
-          ),
+          // onPressed: () => model.speak(
+          //   model.userLang == 'en' 
+          //     ? palabra.traduccion
+          //     : palabra.palabra
+          // ),
+          onPressed: () {
+            AudioPlayer audioPlayer = AudioPlayer();
+
+            print('Audio a reproducir: ${palabra.traduccionPronunciacion}, ${palabra.palabraPronunciacion}');
+
+            audioPlayer.play(
+              model.userLang == 'en' 
+                ? palabra.traduccionPronunciacion
+                : palabra.palabraPronunciacion
+            );
+          },
           child: Row(
             children: <Widget>[
               Padding(

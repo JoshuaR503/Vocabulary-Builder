@@ -4,6 +4,8 @@ class Palabra {
   int id;
   @required String palabra;
   @required String traduccion;
+  String palabraPronunciacion;
+  String traduccionPronunciacion;
   String dificultad;
   String primeraPersona;
   String segundaPersona;
@@ -26,6 +28,8 @@ class Palabra {
   Palabra({
     @required this.palabra, 
     @required this.traduccion,
+    this.palabraPronunciacion,
+    this.traduccionPronunciacion,
     this.dificultad,
     this.primeraPersona,
     this.segundaPersona,
@@ -49,6 +53,8 @@ class Palabra {
   Palabra.withId({
     @required this.palabra, 
     @required this.traduccion,
+    this.palabraPronunciacion,
+    this.traduccionPronunciacion,
     this.dificultad,
     this.primeraPersona,
     this.segundaPersona,
@@ -77,6 +83,8 @@ class Palabra {
     
 		map['palabra'] = palabra;
 		map['traduccion'] = traduccion;
+    map['palabraPronunciacion'] = palabraPronunciacion;
+    map['traduccionPronunciacion'] = traduccionPronunciacion;
     map['dificultad'] = dificultad;
     map['primeraPersona'] = primeraPersona;
     map['segundaPersona'] = segundaPersona;
@@ -103,6 +111,8 @@ class Palabra {
 		this.id = map['id'];
 		this.palabra = map['palabra'];
 		this.traduccion = map['traduccion'];
+    this.palabraPronunciacion = map['palabraPronunciacion'];
+    this.traduccionPronunciacion = map['traduccionPronunciacion'];
     this.dificultad = map['dificultad'];
     this.primeraPersona = map['primeraPersona'];
     this.segundaPersona = map['segundaPersona'];

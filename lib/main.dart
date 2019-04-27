@@ -74,7 +74,7 @@ class _AmericanEnglishWordsState extends State<AmericanEnglishWords> {
             '/': (BuildContext context) => model.seen 
             
               ? PalabrasScreen(model) 
-              : model.userLang == null 
+              : model.userLang == null || false 
               ? WelcomeScreen() 
               : IntroScreen(),
 

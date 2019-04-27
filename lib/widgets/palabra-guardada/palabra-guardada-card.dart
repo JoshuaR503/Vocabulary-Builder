@@ -49,7 +49,13 @@ class PalabraGuardadaCard extends StatelessWidget {
             child: Icon(Icons.info_outline, color: Colors.white),
           ),
 
-          firstFunction: () => model.speak(singlePalabra.palabra),
+          firstFunction: () {
+            model.speak(
+              model.userLang == 'en' 
+                ? singlePalabra.traduccion
+                : singlePalabra.palabra
+            );
+          },
           
           palabra: singlePalabra,
           model: model,

@@ -1,12 +1,15 @@
 import 'package:vocabulary_builder/model/palabra.model.dart';
-import 'package:sqflite/sqflite.dart';
+
 import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:dio/dio.dart';
+
 import 'dart:async';
 import 'dart:io';
 
 class DatabaseHelper {
 
-  final pathName = 'productionVocabularyBuilderDBX2.db';
+  final pathName = 'productionVocabularyBuilderDBX3.db';
 
   static DatabaseHelper _databaseHelper;
 	static Database _database;
@@ -14,7 +17,9 @@ class DatabaseHelper {
   String wordsTable = 'words_table';
 	String colId = 'id';
 	String colPalabra = 'palabra';
+  String colPalabraPronunciacion = 'palabraPronunciacion';
 	String colTraduccion = 'traduccion';
+  String colTraduccionPronunciacion = 'traduccionPronunciacion';
   String colDificultad = 'dificultad';
 
   String colPrimeraPersona = 'primeraPersona';
@@ -65,7 +70,7 @@ class DatabaseHelper {
 		return notesDatabase;
   }
 
-  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colTraduccion TEXT, $colDificultad TEXT, $colPrimeraPersona TEXT, $colSegundaPersona TEXT, $colTerceraPersona TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colPasado TEXT, $colFuturo TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colDefinicion TEXT, $colDefinicion2 TEXT, $colEjemplo TEXT, $colEjemplo2 TEXT, $colCategoriaGramatical TEXT, $colCategoriaGramatical2 TEXT, $colNote TEXT, $colDate TEXT)");
+  void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colPalabraPronunciacion TEXT, $colTraduccion TEXT, $colTraduccionPronunciacion TEXT, $colDificultad TEXT, $colPrimeraPersona TEXT, $colSegundaPersona TEXT, $colTerceraPersona TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colPasado TEXT, $colFuturo TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colDefinicion TEXT, $colDefinicion2 TEXT, $colEjemplo TEXT, $colEjemplo2 TEXT, $colCategoriaGramatical TEXT, $colCategoriaGramatical2 TEXT, $colNote TEXT, $colDate TEXT)");
  
   Future<List<Map<String, dynamic>>> fetchSavedDataMapList() async {
 		Database db = await this.database;
@@ -75,7 +80,24 @@ class DatabaseHelper {
 	}
 
   Future<int> savePalabra(Palabra palabra) async {
+    // Dio dio = Dio();
+
+    // Directory directory = await getApplicationDocumentsDirectory();
 		Database db = await this.database;
+
+    // final String ppPath = '$directory/${data.palabra}.mp3'
+    // .replaceAll(new RegExp(r"\s+\b|\b\s"), "");
+
+    // final String tpPath = '$directory/${data.traduccion}-${data.palabra}.mp3'
+    // .replaceAll(new RegExp(r"\s+\b|\b\s"), "");
+
+    // print('-------------------------------');
+    // print('FILESSSS ---- $tpPath, $ppPath');
+    // print('-------------------------------');
+
+    // download1(dio, '${data.palabraPronunciacion}', '$ppPath');
+    // download1(dio, '${data.palabraPronunciacion}', '$ppPath');
+
 		var result = await db.insert(wordsTable, palabra.toMap());
 		return result;
 	}
@@ -105,4 +127,19 @@ class DatabaseHelper {
 
 		return savedDataList;
 	}
+
+  Future download1(Dio dio, String url, savePath) async {
+    try {
+      Response response = await dio.get(url);
+      print(response.headers);
+      File file = new File(savePath);
+      var raf = file.openSync(mode: FileMode.write);
+      // response.data is List<int> type
+      raf.writeFromSync(response.data);
+      print(response.data);
+      await raf.close();
+  } catch (e) {
+    print(e);
+  }
+  }
 }

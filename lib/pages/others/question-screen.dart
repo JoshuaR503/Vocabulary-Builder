@@ -97,11 +97,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
               CommonTitle(FlutterI18n.translate(context, 'question_answers.phasal_verbs.question')),
               ListCell(
-                leading: Image.asset(
-                  'assets/confused.png',
-                  height: 50.0,
-                  width: 50.0,
-                ),
                 title: FlutterI18n.translate(context, 'question_answers.phasal_verbs.title'),
                 subtitle: FlutterI18n.translate(context, 'question_answers.phasal_verbs.answer'),
                 onTap: () {},

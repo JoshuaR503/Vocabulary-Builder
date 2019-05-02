@@ -25,6 +25,26 @@ class HelpScreen extends StatelessWidget {
           child: ListView(
             children: <Widget>[
 
+              CommonTitle(FlutterI18n.translate(context, 'troubleshooting.no_server.title')),
+              SubTitle(FlutterI18n.translate(context, 'troubleshooting.no_server.subtitle')),
+              ListCell(
+                leading: Image.asset(
+                  'assets/warning.png',
+                  height: 50.0,
+                  width: 50.0,
+                ),
+                title: FlutterI18n.translate(context, 'troubleshooting.no_server.response_one'),
+                subtitle: FlutterI18n.translate(context, 'troubleshooting.no_server.solution_one'),
+                onTap: () {},
+              ),
+
+              CommonTitle(FlutterI18n.translate(context, 'troubleshooting.stupid_voice.title')),
+              ListCell(
+                title: FlutterI18n.translate(context, 'troubleshooting.stupid_voice.subtitle'),
+                subtitle: FlutterI18n.translate(context, 'troubleshooting.stupid_voice.solution_one'),
+                onTap: () {},
+              ),
+
               CommonTitle(FlutterI18n.translate(context, 'troubleshooting.no_words.title')),
               SubTitle(FlutterI18n.translate(context, 'troubleshooting.no_words.subtitle')),
               ListCell(
@@ -37,7 +57,7 @@ class HelpScreen extends StatelessWidget {
                 subtitle: FlutterI18n.translate(context, 'troubleshooting.no_words.solution_one'),
                 onTap: () {},
               ),
-
+              
               CommonTitle(FlutterI18n.translate(context, 'troubleshooting.voice.title')),
               SubTitle(FlutterI18n.translate(context, 'troubleshooting.voice.subtitle')),
               ListCell(

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [44th commit] - 2019-05-1
+### Changed
+- UI at the single screen
+
 ## [43rd commit] - 2019-04-16
 ### Added
 - Everything working, I guess

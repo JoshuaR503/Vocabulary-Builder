@@ -26,13 +26,12 @@ class PalabrasScreen extends StatefulWidget {
 
 class _PalabrasScreenState extends State<PalabrasScreen> {
 
-  InterstitialAd _myInterstitial = InterstitialAd(
-    adUnitId: InterstitialAd.testAdUnitId,
+  InterstitialAd _beautifulAd = InterstitialAd(
+    adUnitId: 'ca-app-pub-2366031658994135/7657028085',
     targetingInfo: MobileAdTargetingInfo(
-    keywords: <String>['english', 'learning'],
-    childDirected: false,
-    testDevices: <String>[], // Android emulators are considered test devices
-  ),
+      keywords: <String>['english', 'learning'],
+      childDirected: false,
+    ),
     listener: (MobileAdEvent event) {
       print("InterstitialAd event is $event");
     },
@@ -47,9 +46,9 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
 
   @override 
   Widget build(BuildContext context) {
-    _myInterstitial
-    ..load()
-    ..show();
+    // _beautifulAd
+    // ..load()
+    // ..show();
 
     return Scaffold(
       drawer: _buildDrawer(),

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "677380554198-2k9cldfod9r9uvfi1em4ou0mpj32ekih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.herokuapp.backend.another",
+            "certificate_hash": "7a3da9dfc36d110729006e4cb97f53532075a6f2"
+          }
+        },
+        {
           "client_id": "677380554198-06jrqbeh32d6lfr9bsectcpt8s8p5hja.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -33,7 +41,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-4405037805481276~1888738229"
     }
   ],
   "configuration_version": "1"

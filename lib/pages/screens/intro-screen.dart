@@ -28,18 +28,18 @@ class IntroScreen extends StatelessWidget {
             ),
 
             Slide(
+              title: FlutterI18n.translate(context, 'slide_show.slide_four.title'),
+              description: FlutterI18n.translate(context, 'slide_show.slide_four.description'),
+              pathImage: 'assets/tap.png',
+              backgroundColor: Color(0XFF008A73),
+            ),
+
+            Slide(
               title: FlutterI18n.translate(context, 'slide_show.slide_three.title'),
               description: FlutterI18n.translate(context, 'slide_show.slide_three.description'),
               pathImage: 'assets/shield.png',
               backgroundColor: Color(0xff203152),
             ),
-
-            // Slide(
-            //   title: FlutterI18n.translate(context, 'slide_show.slide_four.title'),
-            //   description: FlutterI18n.translate(context, 'slide_show.slide_four.description'),
-            //   pathImage: 'assets/tap.png',
-            //   backgroundColor: Color(0XFF008A73),
-            // ),
           ],
           onDonePress: () => 
           model

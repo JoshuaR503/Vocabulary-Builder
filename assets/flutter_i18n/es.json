@@ -23,7 +23,8 @@
             "terms": "Términos y condiciones"
         },
 
-        "button_name": "Escuchar Pronunciación"
+        "button_name": "Escuchar Pronunciación",
+        "button_playing": "Pronunciando Palabra"
     },
 
     "settings": {
@@ -82,8 +83,8 @@
             "second_item": "{palabra} en otra oración:"
         },
 
-        "antonyms": "Antónimos de {palabra}",
-        "synonyms": "Sinónimos de {palabra}",
+        "antonyms": "Palabras opuestas",
+        "synonyms": "Palabras similares",
 
         "note": "Nota",
         "spanish_translation": "Traducción Español:",
@@ -202,11 +203,25 @@
             "solution_one": "Una razón podría ser que conexión a internet puede estar fallando o es muy lenta, por favor comprueba la conexión a internet. Si no funciona, intenta más tarde."
         },
 
-        "voice": {
-            "title": "¡La voz no habla bien!",
-            "subtitle": "Esta aplicación ha experimentado extrañas pronunciaciones en algunos dispositivos.",
+        "no_server": {
+            "title": "¡Nunca se contecta al servidor!",
+            "subtitle": "Cada usuario tiene una cuota gratuita",
+            "response_one": "Límite gratuito alcanzado",
+            "solution_one": "Puedes hacer hasta 100 solicitudes cada 5 horas, si el servidor detectó que ya hizo 100 solicitudes, no funcionará más. Siempre puedes usar la versión web que no tiene límites."
+        },
+
+        "stupid_voice": {
+            "title": "¡La pronunciación es horrenda!",
+            "subtitle": "¡Lamento los inconvenientes ocasionados!",
             "response_one": "Sistema operativo",
-            "solution_one": "La voz depende del sistema operativo y esto cambia su pronunciación. No puedo hacer nada más que disculparme. Si esta aplicación tiene éxito, se utilizará una voz profesional."
+            "solution_one": "La voz en la sección de palabras guardadas depende del sistema operativo y puede cambiar según el dispositivo que tengas y no hay nada que pueda hacer más que disculparme."
+        },
+
+        "voice": {
+            "title": "¡La voz no habla!",
+            "subtitle": "La voz depende de tu velocidad de internet.",
+            "response_one": "Conexión a internet.",
+            "solution_one": "El archivo de audio proviene de servidores muy lejanos que pueden tardar mucho en cargarse, asegúrese de tener una buena conexión a Internet."
         },
 
         "no_volume": {
@@ -258,7 +273,7 @@
 
         "slide_two": {
             "title": "APRENDE A TU RITMO",
-            "description": "Con 15 minutos al día puedes aprender nuevas palabras."
+            "description": "Con 5 minutos al día puedes aprender nuevas palabras."
         },
 
         "slide_three": {
@@ -267,8 +282,8 @@
         },
 
         "slide_four": {
-            "title": "JUST TAP IT",
-            "description": "Para obtener más información de una palabra, simplemente tócala."
+            "title": "TOCA LA PALABRA",
+            "description": "Si quieres más información de una palabra, simplemente tócala."
         },
 
         "options": {

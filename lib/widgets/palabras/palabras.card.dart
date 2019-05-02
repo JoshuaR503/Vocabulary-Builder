@@ -7,19 +7,46 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
-class PalabraCard extends StatelessWidget {
+import 'dart:async';
+
+class PalabraCard extends StatefulWidget {
   final Palabra palabra;
   
   PalabraCard(this.palabra);
 
   @override
+  State<StatefulWidget> createState() => _PalabraCardState();
+}
+
+class _PalabraCardState extends  State<PalabraCard> {
+
+  bool _isPlaying = false;
+  bool _isButtonDisabled = false;
+
+  void _changeStatus(bool value) {
+    setState(() {
+       _isPlaying = value;
+      _isButtonDisabled = value; 
+    });
+  }
+
+  Future<Null> reproduceAudio(url) async {
+    AudioPlayer audioPlayer = AudioPlayer();
+
+    await audioPlayer
+    .play(url)
+    .catchError((error) => print(error));
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     return ScopedModelDescendant <MainModel> (
       builder: (BuildContext context, Widget child, MainModel model) {
         return GestureDetector(
           onTap: () => Navigator
             .of(context)
-            .push(MaterialPageRoute(builder: (_) => SinglePalabraScreen(palabra))),
+            .push(MaterialPageRoute(builder: (_) => SinglePalabraScreen(widget.palabra))),
 
           child: Card(
             child: Column(
@@ -40,7 +67,7 @@ class PalabraCard extends StatelessWidget {
 
     Widget content;
     Widget iconButton = IconButton(
-      onPressed: () => _save(context, palabra, model),
+      onPressed: () => _save(context, widget.palabra, model),
       icon: Icon(Icons.favorite_border),
       color: Colors.red,
     );
@@ -55,20 +82,19 @@ class PalabraCard extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   child: Text(
-                    model.userLang == 'en' ? palabra.traduccion : palabra.palabra,
+                    model.userLang == 'en' ? widget.palabra.traduccion : widget.palabra.palabra,
                     style: style
                   ),
-                  padding: EdgeInsets.only(left: 16.0),
+                  padding: EdgeInsets.only(left: 13.0),
                 ),
                 iconButton
               ],
             ),
           ],
         ),
-        SizedBox(height: 4.0),
         Padding(
           padding: EdgeInsets.only(bottom: 10.0),
-          child: Text(model.userLang == 'en' ? palabra.palabra : palabra.traduccion),
+          child: Text(model.userLang == 'en' ? widget.palabra.palabra : widget.palabra.traduccion),
         )
       ],
     );
@@ -80,7 +106,7 @@ class PalabraCard extends StatelessWidget {
         elevation: 5.0,
         borderRadius: BorderRadius.circular(7.0),
         child: Container(
-          height: 120.0,
+          height: 125.0,
           child: content
         )
       )
@@ -92,34 +118,40 @@ class PalabraCard extends StatelessWidget {
       alignment: MainAxisAlignment.center,
       children: <Widget>[
         FlatButton(
-          // onPressed: () => model.speak(
-          //   model.userLang == 'en' 
-          //     ? palabra.traduccion
-          //     : palabra.palabra
-          // ),
-          onPressed: () {
-            AudioPlayer audioPlayer = AudioPlayer();
+          onPressed: _isButtonDisabled ? null : () {
 
-            print('Audio a reproducir: ${palabra.traduccionPronunciacion}, ${palabra.palabraPronunciacion}');
+            print('$_isPlaying');
+            print('Audio a reproducir: ${widget.palabra.palabraPronunciacion}');
 
-            audioPlayer.play(
-              model.userLang == 'en' 
-                ? palabra.traduccionPronunciacion
-                : palabra.palabraPronunciacion
-            );
+            if (!_isPlaying) {
+              _changeStatus(true);
+
+              reproduceAudio(
+                model.userLang == 'en' 
+                  ? widget.palabra.traduccionPronunciacion
+                  : widget.palabra.palabraPronunciacion
+              ).then((_) => Timer(Duration(seconds: 2), () => _changeStatus(false)));
+            }
           },
+
           child: Row(
             children: <Widget>[
               Padding(
                 child: Text(
+
                   FlutterI18n.translate(context, 'home.button_name'),
-                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
+
+                  style: TextStyle(
+                    fontSize: 14.0, 
+                    fontWeight: FontWeight.w400
+                  ),
                 ),
                 padding: EdgeInsets.only(right: 8.0),
               ),
               Icon(Icons.volume_up)
             ],
           ),
+
         )
       ],
     );

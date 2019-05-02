@@ -3,6 +3,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'package:vocabulary_builder/model/main.dart';
 import 'package:vocabulary_builder/model/palabra.model.dart';
+import 'package:vocabulary_builder/utils/colors.dart';
 import 'package:vocabulary_builder/utils/settings.dart';
 
 import 'package:vocabulary_builder/widgets/ui/divider.dart';
@@ -50,7 +51,9 @@ class SinglePalabraScreen extends StatelessWidget  {
                       _buildConjugationCard(context),
                       _buildPalabraDefinitionCard(context, model),
                       _builPalabraExamplesCard(context),
-                      _buildPalabraAntSynCard(context),
+                      _buildPalabraSynonymsCard(context),
+                      Separator.spacer(),
+                      _buildPalabraAntonymsCard(context),
                       _buildNoteCard(context),
                     ],
                   ),
@@ -264,43 +267,102 @@ class SinglePalabraScreen extends StatelessWidget  {
     );
   }
 
-  Widget _buildPalabraAntSynCard(BuildContext context) {
+  Widget _buildPalabraSynonymsCard(BuildContext context) {
 
-    final String notAvailable = FlutterI18n.translate(context, 'single_palabra.not_available.title');
-
-    final String antonyms = FlutterI18n.translate(context, 'single_palabra.antonyms', {'palabra': _palabra.palabra});
-    final String synonyms = FlutterI18n.translate(context, 'single_palabra.synonyms', {'palabra': _palabra.palabra});
- 
-    final String ns = FlutterI18n.translate(context, 'single_palabra.not_available.ns');
-    final String na = FlutterI18n.translate(context, 'single_palabra.not_available.na');
-
-    final String antonimos = _palabra.antonimos;
+    final String synonyms = FlutterI18n.translate(context, 'single_palabra.synonyms');
     final String sinonimos = _palabra.sinonimos;
 
     Widget card;
 
-    if (antonimos == null && sinonimos == null) {
-      card = Container();
-    } else {
-      card = Column(
-      children: <Widget>[
-          HeadCard(
-            title: antonyms,
-            subtitle: antonimos == null ? na : antonimos.length > 1 ? antonimos : notAvailable,
-            title2: synonyms,
-            subtitle2: sinonimos == null ? ns : sinonimos.length > 1 ? sinonimos : notAvailable,
-          ),
+    if (sinonimos != null) {
 
-          Separator.spacer(),
-        ],
+      final List sinonimosArr = _palabra.sinonimos.split(',');
+
+      card = Card(
+        elevation: 6.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        child: Column(
+          children: <Widget>[
+
+            Separator.spacer(height: 20),
+            _title(synonyms),
+            Separator.spacer(),
+            Container(
+              padding: EdgeInsets.only(left: 18, right: 18),
+              height: 50.0,
+              child: sinonimosArr.length > 1
+              
+              ?  ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: sinonimosArr.length,
+                itemBuilder: (context, index) =>
+                  Container(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: _renderButton(sinonimosArr[index]),
+                  )
+              ) : _subtitle('No hay palabras similares')
+            ),
+
+            Separator.spacer(height: 15),
+          ],
+        )
       );
+    } else {
+      card = Container();
     }
 
     return card;
-  }
+  } 
+
+  Widget _buildPalabraAntonymsCard(BuildContext context) {
+
+    final String antonyms = FlutterI18n.translate(context, 'single_palabra.antonyms');
+    final String antonimos = _palabra.antonimos;
+
+    Widget card;
+
+    if (antonimos != null) {
+
+      final List anotnimosArr = _palabra.antonimos.split(',');
+
+      card = Card(
+        elevation: 6.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        child: Column(
+          children: <Widget>[
+
+            Separator.spacer(height: 20),
+
+            _title(antonyms),
+            Separator.spacer(),
+            Container(
+              padding: EdgeInsets.only(left: 18, right: 18),
+              height: 50.0,
+              child: anotnimosArr.length > 1 
+
+              ? ListView.builder(  
+                scrollDirection: Axis.horizontal,
+                itemCount: anotnimosArr.length,
+                itemBuilder: (context, index) =>
+                  Container(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: _renderButton(anotnimosArr[index]),
+                  )
+              ) : _subtitle('No hay palabras opuestas')
+            ),
+
+            Separator.spacer(height: 15),
+          ],
+        )
+      );
+    } else {
+      card = Container();
+    }
+
+    return card;
+  } 
 
   Widget _buildNoteCard(BuildContext context) {
-
     Widget card = Container();
 
     String nota = _palabra.nota;
@@ -314,5 +376,80 @@ class SinglePalabraScreen extends StatelessWidget  {
     }
 
     return card;
+  }
+
+  Widget _title(String text) {
+    return Padding(
+      padding: EdgeInsets.only(left: 20, right: 20),
+      child: Column(children: <Widget>[
+        Row(children: <Widget>[
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(text, style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 21.0,
+                  )
+                ),
+              ],
+            ),
+          ),
+        ]),
+      ])
+    );
+  }
+
+  Widget _subtitle(String text) {
+    return Padding(
+      padding: EdgeInsets.only(left: 1, right: 1),
+      child: Column(children: <Widget>[
+        Row(children: <Widget>[
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(text, style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15.0,
+                    color: secondaryText
+                  )
+                ),
+              ],
+            ),
+          ),
+        ]),
+      ])
+    );
+  }
+  
+  Widget _renderButton(String text) {
+
+    final int length = text.length;
+
+    return AnimatedContainer(
+      duration: Duration(seconds: 1),
+      curve: Curves.easeIn,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          color:  Colors.black.withOpacity(0.8),
+      ),
+      
+      height: 40.0,
+      width: length < 8 ? length * 15.0 : length * 11.0,
+      child: InkWell(
+          onTap: null,
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+            ),
+          ),
+        ),
+      )
+    );
   }
 }

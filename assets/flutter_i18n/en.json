@@ -28,7 +28,8 @@
 
         },
 
-        "button_name": "Listen Pronunciation"
+        "button_name": "Listen Pronunciation",
+        "button_playing": "Speaking"
     },
 
     "settings": {
@@ -206,12 +207,26 @@
             "solution_one": "One reason could be that internet connection may be failing or is very slow, please check the internet connection. If it doesn't work, try again later."
         },
 
-        "voice": {
-            "title": "This pronunciation is horrible!",
-            "subtitle": "This application has experienced strange pronunciations on some Andorid devices.",
+        "stupid_voice": {
+            "title": "The pronunciation is horrible!",
+            "subtitle": "Sorry for the inconvenience!",
+            "response_one": "Operative system",
+            "solution_one": "The voice in the saved section relies on the OS and can change depending on the device you have. There's nothing I can do but to apologize."
+        },
 
-            "response_one": "Operating system",
-            "solution_one": "The voice depends on the operating system and there's nothing I can not do about it but apologize. If this application is successful, you might have a brand new voice!"
+        "no_server": {
+            "title": "It never connects to the server!",
+            "subtitle": "Free quota reached",
+            "response_one": "Each user has a limit quota",
+            "solution_one": "You can make up to 100 requests every 5 hours, if the server detected that it has already made 100 requests, it will not work anymore. You can always use the web version that has no limits."
+        },
+
+        "voice": {
+            "title": "There is no pronunciation!",
+            "subtitle": "The voice depends on your internet speed.",
+
+            "response_one": "Internet connection.",
+            "solution_one": "The audio file comes from very far away servers! It may take a wile to load, make sure you have a good Internet connection"
         },
 
         "no_volume": {
@@ -273,8 +288,8 @@
         },
 
         "slide_four": {
-            "title": "JUST TAP IT",
-            "description": "To get more information of a word, just tap it."
+            "title": "TAP IT!",
+            "description": "If you want to get more information of a word, just tap it!"
         },
 
         "options": {

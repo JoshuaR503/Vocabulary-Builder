@@ -7,30 +7,27 @@ import 'package:scoped_model/scoped_model.dart';
 class PalabrasGuardadas extends StatelessWidget {
 
   @override
-  Widget build(BuildContext context) {
-    return ScopedModelDescendant<MainModel> (
-      builder: (BuildContext context, Widget child, MainModel model) {
-        return _buildPalabrasList(model.allPalabrasGuardadas, model, context);
-      }
+  Widget build(BuildContext context) =>
+    ScopedModelDescendant<MainModel> (
+      builder: (BuildContext context, Widget child, MainModel model) =>
+        _buildPalabrasList(model.allPalabrasGuardadas, model, context)
     );
-  }
 
   Widget _buildPalabrasList( List<Palabra> palabras,  MainModel model,  BuildContext context ) {
 
     return ListView.builder(
       itemCount: palabras.length,
-      itemBuilder: (BuildContext context, int index)  {
-        return Dismissible(
-          key: Key(palabras[index].palabra),
-          background: _renderBackground(),
-          onDismissed: (DismissDirection direction) {
-            model.selectPalabra(model.allPalabrasGuardadas[index].id);
-            model.deletePalabraGuardada();
-          }, 
-          
-          child: PalabraGuardadaCard(palabras[index])
-        );
-      },
+      itemBuilder: (BuildContext context, int index) => 
+
+      Dismissible(
+        key: Key(palabras[index].palabra),
+        background: _renderBackground(),
+        onDismissed: (DismissDirection direction) {
+          model.selectPalabra(model.allPalabrasGuardadas[index].id);
+          model.deletePalabraGuardada();
+        }, 
+        child: PalabraGuardadaCard(palabras[index])
+      )
     );
   }
 

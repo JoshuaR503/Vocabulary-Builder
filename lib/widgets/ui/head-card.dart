@@ -90,15 +90,14 @@ class HeadCard extends StatelessWidget {
     return content;
   }
 
- void _copy(String text, BuildContext context) {
+  void _copy(String text, BuildContext context) {
     ClipboardManager.copyToClipBoard(subtitle)
       .then((result) {
         _createSnackBar(
           title: FlutterI18n.translate(context, 'snackbar.success_message_clipboard'),
           label: FlutterI18n.translate(context, 'snackbar.success_message_clipboard_label'),
           context: context
-        );
-
+        ); 
         model.sendFeedback(false);
       })
       .catchError((error) {
@@ -106,11 +105,11 @@ class HeadCard extends StatelessWidget {
           title: FlutterI18n.translate(context, 'snackbar.error_message_clipboard'),
           label: FlutterI18n.translate(context, 'snackbar.error_message_clipboard_label'),
           context: context
-        );
-
+        ); 
         model.sendFeedback(true);
       });
-  }
+  }  
+
 
   void _createSnackBar({String title, String label, BuildContext context,}) {
     final snackBar = SnackBar(
@@ -120,7 +119,8 @@ class HeadCard extends StatelessWidget {
         onPressed: () {},
       ),
     );
-    
+
     Scaffold.of(context).showSnackBar(snackBar);
   } 
+  
 }

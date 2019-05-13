@@ -19,11 +19,11 @@ class PalabraGuardadaScreen extends StatefulWidget {
 class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
 
   @override
-    void initState() {
-      widget.model.obtenerPalabrasGuardadas();
-      super.initState();
-    }
-
+  void initState() {
+    this.widget.model.obtenerPalabrasGuardadas();
+    super.initState();
+  }
+  
   Widget _buildMainContent() {
     return ScopedModelDescendant<MainModel>(
       builder: (BuildContext context, Widget child, MainModel model) {

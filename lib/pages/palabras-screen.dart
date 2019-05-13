@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:vocabulary_builder/model/main.dart';
 
+import 'package:share/share.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
+
+import 'package:vocabulary_builder/model/main.dart';
+import 'package:vocabulary_builder/widgets/palabras/palabras.card.dart';
+import 'package:vocabulary_builder/widgets/ui/divider.dart';
 import 'package:vocabulary_builder/pages/screens/error-screen.dart';
 import 'package:vocabulary_builder/utils/settings.dart';
 
-import 'package:vocabulary_builder/widgets/palabras/palabras.card.dart';
-import 'package:vocabulary_builder/widgets/ui/divider.dart';
-import 'package:scoped_model/scoped_model.dart';
-
-import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:firebase_admob/firebase_admob.dart';
-
-import 'package:share/share.dart';
 
 class PalabrasScreen extends StatefulWidget {
   
@@ -26,8 +25,9 @@ class PalabrasScreen extends StatefulWidget {
 
 class _PalabrasScreenState extends State<PalabrasScreen> {
 
-  InterstitialAd _beautifulAd = InterstitialAd(
-    adUnitId: 'ca-app-pub-2366031658994135/7657028085',
+  final InterstitialAd _beautifulAd = InterstitialAd(
+    // adUnitId: 'ca-app-pub-2366031658994135/7657028085',
+    adUnitId: InterstitialAd.testAdUnitId,
     targetingInfo: MobileAdTargetingInfo(
       keywords: <String>['english', 'learning'],
       childDirected: false,
@@ -39,16 +39,17 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
 
   @override
   void initState() {
-    widget.model.obtenerPalabras(loadingIndicator: true);
+    this.widget.model.obtenerPalabras(loadingIndicator: true);
+    
     FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-2366031658994135~3587559242');
     super.initState();
   }
 
   @override 
   Widget build(BuildContext context) {
-    // _beautifulAd
-    // ..load()
-    // ..show();
+    _beautifulAd
+    ..load()
+    ..show();
 
     return Scaffold(
       drawer: _buildDrawer(),
@@ -57,15 +58,13 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
         centerTitle: true,
         elevation: 0.0,
         actions: <Widget>[
-
           Tooltip(
             message: FlutterI18n.translate(context, 'home.appbar.icons.refresh_tooltip'),
             child: IconButton(
               icon: Icon(Icons.refresh),
-              onPressed: () => widget.model.obtenerPalabras(loadingIndicator: true)
+              onPressed: () async => await widget.model.obtenerPalabras(loadingIndicator: true)
             ),
           ),
-          
           Tooltip(
             message: FlutterI18n.translate(context, 'home.appbar.icons.heart_tooltip'),
             child: IconButton(
@@ -85,13 +84,37 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
 
         Widget content;
 
-        if (model.allPalabras.length > 0 && !model.isLoading) {
+        if (model.internetConnected == false) {
+          content = ErrorScreen(
+            pathImage: 'assets/crying.png',
+            message: FlutterI18n.translate(context, 'error_message.no_internet.message'),
+            fixMessage: FlutterI18n.translate(context, 'error_message.no_internet.solution'),
+          );
+        } else if (model.allPalabras.length > 0 && !model.isLoading) {
           content = ListView.builder(
             itemCount: model.allPalabras.length,
             itemBuilder: (context, index) => PalabraCard(model.allPalabras[index])
           );
         } else if (model.isLoading) {
           content = Center(child: CircularProgressIndicator());
+        } else if (model.limitReached) {
+          content = ErrorScreen(
+            pathImage: 'assets/limit.png',
+            message: FlutterI18n.translate(context, 'error_message.limit_reached.message'),
+            fixMessage: FlutterI18n.translate(context, 'error_message.limit_reached.solution'),
+          );
+        } else if (model.responseMessage == 503) {
+          content = ErrorScreen(
+            pathImage: 'assets/refusing.png',
+            message: FlutterI18n.translate(context, 'error_message.server_maintenance.message'),
+            fixMessage: FlutterI18n.translate(context, 'error_message.server_maintenance.solution'),
+          );
+        } else if (model.responseMessage == 200) {
+          content = ErrorScreen(
+            pathImage: 'assets/refusing.png',
+            message: FlutterI18n.translate(context, 'error_message.server_understood.message'),
+            fixMessage: FlutterI18n.translate(context, 'error_message.server_understood.solution'),
+          );
         } else {
           content = ErrorScreen(
             pathImage: 'assets/warning.png',
@@ -101,7 +124,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
         }
 
         return RefreshIndicator(
-          onRefresh: () => model.obtenerPalabras(loadingIndicator: false),
+          onRefresh: () async => await model.obtenerPalabras(loadingIndicator: false),
           child: content
         );
       }
@@ -117,23 +140,13 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
             title: Text(FlutterI18n.translate(context, 'home.drawer.title')),
           ),
           ListTile(
-            title: Text(FlutterI18n.translate(context, 'question_answers.title')),
-            onTap: () => Navigator.pushNamed(context, '/question'),
-          ),
-
-          ListTile(
-            title: Text(FlutterI18n.translate(context, 'troubleshooting.title')),
+            title: Text(FlutterI18n.translate(context, 'help')),
             onTap: () => Navigator.pushNamed(context, '/help'),
           ),
 
           ListTile(
             title: Text(FlutterI18n.translate(context, 'home.drawer.thidItem')),
             onTap: () => Share.share(shareApp)
-          ),
-
-          ListTile(
-            title: Text(FlutterI18n.translate(context, 'home.drawer.credits')),
-            onTap: () => Navigator.pushNamed(context, '/creditos'),
           ),
           
           Separator.divider(),

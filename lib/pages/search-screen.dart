@@ -15,7 +15,7 @@ searchPalabras(BuildContext context, List list, MainModel model) {
         barBackgroundColor: Theme.of(context).primaryColor,
         iconColor: Colors.white,
         placeholder: FlutterI18n.translate(context, 'search'),
-
+        
         limit: list.length,
         results: list
           .map((palabra) => MaterialSearchResult<Palabra>(
@@ -35,8 +35,8 @@ searchPalabras(BuildContext context, List list, MainModel model) {
           MaterialPageRoute(
             builder: (_) => SinglePalabraScreen(palabra)
           ),
-        )
+        ),
       ),
-    )
+    ),
   );
 }

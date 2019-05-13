@@ -2,7 +2,9 @@
     "app": "Vocabulario",
 
     "welcome_screen": {
-        "title": "Choose a language to study"
+        "title": "Choose a language to study",
+        "en": "English",
+        "es": "Spanish"
     },
 
     "home": {
@@ -85,8 +87,8 @@
             "second_item": "{palabra} used in another sentence"
         },
 
-        "antonyms": "Antonyms of {palabra}",
-        "synonyms": "Synonyms of {palabra}",
+        "antonyms": "Opposite Words",
+        "synonyms": "Similar Words",
 
         "note": "Note",
         "spanish_translation": "Spanish Translation:",
@@ -103,14 +105,13 @@
             "ns": "The database couldn't find synonyms for this word.",
             "na": "The database couldn't find antonyms for this word."
         }
-
-        
     },
 
     "search": "Search",
+    "help": "Help and information",
 
     "question_answers": {
-        "title": "Question and Answers",
+        "title": "Questions",
 
         "question_one": {
             "question": "How do I get more words?",
@@ -145,7 +146,7 @@
         "synonyms": {
             "question": "What are synonyms?",
             "title": "Similar words",
-            "answer": "Synonyms are words that have the same meaning as other words. Examples: understand - understand, easy - simple, student - student."
+            "answer": "Synonyms are words that have the same meaning as other words. Examples: understand - understand, easy - simple, student - scholar."
         },
 
         "subject": {
@@ -157,7 +158,7 @@
         "phasal_verbs": {
             "question": "What are phrasal verbs?",
             "title": "Its meaning is not obvious.",
-            "answer": "These are the verbs composed by a main verb and an adverb or preposition. Examples: cheer up, calm down, break up"
+            "answer": "These are the verbs composed by the main verb and an adverb or proposition. Examples: cheer up, calm down, break up"
         },
 
         "verb": {
@@ -198,7 +199,7 @@
     },
     
     "troubleshooting": {
-        "title": "Troubleshooting",
+        "title": "Solutions",
 
         "no_words": {
             "title": "Words are not showing up!",
@@ -215,7 +216,7 @@
         },
 
         "no_server": {
-            "title": "It never connects to the server!",
+            "title": "I've reached my free tier usage!",
             "subtitle": "Free quota reached",
             "response_one": "Each user has a limit quota",
             "solution_one": "You can make up to 100 requests every 5 hours, if the server detected that it has already made 100 requests, it will not work anymore. You can always use the web version that has no limits."
@@ -226,7 +227,7 @@
             "subtitle": "The voice depends on your internet speed.",
 
             "response_one": "Internet connection.",
-            "solution_one": "The audio file comes from very far away servers! It may take a wile to load, make sure you have a good Internet connection"
+            "solution_one": "The audio file comes from very far away servers! It may take a while to load, make sure you have a good Internet connection"
         },
 
         "no_volume": {
@@ -319,9 +320,29 @@
             "solution": "Swipe down to try again."
         },
 
+        "no_internet": {
+            "message": "It seems like you don't have an internet connection",
+            "solution": "When you have no connection, you can only see the words you saved."
+        },
+
         "no_saved_words": {
-            "message": "Seems like you haven't saved any words yet.",
-            "solution": "To save words tap the heart next to it."
+            "message": "It seems like you haven't saved any words yet.",
+            "solution": "If I'd like to save words, just tap the heart next to it."
+        },
+
+        "limit_reached": {
+            "message": "You've reached your free tier usage!",
+            "solution": "That's it for today. You can always study the words you saved."
+        },
+
+        "server_maintenance": {
+            "message": "Our servers are under maintenance!",
+            "solution": "Please come back in a few minutes or swipe down to try again."
+        },
+
+        "server_understood": {
+            "message": "The server understood the request",
+            "solution": "But is refusing to fulfill it swipe down to try again."
         }
     }
 }

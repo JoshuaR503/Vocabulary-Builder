@@ -12,7 +12,7 @@ class PalabraGuardadaCard extends StatelessWidget {
 
   Widget build(BuildContext context) {
 
-    Palabra singlePalabra =  Palabra(
+    final Palabra singlePalabra =  Palabra(
       palabra: palabra.palabra,
       traduccion: palabra.traduccion,
       dificultad: palabra.dificultad,
@@ -36,8 +36,13 @@ class PalabraGuardadaCard extends StatelessWidget {
     return ScopedModelDescendant<MainModel> (
       builder: (BuildContext context, Widget child, MainModel model) {
         return SlimCard(
-          title: singlePalabra.palabra,
-          subtitle: singlePalabra.traduccion,
+          title: model.userLang == 'en' 
+            ? singlePalabra.traduccion
+            : singlePalabra.palabra,
+          
+          subtitle: model.userLang == 'en' 
+            ? singlePalabra.palabra
+            : singlePalabra.traduccion,
 
           firstAvatar: CircleAvatar(
 		      	backgroundColor: yellowAmbarColor,

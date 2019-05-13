@@ -3,25 +3,31 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:vibrate/vibrate.dart';
 import 'package:sqflite/sqflite.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
+import 'package:vocabulary_builder/model/palabra.model.dart';
+import 'package:vocabulary_builder/utils/db.helper.dart';
+import 'package:vocabulary_builder/utils/settings.dart';
+
 import 'dart:convert';
 import 'dart:async';
-
-import './palabra.model.dart';
-
-import '../utils/settings.dart';
-import '../utils/db.helper.dart';
+import 'dart:io';
 
 mixin ConnectedModel on Model {
   bool _isLoading = true;
+  bool _limitReached = false;
   bool _palabrasGuardadasIsLoading = true;
   bool _seen = false;
 
+  bool _internetConnected = false;
+
   int _selPalabraGuardadaId;
+  int _responseMessage;
 
   String _userLang;
+
   List _palabras = [];
   List _palabrasGuardadas = [];
   List _busqueda = [];
@@ -45,6 +51,11 @@ mixin PalabrasModel on ConnectedModel {
 
   int get selectedPalabraIndex => _palabrasGuardadas.indexWhere((palabra) => palabra.id == _selPalabraGuardadaId);
   int get selectedPalabraId => _selPalabraGuardadaId;
+  int get responseMessage => _responseMessage;
+
+  bool get isLoading => _isLoading;
+  bool get palabrasGuardadasIsLoading => _palabrasGuardadasIsLoading;
+  bool get limitReached => _limitReached;
 
   Palabra get selectedPalabra {
     if (selectedPalabraId == null) {
@@ -56,10 +67,12 @@ mixin PalabrasModel on ConnectedModel {
 
   Future<Null> obtenerPalabras({bool loadingIndicator = false}) async {
 
-    final String lang = await uLang();    
+    final String lang = await uLang();  
+    final String prodURL = '$baseUrl/api/v3/palabras?limit=6&lang=$lang&key=JosshuAP50@KelReySSl@hiddenKEY';
+    final String devURL = '$baseUrl/api/v3/test?limit=6';
 
     return http
-      .get('$baseUrl/api/v3/palabras?limit=6&lang=$lang&key=JosshuAP50@KelReySSl@hiddenKEY')
+      .get(prodURL)
       .then<Null>((http.Response response) {
 
         this._isLoading = loadingIndicator;
@@ -76,9 +89,7 @@ mixin PalabrasModel on ConnectedModel {
 
         final String requestedLang = _userLang.toUpperCase();
         final String secondLang = requestedLang == 'ES' ? 'EN' : 'ES';
-
-        print('$requestedLang, $secondLang, $lang');
-
+        
         palabraListData.forEach((dynamic palabraData) {
 
           final Palabra singlePalabra = Palabra(
@@ -124,10 +135,47 @@ mixin PalabrasModel on ConnectedModel {
         }
       })
       .catchError((error) {
-        print('ERROR + $error');
-        this._isLoading = false;
+
         this._palabras = [];
+        this._isLoading = false;
         this.notifyListeners();
+
+        try {
+          http
+          .get(prodURL)
+          .then((http.Response response) {
+
+            if (response.statusCode == 503) {
+              print('The server is under maintenance');
+              print(response.statusCode);
+
+              this._responseMessage = 503;
+              this.notifyListeners();
+
+            } else if (response.statusCode == 429) {
+              print('The limit has been reached');
+              print(response.statusCode);
+
+              this._limitReached = true;
+              this._responseMessage = 429;
+              this.notifyListeners();
+
+            } else if (response.statusCode == 200) {
+              print('The server understood the request but refuses to serve it');
+              print(response.statusCode);
+
+              this._responseMessage = 200;
+              this.notifyListeners();
+            } else {
+              print('Something we do not know');
+            }
+          });
+
+        } catch (error) {
+          print('ERROR + $error');
+        }
+
+        print('Hubo un error $error');
       });
   }
 
@@ -214,32 +262,54 @@ mixin PalabrasModel on ConnectedModel {
 } 
 
 mixin UtilityModel on ConnectedModel {
-  FlutterTts _textToSpeech = FlutterTts();
+  final FlutterTts _textToSpeech = FlutterTts();
 
-  bool get isLoading => _isLoading;
-  bool get palabrasGuardadasIsLoading => _palabrasGuardadasIsLoading;
   bool get seen => _seen;
+  bool get internetConnected => _internetConnected;
+  
   String get userLang => _userLang;
 
-  void obtenerData() async {
+  void loadData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    // Ver si el usuario ya visito la introducion
+    // ==================================================
+    // Ver si el usuario ya ha visito la introducion
+    // ==================================================
     final bool response = prefs.getBool('seen');
 
-    if (response == true) {
-      _seen = true;
-    } else if (response != true) {
-      _seen = false;
+    if (response) {
+      this._seen = true;
+    } else if (response == false) {
+      this._seen = false;
     }
     
+    // ==================================================
     // Obtener el idioma de el usuario
+    // ==================================================
     final String userlang = prefs.getString('user_lang');
     _userLang = userlang;
+
+    this.checkInternetConnection();
+  }
+
+  void checkInternetConnection() async {
+    
+    try {
+      final result = await InternetAddress.lookup('google.com');
+
+      if (result.isNotEmpty) {
+        this._internetConnected = true;
+      }
+
+    } catch (_) {
+      this._internetConnected = false;
+    }
   }
 
   Future<Null> setData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
+    
+    this._seen = true;
     prefs.setBool('seen', true);
   }
 
@@ -260,9 +330,11 @@ mixin UtilityModel on ConnectedModel {
     }
   }
 
-  void speak(String text) async {
+  void speak(String text) {
     _textToSpeech.setPitch(1.0);
     _textToSpeech.setSpeechRate(0.8);
+
+    print(_textToSpeech.getLanguages);
 
     if (_userLang == 'es') {
       _textToSpeech.setLanguage('en_US');

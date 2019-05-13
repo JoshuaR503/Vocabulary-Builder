@@ -1,6 +1,6 @@
 name: vocabulary_builder
 description: An app meant to help people learning English / Spanish to increase their vocabulary
-version: 15.0.0
+version: 18.0.0
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
@@ -15,7 +15,6 @@ dependencies:
   vibrate: ^0.0.4
   flutter_tts: ^0.1.2
   audioplayers: ^0.11.0
-  dio: ^2.1.2
   scoped_model: ^1.0.1
   shared_preferences: ^0.5.1+1
 
@@ -41,7 +40,8 @@ dependencies:
   ## Developer tools
   sentry: ^2.2.0
   firebase_analytics: ^2.0.3
-  
+  firebase_remote_config: ^0.2.0+1
+
 dev_dependencies:
   intl_translation: ^0.17.1
   flutter_test:
@@ -97,3 +97,5 @@ flutter:
     - assets/confused.png
     - assets/angry.png
     - assets/limit.png
+    - assets/crying.png
+    - assets/refusing.png

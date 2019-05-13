@@ -1,3 +1,4 @@
+import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
@@ -25,7 +26,11 @@ class SinglePalabraScreen extends StatelessWidget  {
       builder: (BuildContext context, Widget child, MainModel model) {
         return Scaffold(
           appBar: AppBar( 
-            title: Text(_palabra.palabra),
+            title: Text( 
+              model.userLang == 'en' 
+                ? _palabra.traduccion
+                : _palabra.palabra
+            ),
             centerTitle: true,
             actions: <Widget>[
               IconButton(
@@ -34,7 +39,7 @@ class SinglePalabraScreen extends StatelessWidget  {
               ),
               IconButton(
                 icon: Icon(Icons.help_outline),
-                onPressed: () => Navigator.pushNamed(context, '/question'),
+                onPressed: () => Navigator.pushNamed(context, '/help'),
               )
             ],
           ),
@@ -49,11 +54,11 @@ class SinglePalabraScreen extends StatelessWidget  {
                       _buildPalabraBasicInfoCard(context),
                       _buildInidicativeConjugationCard(context),
                       _buildConjugationCard(context),
-                      _buildPalabraDefinitionCard(context, model),
                       _builPalabraExamplesCard(context),
-                      _buildPalabraSynonymsCard(context),
+                      _buildPalabraDefinitionCard(context, model),
+                      _buildPalabraSynonymsCard(context, model),
                       Separator.spacer(),
-                      _buildPalabraAntonymsCard(context),
+                      _buildPalabraAntonymsCard(context, model),
                       _buildNoteCard(context),
                     ],
                   ),
@@ -66,6 +71,7 @@ class SinglePalabraScreen extends StatelessWidget  {
       },
     );
   }
+  
   Widget _buildPalabraBasicInfoCard(BuildContext context) {
     String notAvailable = FlutterI18n.translate(context, 'single_palabra.not_available.title');
     String palabra = _palabra.palabra;
@@ -112,8 +118,6 @@ class SinglePalabraScreen extends StatelessWidget  {
     final String primeraPersona = _palabra.primeraPersona;
     final String segundaPersona = _palabra.segundaPersona;
     final String terceraPersona = _palabra.terceraPersona;
-
-    print('$primeraPersona, $segundaPersona, $terceraPersona');
 
     if (
       primeraPersona != null &&
@@ -168,8 +172,6 @@ class SinglePalabraScreen extends StatelessWidget  {
     final String presenteC = _palabra.presenteContinuo;
     final String pasado = _palabra.pasado;
     final String futuro = _palabra.futuro;
-
-    print('$presente, $presenteC, $pasado, $futuro');
     
     if (presente != null && presenteC != null && pasado != null && futuro != null ) {
       
@@ -267,7 +269,7 @@ class SinglePalabraScreen extends StatelessWidget  {
     );
   }
 
-  Widget _buildPalabraSynonymsCard(BuildContext context) {
+  Widget _buildPalabraSynonymsCard(BuildContext context, MainModel model) {
 
     final String synonyms = FlutterI18n.translate(context, 'single_palabra.synonyms');
     final String sinonimos = _palabra.sinonimos;
@@ -298,7 +300,7 @@ class SinglePalabraScreen extends StatelessWidget  {
                 itemBuilder: (context, index) =>
                   Container(
                     padding: EdgeInsets.only(right: 10.0),
-                    child: _renderButton(sinonimosArr[index]),
+                    child: _renderButton(sinonimosArr[index], model, context),
                   )
               ) : _subtitle('No hay palabras similares')
             ),
@@ -314,7 +316,7 @@ class SinglePalabraScreen extends StatelessWidget  {
     return card;
   } 
 
-  Widget _buildPalabraAntonymsCard(BuildContext context) {
+  Widget _buildPalabraAntonymsCard(BuildContext context, MainModel model) {
 
     final String antonyms = FlutterI18n.translate(context, 'single_palabra.antonyms');
     final String antonimos = _palabra.antonimos;
@@ -346,7 +348,7 @@ class SinglePalabraScreen extends StatelessWidget  {
                 itemBuilder: (context, index) =>
                   Container(
                     padding: EdgeInsets.only(right: 10.0),
-                    child: _renderButton(anotnimosArr[index]),
+                    child: _renderButton(anotnimosArr[index], model, context),
                   )
               ) : _subtitle('No hay palabras opuestas')
             ),
@@ -423,7 +425,7 @@ class SinglePalabraScreen extends StatelessWidget  {
     );
   }
   
-  Widget _renderButton(String text) {
+  Widget _renderButton(String text, MainModel model, BuildContext context) {
 
     final int length = text.length;
 
@@ -438,7 +440,8 @@ class SinglePalabraScreen extends StatelessWidget  {
       height: 40.0,
       width: length < 8 ? length * 15.0 : length * 11.0,
       child: InkWell(
-          onTap: null,
+          onTap: () => model.speak(text),
+          onLongPress: () => _copy(text, context),
           child: Center(
             child: Text(
               text,
@@ -452,4 +455,34 @@ class SinglePalabraScreen extends StatelessWidget  {
       )
     );
   }
+
+  void _copy(String text, BuildContext context) {
+    ClipboardManager.copyToClipBoard(text)
+      .then((result) {
+        _createSnackBar(
+          title: FlutterI18n.translate(context, 'snackbar.success_message_clipboard'),
+          label: FlutterI18n.translate(context, 'snackbar.success_message_clipboard_label'),
+          context: context
+        );
+      })
+      .catchError((error) {
+        _createSnackBar(
+          title: FlutterI18n.translate(context, 'snackbar.error_message_clipboard'),
+          label: FlutterI18n.translate(context, 'snackbar.error_message_clipboard_label'),
+          context: context
+        );
+      });
+  }  
+
+  void _createSnackBar({String title, String label, BuildContext context,}) {
+    final snackBar = SnackBar(
+      content: Text(title),
+      action: SnackBarAction(
+        label: label,
+        onPressed: null,
+      ),
+    );
+
+    Scaffold.of(context).showSnackBar(snackBar);
+  } 
 }

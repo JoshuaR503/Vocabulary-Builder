@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [45th commit] - 2019-05-12
+### Changed
+- Small UI changes
+- Added new values to Main Model
+- Fixed Welcome Screen
+- Fixed Some titles
+- Small UI Improvements
+- Changed Google Play Services
+
 ## [44th commit] - 2019-05-1
 ### Changed
 - UI at the single screen

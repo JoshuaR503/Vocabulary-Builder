@@ -1,48 +1,40 @@
 {
   "project_info": {
-    "project_number": "677380554198",
-    "firebase_url": "https://vocabulary-builder-android.firebaseio.com",
-    "project_id": "vocabulary-builder-android",
-    "storage_bucket": "vocabulary-builder-android.appspot.com"
+    "project_number": "621498423854",
+    "firebase_url": "https://vocabulary-builder-v2.firebaseio.com",
+    "project_id": "vocabulary-builder-v2",
+    "storage_bucket": "vocabulary-builder-v2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:677380554198:android:df3ab38a07ee01f5",
+        "mobilesdk_app_id": "1:621498423854:android:df3ab38a07ee01f5",
         "android_client_info": {
           "package_name": "com.herokuapp.backend.another"
         }
       },
       "oauth_client": [
         {
-          "client_id": "677380554198-2k9cldfod9r9uvfi1em4ou0mpj32ekih.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.herokuapp.backend.another",
-            "certificate_hash": "7a3da9dfc36d110729006e4cb97f53532075a6f2"
-          }
-        },
-        {
-          "client_id": "677380554198-06jrqbeh32d6lfr9bsectcpt8s8p5hja.apps.googleusercontent.com",
+          "client_id": "621498423854-oqv36ld0164umkdfdel5093tgp2n2dhb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyACMqGW3Q-Xx2KCUETCjxhzCMfDcO-RQAg"
+          "current_key": "AIzaSyASl_YK3wi25dxWtsOV6qpq01ay-kiuqEU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "677380554198-06jrqbeh32d6lfr9bsectcpt8s8p5hja.apps.googleusercontent.com",
+              "client_id": "621498423854-oqv36ld0164umkdfdel5093tgp2n2dhb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
         }
       },
-      "admob_app_id": "ca-app-pub-4405037805481276~1888738229"
+      "admob_app_id": "ca-app-pub-2366031658994135~3587559242"
     }
   ],
   "configuration_version": "1"

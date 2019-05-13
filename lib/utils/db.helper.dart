@@ -2,7 +2,6 @@ import 'package:vocabulary_builder/model/palabra.model.dart';
 
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:dio/dio.dart';
 
 import 'dart:async';
 import 'dart:io';
@@ -128,18 +127,4 @@ class DatabaseHelper {
 		return savedDataList;
 	}
 
-  Future download1(Dio dio, String url, savePath) async {
-    try {
-      Response response = await dio.get(url);
-      print(response.headers);
-      File file = new File(savePath);
-      var raf = file.openSync(mode: FileMode.write);
-      // response.data is List<int> type
-      raf.writeFromSync(response.data);
-      print(response.data);
-      await raf.close();
-  } catch (e) {
-    print(e);
-  }
-  }
 }

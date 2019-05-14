@@ -44,12 +44,13 @@ class DatabaseHelper {
   String colNote = 'nota';
   String colDate = 'date';
 
-
   DatabaseHelper._createInstance();
 
   factory DatabaseHelper() {
 
-		if (_databaseHelper == null) _databaseHelper = DatabaseHelper._createInstance(); 
+		if (_databaseHelper == null) {
+      _databaseHelper = DatabaseHelper._createInstance(); 
+    }
 		
 		return _databaseHelper;
 	}
@@ -72,51 +73,36 @@ class DatabaseHelper {
   void _createDb(Database db, int newVersion) async => await db.execute("CREATE TABLE $wordsTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colPalabra TEXT, $colPalabraPronunciacion TEXT, $colTraduccion TEXT, $colTraduccionPronunciacion TEXT, $colDificultad TEXT, $colPrimeraPersona TEXT, $colSegundaPersona TEXT, $colTerceraPersona TEXT, $colPresente TEXT, $colPresenteContinuo TEXT, $colPasado TEXT, $colFuturo TEXT, $colSynonyms TEXT, $colAntonyms TEXT, $colDefinicion TEXT, $colDefinicion2 TEXT, $colEjemplo TEXT, $colEjemplo2 TEXT, $colCategoriaGramatical TEXT, $colCategoriaGramatical2 TEXT, $colNote TEXT, $colDate TEXT)");
  
   Future<List<Map<String, dynamic>>> fetchSavedDataMapList() async {
-		Database db = await this.database;
+		final Database db = await this.database;
+		final dynamic result = await db.query(wordsTable, orderBy: '$colId DESC');
 
-		var result = await db.query(wordsTable, orderBy: '$colDate DESC');
 		return result;
 	}
 
   Future<int> savePalabra(Palabra palabra) async {
-    // Dio dio = Dio();
+		final Database db = await this.database;
+		final dynamic result = await db.insert(wordsTable, palabra.toMap());
 
-    // Directory directory = await getApplicationDocumentsDirectory();
-		Database db = await this.database;
-
-    // final String ppPath = '$directory/${data.palabra}.mp3'
-    // .replaceAll(new RegExp(r"\s+\b|\b\s"), "");
-
-    // final String tpPath = '$directory/${data.traduccion}-${data.palabra}.mp3'
-    // .replaceAll(new RegExp(r"\s+\b|\b\s"), "");
-
-    // print('-------------------------------');
-    // print('FILESSSS ---- $tpPath, $ppPath');
-    // print('-------------------------------');
-
-    // download1(dio, '${data.palabraPronunciacion}', '$ppPath');
-    // download1(dio, '${data.palabraPronunciacion}', '$ppPath');
-
-		var result = await db.insert(wordsTable, palabra.toMap());
 		return result;
 	}
 
   Future<int> deletePalabra(int id) async {
-		var db = await this.database;
-		int result = await db.rawDelete('DELETE FROM $wordsTable WHERE $colId = $id');
+		final Database db = await this.database;
+		final int result = await db.rawDelete('DELETE FROM $wordsTable WHERE $colId = $id');
+
 		return result;
 	}
 
   Future <int> deleteTable() async {
-    var db = await this.database;
-    int result = await db.rawDelete('DROP TABLE $wordsTable');
+    final Database db = await this.database;
+    final int result = await db.rawDelete('DROP TABLE $wordsTable');
+
 		return result;
   }
 
   Future<List<Palabra>> fetchSavedDataList() async {
-
-		var savedDataMapList = await fetchSavedDataMapList(); 
-		int count = savedDataMapList.length;
+		final dynamic savedDataMapList = await fetchSavedDataMapList(); 
+		final int count = savedDataMapList.length;
 
 		List<Palabra> savedDataList = List<Palabra>();
 
@@ -126,5 +112,4 @@ class DatabaseHelper {
 
 		return savedDataList;
 	}
-
 }

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [46th commit] - 2019-05-12
+### Changed
+- Small Bug Fixes
+
 ## [45th commit] - 2019-05-12
 ### Changed
 - Small UI changes

@@ -31,10 +31,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       child: Stack(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(top: height / 7, left: 20.0, right: 20.0),
+                            padding: EdgeInsets.only(top: height / 6, left: 20.0, right: 20.0),
                             child: Text(FlutterI18n.translate(context, 'welcome_screen.title'),
                               style: TextStyle(
-                                fontSize: 46.0,
+                                fontSize: 48.0,
                                 fontWeight: FontWeight.bold
                               )
                             ),
@@ -44,18 +44,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                     orientation == Orientation.portrait ? 
                       Container(
-                        padding: EdgeInsets.only(top:  height / 15, left: 20.0, right: 20.0),
+                        padding: EdgeInsets.only(top:  height / 10, left: 20.0, right: 20.0),
                         child: Column(
                           children: <Widget>[
                             _renderButton(
-                              name: 'Inglés',
+                              name: FlutterI18n.translate(context, 'welcome_screen.en'),
                               language: 'es',
                               model: model,
                               context: context
                             ),
                             SizedBox(height: 15.0),
                             _renderButton(
-                              name: 'Spanish',
+                              name: FlutterI18n.translate(context, 'welcome_screen.es'),
                               language: 'en',
                               model: model,
                               context: context
@@ -96,7 +96,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget _renderButton({String name, String language, model, context}) {
 
     final double deviceWidth = MediaQuery.of(context).size.width;
-    final double targetWidth = deviceWidth > 768.0 ? 260.0 : deviceWidth * 0.85;
+    final double targetWidth = deviceWidth > 768.0 ? 260.0 : deviceWidth * 0.95;
 
     return GestureDetector(
       onTap: () => 

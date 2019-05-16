@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [47th commit] - 2019-05-15
+### Added
+- New voice to the single screen
+
 ## [46th commit] - 2019-05-12
 ### Changed
 - Small Bug Fixes

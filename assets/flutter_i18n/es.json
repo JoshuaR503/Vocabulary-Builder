@@ -321,6 +321,12 @@
             "solution": "Cuando no tienes conexión, solo puedes ver las palabras que guardaste."
         },
 
+        "no_connection": {
+            "message": "Necesitas conexión a internet",
+            "solution": "Necesitas conexión a internet para escuchar la pronunciación de esta palabra.",
+            "btn": "Entiendo"
+        },
+
         "no_saved_words": {
             "message": "Parece que aún no has guardado ninguna palabra",
             "solution": "Puedes tocar en el corazón al lado de una palabra para guardarla."

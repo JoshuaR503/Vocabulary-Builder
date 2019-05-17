@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/model/main.dart';
 import 'package:vocabulary_builder/model/palabra.model.dart';
 import 'package:vocabulary_builder/utils/colors.dart';
@@ -59,7 +60,7 @@ class PalabraGuardadaCard extends StatelessWidget {
           ),
 
           firstFunction: () async {
-            model.checkInternetConnection();
+            await model.checkInternetConnection();
 
             if (!model.internetConnected) {
               showDialog(
@@ -68,18 +69,14 @@ class PalabraGuardadaCard extends StatelessWidget {
                 builder: (BuildContext context) {
 
                   return AlertDialog(
-                    title: Text('No tienes internet!'),
+                    title: Text(FlutterI18n.translate(context, 'error_message.no_connection.message')),
                     content: SingleChildScrollView(
-                      child: ListBody(
-                        children: <Widget>[
-                          Text('Lamento las interrupciones, pero para escuchar la pronunciación necesitas una conexion a internet.'),
-                        ],
-                      ),
+                      child: Text(FlutterI18n.translate(context, 'error_message.no_connection.solution'))
                     ),
 
                     actions: <Widget>[
                       FlatButton(
-                        child: Text('Entiendo'),
+                        child: Text(FlutterI18n.translate(context, 'error_message.no_connection.btn')),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                     ],

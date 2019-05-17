@@ -291,7 +291,7 @@ mixin UtilityModel on ConnectedModel {
     this.checkInternetConnection();
   }
 
-  void checkInternetConnection() async {
+  Future<Null> checkInternetConnection() async {
     
     try {
       final result = await InternetAddress.lookup('google.com');
@@ -339,19 +339,4 @@ mixin UtilityModel on ConnectedModel {
       }
     }
   }
-
-  // void speak(String text) {
-  //   _textToSpeech.setPitch(1.0);
-  //   _textToSpeech.setSpeechRate(0.8);
-
-  //   print(_textToSpeech.getLanguages);
-
-  //   if (_userLang == 'es') {
-  //     _textToSpeech.setLanguage('en_US');
-  //   } else {
-  //     _textToSpeech.setLanguage('es_ES');
-  //   }
-
-  //   _textToSpeech.speak(text);
-  // }
 }

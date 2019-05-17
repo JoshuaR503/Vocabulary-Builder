@@ -325,6 +325,12 @@
             "solution": "When you have no connection, you can only see the words you saved."
         },
 
+        "no_connection": {
+            "message": "You need internet connection",
+            "solution": "You need internet connection to listen to the pronunciation of this word.",
+            "btn": "Okay"
+        },
+
         "no_saved_words": {
             "message": "It seems like you haven't saved any words yet.",
             "solution": "If I'd like to save words, just tap the heart next to it."

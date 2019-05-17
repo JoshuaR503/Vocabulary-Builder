@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [49th commit] - 2019-05-16
+### Added
+- Translation for the pop up 
+
 ## [48th commit] - 2019-05-16
 ### Changed
 - Voice in the saved words screen

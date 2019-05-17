@@ -59,7 +59,7 @@ class RowItem extends StatelessWidget {
           context:context, 
           model: model
         ),
-        onTap: () => model.speak(subtitle),
+        onTap: null,
         child: text
       );
       

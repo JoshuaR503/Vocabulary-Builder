@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:flutter_tts/flutter_tts.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:vibrate/vibrate.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -180,30 +180,30 @@ mixin PalabrasModel on ConnectedModel {
   }
 
   Future<Null> obtenerPalabrasGuardadas() async { 
-    _palabrasGuardadasIsLoading = true;
-    notifyListeners();
+    final Future<Database> dbFuture = _dbh.initializeDatabase();
 
-    Future<Database> dbFuture = _dbh.initializeDatabase();
+    this._palabrasGuardadasIsLoading = true;
+    this.notifyListeners();
 
 		dbFuture
     .then((database) {
-			Future<List<Palabra>> dataListFuture = _dbh.fetchSavedDataList();
+			final Future<List<Palabra>> dataListFuture = _dbh.fetchSavedDataList();
 
 			dataListFuture
         .then((response) {
           _palabrasGuardadas = response;
-          _palabrasGuardadasIsLoading = false;
-          notifyListeners();
+          this._palabrasGuardadasIsLoading = false;
+          this.notifyListeners();
         })
         .catchError((error) {
-          _palabrasGuardadasIsLoading = false;
-          notifyListeners();
+          this._palabrasGuardadasIsLoading = false;
+          this.notifyListeners();
           return;
         });
 		})
     .catchError((error) {
-      _palabrasGuardadasIsLoading = false;
-      notifyListeners();
+      this._palabrasGuardadasIsLoading = false;
+      this.notifyListeners();
       return;
     });
   }
@@ -262,7 +262,6 @@ mixin PalabrasModel on ConnectedModel {
 } 
 
 mixin UtilityModel on ConnectedModel {
-  final FlutterTts _textToSpeech = FlutterTts();
 
   bool get seen => _seen;
   bool get internetConnected => _internetConnected;
@@ -318,6 +317,17 @@ mixin UtilityModel on ConnectedModel {
     prefs.setString('user_lang', language);
   }
 
+  Future<Null> playAduio({String url}) async {
+
+    print('url given: $url');
+
+    final AudioPlayer audioPlayer = AudioPlayer();
+
+    await audioPlayer
+    .play(url)
+    .catchError((error) => print(error));
+  }
+
   void sendFeedback([bool error]) async {
     bool canVibrate = await Vibrate.canVibrate;
 
@@ -330,18 +340,18 @@ mixin UtilityModel on ConnectedModel {
     }
   }
 
-  void speak(String text) {
-    _textToSpeech.setPitch(1.0);
-    _textToSpeech.setSpeechRate(0.8);
+  // void speak(String text) {
+  //   _textToSpeech.setPitch(1.0);
+  //   _textToSpeech.setSpeechRate(0.8);
 
-    print(_textToSpeech.getLanguages);
+  //   print(_textToSpeech.getLanguages);
 
-    if (_userLang == 'es') {
-      _textToSpeech.setLanguage('en_US');
-    } else {
-      _textToSpeech.setLanguage('es_ES');
-    }
+  //   if (_userLang == 'es') {
+  //     _textToSpeech.setLanguage('en_US');
+  //   } else {
+  //     _textToSpeech.setLanguage('es_ES');
+  //   }
 
-    _textToSpeech.speak(text);
-  }
+  //   _textToSpeech.speak(text);
+  // }
 }

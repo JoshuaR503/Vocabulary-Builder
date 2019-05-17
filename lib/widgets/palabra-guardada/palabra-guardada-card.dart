@@ -14,7 +14,11 @@ class PalabraGuardadaCard extends StatelessWidget {
 
     final Palabra singlePalabra =  Palabra(
       palabra: palabra.palabra,
+      palabraPronunciacion: palabra.palabraPronunciacion,
+
       traduccion: palabra.traduccion,
+      traduccionPronunciacion: palabra.traduccionPronunciacion,
+
       dificultad: palabra.dificultad,
 
       primeraPersona: palabra.primeraPersona,
@@ -54,12 +58,42 @@ class PalabraGuardadaCard extends StatelessWidget {
             child: Icon(Icons.info_outline, color: Colors.white),
           ),
 
-          firstFunction: () {
-            model.speak(
-              model.userLang == 'en' 
-                ? singlePalabra.traduccion
-                : singlePalabra.palabra
-            );
+          firstFunction: () async {
+            model.checkInternetConnection();
+
+            if (!model.internetConnected) {
+              showDialog(
+                context: context,
+                barrierDismissible: false, // user must tap button!
+                builder: (BuildContext context) {
+
+                  return AlertDialog(
+                    title: Text('No tienes internet!'),
+                    content: SingleChildScrollView(
+                      child: ListBody(
+                        children: <Widget>[
+                          Text('Lamento las interrupciones, pero para escuchar la pronunciación necesitas una conexion a internet.'),
+                        ],
+                      ),
+                    ),
+
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text('Entiendo'),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                    ],
+
+                  );
+                },
+              );  
+            } else {
+              model.playAduio(
+              url: model.userLang == 'en' 
+                  ? 'https://vocabulary-polly-sound-files.s3.amazonaws.com/${singlePalabra.palabra}-${singlePalabra.traduccion}.mp3'
+                  : 'https://vocabulary-polly-sound-files.s3.amazonaws.com/${singlePalabra.palabra}.mp3'
+              );
+            }
           },
           
           palabra: singlePalabra,

@@ -2,7 +2,6 @@ import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
-import 'package:audioplayers/audioplayers.dart';
 import 'package:vocabulary_builder/model/main.dart';
 import 'package:vocabulary_builder/model/palabra.model.dart';
 import 'package:vocabulary_builder/utils/colors.dart';
@@ -14,8 +13,6 @@ import 'package:vocabulary_builder/widgets/ui/text/row-item.dart';
 import 'package:vocabulary_builder/widgets/palabra/single-palabra-card.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:scoped_model/scoped_model.dart';
-
-import 'dart:async';
 
 class SinglePalabraScreen extends StatelessWidget  {
   
@@ -431,49 +428,39 @@ class SinglePalabraScreen extends StatelessWidget  {
   Widget _renderButton(String text, MainModel model, BuildContext context) {
 
     final int length = text.length;
+    final String lang = model.userLang == 'en' ? 'es' : 'en';
+    final String word = model.userLang == 'en' ? _palabra.traduccion : _palabra.palabra;
+
+    final String curatedString = text.replaceAll(new RegExp(r"\s+\b|\b\s"), "");
+    final String url = 'https://s3.amazonaws.com/vocabulary-polly-sound-files/$lang-$word-$curatedString.mp3';
 
     return AnimatedContainer(
       duration: Duration(seconds: 1),
       curve: Curves.easeIn,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color:  Colors.black.withOpacity(0.8),
+        borderRadius: BorderRadius.circular(10.0),
+        color:  Colors.black.withOpacity(0.8),
       ),
-      
+
       height: 40.0,
       width: length < 8 ? length * 15.0 : length * 11.0,
+
       child: InkWell(
-          onTap: () => reproduceAudio(
-            model.userLang == 'en' ? 'es' : 'en',
-            model.userLang == 'en' 
-            ? _palabra.traduccion
-            : _palabra.palabra, 
-            text
-          ),
-          onLongPress: () => _copy(text, context),
-          child: Center(
-            child: Text(
-              text,
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+        onTap: () => model.playAduio(url: url),
+        onLongPress: () => _copy(text, context),
+        
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           ),
         ),
-      )
+      ),
     );
-  }
-
-  Future<Null> reproduceAudio(String lang, String word, String word2) async {
-    
-    final AudioPlayer audioPlayer = AudioPlayer();
-    final String curatedString = word2.replaceAll(new RegExp(r"\s+\b|\b\s"), "");
-    final String url = 'https://s3.amazonaws.com/vocabulary-polly-sound-files/$lang-$word-$curatedString.mp3';
-
-    audioPlayer
-    .play(url)
-    .catchError((error) => print(error));
   }
 
   void _copy(String text, BuildContext context) {

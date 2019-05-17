@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [48th commit] - 2019-05-16
+### Changed
+- Voice in the saved words screen
+
+### Removed
+- Speech API dependency
+
 ## [47th commit] - 2019-05-15
 ### Added
 - New voice to the single screen

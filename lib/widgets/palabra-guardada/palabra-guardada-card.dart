@@ -56,41 +56,40 @@ class PalabraGuardadaCard extends StatelessWidget {
 
           secondtAvatar: CircleAvatar(
             backgroundColor: Colors.red,
-            child: Icon(Icons.info_outline, color: Colors.white),
+            child: Icon(Icons.arrow_forward, color: Colors.white),
           ),
 
-          firstFunction: () async {
-            await model.checkInternetConnection();
+          firstFunction: () {
+            final String english = singlePalabra.palabraPronunciacion;
+            final String spanish = singlePalabra.traduccionPronunciacion;
 
-            if (!model.internetConnected) {
+            model
+            .playAduio(url: model.userLang == 'es' ? english : spanish)
+            .then((response) {
+              print(response);
+
+              if (response != 0) {
+              print('Showing error');
               showDialog(
-                context: context,
-                barrierDismissible: false, // user must tap button!
-                builder: (BuildContext context) {
-
-                  return AlertDialog(
-                    title: Text(FlutterI18n.translate(context, 'error_message.no_connection.message')),
-                    content: SingleChildScrollView(
-                      child: Text(FlutterI18n.translate(context, 'error_message.no_connection.solution'))
-                    ),
-
-                    actions: <Widget>[
-                      FlatButton(
-                        child: Text(FlutterI18n.translate(context, 'error_message.no_connection.btn')),
-                        onPressed: () => Navigator.of(context).pop(),
+                  context: context,
+                  barrierDismissible: false, // user must tap button!
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text(FlutterI18n.translate(context, 'troubleshooting.missing_files.title')),
+                      content: SingleChildScrollView(
+                        child: Text(FlutterI18n.translate(context, 'troubleshooting.missing_files.solution_one'))
                       ),
-                    ],
-
-                  );
-                },
-              );  
-            } else {
-              model.playAduio(
-              url: model.userLang == 'en' 
-                  ? 'https://vocabulary-polly-sound-files.s3.amazonaws.com/${singlePalabra.palabra}-${singlePalabra.traduccion}.mp3'
-                  : 'https://vocabulary-polly-sound-files.s3.amazonaws.com/${singlePalabra.palabra}.mp3'
-              );
-            }
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text(FlutterI18n.translate(context, 'error_message.no_connection.btn')),
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }
+            });
           },
           
           palabra: singlePalabra,

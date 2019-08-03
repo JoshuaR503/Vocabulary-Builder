@@ -32,6 +32,20 @@ class CreditoScreen extends StatelessWidget {
           subtitle: FlutterI18n.translate(context, 'credits.icon_designer_one.subtitle_two'),
           onTap: () => FlutterWebBrowser.openWebPage(url: 'https://www.flaticon.com/authors/mynamepong'),
         ),
+
+        CommonTitle(FlutterI18n.translate(context, 'credits.icon_designer.title')),
+        SubTitle(FlutterI18n.translate(context, 'credits.icon_designer.subtitle')),
+        ListCell(
+          leading: Image.asset(
+            'assets/archive.png',
+            height: 50.0,
+            width: 50.0,
+          ),
+          title: FlutterI18n.translate(context, 'credits.icon_designer.title_two'),
+          subtitle: FlutterI18n.translate(context, 'credits.icon_designer.subtitle_two'),
+          onTap: () => FlutterWebBrowser.openWebPage(url: 'https://www.flaticon.com/authors/srip'),
+        ),
+        
         CommonTitle(FlutterI18n.translate(context, 'credits.icon_designer_two.title')),
         SubTitle(FlutterI18n.translate(context, 'credits.icon_designer_two.subtitle')),
         ListCell(

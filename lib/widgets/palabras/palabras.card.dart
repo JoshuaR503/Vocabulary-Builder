@@ -121,15 +121,19 @@ class _PalabraCardState extends  State<PalabraCard> {
           onPressed: _isButtonDisabled ? null : () {
 
             print('$_isPlaying');
-            print('Audio a reproducir: ${widget.palabra.palabraPronunciacion}');
+            
+            final String es = widget.palabra.traduccionPronunciacion;
+            final String en = widget.palabra.palabraPronunciacion;
+
+            print('Audio a reproducir: $es, $en');
 
             if (!_isPlaying) {
               _changeStatus(true);
 
               reproduceAudio(
                 model.userLang == 'en' 
-                  ? widget.palabra.traduccionPronunciacion
-                  : widget.palabra.palabraPronunciacion
+                  ? es
+                  : en
               ).then((_) => Timer(Duration(seconds: 2), () => _changeStatus(false)));
             }
           },

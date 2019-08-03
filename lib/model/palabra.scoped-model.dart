@@ -1,3 +1,4 @@
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -69,7 +70,7 @@ mixin PalabrasModel on ConnectedModel {
 
     final String lang = await uLang();  
     final String prodURL = '$baseUrl/api/v3/palabras?limit=6&lang=$lang&key=JosshuAP50@KelReySSl@hiddenKEY';
-    final String devURL = '$baseUrl/api/v3/test?limit=6';
+    // final String devURL = '$baseUrl/api/v3/test?limit=6';
 
     return http
       .get(prodURL)
@@ -212,7 +213,10 @@ mixin PalabrasModel on ConnectedModel {
 
     Palabra singlePalabra = Palabra(
       palabra: palabraData.palabra,
+      palabraPronunciacion: await this.saveToChache(palabraData.palabraPronunciacion),
+
       traduccion: palabraData.traduccion,
+      traduccionPronunciacion: await this.saveToChache(palabraData.traduccionPronunciacion),
       dificultad: palabraData.dificultad,
 
       primeraPersona: palabraData.primeraPersona,
@@ -241,6 +245,9 @@ mixin PalabrasModel on ConnectedModel {
       date: DateFormat.yMMMd().format(DateTime.now())
     );
 
+    print('${singlePalabra.palabraPronunciacion}');
+
+  
     int result = await _dbh.savePalabra(singlePalabra);
 
     return result;
@@ -258,6 +265,28 @@ mixin PalabrasModel on ConnectedModel {
     if (palabraId != null) {
       notifyListeners();
     }
+  }
+
+  Future<String> saveToChache(String url) async {
+    final FileInfo file =  await DefaultCacheManager().downloadFile(url);
+    final String fileUrl = file.file.path;
+
+    print('file saved: $fileUrl');
+  
+    return fileUrl;
+  }
+
+  Future<String> getFromCache(String url) async {
+    final FileInfo file = await DefaultCacheManager().getFileFromCache(url);
+    final String fileUrl = file.file.path;
+
+    print('file saved: $fileUrl');
+  
+    return fileUrl;
+  }
+
+  void deleteFile(String url) async {
+    await DefaultCacheManager().removeFile(url);
   }
 } 
 
@@ -278,7 +307,7 @@ mixin UtilityModel on ConnectedModel {
 
     if (response) {
       this._seen = true;
-    } else if (response == false) {
+    } else if (!response) {
       this._seen = false;
     }
     
@@ -317,15 +346,16 @@ mixin UtilityModel on ConnectedModel {
     prefs.setString('user_lang', language);
   }
 
-  Future<Null> playAduio({String url}) async {
+  Future<int> playAduio({String url}) {
 
     print('url given: $url');
 
     final AudioPlayer audioPlayer = AudioPlayer();
 
-    await audioPlayer
+    return audioPlayer
     .play(url)
-    .catchError((error) => print(error));
+    .then((_) => 0)
+    .catchError((error) => 1);
   }
 
   void sendFeedback([bool error]) async {
@@ -338,5 +368,18 @@ mixin UtilityModel on ConnectedModel {
         Vibrate.vibrate();
       }
     }
+  }
+
+  String cleanString(String url) {
+    final String dirtyString = url;
+    final String cleanString = replaceWhiteSpace(dirtyString);
+
+    print('$dirtyString, $cleanString');
+
+    return cleanString;
+  }
+
+  String replaceWhiteSpace(String text) {
+    return text.replaceAll(RegExp(r"\s+\b|\b\s"), "-");
   }
 }

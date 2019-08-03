@@ -35,11 +35,10 @@ dependencies:
   material_search: ^0.2.8
   clipboard_manager: ^0.0.1
   flutter_web_browser: ^0.9.0+1
+  flutter_cache_manager: ^0.3.2
 
   ## Developer tools
-  sentry: ^2.2.0
   firebase_analytics: ^2.0.3
-  firebase_remote_config: ^0.2.0+1
 
 dev_dependencies:
   intl_translation: ^0.17.1
@@ -96,5 +95,5 @@ flutter:
     - assets/confused.png
     - assets/angry.png
     - assets/limit.png
-    - assets/crying.png
     - assets/refusing.png
+    - assets/archive.png

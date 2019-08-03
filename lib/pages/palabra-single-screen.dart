@@ -272,6 +272,7 @@ class SinglePalabraScreen extends StatelessWidget  {
   Widget _buildPalabraSynonymsCard(BuildContext context, MainModel model) {
 
     final String synonyms = FlutterI18n.translate(context, 'single_palabra.synonyms');
+    final String ns = FlutterI18n.translate(context, 'single_palabra.not_available.ns');
     final String sinonimos = _palabra.sinonimos;
 
     Widget card;
@@ -292,7 +293,7 @@ class SinglePalabraScreen extends StatelessWidget  {
             Container(
               padding: EdgeInsets.only(left: 18, right: 18),
               height: 50.0,
-              child: sinonimosArr.length > 1
+              child: sinonimosArr.length >= 1
               
               ?  ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -302,7 +303,7 @@ class SinglePalabraScreen extends StatelessWidget  {
                     padding: EdgeInsets.only(right: 10.0),
                     child: _renderButton(sinonimosArr[index], model, context),
                   )
-              ) : _subtitle('No hay palabras similares')
+              ) : _subtitle(ns)
             ),
 
             Separator.spacer(height: 15),
@@ -319,6 +320,7 @@ class SinglePalabraScreen extends StatelessWidget  {
   Widget _buildPalabraAntonymsCard(BuildContext context, MainModel model) {
 
     final String antonyms = FlutterI18n.translate(context, 'single_palabra.antonyms');
+    final String na = FlutterI18n.translate(context, 'single_palabra.not_available.na');
     final String antonimos = _palabra.antonimos;
 
     Widget card;
@@ -340,7 +342,7 @@ class SinglePalabraScreen extends StatelessWidget  {
             Container(
               padding: EdgeInsets.only(left: 18, right: 18),
               height: 50.0,
-              child: anotnimosArr.length > 1 
+              child: anotnimosArr.length >= 1 
 
               ? ListView.builder(  
                 scrollDirection: Axis.horizontal,
@@ -350,7 +352,7 @@ class SinglePalabraScreen extends StatelessWidget  {
                     padding: EdgeInsets.only(right: 10.0),
                     child: _renderButton(anotnimosArr[index], model, context),
                   )
-              ) : _subtitle('No hay palabras opuestas')
+              ) : _subtitle(na)
             ),
 
             Separator.spacer(height: 15),
@@ -426,13 +428,18 @@ class SinglePalabraScreen extends StatelessWidget  {
   }
   
   Widget _renderButton(String text, MainModel model, BuildContext context) {
+    
 
     final int length = text.length;
     final String lang = model.userLang == 'en' ? 'es' : 'en';
     final String word = model.userLang == 'en' ? _palabra.traduccion : _palabra.palabra;
 
-    final String curatedString = text.replaceAll(new RegExp(r"\s+\b|\b\s"), "");
-    final String url = 'https://s3.amazonaws.com/vocabulary-polly-sound-files/$lang-$word-$curatedString.mp3';
+    final String curatedWord = word.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
+    final String curatedString = text.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
+
+    final String url = 'https://s3.amazonaws.com/vocabulary-polly-sound-files/$lang-$curatedWord-$curatedString.mp3';
+
+    print(url);
 
     return AnimatedContainer(
       duration: Duration(seconds: 1),
@@ -446,9 +453,14 @@ class SinglePalabraScreen extends StatelessWidget  {
       width: length < 8 ? length * 15.0 : length * 11.0,
 
       child: InkWell(
-        onTap: () => model.playAduio(url: url),
+        onTap: () {
+          model.checkInternetConnection();
+          model.internetConnected 
+            ? model.playAduio(url: url)
+            : _showAlert(context);
+        },
+  
         onLongPress: () => _copy(text, context),
-        
         child: Center(
           child: Text(
             text,
@@ -491,5 +503,26 @@ class SinglePalabraScreen extends StatelessWidget  {
     );
 
     Scaffold.of(context).showSnackBar(snackBar);
-  } 
+  }
+
+  void _showAlert(BuildContext context) async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(FlutterI18n.translate(context, 'error_message.no_connection.message')),
+          content: SingleChildScrollView(
+            child: Text(FlutterI18n.translate(context, 'error_message.no_connection.solution'))
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(FlutterI18n.translate(context, 'error_message.no_connection.btn')),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      },
+    );  
+  }
 }

@@ -81,7 +81,7 @@
         },
 
         "example": {
-            "first_item": "{palabra} en una oración:",
+            "first_item": "Ejemplos de {palabra} en una oración",
             "second_item": "{palabra} en otra oración:"
         },
 
@@ -99,7 +99,7 @@
         },
 
         "not_available": {
-            "title": "Not available",
+            "title": "No pudimos encontrar ejemplos :(",
             "ns": "La base de datos no pudo encontrar sinónimos para esta palabra.",
             "na": "La base de datos no pudo encontrar antónimos para esta palabra."
         }
@@ -241,6 +241,13 @@
 
             "response_four": "Última revisión.",
             "solution_four": "Si nada de esto funciona, tienes dos opciones, puede que tu teléfono tenga un altavoz que no funciona o tu dispositivo no escompatible con la aplicación."
+        },
+
+        "missing_files": {
+            "title": "Archivos perdidos",
+            "subtitle": "¿Limpiaste tu teléfono?",
+            "response_one": "Memoria caché",
+            "solution_one": "Si recientemente limpiaste tu teléfono, es posible que hayas eliminado los archivos de audio almacenados en tu teléfono. Por favor no borres la memoria caché de esta aplicación."
         }
     },
 
@@ -259,6 +266,14 @@
             "subtitle": "Toca para obtener más información.",
             "subtitle_two": "Icono hecho por mynamepong de www.flaticon.com"
         },
+
+        "icon_designer": {
+            "title": "Iconos Diseñados por srip",
+            "title_two": "Diseñador del icono del archivo perdido.",
+            "subtitle": "Toca para obtener más información.",
+            "subtitle_two": "Icono hecho por srip de www.flaticon.com"
+        },
+
 
         "icon_designer_two": {
             "title": "Iconos Diseñados por Freepik",
@@ -346,5 +361,7 @@
             "message": "El servidor entendió tu petición.",
             "solution": "Pero se niega a cumplirla, desliza hacia abajo para intentar de nuevo."
         }
+
+
     }
 }

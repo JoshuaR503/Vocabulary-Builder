@@ -40,9 +40,7 @@
 
         "messages": {
             "title": "Please reload the application now"
-        },
-
-        "change_language": "Puedes cambiar el idioma de las palabras y la pronunciación. Por favor, cierre y abra la aplicación para que los cambios puedan tener lugar."
+        }
     },
 
     "saved_words": {
@@ -83,7 +81,7 @@
         },
 
         "example": {
-            "first_item": "{palabra} used in a sentence",
+            "first_item": "Using {palabra} in a sentence",
             "second_item": "{palabra} used in another sentence"
         },
 
@@ -203,7 +201,7 @@
 
         "no_words": {
             "title": "Words are not showing up!",
-            "subtitle": "I always have the message: Couldn't connect to the server",
+            "subtitle": "I always get the message: Couldn't connect to the server",
             "response_one": "Internet connection.",
             "solution_one": "One reason could be that internet connection may be failing or is very slow, please check the internet connection. If it doesn't work, try again later."
         },
@@ -219,7 +217,7 @@
             "title": "I've reached my free tier usage!",
             "subtitle": "Free quota reached",
             "response_one": "Each user has a limit quota",
-            "solution_one": "You can make up to 100 requests every 5 hours, if the server detected that it has already made 100 requests, it will not work anymore. You can always use the web version that has no limits."
+            "solution_one": "You can make up to 100 requests every 5 hours, if you already made 100 requests, the app won't work in the next 5 hours. You can always use the web version that has no limits."
         },
 
         "voice": {
@@ -245,6 +243,13 @@
 
             "response_four": "Last check",
             "solution_four": "If none of this works, you have two options, your phone may have a speaker that does not work or your device is not compatible with the application."
+        },
+
+        "missing_files": {
+            "title": "Missing files",
+            "subtitle": "Did you clean your phone?",
+            "response_one": "Cache memory",
+            "solution_one": "If you recently cleaned your phone, you might have deleted the audio files stored in your phone. Please try to not delete the cache memory from this app."
         }
     },
 
@@ -256,12 +261,18 @@
             "title_two": "Tap to get in touch",
             "subtitle": "The objective of this application is to help increase the vocabulary of the people who are learning Spanish, on the go."
         },
-
         "icon_designer_one": {
             "title": "Icons Designed by mynamepong",
             "title_two": "Tap the icon to find out more",
             "subtitle": "Designed the icon of the man running.",
             "subtitle_two": "Icon made by mynamepong from www.flaticon.com"
+        },
+
+        "icon_designer": {
+            "title": "Icons Designed by srip",
+            "title_two": "Tap the icon to find out more",
+            "subtitle": "Designed the icon of the file missing.",
+            "subtitle_two": "Icon made by srip from www.flaticon.com"
         },
 
         "icon_designer_two": {

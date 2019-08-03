@@ -103,11 +103,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
         model
         .setLang(language)
-        .then((_) async => {
-          await model.seen
+        .then((_) async => await model.seen
             ? Navigator.pushReplacementNamed(context, '/home')
-            : Navigator.pushReplacementNamed(context, '/intro')
-        }),
+            : Navigator.pushReplacementNamed(context, '/intro')),
 
       child: Container(
         height: 52.0,

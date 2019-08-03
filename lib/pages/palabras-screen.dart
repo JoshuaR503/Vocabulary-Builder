@@ -26,7 +26,7 @@ class PalabrasScreen extends StatefulWidget {
 class _PalabrasScreenState extends State<PalabrasScreen> {
 
   final InterstitialAd _beautifulAd = InterstitialAd(
-    // adUnitId: 'ca-app-pub-2366031658994135/7657028085',
+    // adUnitId: 'ca-app-pub-2727987234768252/9844346682',
     adUnitId: InterstitialAd.testAdUnitId,
     targetingInfo: MobileAdTargetingInfo(
       keywords: <String>['english', 'learning'],
@@ -39,9 +39,10 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
 
   @override
   void initState() {
+    this.widget.model.checkInternetConnection();
     this.widget.model.obtenerPalabras(loadingIndicator: true);
-    
-    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-2366031658994135~3587559242');
+
+    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-2727987234768252~2837027158');
     super.initState();
   }
 
@@ -80,13 +81,13 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
   
   Widget _buildMainContent() {
     return ScopedModelDescendant(
-      builder: (BuildContext context, Widget child, MainModel model) {
+      builder:  (BuildContext context, Widget child, MainModel model) {
 
         Widget content;
 
         if (model.internetConnected == false) {
           content = ErrorScreen(
-            pathImage: 'assets/crying.png',
+            pathImage: 'assets/refusing.png',
             message: FlutterI18n.translate(context, 'error_message.no_internet.message'),
             fixMessage: FlutterI18n.translate(context, 'error_message.no_internet.solution'),
           );
@@ -124,7 +125,10 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
         }
 
         return RefreshIndicator(
-          onRefresh: () async => await model.obtenerPalabras(loadingIndicator: false),
+          onRefresh: () async {
+            await model.obtenerPalabras(loadingIndicator: false);
+            await model.checkInternetConnection();
+          },
           child: content
         );
       }

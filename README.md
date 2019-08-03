@@ -9,14 +9,15 @@ A Flutter project for Vocabulary Builder (QuickGlish(American English Words(Mixe
 - Users can save words
 - Users can get more information about a word
 - Users can hear pronuntiation
+- Everything in is Spanish and English.
 
 ### Upcoming
-- A search screen
-- A translator screen
+- A search screen.
+- A translator screen.
 
 ### Future (not decided)
-- A test for users to learn test themselves
-- A speaking function to test themselves
-- A text function to use words in the correct order
+- A test for users to learn test themselves.
+- A speaking function to test themselves.
+- A text function to use words in the correct order.
 
 # A project by Joshua García

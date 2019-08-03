@@ -23,6 +23,9 @@ class PalabrasGuardadas extends StatelessWidget {
         key: Key(palabras[index].palabra),
         background: _renderBackground(),
         onDismissed: (DismissDirection direction) {
+          model.deleteFile(model.allPalabras[index].palabraPronunciacion);
+          model.deleteFile(model.allPalabras[index].traduccionPronunciacion);
+
           model.selectPalabra(model.allPalabrasGuardadas[index].id);
           model.deletePalabraGuardada();
         }, 

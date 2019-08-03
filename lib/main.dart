@@ -25,6 +25,7 @@ final MainModel model = MainModel();
     
 void main() {
   model.loadData();
+  model.checkInternetConnection();
 
   print(model.internetConnected);
   

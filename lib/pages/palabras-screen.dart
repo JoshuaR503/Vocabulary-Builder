@@ -26,8 +26,8 @@ class PalabrasScreen extends StatefulWidget {
 class _PalabrasScreenState extends State<PalabrasScreen> {
 
   final InterstitialAd _beautifulAd = InterstitialAd(
-    // adUnitId: 'ca-app-pub-2727987234768252/9844346682',
-    adUnitId: InterstitialAd.testAdUnitId,
+    adUnitId: 'ca-app-pub-2727987234768252/9844346682',
+    // adUnitId: InterstitialAd.testAdUnitId,
     targetingInfo: MobileAdTargetingInfo(
       keywords: <String>['english', 'learning'],
       childDirected: false,

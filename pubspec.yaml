@@ -1,6 +1,6 @@
 name: vocabulary_builder
 description: An app meant to help people learning English / Spanish to increase their vocabulary
-version: 18.0.0
+version: 19.0.0
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"

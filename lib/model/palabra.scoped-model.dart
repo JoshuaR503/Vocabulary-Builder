@@ -362,9 +362,7 @@ mixin UtilityModel on ConnectedModel {
     bool canVibrate = await Vibrate.canVibrate;
 
     if (canVibrate) {
-      if (error) {
-        Vibrate.vibrateErr();
-      } else {
+      if (!error) {
         Vibrate.vibrate();
       }
     }

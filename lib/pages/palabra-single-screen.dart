@@ -1,4 +1,3 @@
-import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
@@ -460,7 +459,6 @@ class SinglePalabraScreen extends StatelessWidget  {
             : _showAlert(context);
         },
   
-        onLongPress: () => _copy(text, context),
         child: Center(
           child: Text(
             text,
@@ -475,35 +473,8 @@ class SinglePalabraScreen extends StatelessWidget  {
     );
   }
 
-  void _copy(String text, BuildContext context) {
-    ClipboardManager.copyToClipBoard(text)
-      .then((result) {
-        _createSnackBar(
-          title: FlutterI18n.translate(context, 'snackbar.success_message_clipboard'),
-          label: FlutterI18n.translate(context, 'snackbar.success_message_clipboard_label'),
-          context: context
-        );
-      })
-      .catchError((error) {
-        _createSnackBar(
-          title: FlutterI18n.translate(context, 'snackbar.error_message_clipboard'),
-          label: FlutterI18n.translate(context, 'snackbar.error_message_clipboard_label'),
-          context: context
-        );
-      });
-  }  
 
-  void _createSnackBar({String title, String label, BuildContext context,}) {
-    final snackBar = SnackBar(
-      content: Text(title),
-      action: SnackBarAction(
-        label: label,
-        onPressed: null,
-      ),
-    );
 
-    Scaffold.of(context).showSnackBar(snackBar);
-  }
 
   void _showAlert(BuildContext context) async {
     return showDialog(

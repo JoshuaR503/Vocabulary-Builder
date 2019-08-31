@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>621498423854-1fdmmpl4bhbif1bjmjj9o7fhaqi3cidu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.621498423854-1fdmmpl4bhbif1bjmjj9o7fhaqi3cidu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAniDnZaKWu-Za08QQlLtILkXzwJTD4DfE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>621498423854</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.herokuapp.backend.another</string>
+	<key>PROJECT_ID</key>
+	<string>vocabulary-builder-v2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>vocabulary-builder-v2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:621498423854:ios:df3ab38a07ee01f5</string>
+	<key>DATABASE_URL</key>
+	<string>https://vocabulary-builder-v2.firebaseio.com</string>
+</dict>
+</plist>

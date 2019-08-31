@@ -2,7 +2,6 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:vibrate/vibrate.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'package:http/http.dart' as http;
@@ -359,13 +358,7 @@ mixin UtilityModel on ConnectedModel {
   }
 
   void sendFeedback([bool error]) async {
-    bool canVibrate = await Vibrate.canVibrate;
-
-    if (canVibrate) {
-      if (!error) {
-        Vibrate.vibrate();
-      }
-    }
+    
   }
 
   String cleanString(String url) {

@@ -1,6 +1,8 @@
 import 'package:vocabulary_builder/model/palabra.model.dart';
 
 import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
+
 import 'package:sqflite/sqflite.dart';
 
 import 'dart:async';
@@ -64,7 +66,7 @@ class DatabaseHelper {
 
   Future<Database> initializeDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
-		String path = directory.path + pathName;
+    String path = p.join(directory.toString(), pathName);
 
     var notesDatabase = await openDatabase(path, version: 1, onCreate: _createDb);
 		return notesDatabase;

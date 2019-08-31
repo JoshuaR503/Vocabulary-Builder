@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/model/main.dart';
 import 'package:vocabulary_builder/utils/colors.dart';
 import 'package:vocabulary_builder/widgets/ui/divider.dart';
-import 'package:clipboard_manager/clipboard_manager.dart';
 
 class HeadCard extends StatelessWidget {
   final String title, subtitle;
@@ -76,7 +74,6 @@ class HeadCard extends StatelessWidget {
 
     if (data != null) {
       content = GestureDetector(
-        onLongPress: () => _copy(data, context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -90,37 +87,6 @@ class HeadCard extends StatelessWidget {
     return content;
   }
 
-  void _copy(String text, BuildContext context) {
-    ClipboardManager.copyToClipBoard(subtitle)
-      .then((result) {
-        _createSnackBar(
-          title: FlutterI18n.translate(context, 'snackbar.success_message_clipboard'),
-          label: FlutterI18n.translate(context, 'snackbar.success_message_clipboard_label'),
-          context: context
-        ); 
-        model.sendFeedback(false);
-      })
-      .catchError((error) {
-        _createSnackBar(
-          title: FlutterI18n.translate(context, 'snackbar.error_message_clipboard'),
-          label: FlutterI18n.translate(context, 'snackbar.error_message_clipboard_label'),
-          context: context
-        ); 
-        model.sendFeedback(true);
-      });
-  }  
 
 
-  void _createSnackBar({String title, String label, BuildContext context,}) {
-    final snackBar = SnackBar(
-      content: Text(title),
-      action: SnackBarAction(
-        label: label,
-        onPressed: () {},
-      ),
-    );
-
-    Scaffold.of(context).showSnackBar(snackBar);
-  } 
-  
 }

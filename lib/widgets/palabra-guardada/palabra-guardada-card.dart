@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/model/main.dart';
@@ -59,18 +60,23 @@ class PalabraGuardadaCard extends StatelessWidget {
             child: Icon(Icons.arrow_forward, color: Colors.white),
           ),
 
-          firstFunction: () {
+          firstFunction: () async {
+
             final String english = singlePalabra.palabraPronunciacion;
             final String spanish = singlePalabra.traduccionPronunciacion;
 
-            model
-            .playAduio(url: model.userLang == 'es' ? english : spanish)
-            .then((response) {
-              print(response);
+            AudioPlayer audioPlayer = AudioPlayer();
 
-              if (response != 0) {
-              print('Showing error');
-              showDialog(
+            await audioPlayer
+            .play(model.userLang == 'es' 
+            ? english 
+            : spanish, isLocal: true)
+            .then((response) {
+
+              print('RESPONSE $response');
+              if (response != 1) {
+                print('Showing error');
+                showDialog(
                   context: context,
                   barrierDismissible: false, // user must tap button!
                   builder: (BuildContext context) {
@@ -89,7 +95,8 @@ class PalabraGuardadaCard extends StatelessWidget {
                   },
                 );
               }
-            });
+            })
+            .catchError((error) => print(error));
           },
           
           palabra: singlePalabra,

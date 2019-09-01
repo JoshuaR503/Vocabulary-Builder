@@ -4,14 +4,13 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 import 'package:vocabulary_builder/model/palabra.model.dart';
 import 'package:vocabulary_builder/utils/db.helper.dart';
+import 'package:vocabulary_builder/utils/http.dart';
 import 'package:vocabulary_builder/utils/settings.dart';
 
-import 'dart:convert';
 import 'dart:async';
 import 'dart:io';
 
@@ -69,114 +68,42 @@ mixin PalabrasModel on ConnectedModel {
 
     final String lang = await uLang();  
     final String prodURL = '$baseUrl/api/v3/palabras?limit=6&lang=$lang&key=JosshuAP50@KelReySSl@hiddenKEY';
-    // final String devURL = '$baseUrl/api/v3/test?limit=6';
 
-    return http
-      .get(prodURL)
-      .then<Null>((http.Response response) {
+    final SimpleHttpClient httpClient = new SimpleHttpClient();
+    final httpResponse = httpClient.fetchData(url: prodURL, token: null);
 
-        this._isLoading = loadingIndicator;
-        this.notifyListeners();
 
-        final List<Palabra> fetchedPalabrasList = [];
-        final List<dynamic> palabraListData = json.decode(response.body);
-
-        if (palabraListData == null) {
-          this._isLoading = false;
-          this.notifyListeners();
-          return;
-        }
-
-        final String requestedLang = _userLang.toUpperCase();
-        final String secondLang = requestedLang == 'ES' ? 'EN' : 'ES';
-        
-        palabraListData.forEach((dynamic palabraData) {
-
-          final Palabra singlePalabra = Palabra(
-            palabra: palabraData['palabra'],
-            palabraPronunciacion: palabraData['palabraPronunciacion'],
-            traduccion: palabraData['traduccion'],
-            traduccionPronunciacion: palabraData['traduccionPronunciacion'],
-            dificultad: palabraData['dificultad'],
-
-            primeraPersona: palabraData['primeraPersona$secondLang'],
-            segundaPersona: palabraData['segundaPersona$secondLang'],
-            terceraPersona: palabraData['terceraPersona$secondLang'],
-
-            presente: palabraData['presente$secondLang'],
-            presenteContinuo: palabraData['presenteContinuo$secondLang'],
-            pasado: palabraData['pasado$secondLang'],
-            futuro: palabraData['futuro$secondLang'],
-
-            sinonimos: palabraData['sinonimos$secondLang'],
-            antonimos: palabraData['antonimos$secondLang'],
-
-            definicion: palabraData['definicion$requestedLang'],
-            definicion2: palabraData['definicion$secondLang'],
-            
-            ejemplo: palabraData['ejemplo$secondLang'],
-            ejemplo2: palabraData['ejemplo2$secondLang'],
-
-            categoriaGramatical: palabraData['categoriaGramatical$requestedLang'],
-
-            nota: palabraData['nota$secondLang'],
-          );          
-          
-          fetchedPalabrasList.add(singlePalabra);
-        });
-
-        if (loadingIndicator) {
-          this._palabras = fetchedPalabrasList; 
-          this._isLoading = false;
-          this.notifyListeners();
-        } else {
-          this._palabras = fetchedPalabrasList; 
-          this.notifyListeners();
-        }
-      })
-      .catchError((error) {
-
-        this._palabras = [];
+    httpResponse
+    .then((data) {
+      this._isLoading = loadingIndicator;
+      this.notifyListeners();
+      final dynamic response = data;
+      final List<Palabra> fetchedPalabrasList = this.convertResponseToList(response);
+      if (loadingIndicator) {
+        this._palabras = fetchedPalabrasList; 
         this._isLoading = false;
         this.notifyListeners();
-
-        try {
-          http
-          .get(prodURL)
-          .then((http.Response response) {
-
-            if (response.statusCode == 503) {
-              print('The server is under maintenance');
-              print(response.statusCode);
-
-              this._responseMessage = 503;
-              this.notifyListeners();
-
-            } else if (response.statusCode == 429) {
-              print('The limit has been reached');
-              print(response.statusCode);
-
-              this._limitReached = true;
-              this._responseMessage = 429;
-              this.notifyListeners();
-
-            } else if (response.statusCode == 200) {
-              print('The server understood the request but refuses to serve it');
-              print(response.statusCode);
-
-              this._responseMessage = 200;
-              this.notifyListeners();
-            } else {
-              print('Something we do not know');
-            }
-          });
-
-        } catch (error) {
-          print('ERROR + $error');
-        }
-
-        print('Hubo un error $error');
-      });
+      } else {
+        this._palabras = fetchedPalabrasList; 
+        this.notifyListeners();
+      }
+    })
+    .catchError((e) {
+      this._palabras = [];
+      if (httpClient.statusCode == 503) {
+        this._responseMessage = 503;
+        this._isLoading = false;
+        this.notifyListeners();
+      } else if (httpClient.statusCode == 429) {
+        this._limitReached = true;
+        this._responseMessage = 429;
+        this._isLoading = false;
+        this.notifyListeners();
+      } else {
+        this._isLoading = false;
+        this.notifyListeners();
+      }
+    });
   }
 
   Future<Null> obtenerPalabrasGuardadas() async { 
@@ -252,6 +179,41 @@ mixin PalabrasModel on ConnectedModel {
     return result;
   }
 
+  List<Palabra> convertResponseToList(List data) {
+    final List<Palabra> fetchedPalabrasList = [];
+    final String requestedLang = _userLang.toUpperCase();
+    final String secondLang = requestedLang == 'ES' ? 'EN' : 'ES';
+
+    data.forEach((dynamic palabraData) {
+      final Palabra singlePalabra = Palabra(
+        palabra: palabraData['palabra'],
+        palabraPronunciacion: palabraData['palabraPronunciacion'],
+        traduccion: palabraData['traduccion'],
+        traduccionPronunciacion: palabraData['traduccionPronunciacion'],
+        dificultad: palabraData['dificultad'],
+        primeraPersona: palabraData['primeraPersona$secondLang'],
+        segundaPersona: palabraData['segundaPersona$secondLang'],
+        terceraPersona: palabraData['terceraPersona$secondLang'],
+        presente: palabraData['presente$secondLang'],
+        presenteContinuo: palabraData['presenteContinuo$secondLang'],
+        pasado: palabraData['pasado$secondLang'],
+        futuro: palabraData['futuro$secondLang'],
+        sinonimos: palabraData['sinonimos$secondLang'],
+        antonimos: palabraData['antonimos$secondLang'],
+        definicion: palabraData['definicion$requestedLang'],
+        definicion2: palabraData['definicion$secondLang'],
+        ejemplo: palabraData['ejemplo$secondLang'],
+        ejemplo2: palabraData['ejemplo2$secondLang'],
+        categoriaGramatical: palabraData['categoriaGramatical$requestedLang'],
+        nota: palabraData['nota$secondLang'],
+      );
+
+      fetchedPalabrasList.add(singlePalabra);
+    });
+
+    return fetchedPalabrasList;
+  }
+
   void deletePalabraGuardada() {
     _dbh.deletePalabra(selectedPalabra.id);
     _palabrasGuardadas.removeAt(selectedPalabraIndex);
@@ -304,9 +266,9 @@ mixin UtilityModel on ConnectedModel {
     // ==================================================
     final bool response = prefs.getBool('seen');
 
-    if (response) {
+    if (response != null) {
       this._seen = true;
-    } else if (!response) {
+    } else {
       this._seen = false;
     }
     

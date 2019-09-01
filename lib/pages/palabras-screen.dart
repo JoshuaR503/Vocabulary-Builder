@@ -48,9 +48,9 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
 
   @override 
   Widget build(BuildContext context) {
-    _beautifulAd
-    ..load()
-    ..show();
+    // _beautifulAd
+    // ..load()
+    // ..show();
 
     return Scaffold(
       drawer: _buildDrawer(),

@@ -18,7 +18,7 @@ class CreditoScreen extends StatelessWidget {
         ListCell(
           title: FlutterI18n.translate(context, 'credits.developer.title_two'),
           subtitle: FlutterI18n.translate(context, 'credits.developer.subtitle'),
-          onTap: () async => await FlutterWebBrowser.openWebPage(url: authorEmail),
+          onTap: () => FlutterWebBrowser.openWebPage(url: urlSendFeedback),
         ),
         CommonTitle(FlutterI18n.translate(context, 'credits.icon_designer_one.title')),
         SubTitle(FlutterI18n.translate(context, 'credits.icon_designer_one.subtitle')),

@@ -118,9 +118,9 @@
         },
 
         "sentence": {
-            "question": "What is a sentence?",
+            "question": "Sentence?",
             "title": "A set of words ",
-            "answer": "A sentence is a set of words used to express an idea or thought. Examples: the man is running, I am learning another language."
+            "answer": "A sentence is a set of words used to express an idea or thought. Examples: The man is running. I am learning another language."
         },
 
         "singular": {
@@ -160,21 +160,21 @@
         },
 
         "verb": {
-            "question": "What's a verb?",
+            "question": "Verbs",
             "title": "Every action",
-            "answer": "The verb is the part of the sentence that expresses the subject's action. Example: the man is running, the bird is singing."
+            "answer": "A verb shows action or state of being; It's the part of the sentence that expresses the subject's action. Example: He worked on Friday."
         },
 
         "noun": {
-            "question": "What's a noun?",
-            "title": "Reference to an object",
-            "answer": "Nouns are words with which people, animals, things, etc are called. Example: apple, tree, house."
+            "question": "Nouns",
+            "title": "Persons, objects, ideas or places.",
+            "answer": "There are nouns which refer to specific persons, objects, ideas or places. Common nouns refer to any persons, objects, ideas or places."
         },
 
         "adjective": {
-            "question": "What's an adjective?",
-            "title": "A description",
-            "answer": "An adjective is a word that modifies the noun, it is the one that indicates some characteristic or quality of the noun. Example: green, tall, big."
+            "question": "Adjective",
+            "title": "A description of a noun.",
+            "answer": "Adjectives describe nouns by modifying them. They can specify color, size, number, etc. Examples: The (red <- adjective) book was the (best <- adjective) one."
         },
 
         "idioms": {
@@ -184,9 +184,9 @@
         },
 
         "adverb": {
-            "question": "What's an adverb?",
-            "title": "the how, who, where or when",
-            "answer": "An adverb is a part of the sentence that complements a verb. Adverbs express circumstances such as mode, place, time, amount, etc."
+            "question": "Adverb",
+            "title": "Words which describe verbs or adjectives",
+            "answer": "Adverbs specifies in what manner, when, how much, and where."
         },
 
         "not_found": {

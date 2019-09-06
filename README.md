@@ -1,6 +1,6 @@
 # Vocabulary Builder - Moblie
 
-A Flutter project for Vocabulary Builder (QuickGlish(American English Words(Mixed Words)))
+A Flutter project by Joshua García
 
 ## Getting Started
 
@@ -19,5 +19,3 @@ A Flutter project for Vocabulary Builder (QuickGlish(American English Words(Mixe
 - A test for users to learn test themselves.
 - A speaking function to test themselves.
 - A text function to use words in the correct order.
-
-# A project by Joshua García

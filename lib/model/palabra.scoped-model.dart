@@ -260,24 +260,14 @@ mixin UtilityModel on ConnectedModel {
 
   void loadData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // ==================================================
-    // Ver si el usuario ya ha visito la introducion
-    // ==================================================
-    final bool response = prefs.getBool('seen');
-
-    if (response != null) {
-      this._seen = true;
-    } else {
-      this._seen = false;
-    }
-    
-    // ==================================================
-    // Obtener el idioma de el usuario
-    // ==================================================
     final String userlang = prefs.getString('user_lang');
-    _userLang = userlang;
-
+    final bool response = prefs.getBool('seen');
+    
+    this._userLang = userlang;
+    this._seen = response != null 
+    ? true
+    : false;
+    
     this.checkInternetConnection();
   }
 

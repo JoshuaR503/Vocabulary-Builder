@@ -1,11 +1,17 @@
 {
     "app": "Vocabulary",
 
+    "welcome_screen": {
+        "title": "¿Qué idioma estás aprendiendo?",
+        "en": "Inglés",
+        "es": "Español"
+    },
+
     "home": {
         "title": "Inicio",
         "appbar": {
             "icons": {
-                "refresh_tooltip": "Obtener más palabras",
+                "refresh_tooltip": "Cargar más palabras",
                 "heart_tooltip": "Palabras guardadas"
             }
         },
@@ -29,18 +35,9 @@
 
     "settings": {
         "title": "Ajustes",
-        "option_one": "Cambiar Idioma",
-
-        "messages": "Porfavor reinicia la aplicación",
-
-        "change_language": "Puedes cambiar el idioma de las palabras y la pronunciación."
+        "option_one": "Cambiar Idioma"
     },
 
-    "welcome_screen": {
-        "title": "¿Qué idioma estás aprendiendo?",
-        "en": "Inglés",
-        "es": "Español"
-    },
 
     "saved_words": {
         "title": "Palabras Guardadas",

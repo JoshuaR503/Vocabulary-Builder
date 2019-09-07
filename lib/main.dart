@@ -63,7 +63,16 @@ class _VocabularyBuilderState extends State<VocabularyBuilder> {
           navigatorObservers: [
             FirebaseAnalyticsObserver(analytics: _analytics),
           ],
-
+          supportedLocales: [
+            Locale('en', 'US'),
+            Locale('es', 'US')
+          ],
+          localizationsDelegates: [
+            FlutterI18nDelegate(false, 'en'),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate
+          ],
+        
           theme: theme,
           title: appname,
           debugShowCheckedModeBanner: false,
@@ -83,11 +92,6 @@ class _VocabularyBuilderState extends State<VocabularyBuilder> {
             '/intro':  (BuildContext context) => IntroScreen(),
             '/lang': (BuildContext context) => WelcomeScreen(),
           },
-          localizationsDelegates: [
-            FlutterI18nDelegate(false, 'en'),
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate
-          ],
         ),
       ),
     ); 

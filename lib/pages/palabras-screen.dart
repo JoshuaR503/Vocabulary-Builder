@@ -142,6 +142,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
           AppBar(
             automaticallyImplyLeading: false,
             title: Text(FlutterI18n.translate(context, 'home.drawer.title')),
+            centerTitle: false,
           ),
           ListTile(
             title: Text(FlutterI18n.translate(context, 'help')),

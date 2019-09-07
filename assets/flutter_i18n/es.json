@@ -78,7 +78,7 @@
         },
 
         "example": {
-            "first_item": "Ejemplos de {palabra} en una oración",
+            "first_item": "{palabra} en una oración",
             "second_item": "{palabra} en otra oración:"
         },
 
@@ -86,7 +86,7 @@
         "synonyms": "Palabras similares",
 
         "note": "Nota",
-        "spanish_translation": "Traducción Español:",
+        "spanish_translation": "Traducción en Español:",
 
         "extra_details": {
             "title": "Detalles adicionales",

@@ -77,7 +77,7 @@
         },
 
         "example": {
-            "first_item": "Using {palabra} in a sentence",
+            "first_item": "{palabra} in a sentence",
             "second_item": "{palabra} used in another sentence"
         },
 

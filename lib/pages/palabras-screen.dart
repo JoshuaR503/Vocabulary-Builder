@@ -174,11 +174,11 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
           ),
           ListTile(
             title: Text(FlutterI18n.translate(context, 'home.drawer.privacy')),
-            onTap: () => FlutterWebBrowser.openWebPage(url: urlConditions)
+            onTap: () => FlutterWebBrowser.openWebPage(url: urlTerms)
           ),
           ListTile(
             title: Text(FlutterI18n.translate(context, 'home.drawer.terms')),
-            onTap: () => FlutterWebBrowser.openWebPage(url: urlTerms)
+            onTap: () => FlutterWebBrowser.openWebPage(url: urlConditions)
           ),
         ],
       ),

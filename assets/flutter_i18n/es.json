@@ -325,38 +325,38 @@
     "error_message": {
         "no_server_connection": {
             "message": "No se pudo conectar con el servidor",
-            "solution": "Desliza hacia abajo para intentar de nuevo."
+            "solution": "Desliza hacia abajo para intentar de nuevo"
         },
         
         "no_internet": {
             "message": "Parece que no tienes conexión a internet",
-            "solution": "Cuando no tienes conexión, solo puedes ver las palabras que guardaste."
+            "solution": "Cuando no tienes conexión, solo puedes ver las palabras que guardaste"
         },
 
         "no_connection": {
             "message": "Necesitas conexión a internet",
-            "solution": "Necesitas conexión a internet para escuchar la pronunciación de esta palabra.",
+            "solution": "Necesitas conexión a internet para escuchar la pronunciación de esta palabra",
             "btn": "Entiendo"
         },
 
         "no_saved_words": {
             "message": "Parece que aún no has guardado ninguna palabra",
-            "solution": "Puedes tocar en el corazón al lado de una palabra para guardarla."
+            "solution": "Puedes tocar en el corazón al lado de una palabra para guardarla"
         },
 
         "limit_reached": {
             "message": "¡Has alcanzado el limite gratuito!",
-            "solution": "Ya no puedes ver más palabras, pero puedes ver las palabras guardadas."
+            "solution": "Ya no puedes ver más palabras, pero puedes ver las palabras guardadas"
         },
 
         "server_maintenance": {
             "message": "El servidor esta en mantenimiento",
-            "solution": "Regresa en unos minutos o desliza hacia abajo para intentar de nuevo."
+            "solution": "Estamos trabajando en algunas actualizaciones. \n Por favor vuelve más tarde"
         },
 
         "server_understood": {
-            "message": "El servidor entendió tu petición.",
-            "solution": "Pero se niega a cumplirla, desliza hacia abajo para intentar de nuevo."
+            "message": "El servidor entendió tu petición",
+            "solution": "Pero se niega a cumplirla, desliza hacia abajo para intentar de nuevo"
         }
 
 

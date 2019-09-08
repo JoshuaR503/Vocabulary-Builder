@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,30 +9,31 @@ class SimpleHttpClient {
   int get statusCode =>  _statusCode;
   Dio dio = new Dio();
 
-  Future<dynamic> fetchData({String url, String token}) async {
-    // Fectch Status Code
-    final int statusCode = await this.fetchStatusCode(url);
 
+  SimpleHttpClient() {
+    this.fetchStatusCode('https://google.com');
+  }
+
+  Future<dynamic> fetchData({String url, String token}) async {
     // Headers.
     final Map<String, String> headers = {
       "Content-type": "application/json",
       "Content-type": "application/json"
     };
 
-    // Set http status code.
-    this._statusCode = statusCode;
-
     // Return esponse body.
-    return await this.dio.get(url)
+    return await this.dio.get(url, queryParameters: headers)
       .then((res) => res.data)
-      .catchError((error) => print(error));
+      .catchError((error) => print('There was an error'));
   }
 
-  Future<int> fetchStatusCode(String url) async {
-
+  void fetchStatusCode(String url) async {
     final http.Response response = await http.get(url);
     final int statusCode = response.statusCode;
 
-    return statusCode;
+    // Set status code.
+    this._statusCode = statusCode;
+
+    print('Status code ${this._statusCode}');
   }
-} 
+}

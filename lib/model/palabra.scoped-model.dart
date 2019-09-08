@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -12,7 +14,6 @@ import 'package:vocabulary_builder/utils/http.dart';
 import 'package:vocabulary_builder/utils/settings.dart';
 
 import 'dart:async';
-import 'dart:io';
 
 mixin ConnectedModel on Model {
   bool _isLoading = true;
@@ -55,6 +56,8 @@ mixin PalabrasModel on ConnectedModel {
   bool get isLoading => _isLoading;
   bool get palabrasGuardadasIsLoading => _palabrasGuardadasIsLoading;
   bool get limitReached => _limitReached;
+  bool get internetConnected => _internetConnected;
+
 
   Palabra get selectedPalabra {
     if (selectedPalabraId == null) {
@@ -70,10 +73,10 @@ mixin PalabrasModel on ConnectedModel {
     final String prodURL = '$baseUrl/api/v3/palabras?limit=6&lang=$lang&key=JosshuAP50@KelReySSl@hiddenKEY';
 
     final SimpleHttpClient httpClient = new SimpleHttpClient();
-    final httpResponse = httpClient.fetchData(url: prodURL, token: null);
 
-
-    httpResponse
+    httpClient.fetchStatusCode(prodURL);
+    httpClient
+    .fetchData(url: prodURL, token: null)
     .then((data) {
       this._isLoading = loadingIndicator;
       this.notifyListeners();
@@ -90,6 +93,10 @@ mixin PalabrasModel on ConnectedModel {
     })
     .catchError((e) {
       this._palabras = [];
+      this.checkInternetConnection();
+      
+      print(httpClient.statusCode);
+
       if (httpClient.statusCode == 503) {
         this._responseMessage = 503;
         this._isLoading = false;
@@ -170,9 +177,6 @@ mixin PalabrasModel on ConnectedModel {
 
       date: DateFormat.yMMMd().format(DateTime.now())
     );
-
-    print('${singlePalabra.palabraPronunciacion}');
-
   
     int result = await _dbh.savePalabra(singlePalabra);
 
@@ -249,14 +253,6 @@ mixin PalabrasModel on ConnectedModel {
   void deleteFile(String url) async {
     await DefaultCacheManager().removeFile(url);
   }
-} 
-
-mixin UtilityModel on ConnectedModel {
-
-  bool get seen => _seen;
-  bool get internetConnected => _internetConnected;
-  
-  String get userLang => _userLang;
 
   void loadData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -272,18 +268,25 @@ mixin UtilityModel on ConnectedModel {
   }
 
   Future<Null> checkInternetConnection() async {
-    
     try {
       final result = await InternetAddress.lookup('google.com');
 
       if (result.isNotEmpty) {
         this._internetConnected = true;
+        this.notifyListeners();
       }
 
     } catch (_) {
       this._internetConnected = false;
+      this.notifyListeners();
     }
   }
+} 
+
+mixin UtilityModel on ConnectedModel {
+
+  bool get seen => _seen;
+  String get userLang => _userLang;
 
   Future<Null> setData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -299,8 +302,6 @@ mixin UtilityModel on ConnectedModel {
 
   Future<int> playAduio({String url}) {
 
-    print('url given: $url');
-
     final AudioPlayer audioPlayer = AudioPlayer();
 
     return audioPlayer
@@ -309,15 +310,9 @@ mixin UtilityModel on ConnectedModel {
     .catchError((error) => 1);
   }
 
-  void sendFeedback([bool error]) async {
-    
-  }
-
   String cleanString(String url) {
     final String dirtyString = url;
     final String cleanString = replaceWhiteSpace(dirtyString);
-
-    print('$dirtyString, $cleanString');
 
     return cleanString;
   }
@@ -325,4 +320,6 @@ mixin UtilityModel on ConnectedModel {
   String replaceWhiteSpace(String text) {
     return text.replaceAll(RegExp(r"\s+\b|\b\s"), "-");
   }
+
+  void sendFeedback([bool error]) async {}
 }

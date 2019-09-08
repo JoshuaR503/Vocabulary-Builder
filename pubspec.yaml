@@ -38,6 +38,7 @@ dependencies:
 
   ## Developer tools
   firebase_analytics: ^5.0.1
+  firebase_crashlytics: ^0.1.0+3
 
 dev_dependencies:
   intl_translation: ^0.17.1
@@ -72,6 +73,7 @@ flutter:
           weight: 400
 
   assets:
+    - assets/icon/repairing.png
     - assets/logo.png
     - assets/books.png
     - assets/shield.png
@@ -96,3 +98,4 @@ flutter:
     - assets/limit.png
     - assets/refusing.png
     - assets/archive.png
+   

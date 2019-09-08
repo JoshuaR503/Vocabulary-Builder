@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -21,14 +23,21 @@ import 'package:vocabulary_builder/utils/settings.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+
 final MainModel model = MainModel();
     
 void main() {
   model.loadData();
   model.checkInternetConnection();
-  
-  runApp(VocabularyBuilder());
-}
+
+    // Pass all uncaught errors to Crashlytics.
+    FlutterError.onError = Crashlytics.instance.recordFlutterError;
+
+    runZoned<Future<void>>(() async {
+      runApp(VocabularyBuilder());
+    }, onError: Crashlytics.instance.recordError);
+  }
 
 class VocabularyBuilder extends StatefulWidget {
 

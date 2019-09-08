@@ -106,7 +106,7 @@ class _PalabrasScreenState extends State<PalabrasScreen> {
           );
         } else if (model.responseMessage == 503) {
           content = ErrorScreen(
-            pathImage: 'assets/refusing.png',
+            pathImage: 'assets/icon/repairing.png',
             message: FlutterI18n.translate(context, 'error_message.server_maintenance.message'),
             fixMessage: FlutterI18n.translate(context, 'error_message.server_maintenance.solution'),
           );

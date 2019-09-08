@@ -282,12 +282,12 @@
     "slide_show": {
         "slide_one": {
             "title": "VOCABULARY",
-            "description": "Increase your vocabulary with random Spanish words."
+            "description": "Increase your vocabulary with handy words."
         },
 
         "slide_two": {
             "title": "LEARN ON THE GO",
-            "description": "With at least 5 minutes per day you can increase your vocabulary."
+            "description": "With at least 10 minutes per day you can increase your vocabulary."
         },
 
         "slide_three": {
@@ -324,38 +324,38 @@
     "error_message": {
         "no_server_connection": {
             "message": "Couldn't connect to the server",
-            "solution": "Swipe down to try again."
+            "solution": "Swipe down to try again"
         },
 
         "no_internet": {
-            "message": "It seems like you don't have an internet connection",
-            "solution": "When you have no connection, you can only see the words you saved."
+            "message": "You need internet connection",
+            "solution": "When you have no connection \n you can only see the words you saved"
         },
 
         "no_connection": {
             "message": "You need internet connection",
-            "solution": "You need internet connection to listen to the pronunciation of this word.",
+            "solution": "You need internet connection to listen to the pronunciation of this word",
             "btn": "Okay"
         },
 
         "no_saved_words": {
-            "message": "It seems like you haven't saved any words yet.",
-            "solution": "If I'd like to save words, just tap the heart next to it."
+            "message": "There's nothing in here. \n Add words to study \n later or offline",
+            "solution": "Just tap the heart next to a word"
         },
 
         "limit_reached": {
-            "message": "You've reached your free tier usage!",
-            "solution": "That's it for today. You can always study the words you saved."
+            "message": "You've reached your free tier usage",
+            "solution": "That's it for today. You can always study the words you saved"
         },
 
         "server_maintenance": {
-            "message": "Our servers are under maintenance!",
-            "solution": "Please come back in a few minutes or swipe down to try again."
+            "message": "We're undergoing a \n scheduled maintenance",
+            "solution": "Unfortunately, the server is down. \n Please come back later"
         },
 
         "server_understood": {
             "message": "The server understood the request",
-            "solution": "But is refusing to fulfill it swipe down to try again."
+            "solution": "But is refusing to fulfill it swipe down to try again"
         }
     }
 }

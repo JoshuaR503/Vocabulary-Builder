@@ -329,7 +329,7 @@
 
         "no_internet": {
             "message": "You need internet connection",
-            "solution": "When you have no connection, you can only see the words you saved"
+            "solution": "When you have no connection \n you can only see the words you saved"
         },
 
         "no_connection": {

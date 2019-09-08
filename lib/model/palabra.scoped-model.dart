@@ -74,6 +74,7 @@ mixin PalabrasModel on ConnectedModel {
 
     final SimpleHttpClient httpClient = new SimpleHttpClient();
 
+    this.checkInternetConnection();
     httpClient.fetchStatusCode(prodURL);
     httpClient
     .fetchData(url: prodURL, token: null)
@@ -93,7 +94,6 @@ mixin PalabrasModel on ConnectedModel {
     })
     .catchError((e) {
       this._palabras = [];
-      this.checkInternetConnection();
       
       print(httpClient.statusCode);
 

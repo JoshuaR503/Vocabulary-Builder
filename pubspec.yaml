@@ -3,7 +3,7 @@ description: An app meant to help people learning English / Spanish to increase 
 version: 20.0.0
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -30,13 +30,18 @@ dependencies:
     sdk: flutter
 
   ## user experience
+  font_awesome_flutter: ^8.5.0
+
   share: ^0.6.0+1
-  dynamic_theme: ^1.0.0
   material_search: ^0.2.8
   flutter_web_browser: "^0.11.0"
   flutter_cache_manager: ^0.3.2
 
+  ## State managment
+  bloc: ^0.15.0
+
   ## Developer tools
+  equatable: ^0.5.1
   firebase_analytics: ^5.0.1
   firebase_crashlytics: ^0.1.0+3
 
@@ -71,6 +76,19 @@ flutter:
       fonts:
         - asset: assets/fonts/Heebo-Regular.ttf
           weight: 400
+
+    - family: CircularStd
+      fonts:
+        - asset: assets/fonts/CircularStd-Book.ttf
+
+        - asset: assets/fonts/CircularStd-Medium.ttf
+          weight: 600
+
+        - asset: assets/fonts/CircularStd-Black.ttf
+          weight: 700
+
+        - asset: assets/fonts/CircularStd-Bold.ttf
+          weight: 900
 
   assets:
     - assets/icon/repairing.png

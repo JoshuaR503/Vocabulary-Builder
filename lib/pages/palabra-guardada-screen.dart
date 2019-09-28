@@ -67,7 +67,8 @@ class _PalabraGuardadaScreenState extends State<PalabraGuardadaScreen> {
         centerTitle: true,
         actions: <Widget>[
           Tooltip(
-            message: FlutterI18n.translate(context, 'saved_words.appbar.icons.search_tooltip'),child: IconButton(
+            message: FlutterI18n.translate(context, 'saved_words.appbar.icons.search_tooltip'),
+            child: IconButton(
               icon: Icon(Icons.search),
               onPressed: () => Navigator
                 .of(context)

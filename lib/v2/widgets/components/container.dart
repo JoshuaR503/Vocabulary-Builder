@@ -5,14 +5,16 @@ class VocabularyBuilderContainer extends StatelessWidget {
 
   const VocabularyBuilderContainer({
     Key key,
-    @required this.children,
+    this.children,
     this.height,
     this.appBar = false,
+    this.appBarName,
   }) : super(key: key);
 
   final bool appBar;
   final List<Widget> children;
   final double height;
+  final String appBarName;
 
   Widget _buildNavbar(BuildContext context, double top) {
     return Padding(
@@ -30,7 +32,7 @@ class VocabularyBuilderContainer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 26.0),
             child: Text(
-              "Section",
+              appBarName,
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,

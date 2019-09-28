@@ -50,6 +50,28 @@ class CategoryCard extends StatelessWidget {
     );
   }
 
+  Widget _buildButton() {
+    return MaterialButton(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      padding: EdgeInsets.all(0),
+      
+      color: category.color,
+      splashColor: Colors.white10,
+      highlightColor: Colors.white10,
+
+      elevation: 0,
+      highlightElevation: 9,
+
+      disabledColor: category.color,
+      onPressed: onPress,
+
+      child: Container(
+        height: 100,
+        child: _buildCardContent(),
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -60,25 +82,7 @@ class CategoryCard extends StatelessWidget {
         return Stack(
           children: <Widget>[
             _buildShadow(itemWidth),
-
-            MaterialButton(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-              padding: EdgeInsets.all(0),
-              color: category.color,
-              splashColor: Colors.white10,
-              highlightColor: Colors.white10,
-              elevation: 0,
-              highlightElevation: 9,
-              disabledColor: category.color,
-              onPressed: onPress,
-
-              child: Container(
-                height: 100,
-                child: _buildCardContent(),
-              )
-              
-            ),
-
+            _buildButton()
           ],
         );
       },

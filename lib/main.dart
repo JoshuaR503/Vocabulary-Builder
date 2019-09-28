@@ -107,51 +107,53 @@
 //   }
 // }
 
+
+
+
+
+
+
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vocabulary_builder/utils/settings.dart';
+import 'package:vocabulary_builder/v2/screens/category/category.dart';
 import 'package:vocabulary_builder/v2/screens/home/home.dart';
+import 'package:vocabulary_builder/v2/themes/bloc/bloc.dart';
 import 'package:vocabulary_builder/v2/widgets/animations/route.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-    final ThemeData lightTheme = ThemeData(
-      fontFamily: 'CircularStd',
-      brightness: Brightness.light,
-      accentColor: Colors.white,
-      textTheme: Theme.of(context).textTheme.apply(
-        bodyColor: Colors.black,
-        displayColor: Colors.black,
-      )
-    );
-
-    final ThemeData darkTheme = ThemeData(
-      fontFamily: 'CircularStd',
-      brightness: Brightness.dark,
-      accentColor: Colors.black38,
-      textTheme: Theme.of(context).textTheme.apply(
-        bodyColor: Colors.white70,
-        displayColor: Colors.white70,
-      )
-    );
-
-    return MaterialApp(
-      color: Colors.white,
-      title: 'Flutter Demo',
-      theme: darkTheme,
-      onGenerateRoute: _getRoute,
-    );
-  }
-
   Route _getRoute(RouteSettings settings) {
     switch (settings.name) {
       case "/":
         return FadeRoute(page: Home());
 
+      case "/nouns":
+        return FadeRoute(page: Category());
+
       default:
         return null;
     }
+  }
+
+  Widget _build(BuildContext context, ThemeState state) {
+    return MaterialApp(
+      color: Colors.white,
+      title: appname,
+      theme: state.themeData,
+      onGenerateRoute: _getRoute,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      builder: (context) => ThemeBloc(),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: _build,
+      )
+    );
   }
 }

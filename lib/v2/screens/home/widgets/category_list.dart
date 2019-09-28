@@ -13,18 +13,23 @@ class CategoryList extends StatelessWidget {
     : deviceWidth / 200;
 
     return GridView.builder(
+      padding: EdgeInsets.only(bottom: 58),
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
+
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: space,
         crossAxisSpacing: 10,
         mainAxisSpacing: 12,
       ),
-      padding: EdgeInsets.only(bottom: 58),
+
       itemCount: categories.length,
       itemBuilder: (context, index) => CategoryCard(
         categories[index],
+        onPress: () {
+          Navigator.of(context).pushNamed('/nouns');
+        }
       ),
     );
   }

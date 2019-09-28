@@ -12,9 +12,9 @@ dependencies:
   ## Core modules
   dio: ^2.1.16
   http: ^0.12.0+2
-  sqflite: ^1.1.6
+  ## sqflite: ^1.1.6
   audioplayers: ^0.11.0
-  scoped_model: ^1.0.1
+  ## scoped_model: ^1.0.1
   shared_preferences: ^0.5.1+1
 
   ## Revenue
@@ -38,10 +38,10 @@ dependencies:
   flutter_cache_manager: ^0.3.2
 
   ## State managment
-  bloc: ^0.15.0
+  flutter_bloc: ^0.21.0
+  equatable: ^0.5.1
 
   ## Developer tools
-  equatable: ^0.5.1
   firebase_analytics: ^5.0.1
   firebase_crashlytics: ^0.1.0+3
 

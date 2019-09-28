@@ -116,15 +116,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:vocabulary_builder/utils/settings.dart';
+
 import 'package:vocabulary_builder/v2/screens/category/category.dart';
 import 'package:vocabulary_builder/v2/screens/home/home.dart';
+
 import 'package:vocabulary_builder/v2/themes/bloc/bloc.dart';
+import 'package:vocabulary_builder/v2/themes/themes.dart';
 import 'package:vocabulary_builder/v2/widgets/animations/route.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  runApp( VocabularyBuilderApp());
+}
 
-class MyApp extends StatelessWidget {
+class VocabularyBuilderApp extends StatelessWidget {
+
   Route _getRoute(RouteSettings settings) {
     switch (settings.name) {
       case "/":
@@ -140,7 +148,6 @@ class MyApp extends StatelessWidget {
 
   Widget _build(BuildContext context, ThemeState state) {
     return MaterialApp(
-      color: Colors.white,
       title: appname,
       theme: state.themeData,
       onGenerateRoute: _getRoute,

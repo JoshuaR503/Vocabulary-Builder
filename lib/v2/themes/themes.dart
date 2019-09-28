@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 
-enum AppTheme {
-  Light,
-  Dark
-}
 
-final Map<AppTheme, ThemeData> appTheme = {
-  AppTheme.Dark: ThemeData(
+final Map<String, ThemeData> appTheme = {
+  "Dark": ThemeData(
     fontFamily: 'CircularStd',
     brightness: Brightness.dark,
     accentColor: Colors.black38,
@@ -16,7 +12,7 @@ final Map<AppTheme, ThemeData> appTheme = {
     )
   ),
 
-  AppTheme.Light: ThemeData(
+  "Light": ThemeData(
     fontFamily: 'CircularStd',
     brightness: Brightness.light,
     accentColor: Colors.white,

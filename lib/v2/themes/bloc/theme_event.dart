@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:vocabulary_builder/v2/themes/themes.dart';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:meta/meta.dart';
 
 abstract class ThemeEvent extends Equatable {
@@ -7,9 +8,16 @@ abstract class ThemeEvent extends Equatable {
 }
 
 class ThemeChanged extends ThemeEvent {
-  final AppTheme theme;
+  final String theme;
 
-  ThemeChanged({ @required this.theme }) : super([theme]);
+  ThemeChanged({ @required this.theme }) : super([theme]) {
+    this._saveTheme();
+  }
 
-  // TODO: Save to local database.
+  void _saveTheme() async {
+    final theme = this.theme.toString();
+    final SharedPreferences 
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('app_theme', theme);
+  }
 } 

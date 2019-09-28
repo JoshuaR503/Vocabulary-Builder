@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:vocabulary_builder/v2/config/config.dart';
 import 'package:vocabulary_builder/v2/widgets/components/container.dart';
@@ -7,7 +8,6 @@ import 'package:vocabulary_builder/v2/widgets/components/container.dart';
 import 'package:vocabulary_builder/v2/screens/home/widgets/search.dart';
 import 'package:vocabulary_builder/v2/screens/home/widgets/category_list.dart';
 
-import 'package:vocabulary_builder/v2/themes/themes.dart';
 import 'package:vocabulary_builder/v2/themes/bloc/bloc.dart';
 
 class Home extends StatefulWidget {
@@ -27,10 +27,18 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
-  void _changeTheme() {
+  void _changeTheme() async {
+
+    final sp = await SharedPreferences.getInstance();
+    final currentTheme = sp.getString('app_theme') ?? false;
+    final bool isLight = currentTheme == 'Light';
+    final String theme = isLight 
+    ? 'Dark' 
+    : 'Light';
+
     BlocProvider
       .of<ThemeBloc>(context)
-      .dispatch(ThemeChanged(theme: AppTheme.Dark));
+      .dispatch(ThemeChanged(theme: theme));
   }
 
   Widget _buildAppTitle() {

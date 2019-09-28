@@ -3,25 +3,11 @@ description: An app meant to help people learning English / Spanish to increase 
 version: 20.0.0
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
-  ## Core modules
-  dio: ^2.1.16
-  http: ^0.12.0+2
-  sqflite: ^1.1.6
-  audioplayers: ^0.11.0
-  scoped_model: ^1.0.1
-  shared_preferences: ^0.5.1+1
-
-  ## Revenue
-  firebase_admob: ^0.9.0+7
-
-  ## Core modules peers
-  path_provider: ^0.5.0
 
   ## translation
   intl: ^0.15.7
@@ -29,12 +15,29 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  ## Core modules
+  dio: ^2.1.16
+  http: ^0.12.0+2
+  sqflite: ^1.1.6
+  audioplayers: ^0.13.2
+  scoped_model: ^1.0.1
+  shared_preferences: ^0.5.1+1
+
+  ## Core modules peers
+  path_provider: ^1.3.0
+
   ## user experience
   share: ^0.6.0+1
-  dynamic_theme: ^1.0.0
   material_search: ^0.2.8
   flutter_web_browser: "^0.11.0"
-  flutter_cache_manager: ^0.3.2
+  flutter_cache_manager: ^1.1.1
+
+  ## State managment
+  flutter_bloc: ^0.21.0
+  equatable: ^0.5.1
+
+  ## Revenue
+  firebase_admob: ^0.9.0+7
 
   ## Developer tools
   firebase_analytics: ^5.0.1
@@ -71,6 +74,19 @@ flutter:
       fonts:
         - asset: assets/fonts/Heebo-Regular.ttf
           weight: 400
+
+    - family: CircularStd
+      fonts:
+        - asset: assets/fonts/CircularStd-Book.ttf
+
+        - asset: assets/fonts/CircularStd-Medium.ttf
+          weight: 600
+
+        - asset: assets/fonts/CircularStd-Black.ttf
+          weight: 700
+
+        - asset: assets/fonts/CircularStd-Bold.ttf
+          weight: 900
 
   assets:
     - assets/icon/repairing.png

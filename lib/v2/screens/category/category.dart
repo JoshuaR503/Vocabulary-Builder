@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vocabulary_builder/v2/blocs/routes/bloc.dart';
 import 'package:vocabulary_builder/v2/widgets/components/container.dart';
 
 class Category extends StatefulWidget {
@@ -18,13 +20,6 @@ class _CategoryState extends State<Category> {
     super.dispose();
   }
 
-  Widget _buildContent() {
-    return VocabularyBuilderContainer(
-      appBar: true,
-      appBarName: 'Nouns',
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
 
@@ -38,9 +33,19 @@ class _CategoryState extends State<Category> {
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: space),
         decoration: BoxDecoration(color: Theme.of(context).accentColor),
+
         child: ListView(
           children: <Widget>[
-            _buildContent(),
+
+            BlocBuilder<RoutesBloc, RoutesState>(
+              builder: (BuildContext context, RoutesState state) {        
+                return VocabularyBuilderContainer(
+                  appBar: true,
+                  appBarName: state.route
+                );
+              }
+            )
+            
           ],
         )
       ),

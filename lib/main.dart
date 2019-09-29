@@ -115,20 +115,38 @@
 
 
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:bloc/bloc.dart';
 
 import 'package:vocabulary_builder/utils/settings.dart';
+import 'package:vocabulary_builder/v2/blocs/delegate.dart';
+import 'package:vocabulary_builder/v2/blocs/routes/bloc.dart';
+import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
 
 import 'package:vocabulary_builder/v2/screens/category/category.dart';
 import 'package:vocabulary_builder/v2/screens/home/home.dart';
 
-import 'package:vocabulary_builder/v2/themes/bloc/bloc.dart';
-import 'package:vocabulary_builder/v2/themes/themes.dart';
 import 'package:vocabulary_builder/v2/widgets/animations/route.dart';
 
 void main() async {
-  runApp( VocabularyBuilderApp());
+
+  BlocSupervisor.delegate = SimpleBlocDelegate();
+
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<ThemeBloc>(
+          builder: (context) => ThemeBloc(),
+        ),
+
+        BlocProvider<RoutesBloc>(
+          builder: (context) => RoutesBloc(),
+        )
+      ],
+      child: VocabularyBuilderApp(),
+    ),
+  );
 }
 
 class VocabularyBuilderApp extends StatelessWidget {
@@ -146,21 +164,18 @@ class VocabularyBuilderApp extends StatelessWidget {
     }
   }
 
-  Widget _build(BuildContext context, ThemeState state) {
-    return MaterialApp(
-      title: appname,
-      theme: state.themeData,
-      onGenerateRoute: _getRoute,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      builder: (context) => ThemeBloc(),
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: _build,
-      )
+
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (BuildContext context, ThemeState state) {
+        return MaterialApp(
+          title: appname,
+          theme: state.themeData,
+          onGenerateRoute: _getRoute,
+        );
+      }
     );
+    
   }
 }

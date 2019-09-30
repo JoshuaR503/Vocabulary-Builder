@@ -20,6 +20,17 @@ class _CategoryState extends State<Category> {
     super.dispose();
   }
 
+  BlocBuilder<RoutesBloc, RoutesState> _buildBlocBuilder() {
+    return BlocBuilder<RoutesBloc, RoutesState>(
+      builder: (BuildContext context, RoutesState state) {        
+        return VocabularyBuilderContainer(
+          appBar: true,
+          appBarName: state.route
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -37,14 +48,7 @@ class _CategoryState extends State<Category> {
         child: ListView(
           children: <Widget>[
 
-            BlocBuilder<RoutesBloc, RoutesState>(
-              builder: (BuildContext context, RoutesState state) {        
-                return VocabularyBuilderContainer(
-                  appBar: true,
-                  appBarName: state.route
-                );
-              }
-            )
+            _buildBlocBuilder()
             
           ],
         )

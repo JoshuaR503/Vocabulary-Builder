@@ -1,8 +1,11 @@
 
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/painting.dart';
+import 'package:vocabulary_builder/v2/config/colors.dart';
 
 class Word extends Equatable {
+  final Color color;
   final String word;
   final String wordTranslation;
 
@@ -15,6 +18,7 @@ class Word extends Equatable {
   final Object es;
 
   Word({
+    this.color,
     this.word,
     this.wordTranslation,
     this.wordPronuntiation,
@@ -36,19 +40,42 @@ class Word extends Equatable {
     final List<Word> words = [];
 
     response.forEach((data) {
+
+      final dynamic dataEn = data['EN'];
+      final String category = dataEn['category'];
+
       final Word word = Word(
+        color: _color(category),
         word: data['word'],
         wordTranslation: data['wordTranslation'],
         wordPronuntiation: data['wordPronuntiation'],
         wordPronuntiationTranslation: data['wordPronuntiationTranslation'],
+        // en: data['en'],
+        // es: data['es'],
         level: data['level']
       );
-
-      print('${word.word}');
 
       words.add(word);
     });
 
     return words;
   }
+
+  static Color _color(String category) {
+    switch (category) {
+      case 'noun':
+        return AppColors.betterYellow;
+      case 'verb':
+        return AppColors.red;
+      case 'adjective':
+        return AppColors.blue;
+      case 'phasal verb':
+        return AppColors.orange;
+      case 'idiom':
+        return AppColors.indigo;
+      default:
+        return AppColors.lightYellow;
+    }
+  }
+
 }

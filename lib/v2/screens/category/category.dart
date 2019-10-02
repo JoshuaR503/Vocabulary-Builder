@@ -53,6 +53,7 @@ class _CategoryState extends State<Category> {
 
         itemCount: words.length,
         itemBuilder: (context, index) => WordCard(
+          
           words[index],
           index: index,
           onPress: () {

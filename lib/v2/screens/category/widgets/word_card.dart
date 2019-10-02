@@ -61,8 +61,7 @@ class WordCard extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
             child: Material(
-              // color: pokemon.color,
-              color: Colors.redAccent,
+              color: word.color,
               child: InkWell(
                 onTap: onPress,
                 splashColor: Colors.white10,

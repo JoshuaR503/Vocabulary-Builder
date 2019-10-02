@@ -30,7 +30,7 @@ class VocabularyBuilderContainer extends StatelessWidget {
           ),
 
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 26.0),
+            padding: EdgeInsets.symmetric(horizontal: 26.0),
             child: Text(
               appBarName,
               style: TextStyle(

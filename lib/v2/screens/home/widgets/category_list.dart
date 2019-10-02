@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/routes/bloc.dart';
+import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 import 'package:vocabulary_builder/v2/data/categories.dart';
 
 import 'package:vocabulary_builder/v2/screens/home/widgets/category_card.dart';
@@ -17,6 +18,10 @@ class _CategoryListState extends State<CategoryList> {
     BlocProvider
       .of<RoutesBloc>(context)
       .dispatch(ChangeRoute(route: route));
+
+    BlocProvider
+      .of<WordsBloc>(context)
+      .dispatch(FetchWords());
 
     Navigator
       .of(context)

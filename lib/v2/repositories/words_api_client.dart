@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:dio/dio.dart';
 import 'package:vocabulary_builder/v2/models/word.dart';
 
@@ -9,16 +11,48 @@ class WordsApiClient {
 
   Future<List<Word>> fetchWords() async {
 
-    final serverUrl = '$baseUrl/v3/word/public?limit=8';
-    final serverResponse = await this.httpClient.get(serverUrl);
+    // Get Word Count.
+    final int wordCount = await this._fetchWordCount();
+    final int skip = wordCount != 0 ? wordCount : 0;
+  
+    // http request - words.
+    final Response<dynamic> response = await this._fetchWords(skip);
 
-    if (serverResponse.statusCode != 200) {
+    // Handle more status code responses.
+    if (response.statusCode != 200 || skip == 0) {
       throw Exception('There was an error with the Server');
     }
 
-    final dynamic dataJson = serverResponse.data;
-    final List<Word> response = dataJson.response;
+    final data = response.data;
+    final List<dynamic> wordsResponse = data['response'];
+    final List<Word> words = Word.converToList(wordsResponse);
+  
+    return words;
+  }
 
-    return response;
+  Future<int> _fetchWordCount() async {
+
+    final String serverUrl = '$baseUrl/v2/word/count';
+    final Response<dynamic> serverResponse = await this.httpClient.get(serverUrl);
+
+    if (serverResponse.statusCode != 200) {
+      return 0;
+    }
+
+    final Random random = Random();
+    final dynamic data = serverResponse.data;
+    
+    final int max = data['response'];
+    final int min = 1;
+    final int skip = random.nextInt(max - min);
+
+    return skip;
+  }
+
+  Future<Response> _fetchWords(int skip) async {
+    final serverUrl = '$baseUrl/v3/word/public?limit=8&skip=$skip';
+    final serverResponse = await this.httpClient.get(serverUrl);
+
+    return serverResponse;
   }
 }

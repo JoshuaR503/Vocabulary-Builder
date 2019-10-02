@@ -1,5 +1,5 @@
 
-import 'package:vocabulary_builder/v2/models/word.dart';
+import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/repositories/words_api_client.dart';
 
 class WordsRepository {

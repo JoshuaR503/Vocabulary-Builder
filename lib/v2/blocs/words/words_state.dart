@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
-import 'package:vocabulary_builder/v2/models/word.dart';
+import 'package:vocabulary_builder/v2/models/models.dart';
 
 abstract class WordsState extends Equatable {
   WordsState([List props = const []]) : super(props);

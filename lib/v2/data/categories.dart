@@ -25,7 +25,7 @@ const List<WordCategory> categories = [
   ),
   WordCategory(
     name: "Nouns", 
-    color: AppColors.lightYellow
+    color: AppColors.betterYellow
   ),
   WordCategory(
     name: "Translator", 

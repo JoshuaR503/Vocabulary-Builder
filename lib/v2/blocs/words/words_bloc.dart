@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 
-import 'package:vocabulary_builder/v2/models/word.dart';
+import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/repositories/words_repository.dart';
 import './bloc.dart';
 

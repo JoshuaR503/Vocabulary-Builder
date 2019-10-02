@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/routes/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
-import 'package:vocabulary_builder/v2/models/word.dart';
+import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/category/widgets/word_card.dart';
 import 'package:vocabulary_builder/v2/widgets/components/navbar.dart';
 

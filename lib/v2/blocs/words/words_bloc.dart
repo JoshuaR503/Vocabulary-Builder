@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
-import 'package:vocabulary_builder/v2/repositories/words_repository.dart';
+import 'package:vocabulary_builder/v2/repositories/repositories.dart';
 import './bloc.dart';
 
 class WordsBloc extends Bloc<WordsEvent, WordsState> {

@@ -50,7 +50,7 @@ class WordsApiClient {
   }
 
   Future<Response> _fetchWords(int skip) async {
-    final serverUrl = '$baseUrl/v3/word/public?limit=8&skip=$skip';
+    final serverUrl = '$baseUrl/v3/word/public?limit=12&skip=$skip';
     final serverResponse = await this.httpClient.get(serverUrl);
 
     return serverResponse;

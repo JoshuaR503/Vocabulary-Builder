@@ -4,6 +4,7 @@ import 'package:vocabulary_builder/v2/blocs/routes/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 import 'package:vocabulary_builder/v2/screens/category/widgets/word_card.dart';
 import 'package:vocabulary_builder/v2/widgets/components/container.dart';
+import 'package:vocabulary_builder/v2/widgets/components/navbar.dart';
 
 class Category extends StatefulWidget {
   @override
@@ -46,9 +47,11 @@ class _CategoryState extends State<Category> {
         if (state is WordsLoaded) {
 
           final words = state.words;
+          final height = MediaQuery.of(context).size.height;
 
           return Container(
-            height: 1900,
+            height: height / 1.3,
+            color: Colors.red,
             child: ListView.builder(  
               itemCount: words.length,
               itemBuilder: (context, index) => Padding(
@@ -74,13 +77,10 @@ class _CategoryState extends State<Category> {
     );
   }
 
-  BlocBuilder<RoutesBloc, RoutesState> _buildBlocBuilder() {
+  BlocBuilder<RoutesBloc, RoutesState> _buildAppbar() {
     return BlocBuilder<RoutesBloc, RoutesState>(
       builder: (BuildContext context, RoutesState state) {        
-        return VocabularyBuilderContainer(
-          appBar: true,
-          appBarName: state.route,
-        );
+        return VocabularyBuilderNavbar(title: state.route);
       }
     );
   }
@@ -88,22 +88,28 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
 
-    final double deviceWidth = MediaQuery.of(context).size.width;
-    final bool isSmall = deviceWidth <= 479;
-    final double space = isSmall 
-    ? 0
-    : deviceWidth / 30;
-  
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: space),
         decoration: BoxDecoration(color: Theme.of(context).accentColor),
-        child: ListView(
+        child: Stack(
           children: <Widget>[
-            _buildBlocBuilder(),
-            _buildExpanded()
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                _buildAppbar(),
+                _buildExpanded(),
+              ],
+            )
           ],
         )
+        
+        // child: ListView(
+        //   children: <Widget>[
+           
+        //     _buildExpanded()
+        //   ],
+        // )
       ),
     );
   }

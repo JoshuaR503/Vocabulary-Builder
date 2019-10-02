@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
 
-class VocabularyBuilderNavbar extends StatelessWidget {
+class VocabularyBuilderNavbar extends StatelessWidget implements PreferredSizeWidget {
 
   final String title;
+  final double height;
 
-  VocabularyBuilderNavbar({ this.title });
+  VocabularyBuilderNavbar({ 
+    this.title,
+    this.height
+   });
+   
+  @override
+  Size get preferredSize => Size.fromHeight(height);
 
   @override
   Widget build(BuildContext context) {
 
     final Size screenSize = MediaQuery.of(context).size;
-    final double size = screenSize.width * 0.66;
+    final double size = Platform.isIOS 
+    ? screenSize.width * 0.66
+    : screenSize.width * 0.56;
+
     final double top = -(screenSize.width * 0.126);
     final double appBarTop = size / 2 + top - IconTheme.of(context).size / 2;
     final double twentysSix = 26;

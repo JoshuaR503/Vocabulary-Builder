@@ -20,7 +20,7 @@ class WordCard extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -32,7 +32,6 @@ class WordCard extends StatelessWidget {
                   fontSize: 16,
                   height: 0.7,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
                 ),
               ),
             ),
@@ -51,18 +50,19 @@ class WordCard extends StatelessWidget {
           padding: EdgeInsets.all(0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            boxShadow: [
-              BoxShadow(
-                // color: pokemon.color.withOpacity(0.12),
-                blurRadius: 15,
-                offset: Offset(0, 8),
-              ),
-            ],
+            // boxShadow: [
+            //   BoxShadow(
+            //     // color: pokemon.color.withOpacity(0.12),
+            //     blurRadius: 1,
+            //     offset: Offset(0, 1),
+            //   ),
+            // ],
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
             child: Material(
               // color: pokemon.color,
+              color: Colors.redAccent,
               child: InkWell(
                 onTap: onPress,
                 splashColor: Colors.white10,

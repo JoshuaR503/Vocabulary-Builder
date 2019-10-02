@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
 
 import 'package:vocabulary_builder/v2/config/config.dart';
 import 'package:vocabulary_builder/v2/widgets/components/container.dart';
 
 import 'package:vocabulary_builder/v2/screens/home/widgets/search.dart';
 import 'package:vocabulary_builder/v2/screens/home/widgets/category_list.dart';
-
-import 'package:vocabulary_builder/v2/themes/bloc/bloc.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -66,9 +65,9 @@ class _HomeState extends State<Home> {
 
         SizedBox(height: 40),
         Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25),
-            child: CategoryList()
-          )
+          padding: EdgeInsets.symmetric(horizontal: 25),
+          child: CategoryList()
+        )
       ],
     );
   }

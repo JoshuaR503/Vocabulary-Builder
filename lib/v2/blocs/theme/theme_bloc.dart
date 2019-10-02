@@ -1,8 +1,7 @@
-import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
 import 'package:vocabulary_builder/v2/themes/themes.dart';
-import './bloc.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
 

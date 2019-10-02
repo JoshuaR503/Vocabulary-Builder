@@ -8,4 +8,8 @@ class WordsRepository {
   Future<List<Word>> fetchWords() async {
     return await wordsApiClient.fetchWords();
   }
+
+  Future<List<Word>> fetchWordsFromCategory(String category) async {
+    return await wordsApiClient.fetchWordsFromCategory(category);
+  }
 }

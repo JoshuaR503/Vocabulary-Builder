@@ -1,6 +1,5 @@
 
 import 'dart:math';
-
 import 'package:dio/dio.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 
@@ -27,6 +26,18 @@ class WordsApiClient {
     final List<dynamic> wordsResponse = data['response'];
     final List<Word> words = Word.converToList(wordsResponse);
   
+    return words;
+  }
+
+  Future<List<Word>> fetchWordsFromCategory(String category) async {
+
+    final serverUrl = '$baseUrl/v3/word/category/$category';
+    final response = await this.httpClient.get(serverUrl);
+
+    final data = response.data;
+    final List<dynamic> wordsResponse = data['response'];
+    final List<Word> words = Word.converToList(wordsResponse);
+
     return words;
   }
 

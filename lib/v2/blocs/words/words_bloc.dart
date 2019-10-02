@@ -21,8 +21,16 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
       yield WordsLoading();
 
       try {
-        final List<Word> words = await wordsRepository.fetchWords();
-        yield WordsLoaded(words: words); 
+
+        if (event.category != 'All Words') {
+          final List<Word> words = await wordsRepository.fetchWordsFromCategory(event.category);
+          yield WordsLoaded(words: words);
+
+        } else {
+          final List<Word> words = await wordsRepository.fetchWords();
+          yield WordsLoaded(words: words);
+        }
+        
       } catch (e) {
         yield WordsError();
       }

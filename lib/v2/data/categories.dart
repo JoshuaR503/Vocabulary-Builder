@@ -29,10 +29,12 @@ const List<WordCategory> categories = [
   ),
   WordCategory(
     name: "Translator", 
-    color: AppColors.purple
+    color: AppColors.purple,
+    isSpecial: true
   ),
   WordCategory(
-    name: "Favorite Words", 
-    color: AppColors.brown
+    name: "Favorite Words",
+    color: AppColors.brown,
+    isSpecial: true
   ),
 ];

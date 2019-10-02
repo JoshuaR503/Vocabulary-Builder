@@ -1,8 +1,7 @@
 
 import 'dart:math';
-
 import 'package:dio/dio.dart';
-import 'package:vocabulary_builder/v2/models/word.dart';
+import 'package:vocabulary_builder/v2/models/models.dart';
 
 class WordsApiClient {
 
@@ -30,6 +29,18 @@ class WordsApiClient {
     return words;
   }
 
+  Future<List<Word>> fetchWordsFromCategory(String category) async {
+
+    final serverUrl = '$baseUrl/v3/word/category/$category';
+    final response = await this.httpClient.get(serverUrl);
+
+    final data = response.data;
+    final List<dynamic> wordsResponse = data['response'];
+    final List<Word> words = Word.converToList(wordsResponse);
+
+    return words;
+  }
+
   Future<int> _fetchWordCount() async {
 
     final String serverUrl = '$baseUrl/v2/word/count';
@@ -50,7 +61,7 @@ class WordsApiClient {
   }
 
   Future<Response> _fetchWords(int skip) async {
-    final serverUrl = '$baseUrl/v3/word/public?limit=12&skip=$skip';
+    final serverUrl = '$baseUrl/v3/word/public?limit=8&skip=$skip';
     final serverResponse = await this.httpClient.get(serverUrl);
 
     return serverResponse;

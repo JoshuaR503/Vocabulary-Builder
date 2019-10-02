@@ -21,7 +21,7 @@ class _CategoryListState extends State<CategoryList> {
 
     BlocProvider
       .of<WordsBloc>(context)
-      .dispatch(FetchWords());
+      .dispatch(FetchWords(category: route));
 
     Navigator
       .of(context)

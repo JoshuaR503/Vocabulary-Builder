@@ -8,23 +8,23 @@ const List<WordCategory> categories = [
     color: AppColors.lightTeal
   ),
   WordCategory(
-    name: "Verb", 
+    name: "Verbs", 
     color: AppColors.red
   ),
   WordCategory(
-    name: "Adjective", 
+    name: "Adjectives", 
     color: AppColors.blue
   ),
   WordCategory(
-    name: "Phasal Verb", 
+    name: "Phasal Verbs", 
     color: AppColors.orange
   ),
   WordCategory(
-    name: "Idiom", 
+    name: "Idioms", 
     color: AppColors.indigo
   ),
   WordCategory(
-    name: "Noun", 
+    name: "Nouns", 
     color: AppColors.betterYellow
   ),
   WordCategory(

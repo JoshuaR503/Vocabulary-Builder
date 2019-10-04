@@ -40,16 +40,17 @@ class _CategoryState extends State<Category> {
     return Container(
       height: height / 1.25,
       child: GridView.builder(
+        
 
         physics: BouncingScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 1.4,
+          crossAxisCount: 1,
+          childAspectRatio: 2.3,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
         ),
 
-        padding: EdgeInsets.only(left: 28, right: 28, bottom: 58),
+        padding: EdgeInsets.only(left: 28, right: 28),
 
         itemCount: words.length,
         itemBuilder: (context, index) => WordCard(

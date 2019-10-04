@@ -16,16 +16,11 @@ class WordCard extends StatelessWidget {
   final Function onPress;
   final Word word;
 
-  Widget _buildDataRow() {
-
+  List<Widget> _buildRigthColumn() {
     final ShapeBorder shape = RoundedRectangleBorder( borderRadius: BorderRadius.circular(10));
 
-    final Column col1 = Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.end,
-
-      children: <Widget>[
-        Padding(
+    return [
+      Padding(
           padding: EdgeInsets.only(left: 45, top: 20),
           child: MaterialButton(
             elevation: 2,
@@ -38,29 +33,25 @@ class WordCard extends StatelessWidget {
             onPressed: () {},
           )
         ),
-
-        Padding(
-          padding: EdgeInsets.only(left: 45, top: 10),
-          child: MaterialButton(
-            elevation: 2,
-            color: word.color,
-            shape: shape,
-            child: Icon(
-              Icons.arrow_forward,
-              color: Colors.white,
-            ), 
-            onPressed: () {},
-          )
+      Padding(
+        padding: EdgeInsets.only(left: 45, top: 10),
+        child: MaterialButton(
+          elevation: 2,
+          color: word.color,
+          shape: shape,
+          child: Icon(
+            Icons.arrow_forward,
+            color: Colors.white,
+          ), 
+          onPressed: () {},
         )
-      ],
-    );
+      )
+    ];
+  }
 
-    final Column col = Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-
-        Padding(
+  List<Widget> _buildLeftColumn() {
+    return [
+      Padding(
           padding: EdgeInsets.only(left: 30.0, top: 20),
           child: Text(
             this.word.word,
@@ -70,19 +61,30 @@ class WordCard extends StatelessWidget {
             ),
           ),
         ),
-
-        Padding(
-          padding: EdgeInsets.only(left: 30.0, top: 20),
-          child: Text(
-            this.word.wordTranslation,
-            style: TextStyle(
-              fontSize: 20.0, 
-              fontWeight: FontWeight.w300
-            ),
+      Padding(
+        padding: EdgeInsets.only(left: 30.0, top: 20),
+        child: Text(
+          this.word.wordTranslation,
+          style: TextStyle(
+            fontSize: 20.0, 
+            fontWeight: FontWeight.w300
           ),
         ),
+      ),
+    ];
+  }
 
-      ],
+  Widget _buildDataRow() {
+    final Column leftColumn = Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: _buildLeftColumn()
+    );
+    
+    final Column rightColumn = Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: _buildRigthColumn()
     );
 
     return Container(
@@ -94,8 +96,8 @@ class WordCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
         child: Row(
           children: <Widget>[
-            Expanded(child: col, flex: 10),
-            Expanded(child: col1, flex:5),
+            Expanded(child: leftColumn, flex: 10),
+            Expanded(child: rightColumn, flex:5),
             Expanded(child: Container(width: 1.0))
           ],
         )

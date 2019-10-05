@@ -36,20 +36,29 @@ class _CategoryState extends State<Category> {
     );
   }
 
-  Widget _createWordsCard(double height, List<Word> words) {
+  Widget _createWordsCard(double height, double width, List<Word> words) {
+
+    final bool isSmall = width <= 479;
+    final int crossAxisCount = isSmall ? 1 : 2;
+    final double childAspectRatio = isSmall 
+    ? width / 180
+    : width / 350;
+
+    
+
     return Container(
       height: height / 1.25,
       child: GridView.builder(
-
+        
         physics: BouncingScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 1.4,
+          crossAxisCount: crossAxisCount,
+          childAspectRatio: childAspectRatio,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
         ),
 
-        padding: EdgeInsets.only(left: 28, right: 28, bottom: 58),
+        padding: EdgeInsets.only(left: 28, right: 28),
 
         itemCount: words.length,
         itemBuilder: (context, index) => WordCard(
@@ -74,10 +83,10 @@ class _CategoryState extends State<Category> {
 
         if (state is WordsLoaded) {
 
-          final words = state.words;
-          final height = MediaQuery.of(context).size.height;
+          final List<Word> words = state.words;
+          final Size size = MediaQuery.of(context).size;
 
-          return _createWordsCard(height, words);
+          return _createWordsCard(size.height, size.width, words);
         }
 
         if (state is WordsError) {

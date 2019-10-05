@@ -75,11 +75,15 @@ class _PalabraCardState extends  State<PalabraCard> {
     content = Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+
         ButtonBar(
           alignment: MainAxisAlignment.center,
           children: <Widget>[
+
             Row(
               children: <Widget>[
+
+
                 Padding(
                   child: Text(
                     model.userLang == 'en' ? widget.palabra.traduccion : widget.palabra.palabra,
@@ -87,11 +91,14 @@ class _PalabraCardState extends  State<PalabraCard> {
                   ),
                   padding: EdgeInsets.only(left: 13.0),
                 ),
+
                 iconButton
               ],
             ),
+
           ],
         ),
+
         Padding(
           padding: EdgeInsets.only(bottom: 10.0),
           child: Text(model.userLang == 'en' ? widget.palabra.palabra : widget.palabra.traduccion),

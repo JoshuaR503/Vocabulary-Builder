@@ -6,7 +6,7 @@ class VocabularyBuilderNavbar extends StatelessWidget implements PreferredSizeWi
   final String title;
   final double height;
 
-  VocabularyBuilderNavbar({ 
+  const VocabularyBuilderNavbar({ 
     this.title,
     this.height
    });
@@ -18,36 +18,31 @@ class VocabularyBuilderNavbar extends StatelessWidget implements PreferredSizeWi
   Widget build(BuildContext context) {
 
     final Size screenSize = MediaQuery.of(context).size;
-    final bool isSmall = screenSize.width <= 479;
-    final int by = isSmall ? 5 : 10;
-    final double size = Platform.isIOS 
-    ? screenSize.width * 0.66
-    : screenSize.width * 0.56;
+    final bool heightSmall = screenSize.height <= 740 && screenSize.width  <= 479;
 
-    
-    final double appBarTop = size / by;
-    final double twentysSix = 26;
+    final bool isAndroid = Platform.isAndroid;
+    final double top = isAndroid ? 40 : 26;
+    final double bottom =  isAndroid ? 15  : heightSmall ? 26 : 0;    
+    final double horizontal = 26;
 
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.only(
-          left: twentysSix, 
-          right: twentysSix,
-          bottom: twentysSix,
-          top: appBarTop
-        ),// <- change that
+          top: top,
+          left: horizontal,
+          right: horizontal,
+          bottom: bottom
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[   
-
             InkWell(
               child: Icon(Icons.arrow_back),
               onTap: Navigator.of(context).pop,
             ),
-
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: twentysSix), // <- change 
+              padding: EdgeInsets.symmetric(horizontal: horizontal), // <- change 
               child: Text(
                 title,
                 style: TextStyle(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/routes/bloc.dart';
@@ -40,36 +42,36 @@ class _CategoryState extends State<Category> {
 
     final bool isSmall = width <= 479;
     final int crossAxisCount = isSmall ? 1 : 2;
+
+    final bool isAndroid = Platform.isAndroid;
     final double childAspectRatio = isSmall 
     ? width / 180
-    : width / 350;
-
+    : width / 330;
     
+    final double containerHeight = isSmall
+    ?  isAndroid ? height / 1.25 : height / 1.22
+    :  isAndroid ? height / 1.8 : height / 1.4;
 
     return Container(
-      height: height / 1.25,
-      child: GridView.builder(
-        
-        physics: BouncingScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          childAspectRatio: childAspectRatio,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-        ),
+        height: containerHeight,
+        child: GridView.builder(        
+          physics: BouncingScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            childAspectRatio: childAspectRatio,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
 
-        padding: EdgeInsets.only(left: 28, right: 28),
+          padding: EdgeInsets.only(left: 28, right: 28),
 
-        itemCount: words.length,
-        itemBuilder: (context, index) => WordCard(
-          
-          words[index],
-          index: index,
-          onPress: () {
-            // Navigator.of(context).pushNamed("/pokemon-info");
-          },
+          itemCount: words.length,
+          itemBuilder: (context, index) => WordCard(
+            words[index],
+            index: index,
+            onPress: () {},
+          ),
         ),
-      ),
     );
   }
 
@@ -110,6 +112,7 @@ class _CategoryState extends State<Category> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: Theme.of(context).accentColor),
         child: Column(
           children: <Widget>[

@@ -21,8 +21,9 @@ class WordCard extends StatelessWidget {
 
     return [
       Padding(
-          padding: EdgeInsets.only(left: 45, top: 20),
+          padding: EdgeInsets.only(top: 20),
           child: MaterialButton(
+            minWidth: 2,
             elevation: 2,
             color: word.color,
             shape: shape,
@@ -34,8 +35,9 @@ class WordCard extends StatelessWidget {
           )
         ),
       Padding(
-        padding: EdgeInsets.only(left: 45, top: 10),
+        padding: EdgeInsets.only(top: 10),
         child: MaterialButton(
+          minWidth: 2,
           elevation: 2,
           color: word.color,
           shape: shape,
@@ -49,14 +51,17 @@ class WordCard extends StatelessWidget {
     ];
   }
 
-  List<Widget> _buildLeftColumn() {
+  List<Widget> _buildLeftColumn(bool isSmall) {
+
+    final int maxLines = isSmall ? 2 : 1;
+
     return [
       Padding(
           padding: EdgeInsets.only(left: 30.0, top: 20),
           child: Text(
             this.word.word,
             overflow: TextOverflow.ellipsis,
-            maxLines: 2,
+            maxLines: maxLines,
             style: TextStyle(
               fontSize: 25.0, 
               fontWeight: FontWeight.bold
@@ -67,6 +72,8 @@ class WordCard extends StatelessWidget {
         padding: EdgeInsets.only(left: 30.0, top: 20),
         child: Text(
           this.word.wordTranslation,
+          overflow: TextOverflow.ellipsis,
+          maxLines: maxLines,
           style: TextStyle(
             fontSize: 20.0, 
             fontWeight: FontWeight.w300
@@ -76,11 +83,14 @@ class WordCard extends StatelessWidget {
     ];
   }
 
-  Widget _buildCard() {
+  Widget _buildCard(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    final bool isSmall = size.width <= 479;
+
     final Column leftColumn = Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: _buildLeftColumn()
+      children: _buildLeftColumn(isSmall)
     );
     
     final Column rightColumn = Column(
@@ -99,7 +109,7 @@ class WordCard extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Expanded(child: leftColumn, flex: 10),
-            Expanded(child: rightColumn, flex:5),
+            Expanded(child: rightColumn, flex: 5),
             Expanded(child: Container(width: 1.0))
           ],
         )
@@ -109,6 +119,6 @@ class WordCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _buildCard();
+    return _buildCard(context);
   }
 }

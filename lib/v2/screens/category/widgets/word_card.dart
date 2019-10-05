@@ -55,6 +55,8 @@ class WordCard extends StatelessWidget {
           padding: EdgeInsets.only(left: 30.0, top: 20),
           child: Text(
             this.word.word,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
             style: TextStyle(
               fontSize: 25.0, 
               fontWeight: FontWeight.bold
@@ -74,7 +76,7 @@ class WordCard extends StatelessWidget {
     ];
   }
 
-  Widget _buildDataRow() {
+  Widget _buildCard() {
     final Column leftColumn = Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,6 +109,6 @@ class WordCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  _buildDataRow();
+    return _buildCard();
   }
 }

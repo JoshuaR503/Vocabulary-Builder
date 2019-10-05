@@ -124,8 +124,6 @@ import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 import 'package:vocabulary_builder/v2/screens/category/category.dart';
 import 'package:vocabulary_builder/v2/screens/home/home.dart';
 
-import 'package:vocabulary_builder/v2/widgets/animations/route.dart';
-
 void main() async {
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
@@ -152,31 +150,21 @@ void main() async {
 
 class VocabularyBuilderApp extends StatelessWidget {
 
-  Route _getRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case "/":
-        return FadeRoute(page: Home());
-
-      case "/nouns":
-        return FadeRoute(page: Category());
-
-      default:
-        return null;
-    }
-  }
+  final Map<String, WidgetBuilder> routes = {
+    '/': (BuildContext context) => Home(),
+    '/nouns': (BuildContext context) => Category(),
+  };
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (BuildContext context, ThemeState state) {
         return MaterialApp(
           title: 'Vocabulary Builder',
           theme: state.themeData,
-          onGenerateRoute: _getRoute,
+          routes: routes
         );
       }
     );
-    
   }
 }

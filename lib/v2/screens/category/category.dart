@@ -38,19 +38,26 @@ class _CategoryState extends State<Category> {
     );
   }
 
-  Widget _createWordsCard(double height, double width, List<Word> words) {
+  Widget _createWordsCard(List<Word> words) {
 
-    final bool isSmall = width <= 479;
+    final Size size = MediaQuery.of(context).size;
+    final double height = size.height;
+    final double width = size.width;
+
+    final bool isSmall = width <= 479;    
     final int crossAxisCount = isSmall ? 1 : 2;
-
-    final bool isAndroid = Platform.isAndroid;
     final double childAspectRatio = isSmall 
     ? width / 180
     : width / 330;
-    
+
+
     final double containerHeight = isSmall
-    ?  isAndroid ? height / 1.25 : height / 1.22
-    :  isAndroid ? height / 1.8 : height / 1.4;
+    ? height / 1.25
+    : height / 1.5;
+    
+    // final double containerHeight = isSmall
+    // ?  isAndroid ? height / 1.25  : height / 1.22
+    // :  isAndroid ? height / 1.8   : height / 1.4;
 
     return Container(
         height: containerHeight,
@@ -88,7 +95,7 @@ class _CategoryState extends State<Category> {
           final List<Word> words = state.words;
           final Size size = MediaQuery.of(context).size;
 
-          return _createWordsCard(size.height, size.width, words);
+          return _createWordsCard(words);
         }
 
         if (state is WordsError) {

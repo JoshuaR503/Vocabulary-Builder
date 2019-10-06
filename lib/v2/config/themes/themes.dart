@@ -15,7 +15,7 @@ final Map<String, ThemeData> appTheme = {
   "Light": ThemeData(
     fontFamily: 'CircularStd',
     brightness: Brightness.light,
-    accentColor: Colors.white,
+    accentColor: Colors.white70,
     textTheme: TextTheme().apply(
       bodyColor: Colors.black,
       displayColor: Colors.black,

@@ -1,39 +1,48 @@
 
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
+
 import 'package:vocabulary_builder/v2/models/models.dart';
 
 class WordCard extends StatelessWidget {
-  WordCard(
-    this.word, 
-    {
-      @required this.index,
-      Key key,
-      this.onPress,
-    }
-  ) : super(key: key);
+  const WordCard({
+    @required this.word, 
+    @required this.index,
+    Key key,
+    this.onPress,
+  }) : super(key: key);
 
   final int index;
   final Function onPress;
   final Word word;
+
+  void _playAudio() async {
+    final AudioPlayer audioPlayer = AudioPlayer();
+    final String audio = word.wordPronuntiation;
+
+    await audioPlayer
+    .play(audio)
+    .catchError((error) => print(error));
+  }
 
   List<Widget> _buildRigthColumn() {
     final ShapeBorder shape = RoundedRectangleBorder( borderRadius: BorderRadius.circular(10));
 
     return [
       Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: MaterialButton(
-            minWidth: 2,
-            elevation: 2,
-            color: word.color,
-            shape: shape,
-            child: Icon(
-              Icons.volume_up,
-              color: Colors.white,
-            ), 
-            onPressed: () {},
-          )
-        ),
+        padding: EdgeInsets.only(top: 20),
+        child: MaterialButton(
+          minWidth: 2,
+          elevation: 2,
+          color: word.color,
+          shape: shape,
+          onPressed: _playAudio,
+          child: Icon(
+            Icons.volume_up,
+            color: Colors.white,
+          ), 
+        )
+      ),
       Padding(
         padding: EdgeInsets.only(top: 10),
         child: MaterialButton(
@@ -52,7 +61,6 @@ class WordCard extends StatelessWidget {
   }
 
   List<Widget> _buildLeftColumn(bool isSmall) {
-
     final int maxLines = isSmall ? 2 : 1;
 
     return [
@@ -104,7 +112,6 @@ class WordCard extends StatelessWidget {
       width: double.infinity,
       child: Material(
         elevation: 20.0,
-        shadowColor: Colors.black87,
         borderRadius: BorderRadius.circular(10.0),
         child: Row(
           children: <Widget>[

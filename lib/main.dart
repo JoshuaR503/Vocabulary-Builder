@@ -117,11 +117,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:vocabulary_builder/v2/blocs/delegate.dart';
-import 'package:vocabulary_builder/v2/blocs/routes/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
-
-import 'package:vocabulary_builder/v2/screens/category/category.dart';
 import 'package:vocabulary_builder/v2/screens/home/home.dart';
 
 void main() async {
@@ -133,10 +130,6 @@ void main() async {
       providers: [
         BlocProvider<ThemeBloc>(
           builder: (context) => ThemeBloc(),
-        ),
-
-        BlocProvider<RoutesBloc>(
-          builder: (context) => RoutesBloc(),
         ),
 
         BlocProvider<WordsBloc>(
@@ -152,7 +145,6 @@ class VocabularyBuilderApp extends StatelessWidget {
 
   final Map<String, WidgetBuilder> routes = {
     '/': (BuildContext context) => Home(),
-    '/nouns': (BuildContext context) => Category(),
   };
 
   @override

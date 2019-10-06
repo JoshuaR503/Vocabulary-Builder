@@ -21,19 +21,21 @@ class VocabularyBuilderContainer extends StatelessWidget {
 
     final Size screenSize = MediaQuery.of(context).size;
 
-    return Container(
-      width: screenSize.width,
-      child: Stack(
-        children: <Widget>[
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              if (appBar) this.navbar,
-              if (children != null) ...children,
-            ],
-          ),
-        ],
+    return SafeArea(
+      child: Container(
+        width: screenSize.width,
+        child: Stack(
+          children: <Widget>[
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                if (appBar) this.navbar,
+                if (children != null) ...children,
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

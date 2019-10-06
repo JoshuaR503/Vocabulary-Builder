@@ -1,12 +1,21 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vocabulary_builder/v2/blocs/routes/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/category/widgets/word_card.dart';
-import 'package:vocabulary_builder/v2/widgets/components/navbar.dart';
 
 class Category extends StatefulWidget {
+  
+  final String title;
+  final Color color;
+
+  Category({
+    @required this.title,
+    @required this.color
+  }) : assert(title != null),
+       assert(color != null);
+
   @override
   _CategoryState createState() => _CategoryState();
 }
@@ -36,40 +45,37 @@ class _CategoryState extends State<Category> {
     );
   }
 
-  Widget _createWordsCard(double height, double width, List<Word> words) {
+  Widget _createWordsCard(List<Word> words) {
+
+    final Size size = MediaQuery.of(context).size;
+    final double width = size.width;
 
     final bool isSmall = width <= 479;
     final int crossAxisCount = isSmall ? 1 : 2;
+
     final double childAspectRatio = isSmall 
     ? width / 180
-    : width / 350;
-
+    : width / 360;
     
-
-    return Container(
-      height: height / 1.25,
-      child: GridView.builder(
-        
-        physics: BouncingScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          childAspectRatio: childAspectRatio,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-        ),
-
-        padding: EdgeInsets.only(left: 28, right: 28),
-
-        itemCount: words.length,
-        itemBuilder: (context, index) => WordCard(
-          
-          words[index],
-          index: index,
-          onPress: () {
-            // Navigator.of(context).pushNamed("/pokemon-info");
-          },
-        ),
+    return GridView.builder(        
+      physics: BouncingScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount,
+        childAspectRatio: childAspectRatio,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
       ),
+      padding: EdgeInsets.only(left: 16, right: 16, top: 16),
+      itemCount: words.length,
+      itemBuilder: (context, index) {
+        final Word word = words[index];
+
+        return WordCard(
+          word: word,
+          index: index,
+          onPress: () {},
+        );
+      }
     );
   }
 
@@ -82,11 +88,9 @@ class _CategoryState extends State<Category> {
         }
 
         if (state is WordsLoaded) {
-
           final List<Word> words = state.words;
-          final Size size = MediaQuery.of(context).size;
 
-          return _createWordsCard(size.height, size.width, words);
+          return _createWordsCard(words);
         }
 
         if (state is WordsError) {
@@ -98,24 +102,19 @@ class _CategoryState extends State<Category> {
     );
   }
 
-  BlocBuilder<RoutesBloc, RoutesState> _buildAppbar() {
-    return BlocBuilder<RoutesBloc, RoutesState>(
-      builder: (BuildContext context, RoutesState state) {        
-        return VocabularyBuilderNavbar(title: state.route);
-      }
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: this.widget.color,
+        title: Text(this.widget.title),
+      ),
+      
       body: Container(
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: Theme.of(context).accentColor),
-        child: Column(
-          children: <Widget>[
-            _buildAppbar(),
-            _buildExpanded(),
-          ],
+        child: SafeArea(
+          child: _buildExpanded(),
         )
       ),
     );

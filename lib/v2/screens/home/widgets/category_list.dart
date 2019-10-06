@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vocabulary_builder/v2/blocs/routes/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
-import 'package:vocabulary_builder/v2/data/categories.dart';
+import 'package:vocabulary_builder/v2/config/categories.dart';
+import 'package:vocabulary_builder/v2/screens/category/category.dart';
 
 import 'package:vocabulary_builder/v2/screens/home/widgets/category_card.dart';
 
@@ -14,18 +15,23 @@ class CategoryList extends StatefulWidget {
 
 class _CategoryListState extends State<CategoryList> {
 
-  void _changeRoute(String route) {
-    BlocProvider
-      .of<RoutesBloc>(context)
-      .dispatch(ChangeRoute(route: route));
+  void _changeRoute({
+    String name,
+    Color color
+  }) {
 
     BlocProvider
       .of<WordsBloc>(context)
-      .dispatch(FetchWords(category: route));
+      .dispatch(FetchWords(category: name));
 
     Navigator
       .of(context)
-      .pushNamed('/nouns');
+      .push(MaterialPageRoute(
+        builder: (context) => Category(
+          title: name,
+          color: color,
+        )
+      ));
   }
 
   GridView _buildGridView(BuildContext context) {
@@ -49,10 +55,19 @@ class _CategoryListState extends State<CategoryList> {
       ),
   
       itemCount: categories.length,
-      itemBuilder: (context, index) => CategoryCard(
+      itemBuilder: (context, index) => 
+      
+      CategoryCard(
         categories[index],
         onPress: () {
-          _changeRoute(categories[index].name);
+
+          final String categoryName = categories[index].name;
+          final Color categoryColor = categories[index].color;
+
+          _changeRoute(
+            name: categoryName,
+            color: categoryColor
+          );
         }
       ),
     );
@@ -60,9 +75,6 @@ class _CategoryListState extends State<CategoryList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      builder: (context) => RoutesBloc(),
-      child: _buildGridView(context),
-    );
+    return _buildGridView(context);
   }
 }

@@ -1,41 +1,52 @@
 
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
+
 import 'package:vocabulary_builder/v2/models/models.dart';
 
 class WordCard extends StatelessWidget {
-  WordCard(
-    this.word, 
-    {
-      @required this.index,
-      Key key,
-      this.onPress,
-    }
-  ) : super(key: key);
+  const WordCard({
+    @required this.word, 
+    @required this.index,
+    Key key,
+    this.onPress,
+  }) : super(key: key);
 
   final int index;
   final Function onPress;
   final Word word;
+
+  void _playAudio() async {
+    final AudioPlayer audioPlayer = AudioPlayer();
+    final String audio = word.wordPronuntiation;
+
+    await audioPlayer
+    .play(audio)
+    .catchError((error) => print(error));
+  }
 
   List<Widget> _buildRigthColumn() {
     final ShapeBorder shape = RoundedRectangleBorder( borderRadius: BorderRadius.circular(10));
 
     return [
       Padding(
-          padding: EdgeInsets.only(left: 45, top: 20),
-          child: MaterialButton(
-            elevation: 2,
-            color: word.color,
-            shape: shape,
-            child: Icon(
-              Icons.volume_up,
-              color: Colors.white,
-            ), 
-            onPressed: () {},
-          )
-        ),
-      Padding(
-        padding: EdgeInsets.only(left: 45, top: 10),
+        padding: EdgeInsets.only(top: 20),
         child: MaterialButton(
+          minWidth: 2,
+          elevation: 2,
+          color: word.color,
+          shape: shape,
+          onPressed: _playAudio,
+          child: Icon(
+            Icons.volume_up,
+            color: Colors.white,
+          ), 
+        )
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: 10),
+        child: MaterialButton(
+          minWidth: 2,
           elevation: 2,
           color: word.color,
           shape: shape,
@@ -49,14 +60,16 @@ class WordCard extends StatelessWidget {
     ];
   }
 
-  List<Widget> _buildLeftColumn() {
+  List<Widget> _buildLeftColumn(bool isSmall) {
+    final int maxLines = isSmall ? 2 : 1;
+
     return [
       Padding(
           padding: EdgeInsets.only(left: 30.0, top: 20),
           child: Text(
             this.word.word,
             overflow: TextOverflow.ellipsis,
-            maxLines: 2,
+            maxLines: maxLines,
             style: TextStyle(
               fontSize: 25.0, 
               fontWeight: FontWeight.bold
@@ -67,6 +80,8 @@ class WordCard extends StatelessWidget {
         padding: EdgeInsets.only(left: 30.0, top: 20),
         child: Text(
           this.word.wordTranslation,
+          overflow: TextOverflow.ellipsis,
+          maxLines: maxLines,
           style: TextStyle(
             fontSize: 20.0, 
             fontWeight: FontWeight.w300
@@ -76,11 +91,14 @@ class WordCard extends StatelessWidget {
     ];
   }
 
-  Widget _buildCard() {
+  Widget _buildCard(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    final bool isSmall = size.width <= 479;
+
     final Column leftColumn = Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: _buildLeftColumn()
+      children: _buildLeftColumn(isSmall)
     );
     
     final Column rightColumn = Column(
@@ -94,12 +112,11 @@ class WordCard extends StatelessWidget {
       width: double.infinity,
       child: Material(
         elevation: 20.0,
-        shadowColor: Colors.black87,
         borderRadius: BorderRadius.circular(10.0),
         child: Row(
           children: <Widget>[
             Expanded(child: leftColumn, flex: 10),
-            Expanded(child: rightColumn, flex:5),
+            Expanded(child: rightColumn, flex: 5),
             Expanded(child: Container(width: 1.0))
           ],
         )
@@ -109,6 +126,6 @@ class WordCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _buildCard();
+    return _buildCard(context);
   }
 }

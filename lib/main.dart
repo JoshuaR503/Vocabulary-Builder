@@ -117,14 +117,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:vocabulary_builder/v2/blocs/delegate.dart';
-import 'package:vocabulary_builder/v2/blocs/routes/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
-
-import 'package:vocabulary_builder/v2/screens/category/category.dart';
 import 'package:vocabulary_builder/v2/screens/home/home.dart';
-
-import 'package:vocabulary_builder/v2/widgets/animations/route.dart';
 
 void main() async {
 
@@ -135,10 +130,6 @@ void main() async {
       providers: [
         BlocProvider<ThemeBloc>(
           builder: (context) => ThemeBloc(),
-        ),
-
-        BlocProvider<RoutesBloc>(
-          builder: (context) => RoutesBloc(),
         ),
 
         BlocProvider<WordsBloc>(
@@ -152,31 +143,20 @@ void main() async {
 
 class VocabularyBuilderApp extends StatelessWidget {
 
-  Route _getRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case "/":
-        return FadeRoute(page: Home());
-
-      case "/nouns":
-        return FadeRoute(page: Category());
-
-      default:
-        return null;
-    }
-  }
+  final Map<String, WidgetBuilder> routes = {
+    '/': (BuildContext context) => Home(),
+  };
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (BuildContext context, ThemeState state) {
         return MaterialApp(
           title: 'Vocabulary Builder',
           theme: state.themeData,
-          onGenerateRoute: _getRoute,
+          routes: routes
         );
       }
     );
-    
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/category/widgets/word_card.dart';
+import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
 
 class Category extends StatefulWidget {
   
@@ -57,7 +58,7 @@ class _CategoryState extends State<Category> {
     ? width / 180
     : width / 360;
     
-    return GridView.builder(        
+    return GridView.builder(
       physics: BouncingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
@@ -68,8 +69,8 @@ class _CategoryState extends State<Category> {
       padding: EdgeInsets.only(left: 16, right: 16, top: 16),
       itemCount: words.length,
       itemBuilder: (context, index) {
-        final Word word = words[index];
 
+        final Word word = words[index];
         return WordCard(
           word: word,
           index: index,
@@ -84,7 +85,7 @@ class _CategoryState extends State<Category> {
       builder: (BuildContext context, WordsState state) {
 
         if (state is WordsLoading) {
-          return Center(child: CircularProgressIndicator());
+          return VocabularyBuilderSpinner(color: this.widget.color);
         }
 
         if (state is WordsLoaded) {
@@ -93,8 +94,12 @@ class _CategoryState extends State<Category> {
           return _createWordsCard(words);
         }
 
+        if (state is WordsZero) {
+          return _buildErrorMessage('Section under construction. Come back later');
+        }
+
         if (state is WordsError) {
-          return _buildErrorMessage('There was an unknown error.');
+          return _buildErrorMessage(state.error.toString());
         }
 
         return _buildErrorMessage('Something Unexpected Happened. Did not work.');

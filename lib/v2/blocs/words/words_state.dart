@@ -18,4 +18,13 @@ class WordsLoaded extends WordsState {
       super([words]); 
 }
 
-class WordsError extends WordsState{}
+class WordsError extends WordsState {
+  final dynamic error;
+
+  WordsError({@required this.error})
+    : assert(error != null),
+      super([error]); 
+
+}
+
+class WordsZero extends WordsState {}

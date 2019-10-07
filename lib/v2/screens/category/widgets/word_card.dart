@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/screens/word/word.dart';
 
-class WordCard extends StatelessWidget {
+class WordCard extends StatefulWidget {
   const WordCard({
     @required this.word, 
     @required this.index,
@@ -16,13 +17,34 @@ class WordCard extends StatelessWidget {
   final Function onPress;
   final Word word;
 
+  @override
+  _WordCardState createState() => _WordCardState();
+}
+
+class _WordCardState extends State<WordCard> {
   void _playAudio() async {
     final AudioPlayer audioPlayer = AudioPlayer();
-    final String audio = word.wordPronuntiation;
+    final String audio = widget.word.wordPronuntiation;
 
     await audioPlayer
     .play(audio)
     .catchError((error) => print(error));
+  }
+
+  void _changeScreen() async {
+
+    print('ChangeScreen');
+
+    Navigator
+      .of(context)
+      .push(MaterialPageRoute(
+        
+        builder: (context) => WordScreen(
+          word: this.widget.word,
+          tag: this.widget.word.word,
+        )
+      ));
+
   }
 
   List<Widget> _buildRigthColumn() {
@@ -34,7 +56,7 @@ class WordCard extends StatelessWidget {
         child: MaterialButton(
           minWidth: 2,
           elevation: 2,
-          color: word.color,
+          color: widget.word.color,
           shape: shape,
           onPressed: _playAudio,
           child: Icon(
@@ -48,13 +70,13 @@ class WordCard extends StatelessWidget {
         child: MaterialButton(
           minWidth: 2,
           elevation: 2,
-          color: word.color,
+          color: widget.word.color,
           shape: shape,
           child: Icon(
             Icons.arrow_forward,
             color: Colors.white,
           ), 
-          onPressed: () {},
+          onPressed: _changeScreen,
         )
       )
     ];
@@ -65,21 +87,27 @@ class WordCard extends StatelessWidget {
 
     return [
       Padding(
-          padding: EdgeInsets.only(left: 30.0, top: 20),
-          child: Text(
-            this.word.word,
-            overflow: TextOverflow.ellipsis,
-            maxLines: maxLines,
-            style: TextStyle(
-              fontSize: 25.0, 
-              fontWeight: FontWeight.bold
+        padding: EdgeInsets.only(left: 30.0, top: 20),
+        child: Hero(
+          transitionOnUserGestures: true,
+          tag: this.widget.word.word,
+          child: Material(
+            child: Text(
+              this.widget.word.word,
+              overflow: TextOverflow.ellipsis,
+              maxLines: maxLines,
+              style: TextStyle(
+                fontSize: 25.0, 
+                fontWeight: FontWeight.bold
+              ),
             ),
-          ),
-        ),
+          )
+        )
+      ),
       Padding(
         padding: EdgeInsets.only(left: 30.0, top: 20),
         child: Text(
-          this.word.wordTranslation,
+          this.widget.word.wordTranslation,
           overflow: TextOverflow.ellipsis,
           maxLines: maxLines,
           style: TextStyle(
@@ -111,7 +139,7 @@ class WordCard extends StatelessWidget {
       padding: EdgeInsets.all(10.0),
       width: double.infinity,
       child: Material(
-        elevation: 20.0,
+        elevation: 10.0,
         borderRadius: BorderRadius.circular(10.0),
         child: Row(
           children: <Widget>[

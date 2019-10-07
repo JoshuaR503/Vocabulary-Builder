@@ -59,7 +59,7 @@ class Word extends Equatable {
   static Color _color(String category) {
     switch (category) {
       case 'noun':
-        return AppColors.betterYellow;
+        return AppColors.amber;
       case 'verb':
         return AppColors.red;
       case 'adjective':

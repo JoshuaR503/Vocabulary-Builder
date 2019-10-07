@@ -4,7 +4,7 @@ import 'package:vocabulary_builder/v2/models/category.dart';
 
 const List<WordCategory> categories = [
   WordCategory(
-    name: "All Words", 
+    name: "Translator", 
     color: AppColors.lightTeal
   ),
   WordCategory(
@@ -25,10 +25,10 @@ const List<WordCategory> categories = [
   ),
   WordCategory(
     name: "Nouns", 
-    color: AppColors.betterYellow
+    color: AppColors.amber
   ),
   WordCategory(
-    name: "Translator", 
+    name: "All Words", 
     color: AppColors.purple,
     isSpecial: true
   ),

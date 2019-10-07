@@ -95,7 +95,7 @@ class _CategoryState extends State<Category> {
         }
 
         if (state is WordsZero) {
-          return _buildErrorMessage('Section under construction. Come back later');
+          return _buildErrorMessage('Section under construction. Come back later.');
         }
 
         if (state is WordsError) {

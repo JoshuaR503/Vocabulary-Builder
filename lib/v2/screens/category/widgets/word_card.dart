@@ -88,21 +88,15 @@ class _WordCardState extends State<WordCard> {
     return [
       Padding(
         padding: EdgeInsets.only(left: 30.0, top: 20),
-        child: Hero(
-          transitionOnUserGestures: true,
-          tag: this.widget.word.word,
-          child: Material(
-            child: Text(
-              this.widget.word.word,
-              overflow: TextOverflow.ellipsis,
-              maxLines: maxLines,
-              style: TextStyle(
-                fontSize: 25.0, 
-                fontWeight: FontWeight.bold
-              ),
-            ),
-          )
-        )
+        child: Text(
+          this.widget.word.word,
+          overflow: TextOverflow.ellipsis,
+          maxLines: maxLines,
+          style: TextStyle(
+            fontSize: 25.0, 
+            fontWeight: FontWeight.bold
+          ),
+        ),
       ),
       Padding(
         padding: EdgeInsets.only(left: 30.0, top: 20),

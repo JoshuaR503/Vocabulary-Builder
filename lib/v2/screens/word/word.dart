@@ -29,20 +29,14 @@ class _WordState extends State<WordScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Center(
-              child: Hero(
-                tag: this.widget.word.word,
-                transitionOnUserGestures: true,
-                child: Material(
-                  child: Text(
-                    this.widget.word.word,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: TextStyle(
-                      fontSize: 25.0, 
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                )
+              child: Text(
+                this.widget.word.word,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: TextStyle(
+                  fontSize: 25.0, 
+                  fontWeight: FontWeight.bold
+                ),
               ),
             )
           ],

@@ -119,6 +119,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/delegate.dart';
 import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
+import 'package:vocabulary_builder/v2/config/themes/themes.dart';
 import 'package:vocabulary_builder/v2/screens/home/home.dart';
 
 void main() async {
@@ -153,7 +154,7 @@ class VocabularyBuilderApp extends StatelessWidget {
       builder: (BuildContext context, ThemeState state) {
         return MaterialApp(
           title: 'Vocabulary Builder',
-          theme: state.themeData,
+          theme: appTheme['Dark'],
           routes: routes
         );
       }

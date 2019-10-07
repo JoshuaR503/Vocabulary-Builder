@@ -24,15 +24,21 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
 
         if (event.category != 'All Words') {
           final List<Word> words = await wordsRepository.fetchWordsFromCategory(event.category);
-          yield WordsLoaded(words: words);
 
+          yield words.length == 0
+          ? WordsZero()
+          : WordsLoaded(words: words);
+          
         } else {
           final List<Word> words = await wordsRepository.fetchWords();
-          yield WordsLoaded(words: words);
+
+          yield words.length == 0
+          ? WordsZero()
+          : WordsLoaded(words: words);
         }
         
       } catch (e) {
-        yield WordsError();
+        yield WordsError(error: e);
       }
     }
 

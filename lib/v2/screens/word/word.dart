@@ -4,14 +4,10 @@ import 'package:vocabulary_builder/v2/models/models.dart';
 class WordScreen extends StatefulWidget {
 
   final Word word;
-  final String tag;
 
   const WordScreen({
     this.word,
-    this.tag
-  }) : assert(word != null),
-       assert(tag != null);
-
+  }) : assert(word != null);
   @override
   _WordState createState() => _WordState();
 }
@@ -21,6 +17,7 @@ class _WordState extends State<WordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: this.widget.word.color,
         title: Text('Single Word Section'),
       ),
       body: Container(

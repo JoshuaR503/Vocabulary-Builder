@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
 
   Widget _buildButton() {
     return FloatingActionButton(
-      child: Icon(Icons.lightbulb_outline),
+      child: Icon(Icons.settings),
       onPressed: _changeTheme
     );
   }

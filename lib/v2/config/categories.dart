@@ -1,4 +1,5 @@
 
+import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/category.dart';
 
@@ -25,7 +26,7 @@ const List<WordCategory> categories = [
   ),
   WordCategory(
     name: "Nouns", 
-    color: AppColors.amber
+    color: Colors.amber
   ),
   WordCategory(
     name: "All Words", 

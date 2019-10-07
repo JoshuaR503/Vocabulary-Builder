@@ -5,6 +5,7 @@ import 'package:vocabulary_builder/v2/models/word/metadata.dart';
 
 class Word extends Equatable {
   final Color color;
+  final Color accentColor;
   final String word;
   final String wordTranslation;
 
@@ -17,6 +18,7 @@ class Word extends Equatable {
   final WordData es;
 
   Word({
+    this.accentColor,
     this.color,
     this.word,
     this.wordTranslation,
@@ -40,7 +42,9 @@ class Word extends Equatable {
       final dynamic json = data['EN'];
       final String category = json['category'];
       final Word word = Word(
+        accentColor: _accentColor(category),
         color: _color(category),
+        
         word: data['word'],
         wordTranslation: data['wordTranslation'],
         wordPronuntiation: data['wordPronuntiation'],
@@ -57,6 +61,23 @@ class Word extends Equatable {
   }
 
   static Color _color(String category) {
+    switch (category) {
+      case 'noun':
+        return AppColors.amber;
+      case 'verb':
+        return AppColors.red;
+      case 'adjective':
+        return AppColors.blue;
+      case 'phasal verb':
+        return AppColors.orange;
+      case 'idiom':
+        return AppColors.indigo;
+      default:
+        return AppColors.purple;
+    }
+  }
+
+  static Color _accentColor(String category) {
     switch (category) {
       case 'noun':
         return AppColors.amber;

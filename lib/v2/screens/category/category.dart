@@ -113,6 +113,15 @@ class _CategoryState extends State<Category> {
       appBar: AppBar(
         backgroundColor: this.widget.color,
         title: Text(this.widget.title),
+        actions: <Widget>[
+          Tooltip(
+            message: 'Reload Content',
+            child: IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () {}
+            ),
+          ),
+        ],
       ),
       
       body: Container(

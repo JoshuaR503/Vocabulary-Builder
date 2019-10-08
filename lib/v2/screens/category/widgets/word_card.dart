@@ -25,10 +25,10 @@ class _WordCardState extends State<WordCard> {
   void _playAudio() async {
     final AudioPlayer audioPlayer = AudioPlayer();
     final String audio = widget.word.en.wordPronuntiation;
-
+    
     await audioPlayer
     .play(audio)
-    .catchError((error) => print(error));
+    .catchError((error) => print('Error: $error'));
   }
 
   void _changeScreen() async {

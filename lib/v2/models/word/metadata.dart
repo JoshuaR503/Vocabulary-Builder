@@ -42,7 +42,7 @@ class WordData {
   factory WordData.fromJson(Map<String, dynamic> json){
     return WordData(
       word: json['word'],
-      wordPronuntiation: json['word'],
+      wordPronuntiation: json['wordPronuntiation'],
 
       firstPerson: json['firstPerson'],
       secondPerson: json['secondPerson'],

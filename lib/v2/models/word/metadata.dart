@@ -1,4 +1,7 @@
 class WordData {
+  final String word;
+  final String wordPronuntiation;
+
   final String firstPerson;
   final String secondPerson;
   final String thirdPerson;
@@ -16,6 +19,9 @@ class WordData {
   final String definition;
 
   const WordData({
+    this.word,
+    this.wordPronuntiation,
+    
     this.firstPerson,
     this.secondPerson,
     this.thirdPerson,
@@ -35,6 +41,9 @@ class WordData {
 
   factory WordData.fromJson(Map<String, dynamic> json){
     return WordData(
+      word: json['word'],
+      wordPronuntiation: json['word'],
+
       firstPerson: json['firstPerson'],
       secondPerson: json['secondPerson'],
       thirdPerson: json['thirdPerson'],

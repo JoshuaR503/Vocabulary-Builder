@@ -40,7 +40,7 @@ class _WordState extends State<WordScreen> {
                 // Tab(text: 'Conjugation'),
               ],
             ),
-            title: Text(this.widget.word.word),
+            title: Text(this.widget.word.en.word),
           ),
           body: SafeArea(
             child: TabBarView(

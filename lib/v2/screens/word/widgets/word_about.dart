@@ -17,7 +17,7 @@ class WordAboutCard extends StatelessWidget {
   Widget _buildFirstCard() {
 
     final Text title = Text(
-      'Word - ${this.word.word}',
+      'Word - ${this.word.en.word}',
       style: TextStyle(
        fontSize: 28,
        fontWeight: FontWeight.bold
@@ -53,7 +53,7 @@ class WordAboutCard extends StatelessWidget {
   Widget _buildSecondCard() {
 
     final Text title = Text(
-      'Translation - ${this.word.wordTranslation}',
+      'Translation - ${this.word.es.word}',
       style: TextStyle(
        fontSize: 28,
        fontWeight: FontWeight.bold

@@ -17,7 +17,7 @@ class WordConjugationCard extends StatelessWidget {
   Widget _buildConjugationCard() {
 
     final Text title = Text(
-      'Conjugation of ${this.word.word}',
+      'Conjugation of ${this.word.en.word}',
       style: TextStyle(
        fontSize: 28,
        fontWeight: FontWeight.bold

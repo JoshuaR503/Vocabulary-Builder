@@ -17,7 +17,7 @@ class WordExamplesCard extends StatelessWidget {
   Widget _buildExamplesCard() {
 
     final Text title = Text(
-      'Examples of ${this.word.word}',
+      'Examples of ${this.word.en.word}',
       style: TextStyle(
        fontSize: 28,
        fontWeight: FontWeight.bold

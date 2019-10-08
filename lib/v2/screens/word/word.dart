@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/word_conjugation.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/word_examples.dart';
 
 class WordScreen extends StatefulWidget {
 
@@ -15,30 +18,40 @@ class WordScreen extends StatefulWidget {
 class _WordState extends State<WordScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: this.widget.word.color,
-        title: Text('Single Word Section'),
-      ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: Text(
-                this.widget.word.word,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                style: TextStyle(
-                  fontSize: 25.0, 
-                  fontWeight: FontWeight.bold
+    return DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            actions: <Widget>[
+              Tooltip(
+                message: 'Reload Content',
+                child: IconButton(
+                  icon: Icon(Icons.favorite_border),
+                  onPressed: () {}
                 ),
               ),
-            )
-          ],
-        ), 
-      )
+            ],
+            backgroundColor: this.widget.word.color,
+            bottom: TabBar(
+              indicatorWeight: 3,
+              tabs: [
+                Tab(text: 'About',),
+                Tab(text: 'Examples',),
+                // Tab(text: 'Conjugation'),
+              ],
+            ),
+            title: Text(this.widget.word.word),
+          ),
+          body: SafeArea(
+            child: TabBarView(
+              children: [
+                WordAboutCard(word: this.widget.word),
+                WordExamplesCard(word: this.widget.word),
+                // WordConjugationCard(word: this.widget.word),
+              ],
+            ),
+          )
+        )
     );
   }
 }

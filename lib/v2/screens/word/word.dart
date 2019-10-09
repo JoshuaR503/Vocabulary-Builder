@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
-import 'package:vocabulary_builder/v2/screens/word/widgets/word_conjugation.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_examples.dart';
 
 class WordScreen extends StatefulWidget {

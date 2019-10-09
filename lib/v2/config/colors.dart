@@ -20,4 +20,14 @@ class AppColors {
   static const Color yellow = Color(0xFFF6C747);
   static const Color orange = Color(0xFFFA6555);
   static const Color amber = Color(0xFFFFBF09);
+
+  
+}
+
+
+class AppFontColors {
+  static const secondaryText = const Color(0xFFBCBCBC);
+  static const lateralText = const Color(0xFF828282);
+  static const primaryText = const Color(0xFFFFFFFF);
+
 }

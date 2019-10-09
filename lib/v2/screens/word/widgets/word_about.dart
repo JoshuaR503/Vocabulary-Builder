@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/styles.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_button.dart';
 
 class WordAboutCard extends StatelessWidget {
 
@@ -14,24 +16,40 @@ class WordAboutCard extends StatelessWidget {
     return SizedBox(height: height);
   }
 
-  Widget _buildFirstCard() {
+  List<Widget> _buildFirstCardChildren() {
 
-    final Text title = Text(
-      'Word - ${this.word.en.word}',
-      style: TextStyle(
-       fontSize: 28,
-       fontWeight: FontWeight.bold
-      ),
+    final Text title1 = Text(
+      '${this.word.en.word}',
+      style: TextStyles.titleStyle
     );
 
-    final Text definition = Text(
+    final Text title2 = Text(
+      '${this.word.es.word}',
+      style: TextStyles.titleStyle
+    );
+
+    final Text definition1 = Text(
       '${this.word.en.definition}',
-      style: TextStyle(
-       fontSize: 18,
-       fontWeight: FontWeight.w400
-      ),
+      style: TextStyles.definitionStyle
     );
 
+    final Text definition2 = Text(
+      '${this.word.es.definition}',
+      style: TextStyles.definitionStyle
+    );
+
+    return [
+      title1,
+      _buildSizedBox(height: 15),
+      definition1,
+      _buildSizedBox(),
+      title2,
+      _buildSizedBox(height: 15),
+      definition2,
+    ];
+  }
+
+  Widget _buildFirstCard() {
     return Card(
       elevation: 6.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -40,49 +58,9 @@ class WordAboutCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            title,
-            _buildSizedBox(height: 15),
-            definition,
-          ],
+          children: _buildFirstCardChildren(),
         ),
       ),
-    );
-  }
-
-  Widget _buildSecondCard() {
-
-    final Text title = Text(
-      'Translation - ${this.word.es.word}',
-      style: TextStyle(
-       fontSize: 28,
-       fontWeight: FontWeight.bold
-      ),
-    );
-
-    final Text definition = Text(
-      '${this.word.es.definition}',
-      style: TextStyle(
-       fontSize: 18,
-       fontWeight: FontWeight.w400
-      ),
-    );
-
-    return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-        child:  Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            title,
-            _buildSizedBox(height: 15),
-            definition,
-          ],
-        )
-      )
     );
   }
 
@@ -91,16 +69,8 @@ class WordAboutCard extends StatelessWidget {
     final Text title = Text(
       'Gramatical Category',
       style: TextStyle(
-       fontSize: 28,
+       fontSize: 24,
        fontWeight: FontWeight.bold
-      ),
-    );
-
-    final Text definition = Text(
-      '${this.word.en.category.toUpperCase()}',
-      style: TextStyle(
-       fontSize: 18,
-       fontWeight: FontWeight.w400
       ),
     );
 
@@ -115,7 +85,7 @@ class WordAboutCard extends StatelessWidget {
           children: <Widget>[
             title,
             _buildSizedBox(height: 15),
-            definition,
+            WordCateogry(category: this.word.en.category),
           ],
         )
       )
@@ -123,29 +93,28 @@ class WordAboutCard extends StatelessWidget {
   }
 
   Widget _buildVerticallLayout() {
-    return ListView(
-      children: <Widget>[
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            _buildSizedBox(height: 15),
-            _buildFirstCard(),
-            _buildSizedBox(height: 15),
-            _buildSecondCard(),
-            _buildSizedBox(height: 15),
-            _buildThirdCard(),
-          ],
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: ListView(
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              _buildSizedBox(height: 15),
+              _buildFirstCard(),
+              _buildSizedBox(height: 15),
+              _buildThirdCard(),
+              _buildSizedBox(height: 45),
+            ],
+          ),
+        ],
+      )
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: _buildVerticallLayout()
-    );
+    return _buildVerticallLayout();
   } 
 }

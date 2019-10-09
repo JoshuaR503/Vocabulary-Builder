@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/styles.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_button.dart';
 
 class WordExamplesCard extends StatelessWidget {
 
@@ -17,18 +20,19 @@ class WordExamplesCard extends StatelessWidget {
   Widget _buildExamplesCard() {
 
     final Text title = Text(
-      'Examples of ${this.word.en.word}',
+      'Examples',
       style: TextStyle(
-       fontSize: 28,
+       fontSize: 26,
        fontWeight: FontWeight.bold
       ),
     );
 
-    final Text definition = Text(
+    final Text examples = Text(
       '${this.word.en.examples}',
       style: TextStyle(
-       fontSize: 18,
-       fontWeight: FontWeight.w400
+       fontSize: 16.5,
+       fontWeight: FontWeight.w400,
+       color: AppFontColors.secondaryText
       ),
     );
 
@@ -43,7 +47,7 @@ class WordExamplesCard extends StatelessWidget {
           children: <Widget>[
             title,
             _buildSizedBox(height: 20),
-            definition,
+            examples,
           ],
         ),
       ),
@@ -53,55 +57,18 @@ class WordExamplesCard extends StatelessWidget {
   Widget _buildRelatedWordsCard() {
 
     final Text title = Text(
-      'Related Words',
-      style: TextStyle(
-       fontSize: 28,
-       fontWeight: FontWeight.bold
-      ),
+      'Synonyms',
+      style: TextStyles.titleStyle
     );
 
-    final Text definition = Text(
-      '${this.word.en.synonyms}',
-      style: TextStyle(
-       fontSize: 18,
-       fontWeight: FontWeight.w400
-      ),
+    final Text title2 = Text(
+      'Antonyms',
+      style: TextStyles.titleStyle
     );
 
-    return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            title,
-            _buildSizedBox(height: 15),
-            definition,
-          ],
-        )
-      )
-    );
-  }
-
-  Widget _buildAntonymsCard() {
-
-    final Text title = Text(
-      'Oposite Words',
-      style: TextStyle(
-       fontSize: 28,
-       fontWeight: FontWeight.bold
-      ),
-    );
-
-    final Text definition = Text(
-      '${this.word.en.antonyms}',
-      style: TextStyle(
-       fontSize: 18,
-       fontWeight: FontWeight.w400
-      ),
+    final Text defaultMessage = Text(
+      'Could not find any examples. 😕',
+      style: TextStyles.definitionStyle
     );
 
     return Card(
@@ -113,14 +80,24 @@ class WordExamplesCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            title2,
+            _buildSizedBox(height: 15),
+
+            if (word.en.antonyms != null) WordCateogry(category: this.word.en.antonyms),
+            if (word.en.antonyms == null) defaultMessage,
+
+            _buildSizedBox(),
+
             title,
             _buildSizedBox(height: 15),
-            definition,
+            if (word.en.synonyms != null) WordCateogry(category: this.word.en.synonyms),
+            if (word.en.synonyms == null) defaultMessage,
           ],
         )
       )
     );
   }
+
 
   Widget _buildVerticallLayout() {
     return ListView(
@@ -134,7 +111,6 @@ class WordExamplesCard extends StatelessWidget {
             _buildSizedBox(height: 15),
             _buildRelatedWordsCard(),
             _buildSizedBox(height: 15),
-            _buildAntonymsCard(),
           ],
         ),
       ],

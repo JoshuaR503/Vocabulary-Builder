@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/word_conjugation.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_examples.dart';
 
 class WordScreen extends StatefulWidget {
@@ -10,49 +11,61 @@ class WordScreen extends StatefulWidget {
   const WordScreen({
     this.word,
   }) : assert(word != null);
+
   @override
   _WordState createState() => _WordState();
 }
 
 class _WordState extends State<WordScreen> {
+
+  final List<Widget> _children = [];
+  final List<Tab> _tabs = [
+    Tab(text: 'About'),
+    Tab(text: 'Examples')
+  ];
+
+  @override
+  void initState() {
+    _children.add(WordAboutCard(word: this.widget.word));
+    _children.add(WordExamplesCard(word: this.widget.word));
+
+    if (this.widget.word.en.root != null) {
+      _tabs.add(Tab(text: 'Conjugation'));
+      _children.add(WordConjugationCard(word: this.widget.word));
+    }
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          backgroundColor: Color(0xFF1e1e1e),
-          appBar: AppBar(
-            actions: <Widget>[
-              Tooltip(
-                message: 'Reload Content',
-                child: IconButton(
-                  icon: Icon(Icons.favorite_border),
-                  onPressed: () {}
-                ),
+      length: _tabs.length,
+      child: Scaffold(
+        backgroundColor: Color(0xFF1e1e1e),
+        appBar: AppBar(
+          actions: <Widget>[
+            Tooltip(
+              message: 'Add to favorites',
+              child: IconButton(
+                icon: Icon(Icons.favorite_border),
+                onPressed: () {}
               ),
-            ],
-            backgroundColor: this.widget.word.color,
-            bottom: TabBar(
-              indicatorWeight: 3,
-              tabs: [
-                Tab(text: 'About',),
-                Tab(text: 'Examples',),
-                // Tab(text: 'Conjugation'),
-              ],
             ),
-            title: Text(this.widget.word.en.word),
+          ],
+          backgroundColor: this.widget.word.color,
+          bottom: TabBar(
+            indicatorWeight: 3,
+            tabs: _tabs
           ),
-          body: SafeArea(
-            
-            child: TabBarView(
-              children: [
-                WordAboutCard(word: this.widget.word),
-                WordExamplesCard(word: this.widget.word),
-                // WordConjugationCard(word: this.widget.word),
-              ],
-            ),
-          )
+          title: Text(this.widget.word.en.word),
+        ),
+        body: SafeArea(
+          child: TabBarView(
+            children: _children,
+          ),
         )
+      )
     );
   }
 }

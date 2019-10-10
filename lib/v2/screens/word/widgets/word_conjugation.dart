@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/styles.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/row_item.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dart';
 
 class WordConjugationCard extends StatelessWidget {
@@ -18,19 +20,8 @@ class WordConjugationCard extends StatelessWidget {
   Widget _buildConjugationCard() {
 
     final Text title = Text(
-      'Conjugation of ${this.word.en.word}',
-      style: TextStyle(
-       fontSize: 28,
-       fontWeight: FontWeight.bold
-      ),
-    );
-
-    final Text definition = Text(
-      '${this.word.en.present}',
-      style: TextStyle(
-       fontSize: 18,
-       fontWeight: FontWeight.w400
-      ),
+      'Indicative Conjugation',
+      style: TextStyles.titleStyle
     );
 
     return WordDataCard(
@@ -40,9 +31,66 @@ class WordConjugationCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+
             title,
             _buildSizedBox(height: 20),
-            definition,
+            RowItem(
+              title: 'First Person',
+              subtitle: '${this.word.en.firstPerson}',
+            ),
+
+            _buildSizedBox(height: 20),
+            RowItem(
+              title: 'Second Person',
+              subtitle: '${this.word.en.secondPerson}',
+            ),
+
+            _buildSizedBox(height: 20),
+            RowItem(
+              title: 'Third Person',
+              subtitle: '${this.word.en.thirdPerson}',
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildVerbConjugationCard() {
+
+    final Text title = Text(
+      'Verb Conjugation',
+      style: TextStyles.titleStyle
+    );
+
+    return WordDataCard(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+
+            title,
+            _buildSizedBox(height: 20),
+            RowItem(
+              title: 'Root',
+              subtitle: '${this.word.en.root}',
+            ),
+
+            _buildSizedBox(height: 20),
+            RowItem(
+              title: 'Present',
+              subtitle: '${this.word.en.present}',
+            ),
+
+            _buildSizedBox(height: 20),
+            RowItem(
+              title: 'Past',
+              subtitle: '${this.word.en.past}',
+            ),
+
           ],
         ),
       ),
@@ -58,6 +106,8 @@ class WordConjugationCard extends StatelessWidget {
           children: <Widget>[
             _buildSizedBox(height: 15),
             _buildConjugationCard(),
+             _buildSizedBox(height: 15),
+            _buildVerbConjugationCard()
           ],
         ),
       ],

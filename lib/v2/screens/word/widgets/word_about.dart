@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/styles.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_button.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dart';
 
 class WordAboutCard extends StatelessWidget {
 
@@ -50,17 +51,15 @@ class WordAboutCard extends StatelessWidget {
   }
 
   Widget _buildFirstCard() {
-    return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+    return WordDataCard(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: _buildFirstCardChildren(),
-        ),
-      ),
+        )
+      )
     );
   }
 
@@ -68,15 +67,10 @@ class WordAboutCard extends StatelessWidget {
 
     final Text title = Text(
       'Gramatical Category',
-      style: TextStyle(
-       fontSize: 24,
-       fontWeight: FontWeight.bold
-      ),
+      style: TextStyles.titleStyle
     );
 
-    return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+    return WordDataCard(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: Column(
@@ -88,7 +82,7 @@ class WordAboutCard extends StatelessWidget {
             WordCateogry(category: this.word.en.category),
           ],
         )
-      )
+      ),
     );
   }
 

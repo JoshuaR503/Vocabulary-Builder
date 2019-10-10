@@ -4,6 +4,7 @@ import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/styles.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_button.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dart';
 
 class WordExamplesCard extends StatelessWidget {
 
@@ -21,24 +22,15 @@ class WordExamplesCard extends StatelessWidget {
 
     final Text title = Text(
       'Examples',
-      style: TextStyle(
-       fontSize: 26,
-       fontWeight: FontWeight.bold
-      ),
+      style: TextStyles.titleStyle
     );
 
     final Text examples = Text(
       '${this.word.en.examples}',
-      style: TextStyle(
-       fontSize: 16.5,
-       fontWeight: FontWeight.w400,
-       color: AppFontColors.secondaryText
-      ),
+      style: TextStyles.definitionStyle
     );
 
-    return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+    return WordDataCard(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: Column(
@@ -71,9 +63,7 @@ class WordExamplesCard extends StatelessWidget {
       style: TextStyles.definitionStyle
     );
 
-    return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+    return WordDataCard(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: Column(
@@ -97,7 +87,6 @@ class WordExamplesCard extends StatelessWidget {
       )
     );
   }
-
 
   Widget _buildVerticallLayout() {
     return ListView(

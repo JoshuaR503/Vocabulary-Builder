@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dart';
 
 class WordConjugationCard extends StatelessWidget {
 
@@ -32,9 +33,7 @@ class WordConjugationCard extends StatelessWidget {
       ),
     );
 
-    return Card(
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+    return WordDataCard(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: Column(

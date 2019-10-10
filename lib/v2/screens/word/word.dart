@@ -20,6 +20,7 @@ class _WordState extends State<WordScreen> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: Color(0xFF1e1e1e),
           appBar: AppBar(
             actions: <Widget>[
               Tooltip(
@@ -42,6 +43,7 @@ class _WordState extends State<WordScreen> {
             title: Text(this.widget.word.en.word),
           ),
           body: SafeArea(
+            
             child: TabBarView(
               children: [
                 WordAboutCard(word: this.widget.word),

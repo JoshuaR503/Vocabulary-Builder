@@ -71,22 +71,25 @@ class _WordState extends State<WordScreen> {
     _handler();
   }
 
+  List<Widget> _buildActions() {
+    return [
+      Tooltip(
+        message: 'Add to favorites',
+        child: Builder(
+          builder: (context) => IconButton(
+            onPressed: () => _builder(context),
+            icon: icon
+          )
+        )
+      )
+    ];
+  }
+  
   Widget _buildAppBar() {
     return AppBar(
       backgroundColor: this.widget.word.color,
       title: Text(this.widget.word.en.word),
-      actions: <Widget>[
-        Tooltip(
-          message: 'Add to favorites',
-          child: Builder(
-            builder: (context) => IconButton(
-              onPressed: () => _builder(context),
-              icon: icon
-            )
-          )
-        ),
-      ],
-      
+      actions: _buildActions(),
       bottom: TabBar(
         indicatorWeight: 3,
         tabs: _tabs

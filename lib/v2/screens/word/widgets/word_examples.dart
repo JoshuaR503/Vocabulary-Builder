@@ -31,17 +31,14 @@ class WordExamplesCard extends StatelessWidget {
     );
 
     return WordDataCard(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            title,
-            _buildSizedBox(height: 20),
-            examples,
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          title,
+          _buildSizedBox(height: 20),
+          examples,
+        ],
       ),
     );
   }
@@ -64,26 +61,26 @@ class WordExamplesCard extends StatelessWidget {
     );
 
     return WordDataCard(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            title2,
-            _buildSizedBox(height: 15),
-
-            if (word.en.antonyms != null) WordCateogry(category: this.word.en.antonyms),
-            if (word.en.antonyms == null) defaultMessage,
-
-            _buildSizedBox(),
-
-            title,
-            _buildSizedBox(height: 15),
-            if (word.en.synonyms != null) WordCateogry(category: this.word.en.synonyms),
-            if (word.en.synonyms == null) defaultMessage,
-          ],
-        )
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          title2,
+          _buildSizedBox(height: 15),
+          if (word.en.antonyms != null) WordCateogry(
+            category: this.word.en.antonyms,
+            word: this.word,
+          ),
+          if (word.en.antonyms == null) defaultMessage,
+          _buildSizedBox(),
+          title,
+          _buildSizedBox(height: 15),
+          if (word.en.synonyms != null) WordCateogry(
+            category: this.word.en.synonyms,
+            word: this.word,
+          ),
+          if (word.en.synonyms == null) defaultMessage,
+        ],
       )
     );
   }

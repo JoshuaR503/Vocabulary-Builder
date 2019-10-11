@@ -27,34 +27,30 @@ class WordConjugationCard extends StatelessWidget {
     );
 
     return WordDataCard(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          title,
 
-            title,
-            _buildSizedBox(height: 20),
-            RowItem(
-              title: 'First Person',
-              subtitle: '${this.word.en.firstPerson}',
-            ),
+          _buildSizedBox(height: 20),
+          RowItem(
+            title: 'First Person',
+            subtitle: '${this.word.en.firstPerson}',
+          ),
 
-            _buildSizedBox(height: 20),
-            RowItem(
-              title: 'Second Person',
-              subtitle: '${this.word.en.secondPerson}',
-            ),
+          _buildSizedBox(height: 20),
+          RowItem(
+            title: 'Second Person',
+            subtitle: '${this.word.en.secondPerson}',
+          ),
 
-            _buildSizedBox(height: 20),
-            RowItem(
-              title: 'Third Person',
-              subtitle: '${this.word.en.thirdPerson}',
-            ),
-
-          ],
-        ),
+          _buildSizedBox(height: 20),
+          RowItem(
+            title: 'Third Person',
+            subtitle: '${this.word.en.thirdPerson}',
+          ),
+        ],
       ),
     );
   }
@@ -70,33 +66,27 @@ class WordConjugationCard extends StatelessWidget {
     );
 
     return WordDataCard(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-
-            title,
-            _buildSizedBox(height: 20),
-            RowItem(
-              title: 'Root',
-              subtitle: '${this.word.en.root}',
-            ),
-
-            _buildSizedBox(height: 20),
-            RowItem(
-              title: 'Present',
-              subtitle: '${this.word.en.present}',
-            ),
-
-            _buildSizedBox(height: 20),
-            RowItem(
-              title: 'Past',
-              subtitle: '${this.word.en.past}',
-            ),
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          title,
+          _buildSizedBox(height: 20),
+          RowItem(
+            title: 'Root',
+            subtitle: '${this.word.en.root}',
+          ),
+          _buildSizedBox(height: 20),
+          RowItem(
+            title: 'Present',
+            subtitle: '${this.word.en.present}',
+          ),
+          _buildSizedBox(height: 20),
+          RowItem(
+            title: 'Past',
+            subtitle: '${this.word.en.past}',
+          ),
+        ],
       ),
     );
   }

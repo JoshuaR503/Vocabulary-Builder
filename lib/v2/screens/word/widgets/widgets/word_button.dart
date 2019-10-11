@@ -1,12 +1,29 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:vocabulary_builder/v2/models/models.dart';
 
 class WordCateogry extends StatelessWidget {
 
+  final Word word;
   final String category;
 
   WordCateogry({
+    this.word,
     this.category,
   }) : assert(category != null);
+
+  void _playAudio(String text) async {
+    final AudioPlayer audioPlayer = AudioPlayer();
+
+    final String lang = 'en';
+    final String word = this.word.en.word.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
+    final String fileName = text.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
+    final String url = 'https://vocabulary-builder-sounds-bucket.s3.amazonaws.com/$lang-$word-$fileName.mp3';
+
+    await audioPlayer
+    .play(url)
+    .catchError((error) => print('Error: $error'));
+  }
 
   Widget _buildContainer({String text}) {
     final String cleanText = text.trim();
@@ -25,7 +42,9 @@ class WordCateogry extends StatelessWidget {
       height: 35.0,
       width: width,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          if (this.word != null) _playAudio(cleanText);
+        },
         child: Center(
           child: Text(
             text,

@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 
 class WordDataCard extends StatelessWidget {
@@ -14,9 +11,12 @@ class WordDataCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6.0,
-      color: Color(0XFF303030),
+      color: Color(0XFF2b2b2b),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      child: child
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        child: child,
+      )
     );
   }
 }

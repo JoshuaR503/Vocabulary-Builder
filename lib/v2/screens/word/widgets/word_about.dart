@@ -52,13 +52,10 @@ class WordAboutCard extends StatelessWidget {
 
   Widget _buildFirstCard() {
     return WordDataCard(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: _buildFirstCardChildren(),
-        )
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _buildFirstCardChildren(),
       )
     );
   }
@@ -71,18 +68,15 @@ class WordAboutCard extends StatelessWidget {
     );
 
     return WordDataCard(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            title,
-            _buildSizedBox(height: 15),
-            WordCateogry(category: this.word.en.category),
-          ],
-        )
-      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          title,
+          _buildSizedBox(height: 15),
+          WordCateogry(category: this.word.en.category),
+        ],
+      )
     );
   }
 

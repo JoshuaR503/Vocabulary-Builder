@@ -74,7 +74,10 @@ class WordAboutCard extends StatelessWidget {
         children: <Widget>[
           title,
           _buildSizedBox(height: 15),
-          WordCateogry(category: this.word.en.category),
+          WordCateogry(
+            category: this.word.en.category,
+            word: null,
+          ),
         ],
       )
     );

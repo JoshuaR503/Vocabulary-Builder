@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
-
 import 'package:vocabulary_builder/v2/config/config.dart';
 import 'package:vocabulary_builder/v2/widgets/components/container.dart';
 
@@ -24,20 +20,6 @@ class _HomeState extends State<Home> {
   @override
   void dispose() {
     super.dispose();
-  }
-
-  void _changeTheme() async {
-
-    final sp = await SharedPreferences.getInstance();
-    final currentTheme = sp.getString('app_theme') ?? false;
-    final bool isLight = currentTheme == 'Light';
-    final String theme = isLight 
-    ? 'Dark' 
-    : 'Light';
-
-    BlocProvider
-      .of<ThemeBloc>(context)
-      .dispatch(ThemeChanged(theme: theme));
   }
 
   Widget _buildAppTitle() {
@@ -75,7 +57,11 @@ class _HomeState extends State<Home> {
   Widget _buildButton() {
     return FloatingActionButton(
       child: Icon(Icons.settings),
-      onPressed: _changeTheme
+      onPressed: () {
+        Navigator
+        .of(context)
+        .pushNamed('/settings');
+      }
     );
   }
 

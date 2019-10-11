@@ -120,7 +120,11 @@ import 'package:vocabulary_builder/v2/blocs/delegate.dart';
 import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 import 'package:vocabulary_builder/v2/config/themes/themes.dart';
+
 import 'package:vocabulary_builder/v2/screens/home/home.dart';
+import 'package:vocabulary_builder/v2/screens/saved/saved.dart';
+import 'package:vocabulary_builder/v2/screens/settings/settings.dart';
+import 'package:vocabulary_builder/v2/screens/translator/translator.dart';
 
 void main() async {
 
@@ -146,6 +150,9 @@ class VocabularyBuilderApp extends StatelessWidget {
 
   final Map<String, WidgetBuilder> routes = {
     '/': (BuildContext context) => Home(),
+    '/saved': (BuildContext context) => SavedWordsScreen(),
+    '/settings': (BuildContext context) => SettingsScreen(),
+    '/translator': (BuildContext context) => TranslatorScreen(),
   };
 
   @override

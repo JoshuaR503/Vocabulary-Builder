@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/screens/help/help.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_conjugation.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_examples.dart';
@@ -38,38 +39,49 @@ class _WordState extends State<WordScreen> {
     super.initState();
   }
 
+  Widget _buildAppBar() {
+    return AppBar(
+      backgroundColor: this.widget.word.color,
+      title: Text(this.widget.word.en.word),
+      actions: <Widget>[
+        Tooltip(
+          message: 'Add to favorites',
+          child: IconButton(
+            icon: Icon(Icons.favorite_border),
+            onPressed: () {}
+          ),
+        ),
+      ],
+      
+      bottom: TabBar(
+        indicatorWeight: 3,
+        tabs: _tabs
+      ),
+    );
+  }
+
+  Widget _buildFloatingActionButton() {
+    return FloatingActionButton(
+      child: Icon(FontAwesomeIcons.question),
+      onPressed: () => Navigator
+        .of(context)
+        .push(MaterialPageRoute(
+          builder: (context) => HelpScreen(color: widget.word.color)
+        ))
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: _tabs.length,
       child: Scaffold(
         backgroundColor: Color(0xFF1e1e1e),
-        appBar: AppBar(
-          actions: <Widget>[
-            Tooltip(
-              message: 'Add to favorites',
-              child: IconButton(
-                icon: Icon(Icons.favorite_border),
-                onPressed: () {}
-              ),
-            ),
-          ],
-          backgroundColor: this.widget.word.color,
-          bottom: TabBar(
-            indicatorWeight: 3,
-            tabs: _tabs
-          ),
-          title: Text(this.widget.word.en.word),
-        ),
+        floatingActionButton: _buildFloatingActionButton(),
+        appBar: _buildAppBar(),
         body: SafeArea(
-          child: TabBarView(
-            children: _children,
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(FontAwesomeIcons.question),
-          onPressed: () {}
-        ),
+          child: TabBarView(children: _children),
+        )
       )
     );
   }

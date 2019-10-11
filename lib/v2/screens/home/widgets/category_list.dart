@@ -15,11 +15,7 @@ class CategoryList extends StatefulWidget {
 
 class _CategoryListState extends State<CategoryList> {
 
-  void _changeRoute({
-    String name,
-    Color color
-  }) {
-
+  void _pushCategory({String name, Color color}) {
     BlocProvider
       .of<WordsBloc>(context)
       .dispatch(FetchWords(category: name));
@@ -32,6 +28,12 @@ class _CategoryListState extends State<CategoryList> {
           color: color,
         )
       ));
+  }
+
+  void _pushSpecial({String route}) {
+    Navigator
+      .of(context)
+      .pushNamed('/$route');
   }
 
   GridView _buildGridView(BuildContext context) {
@@ -60,14 +62,18 @@ class _CategoryListState extends State<CategoryList> {
       CategoryCard(
         categories[index],
         onPress: () {
-
+          final String routeName = categories[index].routeName;
           final String categoryName = categories[index].name;
           final Color categoryColor = categories[index].color;
 
-          _changeRoute(
-            name: categoryName,
-            color: categoryColor
-          );
+          if (categoryName != 'All words' && categories[index].isSpecial) {
+            _pushSpecial(route: routeName);
+          } else {
+            _pushCategory(
+              name: routeName,
+              color: categoryColor
+            );  
+          }
         }
       ),
     );

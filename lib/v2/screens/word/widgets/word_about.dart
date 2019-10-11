@@ -13,15 +13,46 @@ class WordAboutCard extends StatelessWidget {
     this.word
   }) : assert(word != null);
 
+  void _playAudio() { }
+
   Widget _buildSizedBox({double height = 30.0}) {
     return SizedBox(height: height);
   }
 
-  List<Widget> _buildFirstCardChildren() {
+  Widget _buildAnimatedContainer({Widget child, Function onTap}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(right: 15),
+          child: child,
+        ),
+
+        AnimatedContainer(
+          duration: Duration(seconds: 1),
+          curve: Curves.easeIn,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color:  Colors.black.withOpacity(0.5),
+          ),
+          height: 35.0,
+          width: 50,
+          child: InkWell(
+            onTap: onTap,
+            child: Center(
+              child: Icon(Icons.volume_up)
+            ),
+          ),
+        )
+      ]
+    );
+  }
+
+  List<Widget> _buildDefinitionSectionChildren() {
 
     final Text title1 = Text(
       '${this.word.en.word}',
-      style: TextStyles.titleStyle
+      style: TextStyles.titleStyle,
     );
 
     final Text title2 = Text(
@@ -38,33 +69,54 @@ class WordAboutCard extends StatelessWidget {
       '${this.word.es.definition}',
       style: TextStyles.definitionStyle
     );
+    
+    final Widget header = _buildAnimatedContainer(
+      child: title1,
+      onTap: () {}
+    );
+
+    final Widget header2 = _buildAnimatedContainer(
+      child: title2,
+      onTap: () {}
+    );
 
     return [
-      title1,
-      _buildSizedBox(height: 15),
+      header,
+      _buildSizedBox(height: 10),
       definition1,
       _buildSizedBox(),
-      title2,
-      _buildSizedBox(height: 15),
+      header2,
+      _buildSizedBox(height: 10),
       definition2,
+
     ];
   }
 
-  Widget _buildFirstCard() {
+  Widget _buildDefinitonSection() {
     return WordDataCard(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _buildFirstCardChildren(),
+        children: _buildDefinitionSectionChildren(),
       )
     );
   }
 
-  Widget _buildThirdCard() {
+  Widget _buildRelatedWordsCard() {
 
     final Text title = Text(
-      'Gramatical Category',
+      'Synonyms',
       style: TextStyles.titleStyle
+    );
+
+    final Text title2 = Text(
+      'Antonyms',
+      style: TextStyles.titleStyle
+    );
+
+    final Text defaultMessage = Text(
+      'Could not find any examples. 😕',
+      style: TextStyles.definitionStyle
     );
 
     return WordDataCard(
@@ -72,12 +124,21 @@ class WordAboutCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          title2,
+          _buildSizedBox(height: 15),
+          if (word.en.antonyms != null) WordCateogry(
+            category: this.word.en.antonyms,
+            word: this.word,
+          ),
+          if (word.en.antonyms == null) defaultMessage,
+          _buildSizedBox(),
           title,
           _buildSizedBox(height: 15),
-          WordCateogry(
-            category: this.word.en.category,
-            word: null,
+          if (word.en.synonyms != null) WordCateogry(
+            category: this.word.en.synonyms,
+            word: this.word,
           ),
+          if (word.en.synonyms == null) defaultMessage,
         ],
       )
     );
@@ -93,10 +154,10 @@ class WordAboutCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               _buildSizedBox(height: 15),
-              _buildFirstCard(),
+              _buildDefinitonSection(),
               _buildSizedBox(height: 15),
-              _buildThirdCard(),
-              _buildSizedBox(height: 90),
+              _buildRelatedWordsCard(),
+              _buildSizedBox(height: 60),
             ],
           ),
         ],

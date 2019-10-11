@@ -6,12 +6,6 @@ import 'package:vocabulary_builder/v2/models/word/metadata.dart';
 class Word extends Equatable {
   final Color color;
   final Color accentColor;
-  final String word;
-  final String wordTranslation;
-
-  final String wordPronuntiation;
-  final String wordPronuntiationTranslation;
-
   final String level;
 
   final WordData en;
@@ -20,19 +14,13 @@ class Word extends Equatable {
   Word({
     this.accentColor,
     this.color,
-    this.word,
-    this.wordTranslation,
-    this.wordPronuntiation,
-    this.wordPronuntiationTranslation,
     this.level,
     this.en,
     this.es
   }) : super([
-    word,
-    wordTranslation,
-    wordPronuntiation,
-    wordPronuntiationTranslation,
-    level, en, es
+    level, 
+    en,
+    es
   ]);
 
   static List<Word> converToList(List<dynamic> response) {
@@ -44,11 +32,6 @@ class Word extends Equatable {
       final Word word = Word(
         accentColor: _accentColor(category),
         color: _color(category),
-        
-        word: data['word'],
-        wordTranslation: data['wordTranslation'],
-        wordPronuntiation: data['wordPronuntiation'],
-        wordPronuntiationTranslation: data['wordPronuntiationTranslation'],
         en: WordData.fromJson(data['EN']),
         es: WordData.fromJson(data['ES']),
         level: data['level']

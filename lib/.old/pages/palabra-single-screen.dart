@@ -187,6 +187,8 @@ class SinglePalabraScreen extends StatelessWidget  {
                   subtitle: presente,
                   copyClipboard: true
                 ),
+
+                
                 Separator.spacer(),
 
                 RowItem(

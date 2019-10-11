@@ -24,11 +24,11 @@ class WordCard extends StatefulWidget {
 class _WordCardState extends State<WordCard> {
   void _playAudio() async {
     final AudioPlayer audioPlayer = AudioPlayer();
-    final String audio = widget.word.wordPronuntiation;
-
+    final String audio = widget.word.en.wordPronuntiation;
+    
     await audioPlayer
     .play(audio)
-    .catchError((error) => print(error));
+    .catchError((error) => print('Error: $error'));
   }
 
   void _changeScreen() async {
@@ -81,7 +81,7 @@ class _WordCardState extends State<WordCard> {
       Padding(
         padding: EdgeInsets.only(left: 30.0, top: 20),
         child: Text(
-              this.widget.word.word,
+              this.widget.word.en.word,
               overflow: TextOverflow.ellipsis,
               maxLines: maxLines,
               style: TextStyle(
@@ -93,7 +93,7 @@ class _WordCardState extends State<WordCard> {
       Padding(
         padding: EdgeInsets.only(left: 30.0, top: 20),
         child: Text(
-          this.widget.word.wordTranslation,
+          this.widget.word.es.word,
           overflow: TextOverflow.ellipsis,
           maxLines: maxLines,
           style: TextStyle(

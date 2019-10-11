@@ -22,6 +22,7 @@ class WordCard extends StatefulWidget {
 }
 
 class _WordCardState extends State<WordCard> {
+  
   void _playAudio() async {
     final AudioPlayer audioPlayer = AudioPlayer();
     final String audio = widget.word.en.wordPronuntiation;
@@ -39,36 +40,39 @@ class _WordCardState extends State<WordCard> {
       ));
   }
 
-  List<Widget> _buildRigthColumn() {
+  Widget _buildMaterialButton({Widget child, Function onPressed}) {
     final ShapeBorder shape = RoundedRectangleBorder( borderRadius: BorderRadius.circular(10));
 
+    return MaterialButton(
+      minWidth: 2,
+      elevation: 2,
+      color: widget.word.color,
+      shape: shape,
+      onPressed: onPressed,
+      child: child
+    );
+  }
+
+  List<Widget> _buildRigthColumn() {
     return [
       Padding(
         padding: EdgeInsets.only(top: 20),
-        child: MaterialButton(
-          minWidth: 2,
-          elevation: 2,
-          color: widget.word.color,
-          shape: shape,
+        child: _buildMaterialButton(
           onPressed: _playAudio,
           child: Icon(
             Icons.volume_up,
             color: Colors.white,
-          ), 
+          ),
         )
       ),
       Padding(
         padding: EdgeInsets.only(top: 10),
-        child: MaterialButton(
-          minWidth: 2,
-          elevation: 2,
-          color: widget.word.color,
-          shape: shape,
+        child: _buildMaterialButton(
+          onPressed: _changeScreen,
           child: Icon(
             Icons.arrow_forward,
             color: Colors.white,
           ), 
-          onPressed: _changeScreen,
         )
       )
     ];
@@ -81,14 +85,14 @@ class _WordCardState extends State<WordCard> {
       Padding(
         padding: EdgeInsets.only(left: 30.0, top: 20),
         child: Text(
-              this.widget.word.en.word,
-              overflow: TextOverflow.ellipsis,
-              maxLines: maxLines,
-              style: TextStyle(
-                fontSize: 25.0, 
-                fontWeight: FontWeight.bold
-              ),
-            ),
+          this.widget.word.en.word,
+          overflow: TextOverflow.ellipsis,
+          maxLines: maxLines,
+          style: TextStyle(
+            fontSize: 25.0, 
+            fontWeight: FontWeight.bold
+          ),
+        ),
       ),
       Padding(
         padding: EdgeInsets.only(left: 30.0, top: 20),

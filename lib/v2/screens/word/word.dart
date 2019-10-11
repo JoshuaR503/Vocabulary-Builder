@@ -3,6 +3,7 @@ import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_conjugation.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_examples.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class WordScreen extends StatefulWidget {
 
@@ -64,7 +65,11 @@ class _WordState extends State<WordScreen> {
           child: TabBarView(
             children: _children,
           ),
-        )
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(FontAwesomeIcons.question),
+          onPressed: () {}
+        ),
       )
     );
   }

@@ -99,7 +99,7 @@ class WordExamplesCard extends StatelessWidget {
             _buildExamplesCard(),
             _buildSizedBox(height: 15),
             _buildRelatedWordsCard(),
-            _buildSizedBox(height: 15),
+            _buildSizedBox(height: 90),
           ],
         ),
       ],

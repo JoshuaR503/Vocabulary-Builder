@@ -11,12 +11,12 @@ class RowItem extends StatelessWidget {
     assert(subtitle != null);
 
   final TextStyle titleStyle = TextStyle(
-    fontSize: 17.5,
+    fontSize: 16.5,
     color: Colors.white,
   );
 
   final TextStyle subtitleStyle = TextStyle(
-    fontSize: 17.5,
+    fontSize: 16.5,
     fontWeight: FontWeight.w100,
     color: AppFontColors.secondaryText
   );

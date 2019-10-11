@@ -99,7 +99,7 @@ class WordAboutCard extends StatelessWidget {
               _buildFirstCard(),
               _buildSizedBox(height: 15),
               _buildThirdCard(),
-              _buildSizedBox(height: 45),
+              _buildSizedBox(height: 90),
             ],
           ),
         ],

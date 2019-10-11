@@ -12,7 +12,7 @@ class WordsApiClient {
     // Get Word Count.
     final int wordCount = await this._fetchWordCount();
     final int skip = wordCount != 0 ? wordCount : 0;
-    final String url = '$baseUrl/v3/word/public?limit=8&skip=$skip';
+    final String url = '$baseUrl/v3/word/public';
 
     // http request - words.
     final Response<dynamic> response = await this._fetchData(url: url);
@@ -35,7 +35,7 @@ class WordsApiClient {
     // final int wordCount = await this._fetchWordCount();
     // final int skip = wordCount != 0 ? wordCount : 0;
 
-    final String serverUrl = '$baseUrl/v3/word/category/$category?limit=8';
+    final String serverUrl = '$baseUrl/v3/word/category/$category';
     final Response<dynamic> response = await _fetchData(url: serverUrl);
 
     // Handle more status code responses.

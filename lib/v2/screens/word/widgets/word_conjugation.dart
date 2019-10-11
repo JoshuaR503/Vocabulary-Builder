@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
-import 'package:vocabulary_builder/v2/screens/word/widgets/styles.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/row_item.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dart';
 
@@ -21,7 +20,10 @@ class WordConjugationCard extends StatelessWidget {
 
     final Text title = Text(
       'Indicative Conjugation',
-      style: TextStyles.titleStyle
+      style: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold
+      )
     );
 
     return WordDataCard(
@@ -61,7 +63,10 @@ class WordConjugationCard extends StatelessWidget {
 
     final Text title = Text(
       'Verb Conjugation',
-      style: TextStyles.titleStyle
+      style: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold
+      )
     );
 
     return WordDataCard(
@@ -90,7 +95,6 @@ class WordConjugationCard extends StatelessWidget {
               title: 'Past',
               subtitle: '${this.word.en.past}',
             ),
-
           ],
         ),
       ),
@@ -107,7 +111,8 @@ class WordConjugationCard extends StatelessWidget {
             _buildSizedBox(height: 15),
             _buildConjugationCard(),
              _buildSizedBox(height: 15),
-            _buildVerbConjugationCard()
+            _buildVerbConjugationCard(),
+            _buildSizedBox(height: 90),
           ],
         ),
       ],

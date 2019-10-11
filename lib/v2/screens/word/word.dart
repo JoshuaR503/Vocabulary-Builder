@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/screens/help/help.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_conjugation.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_examples.dart';
@@ -18,7 +19,6 @@ class WordScreen extends StatefulWidget {
 
 class _WordState extends State<WordScreen> {
 
-  final Icon icon = Icon(Icons.favorite_border);
   final List<Widget> _children = [];
   final List<Tab> _tabs = [
     Tab(text: 'About'),
@@ -77,8 +77,21 @@ class _WordState extends State<WordScreen> {
         message: 'Add to favorites',
         child: Builder(
           builder: (context) => IconButton(
+            icon: Icon(Icons.favorite_border),
             onPressed: () => _builder(context),
-            icon: icon
+          )
+        )
+      ),
+      Tooltip(
+        message: 'Help',
+        child: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(Icons.help_outline),
+            onPressed: () => Navigator
+              .of(context)
+              .push(MaterialPageRoute(
+                builder: (context) => HelpScreen(color: this.widget.word.color)
+              ))
           )
         )
       )

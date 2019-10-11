@@ -82,15 +82,22 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
 
-    final double deviceWidth = MediaQuery.of(context).size.width;
-    final bool isSmall = deviceWidth <= 479;
-    final double space = !isSmall 
-    ? deviceWidth / 30
-    : 0;
+    final Size size = MediaQuery.of(context).size;
+    final double deviceWidth = size.width;
+    final double deviceHeight = size.height;
+
+    final bool isSmall = deviceWidth < 480 && deviceHeight < 200;
+    final bool isBig = deviceWidth >= 890.0;
   
+    final double smallWidth = deviceWidth / 30;
+    final double bigWidth = deviceWidth / 10;
+    final double horizontal = isSmall 
+    ? smallWidth : isBig 
+    ? bigWidth : 0;
+
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: space),
+        padding: EdgeInsets.symmetric(horizontal: horizontal),
         decoration: BoxDecoration(color: Theme.of(context).accentColor),
         child: ListView(
           children: <Widget>[

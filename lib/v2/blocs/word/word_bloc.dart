@@ -7,9 +7,18 @@ class WordBloc extends Bloc<WordEvent, WordState> {
   WordState get initialState => InitialWordState();
 
   @override
-  Stream<WordState> mapEventToState(
-    WordEvent event,
-  ) async* {
-    // TODO: Add Logic
+  Stream<WordState> mapEventToState(WordEvent event) async* {
+
+
+    if (event is FetchWordsEvent) {
+
+      yield LoadingWordState();
+
+      await Future
+      .delayed(Duration(seconds: 5));
+
+      yield EmptyWordState();
+      
+    }
   }
 }

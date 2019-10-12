@@ -4,27 +4,14 @@ import 'package:vocabulary_builder/v2/models/word/word.dart';
 
 class WordDatabaseClient {
 
-  final String path;
-  
-  WordDatabaseClient({
-    @required this.path,
-  });
-
   Future<void> saveWord({String box, Word data}) async {
-
-    Hive.init(path);
     
-    await Hive
-    .box(box)
-    .add(data);
+    print('Store in $box ${data.color}');
   }
   
   Future<dynamic> fetchSavedWords({String box}) async {
+
+    print('Store in $box');
     
-    Hive.init(path);
-
-    final dynamic data = await Hive.openBox(box);
-
-    print(data);
   }
 }

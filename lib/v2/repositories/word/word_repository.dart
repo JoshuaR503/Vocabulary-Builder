@@ -5,15 +5,10 @@ import 'package:vocabulary_builder/v2/repositories/word/word_db_client.dart';
 
 class WordRepository {
 
-  final WordDatabaseClient client;
-
-  WordRepository({
-    @required this.client
-  });
+  final WordDatabaseClient client = WordDatabaseClient();
 
   void fetchWords() async {
     final res = await this.client.fetchSavedWords(box: 'Words');
-
     print(res);
   }
 

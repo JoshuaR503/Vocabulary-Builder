@@ -109,21 +109,16 @@ class WordAboutCard extends StatelessWidget {
     );
   }
 
-  Widget _buildRelatedWordsCard() {
+  Widget _buildGramaticalCategory() {
 
     final Text title = Text(
-      'Synonyms',
+      'Gramatical Category',
       style: TextStyles.titleStyle
     );
 
-    final Text title2 = Text(
-      'Antonyms',
-      style: TextStyles.titleStyle
-    );
-
-    final Text defaultMessage = Text(
-      'Could not find any examples. 😕',
-      style: TextStyles.definitionStyle
+    final Text definition = Text(
+      this.word.en.category,
+      style: TextStyles.definitionStyle,
     );
 
     return WordDataCard(
@@ -131,25 +126,15 @@ class WordAboutCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          title2,
-          _buildSizedBox(height: 15),
-          if (word.en.antonyms != null) WordCateogry(
-            category: this.word.en.antonyms,
-            word: this.word,
-          ),
-          if (word.en.antonyms == null) defaultMessage,
-          _buildSizedBox(),
           title,
           _buildSizedBox(height: 15),
-          if (word.en.synonyms != null) WordCateogry(
-            category: this.word.en.synonyms,
-            word: this.word,
-          ),
-          if (word.en.synonyms == null) defaultMessage,
+          definition
         ],
       )
     );
   }
+
+  
 
   Widget _buildVerticallLayout() {
     return Padding(
@@ -163,7 +148,7 @@ class WordAboutCard extends StatelessWidget {
               _buildSizedBox(height: 15),
               _buildDefinitonSection(),
               _buildSizedBox(height: 15),
-              _buildRelatedWordsCard(),
+              _buildGramaticalCategory(),
               _buildSizedBox(height: 60),
             ],
           ),

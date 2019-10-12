@@ -7,7 +7,7 @@ class Word extends Equatable {
   final Color color;
   final Color accentColor;
   final String level;
-
+  final String id;
   final WordData en;
   final WordData es;
 
@@ -15,6 +15,7 @@ class Word extends Equatable {
     this.accentColor,
     this.color,
     this.level,
+    this.id,
     this.en,
     this.es
   }) : super([
@@ -32,6 +33,7 @@ class Word extends Equatable {
       final Word word = Word(
         accentColor: _accentColor(category),
         color: _color(category),
+        id: json['_id'],
         en: WordData.fromJson(data['EN']),
         es: WordData.fromJson(data['ES']),
         level: data['level']

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 final Map<String, ThemeData> appTheme = {
   "Dark": ThemeData(
     fontFamily: 'CircularStd',
@@ -15,7 +14,7 @@ final Map<String, ThemeData> appTheme = {
   "Light": ThemeData(
     fontFamily: 'CircularStd',
     brightness: Brightness.light,
-    accentColor: Colors.white38,
+    accentColor: Colors.white30,
     textTheme: TextTheme().apply(
       bodyColor: Colors.black87,
       displayColor: Colors.black87,

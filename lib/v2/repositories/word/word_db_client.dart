@@ -1,4 +1,4 @@
-import 'package:meta/meta.dart';
+
 import 'package:sembast/sembast.dart';
 import 'package:vocabulary_builder/v2/data/database.dart';
 import 'package:vocabulary_builder/v2/models/word/word.dart';
@@ -12,34 +12,19 @@ class WordDatabaseClient {
   Future<Database> get _database async => await VocabularyBuilderDatabase.instance.database;
 
   Future<void> insert({ Word data}) async {
-    await _wordsStore.add(await _database, data.toMap());
+    await _wordsStore.add(await _database, data.toJson());
   }
   
   Future<List<Word>> fetchSavedWords() async {
-
-    final finder = Finder(sortOrders: [SortOrder('dbId')]);
-    final rs = await _wordsStore.find(
+    final Finder finder = Finder(sortOrders: [SortOrder('dbId')]);
+    final List<RecordSnapshot<int, Map<String, dynamic>>> response = await _wordsStore.find(
       await _database,
       finder: finder
     );
 
-    return rs.map((snapshot) {
+    return response
+    .map((snapshot) => Word.fromMap(snapshot.value))
+    .toList();
 
-      final word = Word.fromMap(snapshot.value);
-
-      word.dbId = snapshot.key;
-
-      return word;
-
-    }).toList();
-  }
-
-  Future<void> delete(Word word) async {
-    final finder = Finder(filter: Filter.byKey(word.dbId));
-
-    await _wordsStore.delete(
-      await _database,
-      finder: finder
-    );
   }
 }

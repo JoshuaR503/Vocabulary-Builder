@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/help/help.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
@@ -42,7 +44,9 @@ class _WordState extends State<WordScreen> {
   }
 
   void _handler() {
-    // TODO: Add saving word handler.
+    BlocProvider
+      .of<WordBloc>(context)
+      .dispatch(InsertWordEvent(word: this.widget.word));
   }
 
   void _builder(context) {

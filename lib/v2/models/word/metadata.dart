@@ -62,6 +62,27 @@ class WordData {
     );
   }
 
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'word': word,
+    'wordPronuntiation': wordPronuntiation,
+
+    'firstPerson': firstPerson,
+    'secondPerson': secondPerson,
+    'thirdPerson': thirdPerson,
+
+    'past': past,
+    'root': root,
+    'present': present,
+
+    'synonyms': synonyms,
+    'antonyms': antonyms,
+    'examples': examples,
+
+    'note': note,
+    'category': category,
+    'definition': definition
+  };
+
   Map<String, dynamic> toMap() {
     return {
       'word': word,

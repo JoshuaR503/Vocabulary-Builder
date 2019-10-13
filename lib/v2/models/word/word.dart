@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/painting.dart';
+import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/word/metadata.dart';
 
@@ -80,30 +79,28 @@ class Word {
     }
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'accentColor': accentColor,
-      'color': color,
+  Map<String, dynamic> toJson() => <String, dynamic> {
+    'accentColor': null,
+    'color': null,
 
-      'level': level,
+    'level': level,
+  
+    'en': en.toJson(),
+    'es': en.toJson(),
     
-      'en': en.toMap(),
-      'es': en.toMap(),
-
-      'id': id,
-      'dbId': dbId,
-    };
-  }
+    'id': id,
+    'dbId': dbId,
+  };
 
   static Word fromMap(Map<String, dynamic> map) {
     return Word(
-      accentColor: map['accentColor'],
-      color: map['color'],
+      accentColor: AppColors.brown,
+      color: AppColors.brown,
 
       level: map['level'],
 
-      en: map['en'],
-      es: map['es'],
+      en: WordData.fromMap(map['en']),
+      es: WordData.fromMap(map['es']),
 
       id: map['id'],
       dbId: map['dbId'],

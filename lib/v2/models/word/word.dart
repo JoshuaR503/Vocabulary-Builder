@@ -1,13 +1,14 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/painting.dart';
+import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/word/metadata.dart';
 
-class Word extends Equatable {
+class Word {
+  int dbId;
+
   final Color color;
   final Color accentColor;
   final String level;
-
+  final String id;
   final WordData en;
   final WordData es;
 
@@ -15,13 +16,13 @@ class Word extends Equatable {
     this.accentColor,
     this.color,
     this.level,
+    
     this.en,
-    this.es
-  }) : super([
-    level, 
-    en,
-    es
-  ]);
+    this.es,
+
+    this.id,
+    this.dbId,
+  });
 
   static List<Word> converToList(List<dynamic> response) {
     final List<Word> words = [];
@@ -32,6 +33,7 @@ class Word extends Equatable {
       final Word word = Word(
         accentColor: _accentColor(category),
         color: _color(category),
+        id: json['_id'],
         en: WordData.fromJson(data['EN']),
         es: WordData.fromJson(data['ES']),
         level: data['level']
@@ -77,4 +79,31 @@ class Word extends Equatable {
     }
   }
 
+  Map<String, dynamic> toJson() => <String, dynamic> {
+    'accentColor': null,
+    'color': null,
+
+    'level': level,
+  
+    'en': en.toJson(),
+    'es': en.toJson(),
+    
+    'id': id,
+    'dbId': dbId,
+  };
+
+  static Word fromMap(Map<String, dynamic> map) {
+    return Word(
+      accentColor: AppColors.brown,
+      color: AppColors.brown,
+
+      level: map['level'],
+
+      en: WordData.fromMap(map['en']),
+      es: WordData.fromMap(map['es']),
+
+      id: map['id'],
+      dbId: map['dbId'],
+    );
+  }
 }

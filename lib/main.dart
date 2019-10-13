@@ -116,8 +116,14 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
+import 'package:flutter_i18n/flutter_i18n_delegate.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:vocabulary_builder/v2/blocs/delegate.dart';
 import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
+import 'package:vocabulary_builder/v2/blocs/word/word_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 import 'package:vocabulary_builder/v2/config/themes/themes.dart';
 
@@ -139,6 +145,10 @@ void main() async {
 
         BlocProvider<WordsBloc>(
           builder: (context) => WordsBloc(),
+        ),
+
+        BlocProvider<WordBloc>(
+          builder: (context) => WordBloc(),
         )
       ],
       child: VocabularyBuilderApp(),
@@ -147,7 +157,8 @@ void main() async {
 }
 
 class VocabularyBuilderApp extends StatelessWidget {
-
+  
+  final FirebaseAnalytics _analytics = FirebaseAnalytics();
   final Map<String, WidgetBuilder> routes = {
     '/': (BuildContext context) => Home(),
     '/saved': (BuildContext context) => SavedWordsScreen(),
@@ -160,9 +171,23 @@ class VocabularyBuilderApp extends StatelessWidget {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (BuildContext context, ThemeState state) {
         return MaterialApp(
+          
           title: 'Vocabulary Builder',
           theme: appTheme['Dark'],
-          routes: routes
+          routes: routes,
+
+          navigatorObservers: [
+            FirebaseAnalyticsObserver(analytics: _analytics),
+          ],
+          supportedLocales: [
+            Locale('en', 'US'),
+            Locale('es', 'US')
+          ],
+          localizationsDelegates: [
+            FlutterI18nDelegate(false, 'en'),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate
+          ],
         );
       }
     );

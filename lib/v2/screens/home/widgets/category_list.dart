@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 import 'package:vocabulary_builder/v2/config/categories.dart';
 import 'package:vocabulary_builder/v2/screens/category/category.dart';
@@ -28,6 +29,12 @@ class _CategoryListState extends State<CategoryList> {
           color: color,
         )
       ));
+  }
+
+  void _dispatchEvent() {
+    BlocProvider
+      .of<WordBloc>(context)
+      .dispatch(FetchWordsEvent());
   }
 
   void _pushSpecial({String route}) {
@@ -66,8 +73,13 @@ class _CategoryListState extends State<CategoryList> {
           final String categoryName = categories[index].name;
           final Color categoryColor = categories[index].color;
 
-          if (categoryName != 'All words' && categories[index].isSpecial) {
+          print(categoryName);
+
+          if (categories[index].isSpecial) {
             _pushSpecial(route: routeName);
+
+            if (categoryName == 'Favorite Words') _dispatchEvent();
+            
           } else {
             _pushCategory(
               name: routeName,

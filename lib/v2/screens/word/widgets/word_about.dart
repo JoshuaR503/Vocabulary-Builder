@@ -1,4 +1,5 @@
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/styles.dart';
@@ -13,15 +14,52 @@ class WordAboutCard extends StatelessWidget {
     this.word
   }) : assert(word != null);
 
+  void _playAudio({String audio}) async {
+    final AudioPlayer audioPlayer = AudioPlayer();
+    
+    await audioPlayer
+    .play(audio)
+    .catchError((error) => print('Error: $error'));
+  }
+
   Widget _buildSizedBox({double height = 30.0}) {
     return SizedBox(height: height);
   }
 
-  List<Widget> _buildFirstCardChildren() {
+  Widget _buildAnimatedContainer({Widget child, Function onTap}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(right: 15),
+          child: child,
+        ),
+
+        AnimatedContainer(
+          duration: Duration(seconds: 1),
+          curve: Curves.easeIn,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color:  Colors.black.withOpacity(0.5),
+          ),
+          height: 35.0,
+          width: 50,
+          child: InkWell(
+            onTap: onTap,
+            child: Center(
+              child: Icon(Icons.volume_up)
+            ),
+          ),
+        )
+      ]
+    );
+  }
+
+  List<Widget> _buildDefinitionSectionChildren() {
 
     final Text title1 = Text(
       '${this.word.en.word}',
-      style: TextStyles.titleStyle
+      style: TextStyles.titleStyle,
     );
 
     final Text title2 = Text(
@@ -38,33 +76,49 @@ class WordAboutCard extends StatelessWidget {
       '${this.word.es.definition}',
       style: TextStyles.definitionStyle
     );
+    
+    final Widget header = _buildAnimatedContainer(
+      child: title1,
+      onTap: () => _playAudio(audio: this.word.en.wordPronuntiation)
+    );
+
+    final Widget header2 = _buildAnimatedContainer(
+      child: title2,
+      onTap: () => _playAudio(audio: this.word.es.wordPronuntiation)
+    );
 
     return [
-      title1,
-      _buildSizedBox(height: 15),
+      header,
+      _buildSizedBox(height: 10),
       definition1,
       _buildSizedBox(),
-      title2,
-      _buildSizedBox(height: 15),
+      header2,
+      _buildSizedBox(height: 10),
       definition2,
+
     ];
   }
 
-  Widget _buildFirstCard() {
+  Widget _buildDefinitonSection() {
     return WordDataCard(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _buildFirstCardChildren(),
+        children: _buildDefinitionSectionChildren(),
       )
     );
   }
 
-  Widget _buildThirdCard() {
+  Widget _buildGramaticalCategory() {
 
     final Text title = Text(
       'Gramatical Category',
       style: TextStyles.titleStyle
+    );
+
+    final Text definition = Text(
+      this.word.en.category,
+      style: TextStyles.definitionStyle,
     );
 
     return WordDataCard(
@@ -74,14 +128,13 @@ class WordAboutCard extends StatelessWidget {
         children: <Widget>[
           title,
           _buildSizedBox(height: 15),
-          WordCateogry(
-            category: this.word.en.category,
-            word: null,
-          ),
+          definition
         ],
       )
     );
   }
+
+  
 
   Widget _buildVerticallLayout() {
     return Padding(
@@ -93,10 +146,10 @@ class WordAboutCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               _buildSizedBox(height: 15),
-              _buildFirstCard(),
+              _buildDefinitonSection(),
               _buildSizedBox(height: 15),
-              _buildThirdCard(),
-              _buildSizedBox(height: 90),
+              _buildGramaticalCategory(),
+              _buildSizedBox(height: 60),
             ],
           ),
         ],

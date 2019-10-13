@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/styles.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_button.dart';

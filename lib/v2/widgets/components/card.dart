@@ -1,43 +1,38 @@
 
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
-
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/word.dart';
 
-class WordCard extends StatefulWidget {
-  const WordCard({
-    @required this.word, 
-    @required this.index,
-    Key key,
-    this.onPress,
-  }) : super(key: key);
+class VocabularyBuilderCard extends StatefulWidget {
+  const VocabularyBuilderCard({
+    @required this.word,
+    @required this.topIcon,
+    @required this.bottomIcon,
+    @required this.onPressed,
+  }) : assert(word != null),
+       assert(topIcon != null),
+       assert(bottomIcon != null),
+       assert(onPressed != null);
 
-  final int index;
-  final Function onPress;
   final Word word;
+  
+  final Widget topIcon;
+  final Widget bottomIcon;
+
+  final Function onPressed;
 
   @override
-  _WordCardState createState() => _WordCardState();
+  _VocabularyBuilderCardState createState() => _VocabularyBuilderCardState();
 }
 
-class _WordCardState extends State<WordCard> {
+class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
   
-  void _playAudio() async {
-    final AudioPlayer audioPlayer = AudioPlayer();
-    final String audio = widget.word.en.wordPronuntiation;
-    
-    await audioPlayer
-    .play(audio)
-    .catchError((error) => print('Error: $error'));
-  }
-
   void _changeScreen() async {
     Navigator
-      .of(context)
-      .push(MaterialPageRoute(
-        builder: (context) => WordScreen(word: this.widget.word)
-      ));
+    .of(context)
+    .push(MaterialPageRoute(
+      builder: (context) => WordScreen(word: this.widget.word)
+    ));
   }
 
   Widget _buildMaterialButton({Widget child, Function onPressed}) {
@@ -58,21 +53,15 @@ class _WordCardState extends State<WordCard> {
       Padding(
         padding: EdgeInsets.only(top: 20),
         child: _buildMaterialButton(
-          onPressed: _playAudio,
-          child: Icon(
-            Icons.volume_up,
-            color: Colors.white,
-          ),
+          onPressed: this.widget.onPressed,
+          child: this.widget.topIcon,
         )
       ),
       Padding(
         padding: EdgeInsets.only(top: 10),
         child: _buildMaterialButton(
           onPressed: _changeScreen,
-          child: Icon(
-            Icons.arrow_forward,
-            color: Colors.white,
-          ), 
+          child: this.widget.bottomIcon
         )
       )
     ];

@@ -2,9 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
+
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
+import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
-import 'package:vocabulary_builder/v2/widgets/components/word_card.dart';
 
 class Category extends StatefulWidget {
   
@@ -33,51 +35,22 @@ class _CategoryState extends State<Category> {
     super.dispose();
   }
 
+
   Widget _buildErrorMessage(String message) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 26.0, vertical: 40.0),
-      child: Text(
-        message,
-        style: TextStyle(
-          fontSize: 30,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
+    return VocabularyBuilderMessage(message: message);
   }
 
-  // TODO: CLEAN CODEEE!!!
   Widget _createWordsCard(List<Word> words) {
 
-    final Size size = MediaQuery.of(context).size;
-    final double width = size.width;
+    final Icon topIcon = Icon(Icons.volume_up,  color: Colors.white);
+    final Icon bottomIcon = Icon(Icons.forward,  color: Colors.white);
+    final String methodName = 'audio';
 
-    final bool isSmall = width <= 479;
-    final int crossAxisCount = isSmall ? 1 : 2;
-
-    final double childAspectRatio = isSmall 
-    ? width / 180
-    : width / 360;
-    
-    return GridView.builder(
-      physics: BouncingScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        childAspectRatio: childAspectRatio,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-      ),
-      padding: EdgeInsets.only(left: 16, right: 16, top: 16),
-      itemCount: words.length,
-      itemBuilder: (context, index) {
-
-        final Word word = words[index];
-        return WordCard(
-          word: word,
-          index: index,
-          onPress: () {},
-        );
-      }
+    return VocabularyBuilderGrid(
+      words: words,
+      methodName: methodName,
+      topIcon: topIcon,
+      bottomIcon: bottomIcon,
     );
   }
 

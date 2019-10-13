@@ -79,19 +79,6 @@ class Word {
     }
   }
 
-  Map<String, dynamic> toJson() => <String, dynamic> {
-    'accentColor': null,
-    'color': null,
-
-    'level': level,
-  
-    'en': en.toJson(),
-    'es': en.toJson(),
-    
-    'id': id,
-    'dbId': dbId,
-  };
-
   static Word fromMap(Map<String, dynamic> map) {
     return Word(
       accentColor: AppColors.brown,
@@ -106,4 +93,17 @@ class Word {
       dbId: map['dbId'],
     );
   }
+
+  Map<String, dynamic> toJson() => <String, dynamic> {
+    'accentColor': null,
+    'color': null,
+
+    'level': level,
+  
+    'en': en.toJson(),
+    'es': en.toJson(),
+    
+    'id': id,
+    'dbId': dbId,
+  };
 }

@@ -15,9 +15,20 @@ class WordBloc extends Bloc<WordEvent, WordState> {
   @override
   Stream<WordState> mapEventToState(WordEvent event) async* {
 
-    if (event is InsertWordEvent) {
+    if (event is FetchWordsEvent) {
+      yield* _fetchWords();
+
+    } else if (event is InsertWordEvent) {
+
       await _wordRepository.insertWord(word: event.word);
       yield* _fetchWords();
+
+    } else if (event is DeleteWordsEvent) {
+      print('deleting words');
+      await Future.delayed(Duration(seconds: 2));
+      await _wordRepository.deleteAll();
+      yield* _fetchWords();
+
     }
   }
 

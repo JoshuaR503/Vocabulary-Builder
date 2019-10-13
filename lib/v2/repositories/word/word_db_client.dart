@@ -14,9 +14,16 @@ class WordDatabaseClient {
   Future<void> insert({ Word data}) async {
     await _wordsStore.add(await _database, data.toJson());
   }
+
+  Future<void> deleteAll() async {
+    await _wordsStore.delete(await _database);
+  }
   
   Future<List<Word>> fetchSavedWords() async {
-    final Finder finder = Finder(sortOrders: [SortOrder('dbId')]);
+    final Finder finder = Finder(
+      sortOrders: [SortOrder('dbId')]
+    );
+
     final List<RecordSnapshot<int, Map<String, dynamic>>> response = await _wordsStore.find(
       await _database,
       finder: finder
@@ -25,6 +32,5 @@ class WordDatabaseClient {
     return response
     .map((snapshot) => Word.fromMap(snapshot.value))
     .toList();
-
   }
 }

@@ -62,4 +62,50 @@ class WordData {
     );
   }
 
+  Map<String, dynamic> toMap() {
+    return {
+      'word': word,
+      'wordPronuntiation': wordPronuntiation,
+
+      'firstPerson': firstPerson,
+      'secondPerson': secondPerson,
+      'thirdPerson': thirdPerson,
+
+      'past': past,
+      'root': root,
+      'present': present,
+
+      'synonyms': synonyms,
+      'antonyms': antonyms,
+
+      'examples': examples,
+      'note': note,
+      'category': category,
+      'definition': definition,
+    };
+  }
+
+  static WordData fromMap(Map<String, dynamic> map) {
+    return WordData(
+      word: map['word'],
+      wordPronuntiation: map['wordPronuntiation'],
+
+      firstPerson: map['firstPerson'],
+      secondPerson: map['secondPerson'],
+      thirdPerson: map['thirdPerson'],
+
+      past: map['past'],
+      root: map['root'],
+      present: map['present'],
+
+      synonyms: map['synonyms'],
+      antonyms: map['antonyms'],
+
+      examples: map['examples'],
+      note: map['note'],
+      category: map['category'],
+      definition: map['definition'],
+    );
+  }
+
 }

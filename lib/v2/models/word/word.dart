@@ -3,7 +3,9 @@ import 'package:flutter/painting.dart';
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/word/metadata.dart';
 
-class Word extends Equatable {
+class Word {
+  int dbId;
+
   final Color color;
   final Color accentColor;
   final String level;
@@ -15,14 +17,13 @@ class Word extends Equatable {
     this.accentColor,
     this.color,
     this.level,
-    this.id,
+    
     this.en,
-    this.es
-  }) : super([
-    level, 
-    en,
-    es
-  ]);
+    this.es,
+
+    this.id,
+    this.dbId,
+  });
 
   static List<Word> converToList(List<dynamic> response) {
     final List<Word> words = [];
@@ -79,4 +80,33 @@ class Word extends Equatable {
     }
   }
 
+  Map<String, dynamic> toMap() {
+    return {
+      'accentColor': accentColor,
+      'color': color,
+
+      'level': level,
+    
+      'en': en.toMap(),
+      'es': en.toMap(),
+
+      'id': id,
+      'dbId': dbId,
+    };
+  }
+
+  static Word fromMap(Map<String, dynamic> map) {
+    return Word(
+      accentColor: map['accentColor'],
+      color: map['color'],
+
+      level: map['level'],
+
+      en: map['en'],
+      es: map['es'],
+
+      id: map['id'],
+      dbId: map['dbId'],
+    );
+  }
 }

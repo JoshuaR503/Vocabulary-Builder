@@ -5,3 +5,5 @@ abstract class WordEvent extends Equatable {
 }
 
 class FetchWordsEvent extends WordEvent {}
+
+class InsertWordEvent extends WordEvent {}

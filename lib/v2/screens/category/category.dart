@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
-import 'package:vocabulary_builder/v2/screens/category/widgets/word_card.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
+import 'package:vocabulary_builder/v2/widgets/components/word_card.dart';
 
 class Category extends StatefulWidget {
   
@@ -46,6 +46,7 @@ class _CategoryState extends State<Category> {
     );
   }
 
+  // TODO: CLEAN CODEEE!!!
   Widget _createWordsCard(List<Word> words) {
 
     final Size size = MediaQuery.of(context).size;

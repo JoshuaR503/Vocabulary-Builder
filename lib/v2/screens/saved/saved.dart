@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
 
 import 'package:vocabulary_builder/v2/config/colors.dart';
@@ -22,15 +23,14 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
       .dispatch(DeleteWordsEvent());
   }
 
-  
   Widget _buildErrorMessage(String message) {
     return VocabularyBuilderMessage(message: message);
   }
 
   Widget _createWordsCard(List<Word> words) {
 
-    final Icon topIcon = Icon(Icons.volume_up,  color: Colors.white);
     final Icon bottomIcon = Icon(Icons.forward,  color: Colors.white);
+    final Icon topIcon = Icon(FontAwesomeIcons.trashAlt);
     final String methodName = 'delete';
 
     return VocabularyBuilderGrid(
@@ -72,7 +72,7 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
         message: 'Erease everything',
         child: Builder(
           builder: (context) => IconButton(
-            icon: Icon(Icons.delete),
+            icon: Icon(FontAwesomeIcons.trashAlt),
             onPressed: _deleteHandler,
           )
         )
@@ -85,7 +85,7 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.brown,
-        title: Text('Favorite Words Screen'),
+        title: Text('Saved'),
         actions: _buildAppbarActions(),
         centerTitle: true,
       ),

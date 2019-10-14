@@ -20,10 +20,7 @@ class WordDatabaseClient {
   }
   
   Future<List<Word>> fetchSavedWords() async {
-    final Finder finder = Finder(
-      sortOrders: [SortOrder('dbId')]
-    );
-
+    final Finder finder = Finder(sortOrders: [SortOrder('dbId')]);
     final List<RecordSnapshot<int, Map<String, dynamic>>> response = await _wordsStore.find(
       await _database,
       finder: finder

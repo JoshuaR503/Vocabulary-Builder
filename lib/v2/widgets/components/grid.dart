@@ -34,6 +34,8 @@ void _deleteWord(dynamic id) {
 
 void _playAudio(String audio) async {
   final AudioPlayer audioPlayer = AudioPlayer();
+
+  print(audio);
   
   await audioPlayer
   .play(audio)

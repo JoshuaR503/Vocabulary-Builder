@@ -1,32 +1,3 @@
-// import 'dart:async';
-
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:flutter_localizations/flutter_localizations.dart';
-// import 'package:flutter_i18n/flutter_i18n_delegate.dart';
-
-// import 'package:firebase_analytics/firebase_analytics.dart';
-// import 'package:firebase_analytics/observer.dart';
-
-// import 'package:vocabulary_builder/model/main.dart';
-// import 'package:vocabulary_builder/pages/others/creditos-screen.dart';
-// import 'package:vocabulary_builder/pages/others/help.dart';
-
-// import 'package:vocabulary_builder/pages/palabra-guardada-screen.dart';
-// import 'package:vocabulary_builder/pages/palabras-screen.dart';
-// import 'package:vocabulary_builder/pages/screens/intro-screen.dart';
-// import 'package:vocabulary_builder/pages/screens/welcome-screen.dart';
-
-// import 'package:vocabulary_builder/utils/colors.dart';
-// import 'package:vocabulary_builder/utils/settings.dart';
-
-// import 'package:scoped_model/scoped_model.dart';
-// import 'package:dynamic_theme/dynamic_theme.dart';
-
-// import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-
-// final MainModel model = MainModel();
-    
 // void main() {
 //   model.loadData();
 //   model.checkInternetConnection();
@@ -106,8 +77,6 @@
 //     ); 
 //   }
 // }
-
-
 
 
 

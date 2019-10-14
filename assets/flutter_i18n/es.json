@@ -1,4 +1,42 @@
 {
+    "app_name": "Vocabulary Builder",
+
+    "categories": {
+        "translator": {
+            "name": "Traductor"
+        },
+
+        "verb": {
+            "name": "Verbos"
+        },
+
+        "adjectives": {
+            "name": "Adjetivos"
+        },
+
+        "phrasal_verbs": {
+            "name": "Verbos Frasales"
+        },
+
+        "idioms": {
+            "name": "Modismos"
+        },
+
+        "nouns": {
+            "name": "Sustantivos"
+        },
+
+        "all_words": {
+            "name": "Banco de Palabras"
+        },
+
+        "saved": {
+            "name": "Palabras guardadas"
+        }
+    },
+
+
+
     "app": "Vocabulary",
 
     "welcome_screen": {

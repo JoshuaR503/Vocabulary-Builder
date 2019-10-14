@@ -68,6 +68,7 @@ class _CategoryListState extends State<CategoryList> {
       
       CategoryCard(
         categories[index],
+        
         onPress: () {
           final String routeName = categories[index].routeName;
           final String categoryName = categories[index].name;

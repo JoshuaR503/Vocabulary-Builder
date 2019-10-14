@@ -1,4 +1,41 @@
 {
+    "app_name": "Constructor de Vocabulario",
+    
+    "categories": {
+        "translator": {
+            "name": "Translator"
+        },
+
+        "verb": {
+            "name": "Verbs"
+        },
+
+        "adjectives": {
+            "name": "Adjectives"
+        },
+
+        "phrasal_verbs": {
+            "name": "Phrasal Verbs"
+        },
+
+        "idioms": {
+            "name": "Idioms"
+        },
+
+        "nouns": {
+            "name": "Nouns"
+        },
+
+        "all_words": {
+            "name": "All Words"
+        },
+
+        "saved": {
+            "name": "Favorite Words"
+        }
+    },
+
+
     "app": "Vocabulario",
 
     "welcome_screen": {

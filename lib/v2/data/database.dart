@@ -39,7 +39,7 @@ class VocabularyBuilderDatabase {
     // Find platform's directory.
     final Directory dir = await getApplicationDocumentsDirectory();
     // Find Database.
-    final String databasePath = join(dir.path, 'vocabularyBuilder.db');
+    final String databasePath = join(dir.path, 'VocabularyBuilder.db');
     // Open Database.
     final Database database = await databaseFactoryIo.openDatabase(databasePath);
     // Complete _databaseCompleter

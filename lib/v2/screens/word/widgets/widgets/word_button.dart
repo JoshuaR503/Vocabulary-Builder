@@ -1,6 +1,7 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/core/functions.dart';
 
 class WordCateogry extends StatelessWidget {
 
@@ -13,16 +14,15 @@ class WordCateogry extends StatelessWidget {
   }) : assert(category != null);
 
   void _playAudio(String text) async {
-    final AudioPlayer audioPlayer = AudioPlayer();
+
+    final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
 
     final String lang = 'en';
     final String word = this.word.en.word.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
     final String fileName = text.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
     final String url = 'https://vocabulary-builder-sounds-bucket.s3.amazonaws.com/$lang-$word-$fileName.mp3';
 
-    await audioPlayer
-    .play(url)
-    .catchError((error) => print('Error: $error'));
+    functions.playAudio(audio: url);
   }
 
   Widget _buildContainer({String text}) {

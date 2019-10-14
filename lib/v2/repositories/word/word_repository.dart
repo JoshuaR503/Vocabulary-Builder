@@ -9,6 +9,10 @@ class WordRepository {
     return await this._client.fetchSavedWords();
   }
 
+  Future<void> delete({Word word}) async {
+    await this._client.delete(word: word);
+  }
+
   Future<void> deleteAll() async {
     await this._client.deleteAll();
   }

@@ -1,6 +1,6 @@
 
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:vocabulary_builder/v2/core/functions.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/styles.dart';
 
@@ -9,18 +9,12 @@ import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dar
 class WordAboutCard extends StatelessWidget {
 
   final Word word;
+  final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
 
   WordAboutCard({
     this.word
   }) : assert(word != null);
 
-  void _playAudio({String audio}) async {
-    final AudioPlayer audioPlayer = AudioPlayer();
-    
-    await audioPlayer
-    .play(audio)
-    .catchError((error) => print('Error: $error'));
-  }
 
   Widget _buildSizedBox({double height = 30.0}) {
     return SizedBox(height: height);
@@ -79,12 +73,12 @@ class WordAboutCard extends StatelessWidget {
     
     final Widget header = _buildAnimatedContainer(
       child: title1,
-      onTap: () => _playAudio(audio: this.word.en.wordPronuntiation)
+      onTap: () => functions.playAudio(audio: this.word.en.wordPronuntiation)
     );
 
     final Widget header2 = _buildAnimatedContainer(
       child: title2,
-      onTap: () => _playAudio(audio: this.word.es.wordPronuntiation)
+      onTap: () => functions.playAudio(audio: this.word.es.wordPronuntiation)
     );
 
     return [
@@ -133,8 +127,6 @@ class WordAboutCard extends StatelessWidget {
       )
     );
   }
-
-  
 
   Widget _buildVerticallLayout() {
     return Padding(

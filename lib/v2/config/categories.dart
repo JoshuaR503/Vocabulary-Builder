@@ -24,8 +24,8 @@ const List<WordCategory> categories = [
   ),
 
   WordCategory(
-    name: "Phasal Verbs", 
-    routeName: "Phasal Verbs",
+    name: "Phrasal Verbs", 
+    routeName: "phrasal_verbs",
     color: AppColors.orange
   ),
 

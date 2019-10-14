@@ -1,12 +1,15 @@
 
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
+import 'package:vocabulary_builder/v2/core/functions.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/widgets/components/card.dart';
 
 class VocabularyBuilderGrid extends StatefulWidget {
-
+  
   const VocabularyBuilderGrid({
     @required this.words,
     @required this.methodName,
@@ -27,20 +30,19 @@ class VocabularyBuilderGrid extends StatefulWidget {
   _VocabularyBuilderGridState createState() => _VocabularyBuilderGridState();
 }
 
-void _deleteWord(dynamic id) {
-  // TODO: Add delete method.
-  print(id);
-}
-
-void _playAudio(String audio) async {
-  final AudioPlayer audioPlayer = AudioPlayer();
-  
-  await audioPlayer
-  .play(audio)
-  .catchError((error) => print('Error: $error'));
-}
-
 class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
+
+  final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
+
+  void _deleteWord({Word word}) {
+
+    print(word.wordId);
+
+    BlocProvider
+      .of<WordBloc>(context)
+      .dispatch(DeleteWordEvent(word: word));
+  } 
+
 
   Widget _buildVocabularyBuilderCard(Word word) {
     return VocabularyBuilderCard(
@@ -48,8 +50,8 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
       topIcon: widget.topIcon,
       bottomIcon: widget.bottomIcon,
       onPressed: () {
-        if (widget.methodName == 'audio') _playAudio(word.en.wordPronuntiation);
-        if (widget.methodName == 'delete') _deleteWord(word.id);
+        if (widget.methodName == 'audio') functions.playAudio(audio: word.en.wordPronuntiation);
+        if (widget.methodName == 'delete') _deleteWord(word: word);
       }
     );
   }

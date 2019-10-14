@@ -3,14 +3,16 @@ import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/word/metadata.dart';
 
 class Word {
-  int dbId;
 
   final Color color;
   final Color accentColor;
   final String level;
-  final String id;
+  
   final WordData en;
   final WordData es;
+
+  final String wordId;
+  int id;
 
   Word({
     this.accentColor,
@@ -20,22 +22,23 @@ class Word {
     this.en,
     this.es,
 
-    this.id,
-    this.dbId,
+    this.wordId,
   });
 
   static List<Word> converToList(List<dynamic> response) {
     final List<Word> words = [];
 
     response.forEach((data) {
-      final dynamic json = data['EN'];
-      final String category = json['category'];
+      
+      final WordData json = WordData.fromJson(data['EN']);
       final Word word = Word(
-        accentColor: _accentColor(category),
-        color: _color(category),
-        id: json['_id'],
+        accentColor: _accentColor(json.category),
+        color: _color(json.category),
+        
         en: WordData.fromJson(data['EN']),
         es: WordData.fromJson(data['ES']),
+
+        wordId: data['_id'],
         level: data['level']
       );
 
@@ -53,7 +56,7 @@ class Word {
         return AppColors.red;
       case 'adjective':
         return AppColors.blue;
-      case 'phasal verb':
+      case 'phrasal verb':
         return AppColors.orange;
       case 'idiom':
         return AppColors.indigo;
@@ -89,21 +92,19 @@ class Word {
       en: WordData.fromMap(map['en']),
       es: WordData.fromMap(map['es']),
 
-      id: map['id'],
-      dbId: map['dbId'],
+      wordId: map['wordId'],
     );
   }
 
-  Map<String, dynamic> toJson() => <String, dynamic> {
+  Map<String, dynamic> toMap() => <String, dynamic> {
     'accentColor': null,
     'color': null,
 
     'level': level,
   
-    'en': en.toJson(),
-    'es': en.toJson(),
+    'en': en.toMap(),
+    'es': es.toMap(),
     
-    'id': id,
-    'dbId': dbId,
+    'wordId': wordId,
   };
 }

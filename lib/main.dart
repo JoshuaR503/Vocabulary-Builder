@@ -179,10 +179,12 @@ class VocabularyBuilderApp extends StatelessWidget {
           navigatorObservers: [
             FirebaseAnalyticsObserver(analytics: _analytics),
           ],
+          
           supportedLocales: [
             Locale('en', 'US'),
             Locale('es', 'US')
           ],
+
           localizationsDelegates: [
             FlutterI18nDelegate(false, 'en'),
             GlobalMaterialLocalizations.delegate,

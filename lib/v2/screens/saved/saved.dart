@@ -1,11 +1,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
 
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/screens/saved/widgets/search.dart';
+import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
@@ -17,11 +20,11 @@ class SavedWordsScreen extends StatefulWidget {
 
 class _SavedWordsScreenState extends State<SavedWordsScreen> {
 
-  void _deleteHandler() {
-    BlocProvider
-      .of<WordBloc>(context)
-      .dispatch(DeleteWordsEvent());
-  }
+  // void _deleteHandler() {
+  //   BlocProvider
+  //     .of<WordBloc>(context)
+  //     .dispatch(DeleteWordsEvent());
+  // }
 
   Widget _buildErrorMessage(String message) {
     return VocabularyBuilderMessage(message: message);
@@ -54,7 +57,11 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
         }
 
         if (state is EmptyWordState) {
-          return _buildErrorMessage('Nothing to see here');
+          return EmptyStateScreen(
+            message: FlutterI18n.translate(context, 'screens.saved.message'),
+            pathImage: 'assets/pictures/box.png',
+            fixMessage: FlutterI18n.translate(context, 'screens.saved.solution')
+          );
         }
 
         if (state is DeleteWordsEvent) {
@@ -66,16 +73,35 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
     );
   }
 
-  List<Widget> _buildAppbarActions()  {
+  BlocBuilder<WordBloc, WordState> _buildSearchIcon() {
+    return BlocBuilder<WordBloc, WordState>(
+      builder: (BuildContext context, WordState state) {
+
+        if (state is LoadedWordState) {
+          return IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () => Navigator
+              .of(context)
+              .push(searchWords(
+                context: context, 
+                list: state.words
+              )),
+          );
+        }
+
+        return IconButton(
+          icon: Icon(Icons.search),
+          onPressed: null
+        );
+      }
+    );
+  }
+
+  List<Widget> _buildAppbarActions(){
     return [
       Tooltip(
-        message: 'Erease everything',
-        child: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(FontAwesomeIcons.trashAlt),
-            onPressed: _deleteHandler,
-          )
-        )
+        message: 'Search',
+        child: _buildSearchIcon()
       ),
     ];
   }

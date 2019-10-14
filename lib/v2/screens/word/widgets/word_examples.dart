@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
-import 'package:vocabulary_builder/v2/screens/word/widgets/styles.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_button.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dart';
+import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
 
 class WordExamplesCard extends StatelessWidget {
 

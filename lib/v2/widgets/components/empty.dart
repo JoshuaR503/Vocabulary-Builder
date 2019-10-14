@@ -10,68 +10,72 @@ class EmptyStateScreen extends StatelessWidget {
     this.fixMessage
   });
 
-  final TextStyle titleStyle = const TextStyle(
+  final TextStyle titleStyle = TextStyle(
     color: Colors.white,
     fontWeight: FontWeight.bold,
     fontSize: 30.0,
   );
 
-  final TextStyle bottomStyle = const TextStyle(
+  final TextStyle bottomStyle = TextStyle(
     color: Colors.white, 
     fontSize: 18.0
   );
 
+  List<Widget> _buildChildren(double height, double pictureHeight) {
+    return <Widget>[
+      Container(
+        margin: EdgeInsets.only(
+          top: height / 12, 
+          left: height / 16, 
+          right: height/ 16
+        ),
+        
+        child: Text(
+          message,
+          style: titleStyle,
+          textAlign: TextAlign.center,
+        ),
+      ),
+
+      Container(
+        margin: EdgeInsets.symmetric(
+          vertical: pictureHeight, 
+          horizontal: height / 50
+        ),
+        child: Image.asset(
+          pathImage,
+          width: 200.0,
+          height: 200.0,
+          fit: BoxFit.contain,
+        ),
+      ),
+
+      Container(
+        margin: EdgeInsets.symmetric( horizontal: height / 16),
+        child: Text(
+          fixMessage,
+          style: bottomStyle,
+          textAlign: TextAlign.center,
+          maxLines: 100,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
-    final double pictureHeight = height > 600 
-    ? height / 25
-    : 12.0;
+    final double pictureHeight = height > 600  ? height / 25 : 12.0;
   
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      child: ListView(
-
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(
-              top: height / 12, 
-              left: height / 16, 
-              right: height/ 16
-            ),
-            child: Text(
-              message,
-              style: titleStyle,
-              textAlign: TextAlign.center,
-            ),
-          ),
-
-          Container(
-            margin: EdgeInsets.symmetric(
-              vertical: pictureHeight, 
-              horizontal: height / 50
-            ),
-            child: Image.asset(
-              pathImage,
-              width: 200.0,
-              height: 200.0,
-              fit: BoxFit.contain,
-            ),
-          ),
-
-          Container(
-            margin: EdgeInsets.symmetric( horizontal: height / 16),
-            child: Text(
-              fixMessage,
-              style: bottomStyle,
-              textAlign: TextAlign.center,
-              maxLines: 100,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
-      )
+    return SafeArea(
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: ListView(
+          children: _buildChildren(height, pictureHeight),
+        )
+      ),
     );
   }
 }

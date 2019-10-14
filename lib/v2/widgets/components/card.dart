@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/word.dart';
+import 'package:vocabulary_builder/v2/widgets/text/index.dart';
 
 class VocabularyBuilderCard extends StatefulWidget {
   const VocabularyBuilderCard({
@@ -77,20 +78,17 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
           this.widget.word.en.word,
           overflow: TextOverflow.ellipsis,
           maxLines: maxLines,
-          style: TextStyle(
-            fontSize: 25.0, 
-            fontWeight: FontWeight.bold
-          ),
+          style: TextStyles.titleStyle
         ),
       ),
       Padding(
-        padding: EdgeInsets.only(left: 30.0, top: 20),
+        padding: EdgeInsets.only(left: 30.0, top: 10),
         child: Text(
           this.widget.word.es.word,
           overflow: TextOverflow.ellipsis,
           maxLines: maxLines,
           style: TextStyle(
-            fontSize: 20.0, 
+            fontSize: 18.5, 
             fontWeight: FontWeight.w300
           ),
         ),

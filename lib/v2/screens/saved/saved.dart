@@ -6,6 +6,7 @@ import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
 
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/screens/saved/widgets/search.dart';
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
@@ -66,19 +67,40 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
     );
   }
 
+  BlocBuilder<WordBloc, WordState> _buildSearchIcon() {
+    return BlocBuilder<WordBloc, WordState>(
+      builder: (BuildContext context, WordState state) {
+
+        if (state is LoadedWordState) {
+          return IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () => Navigator
+              .of(context)
+              .push(searchWords(
+                context: context, 
+                list: state.words
+              )),
+          );
+        }
+
+        return IconButton(
+          icon: Icon(Icons.search),
+          onPressed: null
+        );
+      }
+    );
+  }
+
   List<Widget> _buildAppbarActions()  {
     return [
       Tooltip(
         message: 'Erease everything',
-        child: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(FontAwesomeIcons.trashAlt),
-            onPressed: _deleteHandler,
-          )
-        )
+        child: _buildSearchIcon()
       ),
     ];
   }
+
+  
   
   @override
   Widget build(BuildContext context) {

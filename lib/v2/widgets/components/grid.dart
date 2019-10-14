@@ -36,6 +36,10 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
 
   void _deleteWord({Word word}) {
 
+    // Delete audio files
+    functions.deleteFile(word.en.wordPronuntiation);
+    functions.deleteFile(word.es.wordPronuntiation);
+
     BlocProvider
       .of<WordBloc>(context)
       .dispatch(DeleteWordEvent(word: word));

@@ -1,4 +1,5 @@
 
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:sembast/sembast.dart';
 import 'package:vocabulary_builder/v2/data/database.dart';
 import 'package:vocabulary_builder/v2/models/word/word.dart';
@@ -12,7 +13,24 @@ class WordDatabaseClient {
   Future<Database> get _database async => await VocabularyBuilderDatabase.instance.database;
 
   Future<void> insert({Word data}) async {
-    await _wordsStore.add(await _database, data.toMap());
+
+    // update word's fields.
+    final wordData = data.toMap();
+
+    final wordPronuntiationEn = wordData['en']['wordPronuntiation'];
+    final wordPronuntiationEs = wordData['es']['wordPronuntiation'];
+
+    wordData['en']['wordPronuntiation'] = await this.saveToChache(wordPronuntiationEn);
+    wordData['es']['wordPronuntiation'] = await this.saveToChache(wordPronuntiationEs);
+
+    await _wordsStore.add(await _database, wordData);
+  }
+
+  Future<String> saveToChache(String url) async {
+    final FileInfo file =  await DefaultCacheManager().downloadFile(url);
+    final String fileUrl = file.file.path;
+  
+    return fileUrl;
   }
 
   Future<void> delete({Word word}) async {

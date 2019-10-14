@@ -11,6 +11,14 @@ class FetchWordsEvent extends WordEvent {}
 
 class DeleteWordsEvent extends WordEvent {}
 
+class DeleteWordEvent extends WordEvent {
+  final Word word;
+
+  DeleteWordEvent({
+    @required this.word
+  }) : super([word]);
+}
+
 class InsertWordEvent extends WordEvent {
   final Word word;
 

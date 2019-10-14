@@ -11,12 +11,19 @@ class WordDatabaseClient {
 
   Future<Database> get _database async => await VocabularyBuilderDatabase.instance.database;
 
-  Future<void> insert({ Word data}) async {
+  Future<void> insert({Word data}) async {
+    await _wordsStore.add(await _database, data.toMap());
+  }
 
-    print(data.toJson());
+  Future<void> delete({Word word}) async {
 
+    final Filter filter = Filter.byKey(word.id);
+    final Finder finder = Finder(filter: filter);
 
-    await _wordsStore.add(await _database, data.toJson());
+    await _wordsStore.delete(
+      await _database,
+      finder: finder
+    );
   }
 
   Future<void> deleteAll() async {
@@ -24,14 +31,24 @@ class WordDatabaseClient {
   }
   
   Future<List<Word>> fetchSavedWords() async {
-    final Finder finder = Finder(sortOrders: [SortOrder('dbId')]);
-    final List<RecordSnapshot<int, Map<String, dynamic>>> response = await _wordsStore.find(
+
+    final Finder finder = Finder(
+      sortOrders: [SortOrder(Field.key, false)]
+    );
+
+    final response = await _wordsStore.find(
       await _database,
       finder: finder
     );
 
     return response
-    .map((snapshot) => Word.fromMap(snapshot.value))
+    .map((snapshot) {
+
+      final Word word = Word.fromMap(snapshot.value);
+      word.id = snapshot.key;
+
+      return word;
+    })
     .toList();
   }
 }

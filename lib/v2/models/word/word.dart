@@ -12,7 +12,7 @@ class Word {
   final WordData es;
 
   final String wordId;
-  dynamic id;
+  int id;
 
   Word({
     this.accentColor,
@@ -23,7 +23,6 @@ class Word {
     this.es,
 
     this.wordId,
-    this.id,
   });
 
   static List<Word> converToList(List<dynamic> response) {
@@ -94,20 +93,18 @@ class Word {
       es: WordData.fromMap(map['es']),
 
       wordId: map['wordId'],
-      id: map['id'],
     );
   }
 
-  Map<String, dynamic> toJson() => <String, dynamic> {
+  Map<String, dynamic> toMap() => <String, dynamic> {
     'accentColor': null,
     'color': null,
 
     'level': level,
   
-    'en': en.toJson(),
-    'es': es.toJson(),
+    'en': en.toMap(),
+    'es': es.toMap(),
     
     'wordId': wordId,
-    'id': id,
   };
 }

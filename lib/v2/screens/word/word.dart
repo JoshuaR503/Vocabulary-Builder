@@ -66,7 +66,7 @@ class _WordState extends State<WordScreen> {
 
     final SnackBar snackbar = SnackBar(
       duration: Duration(seconds: 2),
-      backgroundColor: Color(0XFF2b2b2b),
+      backgroundColor: Color(0XFF383838),
       content: content,
       action: SnackBarAction(
         label: 'Show me',

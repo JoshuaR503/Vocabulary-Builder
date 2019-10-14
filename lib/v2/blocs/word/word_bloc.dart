@@ -23,12 +23,15 @@ class WordBloc extends Bloc<WordEvent, WordState> {
       await _wordRepository.insertWord(word: event.word);
       yield* _fetchWords();
 
-    } else if (event is DeleteWordsEvent) {
-      print('deleting words');
-      await Future.delayed(Duration(seconds: 2));
-      await _wordRepository.deleteAll();
+    } else if (event is DeleteWordEvent) {
+      await _wordRepository.delete(word: event.word);
       yield* _fetchWords();
 
+    }  else if (event is DeleteWordsEvent) {
+
+      await _wordRepository.deleteAll();
+      yield* _fetchWords();
+  
     }
   }
 

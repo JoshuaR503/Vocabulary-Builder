@@ -13,4 +13,17 @@ class TextStyles {
     fontWeight: FontWeight.w100,
     color: AppFontColors.secondaryText
   );
+
+  static const TextStyle commonTitleStyle = const TextStyle(
+    fontSize: 26.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.white
+  );
+
+  static const TextStyle commonSubtitleStyle = const TextStyle(
+    fontSize: 16.0,
+    fontWeight: FontWeight.normal,
+    fontFamily: 'Heebo',
+    color: Colors.white70
+  );
 }

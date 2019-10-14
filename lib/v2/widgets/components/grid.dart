@@ -36,8 +36,6 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
 
   void _deleteWord({Word word}) {
 
-    print(word.wordId);
-
     BlocProvider
       .of<WordBloc>(context)
       .dispatch(DeleteWordEvent(word: word));

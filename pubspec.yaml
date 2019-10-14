@@ -90,29 +90,5 @@ flutter:
           weight: 900
 
   assets:
-    - assets/icon/repairing.png
-    - assets/logo.png
-    - assets/books.png
-    - assets/shield.png
-    - assets/heart.png
-    - assets/idea.png
-    - assets/running-man.png
-    - assets/apple.png
-    - assets/plant.png
-    - assets/planet.png
-    - assets/info.png
-    - assets/parrot.png
-    - assets/warning.png
-    - assets/wifi.png
-    - assets/box.png
-    - assets/tree.png
-    - assets/mushroom.png
-    - assets/tap.png
-    - assets/flutter_i18n/
-    - assets/boy.png
-    - assets/confused.png
-    - assets/angry.png
-    - assets/limit.png
-    - assets/refusing.png
-    - assets/archive.png
+    - assets/pictures/
    

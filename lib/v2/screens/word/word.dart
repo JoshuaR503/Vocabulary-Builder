@@ -49,6 +49,12 @@ class _WordState extends State<WordScreen> {
       .dispatch(InsertWordEvent(word: this.widget.word));
   }
 
+  void _changeScreen() {
+    Navigator
+      .of(context)
+      .pushNamed('/saved');
+  }
+
   void _builder(context) {
 
     final Text content = Text(
@@ -59,13 +65,13 @@ class _WordState extends State<WordScreen> {
     );
 
     final SnackBar snackbar = SnackBar(
-      duration: Duration(seconds: 1),
+      duration: Duration(seconds: 2),
       backgroundColor: Color(0XFF2b2b2b),
       content: content,
       action: SnackBarAction(
-        label: 'Got it',
+        label: 'Show me',
         textColor: Colors.amber,
-        onPressed: () {},
+        onPressed: _changeScreen,
       ),
     );
 

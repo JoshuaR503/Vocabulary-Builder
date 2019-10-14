@@ -87,7 +87,6 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
         backgroundColor: AppColors.brown,
         title: Text('Saved'),
         actions: _buildAppbarActions(),
-        centerTitle: true,
       ),
       
       body: Container(

@@ -44,6 +44,7 @@ class WordsApiClient {
     }
 
     final data = response.data;
+
     final List<dynamic> wordsResponse = data['response'];
     final List<Word> words = Word.converToList(wordsResponse);
 

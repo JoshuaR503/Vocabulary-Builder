@@ -12,6 +12,10 @@ class WordDatabaseClient {
   Future<Database> get _database async => await VocabularyBuilderDatabase.instance.database;
 
   Future<void> insert({ Word data}) async {
+
+    print(data.toJson());
+
+
     await _wordsStore.add(await _database, data.toJson());
   }
 

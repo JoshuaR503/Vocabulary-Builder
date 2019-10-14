@@ -28,7 +28,6 @@ class VocabularyBuilderGrid extends StatefulWidget {
 }
 
 void _deleteWord(dynamic id) {
-  // TODO: Add delete method.
   print(id);
 }
 
@@ -51,7 +50,7 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
       bottomIcon: widget.bottomIcon,
       onPressed: () {
         if (widget.methodName == 'audio') _playAudio(word.en.wordPronuntiation);
-        if (widget.methodName == 'delete') _deleteWord(word.id);
+        if (widget.methodName == 'delete') _deleteWord(word.wordId);
       }
     );
   }

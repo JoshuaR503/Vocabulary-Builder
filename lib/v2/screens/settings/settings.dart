@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -13,7 +12,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.purple,
+        backgroundColor: Color(0xFF2b2b2b),
         title: Text('Settings Screen'),
         centerTitle: true,
       ),

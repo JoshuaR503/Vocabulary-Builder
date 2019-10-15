@@ -58,6 +58,7 @@ class WordDatabaseClient {
 
       final Word word = Word.fromMap(snapshot.value);
       word.id = snapshot.key;
+      word.isSaved = true;
 
       return word;
     })

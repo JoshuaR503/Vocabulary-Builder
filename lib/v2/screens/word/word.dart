@@ -125,7 +125,7 @@ class _WordState extends State<WordScreen> {
           child: TabBarView(children: _children),
         ),
         floatingActionButton: FloatingActionButton(
-          child: Text('🤔', style: TextStyle(fontSize: 25)),
+          child: Text('🤔', style: TextStyle(fontSize: 35)),
           onPressed: () => Navigator
             .of(context)
             .push(MaterialPageRoute(

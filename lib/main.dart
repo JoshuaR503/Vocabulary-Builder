@@ -91,6 +91,7 @@ import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:vocabulary_builder/v2/blocs/delegate.dart';
+import 'package:vocabulary_builder/v2/blocs/search/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/word/word_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
@@ -118,6 +119,10 @@ void main() async {
 
         BlocProvider<WordBloc>(
           builder: (context) => WordBloc(),
+        ),
+
+        BlocProvider<SearchBloc>(
+          builder: (context) => SearchBloc(),
         )
       ],
       child: VocabularyBuilderApp(),

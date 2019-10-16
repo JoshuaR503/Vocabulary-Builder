@@ -19,7 +19,7 @@ class EmptyStateScreen extends StatelessWidget {
   final TextStyle bottomStyle = TextStyle(
     color: Colors.white,
     fontWeight: FontWeight.w400,
-    fontSize: 22.0
+    fontSize: 20.0
   );
 
   List<Widget> _buildChildren(double height, double pictureHeight) {

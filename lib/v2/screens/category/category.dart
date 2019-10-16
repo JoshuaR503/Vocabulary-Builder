@@ -1,11 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
-import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
+
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';

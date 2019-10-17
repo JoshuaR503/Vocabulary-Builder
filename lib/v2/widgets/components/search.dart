@@ -45,9 +45,7 @@ class _VocabularyBuilderSearchState extends State<VocabularyBuilderSearch> {
     return [
       Icon(Icons.search),
       SizedBox(width: 13),
-      Expanded(
-        child: _buildTextFormField(context),
-      ),
+      Expanded(child: _buildTextFormField(context)),
     ];
   }
 

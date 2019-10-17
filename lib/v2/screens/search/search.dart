@@ -56,7 +56,7 @@ class _SearchScreenState extends State<SearchScreen> {
         }
 
         if (state is EmptySearchState) {
-          return _buildErrorMessage('Section under construction. Come back later.');
+          return _buildErrorMessage('Did not match anything realted to: ${this.widget.search}');
         }
 
         if (state is ErrorSearchState) {
@@ -74,7 +74,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF2b2b2b),
-        title: Text('Search Screen'),
+        title: Text('Searching ${widget.search}'),
       ),
       
       body: Container(

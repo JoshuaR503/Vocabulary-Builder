@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/config/config.dart';
 import 'package:vocabulary_builder/v2/widgets/components/container.dart';
 
-import 'package:vocabulary_builder/v2/screens/home/widgets/search.dart';
 import 'package:vocabulary_builder/v2/screens/home/widgets/category_list.dart';
+import 'package:vocabulary_builder/v2/widgets/components/search.dart';
 
 class Home extends StatefulWidget {
   @override

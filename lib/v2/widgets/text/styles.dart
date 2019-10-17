@@ -5,7 +5,7 @@ class TextStyles {
   static const TextStyle titleStyle = const TextStyle(
     fontSize: 24.5,
     color: Colors.white,
-    fontWeight: FontWeight.bold
+    fontWeight: FontWeight.bold,
   );
 
   static const TextStyle definitionStyle = const TextStyle(

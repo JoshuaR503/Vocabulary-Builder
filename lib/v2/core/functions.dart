@@ -19,7 +19,7 @@ class VocabularyBuilderFunctions {
     await DefaultCacheManager().removeFile(url);
   }
 
-  Future<String> saveToChache(String url) async {
+  Future<String> saveToCache(String url) async {
     final FileInfo file =  await DefaultCacheManager().downloadFile(url);
     final String fileUrl = file.file.path;
   

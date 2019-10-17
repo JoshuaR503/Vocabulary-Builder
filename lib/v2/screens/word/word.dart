@@ -69,7 +69,7 @@ class _WordState extends State<WordScreen> {
       backgroundColor: Color(0XFF383838),
       content: content,
       action: SnackBarAction(
-        label: 'Show me',
+        label: 'Show Me',
         textColor: Colors.amber,
         onPressed: _changeScreen,
       ),

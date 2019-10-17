@@ -1,20 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/config/config.dart';
-import 'package:vocabulary_builder/v2/widgets/components/container.dart';
 
 import 'package:vocabulary_builder/v2/screens/home/widgets/category_list.dart';
-import 'package:vocabulary_builder/v2/widgets/components/search.dart';
+import 'package:vocabulary_builder/v2/screens/home/widgets/container.dart';
+import 'package:vocabulary_builder/v2/screens/home/widgets/search.dart';
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
+
+  AnimationController controller;
+  Animation<double> animation;
 
   @override
   void initState() {
     super.initState();
+
+    controller = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this
+    );
+
+    animation = CurvedAnimation(
+      parent: controller, 
+      curve: Curves.linear
+    );
+
+    controller.forward();
   }
 
   @override
@@ -29,7 +44,6 @@ class _HomeState extends State<Home> {
         appName,
         style: TextStyle(
           fontSize: 32,
-          height: 0.6,
           fontWeight: FontWeight.w900,
         ),
       )
@@ -39,7 +53,7 @@ class _HomeState extends State<Home> {
   Widget _buildContent() {
     return VocabularyBuilderContainer(
       children: <Widget>[        
-        SizedBox(height: 80),
+        SizedBox(height: 60),
         _buildAppTitle(),
 
         SizedBox(height: 40),
@@ -48,7 +62,10 @@ class _HomeState extends State<Home> {
         SizedBox(height: 40),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 25),
-          child: CategoryList()
+          child: FadeTransition(
+            opacity: animation,
+            child: CategoryList(),
+          )
         )
       ],
     );

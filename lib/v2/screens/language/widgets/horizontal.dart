@@ -19,9 +19,10 @@ class HorizontalLayout extends StatelessWidget {
           SizedBox(height: 40),
   
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Button('English', null, targetWidth),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
               Button('Spanish', null, targetWidth),
             ],
           )

@@ -17,15 +17,15 @@ class VerticalLayout extends StatelessWidget {
 
           LanguageTitle(),
           
-          SizedBox(height: 40),
+          SizedBox(height: targetWidth / 10),
   
           Container(
-            padding: EdgeInsets.symmetric(vertical: 8),
+            padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
             child: Button('English', null, targetWidth),
           ),
   
           Container(
-            padding: EdgeInsets.symmetric(vertical: 8),
+            padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
             child: Button('Spanish', null, targetWidth),
           )
         ],

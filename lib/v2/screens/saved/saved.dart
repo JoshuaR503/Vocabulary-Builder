@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
 
 import 'package:vocabulary_builder/v2/config/colors.dart';
@@ -33,7 +32,7 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
   Widget _createWordsCard(List<Word> words) {
 
     final Icon bottomIcon = Icon(Icons.forward,  color: Colors.white);
-    final Icon topIcon = Icon(FontAwesomeIcons.trashAlt);
+    final Icon topIcon = Icon(Icons.delete);
     final String methodName = 'delete';
 
     return VocabularyBuilderGrid(
@@ -110,7 +109,7 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.brown,
+        backgroundColor: AppColors.indigo,
         title: Text('Saved'),
         actions: _buildAppbarActions(),
       ),

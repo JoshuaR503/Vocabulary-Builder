@@ -12,6 +12,8 @@ class Word {
   final WordData es;
 
   final String wordId;
+  
+  bool isSaved = false;
   int id;
 
   Word({
@@ -59,7 +61,7 @@ class Word {
       case 'phrasal verb':
         return AppColors.orange;
       case 'idiom':
-        return AppColors.indigo;
+        return AppColors.brown;
       default:
         return AppColors.purple;
     }
@@ -84,8 +86,8 @@ class Word {
 
   static Word fromMap(Map<String, dynamic> map) {
     return Word(
-      accentColor: AppColors.brown,
-      color: AppColors.brown,
+      accentColor: AppColors.indigo,
+      color: AppColors.indigo,
 
       level: map['level'],
 

@@ -17,8 +17,9 @@ class EmptyStateScreen extends StatelessWidget {
   );
 
   final TextStyle bottomStyle = TextStyle(
-    color: Colors.white, 
-    fontSize: 18.0
+    color: Colors.white,
+    fontWeight: FontWeight.w400,
+    fontSize: 20.0
   );
 
   List<Widget> _buildChildren(double height, double pictureHeight) {
@@ -56,8 +57,6 @@ class EmptyStateScreen extends StatelessWidget {
           fixMessage,
           style: bottomStyle,
           textAlign: TextAlign.center,
-          maxLines: 100,
-          overflow: TextOverflow.ellipsis,
         ),
       ),
     ];

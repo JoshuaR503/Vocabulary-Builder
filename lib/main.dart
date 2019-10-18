@@ -91,13 +91,15 @@ import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:vocabulary_builder/v2/blocs/delegate.dart';
+import 'package:vocabulary_builder/v2/blocs/search/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/word/word_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 import 'package:vocabulary_builder/v2/config/themes/themes.dart';
 
-import 'package:vocabulary_builder/v2/screens/home/home.dart';
+import 'package:vocabulary_builder/v2/screens/intro/intro.dart';
 import 'package:vocabulary_builder/v2/screens/saved/saved.dart';
+import 'package:vocabulary_builder/v2/screens/screen.dart';
 import 'package:vocabulary_builder/v2/screens/settings/settings.dart';
 import 'package:vocabulary_builder/v2/screens/translator/translator.dart';
 
@@ -118,6 +120,10 @@ void main() async {
 
         BlocProvider<WordBloc>(
           builder: (context) => WordBloc(),
+        ),
+
+        BlocProvider<SearchBloc>(
+          builder: (context) => SearchBloc(),
         )
       ],
       child: VocabularyBuilderApp(),
@@ -129,7 +135,8 @@ class VocabularyBuilderApp extends StatelessWidget {
   
   final FirebaseAnalytics _analytics = FirebaseAnalytics();
   final Map<String, WidgetBuilder> routes = {
-    '/': (BuildContext context) => Home(),
+    '/': (BuildContext context) => VocabularyBuilderHomeScreenManager(),
+    '/into': (BuildContext context) => IntroScreen(),
     '/saved': (BuildContext context) => SavedWordsScreen(),
     '/settings': (BuildContext context) => SettingsScreen(),
     '/translator': (BuildContext context) => TranslatorScreen(),

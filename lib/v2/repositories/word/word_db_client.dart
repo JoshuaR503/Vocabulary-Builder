@@ -21,8 +21,8 @@ class WordDatabaseClient {
     final wordPronuntiationEn = wordData['en']['wordPronuntiation'];
     final wordPronuntiationEs = wordData['es']['wordPronuntiation'];
 
-    wordData['en']['wordPronuntiation'] = await functions.saveToChache(wordPronuntiationEn);
-    wordData['es']['wordPronuntiation'] = await functions.saveToChache(wordPronuntiationEs);
+    wordData['en']['wordPronuntiation'] = await functions.saveToCache(wordPronuntiationEn);
+    wordData['es']['wordPronuntiation'] = await functions.saveToCache(wordPronuntiationEs);
 
     await _wordsStore.add(await _database, wordData);
   }
@@ -58,6 +58,7 @@ class WordDatabaseClient {
 
       final Word word = Word.fromMap(snapshot.value);
       word.id = snapshot.key;
+      word.isSaved = true;
 
       return word;
     })

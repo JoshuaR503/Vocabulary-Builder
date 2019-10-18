@@ -1,41 +1,27 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
+import 'package:vocabulary_builder/v2/blocs/search/bloc.dart';
 
-import 'package:vocabulary_builder/v2/models/models.dart';
-
+import 'package:vocabulary_builder/v2/config/colors.dart';
+import 'package:vocabulary_builder/v2/models/word/word.dart';
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
 
-class Category extends StatefulWidget {
-  
-  final String title;
-  final Color color;
+class SearchScreen extends StatefulWidget {
 
-  Category({
-    @required this.title,
-    @required this.color
-  }) : assert(title != null),
-       assert(color != null);
+  SearchScreen({
+    @required this.search
+  }) : assert(search != null);
+
+  final String search;
 
   @override
-  _CategoryState createState() => _CategoryState();
+  _SearchScreenState createState() => _SearchScreenState();
 }
 
-class _CategoryState extends State<Category> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class _SearchScreenState extends State<SearchScreen> {
 
   Widget _buildErrorMessage(String message) {
     return VocabularyBuilderMessage(message: message);
@@ -55,25 +41,25 @@ class _CategoryState extends State<Category> {
     );
   }
 
-  BlocBuilder<WordsBloc, WordsState> _buildExpanded() {
-    return BlocBuilder<WordsBloc, WordsState>(
-      builder: (BuildContext context, WordsState state) {
+  BlocBuilder<SearchBloc, SearchState> _buildExpanded() {
+    return BlocBuilder<SearchBloc, SearchState>(
+      builder: (BuildContext context, SearchState state) {
 
-        if (state is WordsLoading) {
-          return VocabularyBuilderSpinner(color: this.widget.color);
+        if (state is LoadingSearchState) {
+          return VocabularyBuilderSpinner(color: AppColors.amber);
         }
 
-        if (state is WordsLoaded) {
+        if (state is LoadedSearchState) {
           final List<Word> words = state.words;
 
           return _createWordsCard(words);
         }
 
-        if (state is WordsZero) {
-          return _buildErrorMessage('Section under construction. Come back later.');
+        if (state is EmptySearchState) {
+          return _buildErrorMessage('Did not match anything realted to: ${this.widget.search}');
         }
 
-        if (state is WordsError) {
+        if (state is ErrorSearchState) {
           return _buildErrorMessage(state.error.toString());
         }
 
@@ -82,28 +68,20 @@ class _CategoryState extends State<Category> {
     );
   }
 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: this.widget.color,
-        title: Text(this.widget.title),
-        actions: <Widget>[
-          Tooltip(
-            message: 'Reload Content',
-            child: IconButton(
-              icon: Icon(Icons.refresh),
-              onPressed: () {}
-            ),
-          ),
-        ],
+        backgroundColor: Color(0xFF2b2b2b),
+        title: Text('Searching ${widget.search}'),
       ),
       
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: Theme.of(context).accentColor),
         child: SafeArea(
-          child: _buildExpanded(),
+          child: _buildExpanded()
         )
       ),
     );

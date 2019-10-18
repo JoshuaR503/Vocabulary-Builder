@@ -35,7 +35,6 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
   final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
 
   void _deleteWord({Word word}) {
-
     // Delete audio files
     functions.deleteFile(word.en.wordPronuntiation);
     functions.deleteFile(word.es.wordPronuntiation);
@@ -44,7 +43,6 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
       .of<WordBloc>(context)
       .dispatch(DeleteWordEvent(word: word));
   } 
-
 
   Widget _buildVocabularyBuilderCard(Word word) {
     return VocabularyBuilderCard(

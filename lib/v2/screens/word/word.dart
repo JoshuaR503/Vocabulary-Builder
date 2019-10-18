@@ -20,7 +20,7 @@ class WordScreen extends StatefulWidget {
 }
 
 class _WordState extends State<WordScreen> {
-
+  
   final List<Widget> _children = [];
   final List<Tab> _tabs = [
     Tab(text: 'About'),
@@ -56,7 +56,7 @@ class _WordState extends State<WordScreen> {
   }
 
   void _builder(context) {
-
+    
     final Text content = Text(
       'Word Saved',
       style: TextStyle(
@@ -69,7 +69,7 @@ class _WordState extends State<WordScreen> {
       backgroundColor: Color(0XFF383838),
       content: content,
       action: SnackBarAction(
-        label: 'Show me',
+        label: 'Show Me',
         textColor: Colors.amber,
         onPressed: _changeScreen,
       ),
@@ -87,24 +87,18 @@ class _WordState extends State<WordScreen> {
         message: 'Add to favorites',
         child: Builder(
           builder: (context) => IconButton(
-            icon: Icon(Icons.favorite_border),
-            onPressed: () => _builder(context),
+            icon: this.widget.word.isSaved 
+            ? Icon(Icons.favorite) 
+            : Icon(Icons.favorite_border),
+            
+            onPressed: () {
+              if (!widget.word.isSaved) _builder(context);
+              if (widget.word.isSaved) return null;
+            }
           )
         )
       ),
-      Tooltip(
-        message: 'Help',
-        child: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.help_outline),
-            onPressed: () => Navigator
-              .of(context)
-              .push(MaterialPageRoute(
-                builder: (context) => HelpScreen(color: this.widget.word.color)
-              ))
-          )
-        )
-      )
+
     ];
   }
   
@@ -129,8 +123,16 @@ class _WordState extends State<WordScreen> {
         appBar: _buildAppBar(),
         body: SafeArea(
           child: TabBarView(children: _children),
-        )
-      )
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Text('🤔', style: TextStyle(fontSize: 35)),
+          onPressed: () => Navigator
+            .of(context)
+            .push(MaterialPageRoute(
+              builder: (context) => HelpScreen(color: this.widget.word.color)
+            )),
+        ),
+      ),
     );
   }
 }

@@ -49,7 +49,7 @@ class _CategoryListState extends State<CategoryList> {
     final bool isSmall = deviceWidth <= 479;
     final double space = isSmall 
     ? deviceWidth / 150
-    : deviceWidth / 230;
+    : deviceWidth / 180;
 
     return GridView.builder(
       padding: EdgeInsets.only(bottom: 58),

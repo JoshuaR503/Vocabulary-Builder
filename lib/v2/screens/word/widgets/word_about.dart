@@ -51,13 +51,33 @@ class WordAboutCard extends StatelessWidget {
 
   List<Widget> _buildDefinitionSectionChildren() {
 
-    final Text title1 = Text(
-      '${this.word.en.word}',
-      style: TextStyles.titleStyle,
-    );
-
     final Text title2 = Text(
       '${this.word.es.word}',
+      style: TextStyles.titleStyle
+    );
+
+    final Text definition2 = Text(
+      '${this.word.es.definition}',
+      style: TextStyles.definitionStyle
+    );
+
+
+    final Widget header2 = _buildAnimatedContainer(
+      child: title2,
+      onTap: () => functions.playAudio(audio: this.word.es.wordPronuntiation)
+    );
+
+    return [
+      header2,
+      _buildSizedBox(height: 10),
+      definition2,
+    ];
+  }
+
+  List<Widget> _buildDefinitionSectionEnChildren() {
+
+    final Text title2 = Text(
+      '${this.word.en.word}',
       style: TextStyles.titleStyle
     );
 
@@ -66,30 +86,15 @@ class WordAboutCard extends StatelessWidget {
       style: TextStyles.definitionStyle
     );
 
-    final Text definition2 = Text(
-      '${this.word.es.definition}',
-      style: TextStyles.definitionStyle
-    );
-    
-    final Widget header = _buildAnimatedContainer(
-      child: title1,
+    final Widget header2 = _buildAnimatedContainer(
+      child: title2,
       onTap: () => functions.playAudio(audio: this.word.en.wordPronuntiation)
     );
 
-    final Widget header2 = _buildAnimatedContainer(
-      child: title2,
-      onTap: () => functions.playAudio(audio: this.word.es.wordPronuntiation)
-    );
-
     return [
-      header,
-      _buildSizedBox(height: 10),
-      definition1,
-      _buildSizedBox(),
       header2,
       _buildSizedBox(height: 10),
-      definition2,
-
+      definition1,
     ];
   }
 
@@ -99,6 +104,16 @@ class WordAboutCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: _buildDefinitionSectionChildren(),
+      )
+    );
+  }
+
+  Widget _buildDefinitonEnSection() {
+    return WordDataCard(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _buildDefinitionSectionEnChildren(),
       )
     );
   }
@@ -137,6 +152,8 @@ class WordAboutCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              _buildSizedBox(height: 15),
+              _buildDefinitonEnSection(),
               _buildSizedBox(height: 15),
               _buildDefinitonSection(),
               _buildSizedBox(height: 15),

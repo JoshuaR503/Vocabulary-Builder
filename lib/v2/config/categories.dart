@@ -30,9 +30,10 @@ const List<WordCategory> categories = [
   ),
 
   WordCategory(
-    name: "Idioms", 
-    routeName: "Idioms",
-    color: AppColors.indigo
+    name: "Favorite Words", 
+    routeName: "saved",
+    color: AppColors.indigo,
+    isSpecial: true
   ),
   
   WordCategory(
@@ -48,9 +49,8 @@ const List<WordCategory> categories = [
   ),
   
   WordCategory(
-    name: "Favorite Words",
-    routeName: 'saved',
+    name: "Idioms",
+    routeName: 'Idioms',
     color: AppColors.brown,
-    isSpecial: true
   ),
 ];

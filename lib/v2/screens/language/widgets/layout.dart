@@ -68,9 +68,9 @@ class _LanguageLayoutState extends State<LanguageLayout> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Button('English', null, targetWidth),
+              Button('English',  () => _onTap('en', context), targetWidth),
               Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
-              Button('Spanish', null, targetWidth),
+              Button('Spanish',  () => _onTap('es', context), targetWidth),
             ],
           )
         ],

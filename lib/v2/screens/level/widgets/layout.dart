@@ -43,8 +43,8 @@ class _LevelLayoutState extends State<LevelLayout> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Button('Beginner', null, 480),
-              Button('Experienced', null, 480),
+              Button('Beginner', () => _onTap('easy', context), 480),
+              Button('Experienced', () => _onTap('normal', context), 480),
             ],
           ),
 
@@ -70,9 +70,9 @@ class _LevelLayoutState extends State<LevelLayout> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Button('Beginner', null, targetWidth),
+              Button('Beginner', () => _onTap('easy', context), targetWidth),
               Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
-              Button('Experienced', null, targetWidth),
+              Button('Experienced', () => _onTap('normal', context), targetWidth),
             ],
           )
         ],

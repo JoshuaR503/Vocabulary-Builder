@@ -19,7 +19,8 @@ class LevelLayout extends StatefulWidget {
 }
 
 class _LevelLayoutState extends State<LevelLayout> {
-  void _onTap(String level, BuildContext context) {
+  
+  void _onTap(String level) {
     BlocProvider
       .of<ConfigBloc>(context)
       .dispatch(LevelChangedEvent(config: level));
@@ -29,7 +30,7 @@ class _LevelLayoutState extends State<LevelLayout> {
     .pushNamed('/');
   }
 
-  Widget _buildVerticalLayout(double targetWidth, BuildContext context) {
+  Widget _buildVerticalLayout(double targetWidth) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 40),
       child: ListView(
@@ -39,18 +40,21 @@ class _LevelLayoutState extends State<LevelLayout> {
           LevelTitle(),
           
           SizedBox(height: targetWidth / 10),
-        
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Button('Beginner', () => _onTap('easy', context), 480),
-              Button('Experienced', () => _onTap('normal', context), 480),
-            ],
+
+
+          Container(
+            padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
+            child: Button("Beginner ", () => _onTap('easy'), 480),
           ),
 
           Container(
-            padding: EdgeInsets.symmetric(vertical: targetWidth / 20),
-            child: Button("Doesn't matter", () => _onTap('all', context), targetWidth),
+            padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
+            child: Button("Experienced ", () => _onTap('normal'), 480),
+          ),  
+
+          Container(
+            padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
+            child: Button("Doesn't matter", () => _onTap('all'), targetWidth),
           )
         ],
       ),
@@ -70,9 +74,18 @@ class _LevelLayoutState extends State<LevelLayout> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Button('Beginner', () => _onTap('easy', context), targetWidth),
+              Button('Beginner', () => _onTap('easy'), targetWidth),
               Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
-              Button('Experienced', () => _onTap('normal', context), targetWidth),
+              Button('Experienced', () => _onTap('normal'), targetWidth)
+            ],
+          ),
+
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.symmetric(vertical: targetWidth / 30),
+                child: Button("Doesn't matter", () => _onTap('all'), targetWidth),
+              )
             ],
           )
         ],
@@ -84,12 +97,11 @@ class _LevelLayoutState extends State<LevelLayout> {
   Widget build(BuildContext context) {
 
     final double deviceWidth = MediaQuery.of(context).size.width;
-    final double targetWidth = deviceWidth > 768.0 ? 650.0 : deviceWidth;
 
     if (widget.layout == 'horizontal') {
-      return _buildHorizontalLayout(targetWidth);
+      return _buildHorizontalLayout(deviceWidth);
     } else {
-      return _buildVerticalLayout(targetWidth, context);
+      return _buildVerticalLayout(deviceWidth);
     }
   }
 }

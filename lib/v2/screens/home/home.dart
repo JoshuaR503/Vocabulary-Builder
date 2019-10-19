@@ -20,13 +20,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     super.initState();
 
     controller = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: Duration(milliseconds: 1500),
       vsync: this
     );
 
     animation = CurvedAnimation(
       parent: controller, 
-      curve: Curves.linear
+      curve: Curves.decelerate
     );
 
     controller.forward();
@@ -62,10 +62,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         SizedBox(height: 40),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 25),
-          child: FadeTransition(
-            opacity: animation,
-            child: CategoryList(),
-          )
+          child: CategoryList(),
         )
       ],
     );
@@ -99,14 +96,17 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     ? bigWidth : 0;
 
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: horizontal),
-        decoration: BoxDecoration(color: Theme.of(context).accentColor),
-        child: ListView(
-          children: <Widget>[
-            _buildContent()
-          ],
-        )
+      body: FadeTransition(
+        opacity: animation,
+        child:  Container(
+          padding: EdgeInsets.symmetric(horizontal: horizontal),
+          decoration: BoxDecoration(color: Theme.of(context).accentColor),
+          child: ListView(
+            children: <Widget>[
+              _buildContent()
+            ],
+          )
+        ),
       ),
       floatingActionButton: _buildButton()
     );

@@ -35,20 +35,27 @@ class ConfigBloc extends Bloc<ConfigEvent, ConfigState> {
     if (event is LanguageChangedEvent) {
       settingsRepository.setUserLanguage(language: event.config);
 
-      yield ConfigState(
-        isFirstTime: this.isFirstTime,
-        hasLevel: this.hasLevel,
-        hasLanguage: true,
-      );
-    }
+      final bool isFirstTime = await settingsRepository.hasCompleted(key: 'seen');
+      final bool hasLanguage = await settingsRepository.hasCompleted(key: 'language');
+      final bool hasLevel = await settingsRepository.hasCompleted(key: 'level');
 
-    if (event is LevelChangedEvent) {
+      yield ConfigState(
+        isFirstTime: isFirstTime,
+        hasLevel: hasLevel,
+        hasLanguage: hasLanguage,
+      );
+      
+    } else if (event is LevelChangedEvent) {
       settingsRepository.setUserLevel(level: event.config);
 
+      final bool isFirstTime = await settingsRepository.hasCompleted(key: 'seen');
+      final bool hasLanguage = await settingsRepository.hasCompleted(key: 'language');
+      final bool hasLevel = await settingsRepository.hasCompleted(key: 'level');
+
       yield ConfigState(
-        isFirstTime: this.isFirstTime,
-        hasLanguage: this.hasLanguage,
-        hasLevel: true
+        isFirstTime: isFirstTime,
+        hasLanguage: hasLanguage,
+        hasLevel: hasLevel
       );
     }
   }

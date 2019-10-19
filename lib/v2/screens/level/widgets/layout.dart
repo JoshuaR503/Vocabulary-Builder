@@ -6,7 +6,7 @@ import 'package:vocabulary_builder/v2/blocs/config/bloc.dart';
 import 'package:vocabulary_builder/v2/screens/level/widgets/title.dart';
 import 'package:vocabulary_builder/v2/widgets/components/button.dart';
 
-class LevelLayout extends StatelessWidget {
+class LevelLayout extends StatefulWidget {
 
   LevelLayout({
     @required this.layout
@@ -14,6 +14,11 @@ class LevelLayout extends StatelessWidget {
 
   final String layout;
 
+  @override
+  _LevelLayoutState createState() => _LevelLayoutState();
+}
+
+class _LevelLayoutState extends State<LevelLayout> {
   void _onTap(String level, BuildContext context) {
     BlocProvider
       .of<ConfigBloc>(context)
@@ -81,7 +86,7 @@ class LevelLayout extends StatelessWidget {
     final double deviceWidth = MediaQuery.of(context).size.width;
     final double targetWidth = deviceWidth > 768.0 ? 650.0 : deviceWidth;
 
-    if (layout == 'horizontal') {
+    if (widget.layout == 'horizontal') {
       return _buildHorizontalLayout(targetWidth);
     } else {
       return _buildVerticalLayout(targetWidth, context);

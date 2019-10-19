@@ -96,20 +96,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     ? smallWidth : isBig 
     ? bigWidth : 0;
 
-    return Scaffold(
-      body: FadeTransition(
-        opacity: animation,
-        child:  Container(
-          padding: EdgeInsets.symmetric(horizontal: horizontal),
-          decoration: BoxDecoration(color: Theme.of(context).accentColor),
-          child: ListView(
-            children: <Widget>[
-              _buildContent()
-            ],
-          )
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: FadeTransition(
+          opacity: animation,
+          child:  Container(
+            padding: EdgeInsets.symmetric(horizontal: horizontal),
+            decoration: BoxDecoration(color: Theme.of(context).accentColor),
+            child: ListView(
+              children: <Widget>[
+                _buildContent()
+              ],
+            )
+          ),
         ),
+        floatingActionButton: _buildButton()
       ),
-      floatingActionButton: _buildButton()
     );
   }
 }

@@ -19,6 +19,8 @@ import 'package:vocabulary_builder/v2/config/themes/themes.dart';
 import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.dart';
 
 import 'package:vocabulary_builder/v2/screens/intro/intro.dart';
+import 'package:vocabulary_builder/v2/screens/language/language.dart';
+import 'package:vocabulary_builder/v2/screens/level/level.dart';
 import 'package:vocabulary_builder/v2/screens/saved/saved.dart';
 import 'package:vocabulary_builder/v2/screens/screen.dart';
 import 'package:vocabulary_builder/v2/screens/settings/settings.dart';
@@ -68,13 +70,18 @@ void main() async {
 
 class VocabularyBuilderApp extends StatelessWidget {
   
+  
   final FirebaseAnalytics _analytics = FirebaseAnalytics();
   final Map<String, WidgetBuilder> routes = {
     '/': (BuildContext context) => VocabularyBuilderHomeScreenManager(),
+    
     '/into': (BuildContext context) => IntroScreen(),
     '/saved': (BuildContext context) => SavedWordsScreen(),
     '/settings': (BuildContext context) => SettingsScreen(),
     '/translator': (BuildContext context) => TranslatorScreen(),
+
+    '/language': (BuildContext context) => LanguageScreen(),
+    '/level': (BuildContext context) => LevelScreen(),
   };
 
   @override

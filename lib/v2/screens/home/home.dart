@@ -34,6 +34,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    controller.dispose();
     super.dispose();
   }
 

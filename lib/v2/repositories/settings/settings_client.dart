@@ -1,6 +1,3 @@
-
-
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VocabularyBuilderSettingsClient {
@@ -15,14 +12,35 @@ class VocabularyBuilderSettingsClient {
     preferences.setString('level', level);
   }
 
-  void getUserLanguage() async {
+  void setUserSlider() async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.getString('language');
+    preferences.setBool('seen', true);
   }
 
-  void getUserLevel() async {
+  Future<bool> hasCompleted({String key}) async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.getString('level');
+    final bool hasCompleted = preferences.containsKey(key);
+
+    print('$key $hasCompleted');
+
+    if (hasCompleted) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
+  Future<String> getUserLanguage() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String language = preferences.getString('language');
+
+    return language;
+  }
+
+  Future<String> getUserLevel() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String level = preferences.getString('level');
+
+    return level;
+  }
 }

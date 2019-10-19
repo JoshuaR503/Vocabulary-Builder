@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
+import 'package:vocabulary_builder/v2/widgets/text/index.dart';
+import 'package:vocabulary_builder/v2/widgets/ui/index.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -21,11 +22,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: Theme.of(context).accentColor),
         child: SafeArea(
-          child: Center(
-            child: Text(
-              'Settings Screen',
-              style: TextStyles.titleStyle,
-            ),
+          child: ListView(
+            children: <Widget>[
+
+              CommonTitle('Change Language'),
+              ListCell(
+                title: 'You will be redirected to another screen where you can change the app\'s language',
+                subtitle: 'Tap to change',
+                onTap: () => Navigator.of(context).pushNamed('/language'),
+              ),
+
+
+              CommonTitle('Change Difficulty'),
+              ListCell(
+                title: 'You will be redirected to another screen where you can change the app\'s difficulty',
+                subtitle: 'Tap to change',
+                onTap: () => Navigator.of(context).pushNamed('/level'),
+              ),
+              
+            ],
           )
         )
       ),

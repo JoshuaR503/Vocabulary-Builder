@@ -17,8 +17,10 @@ class Button extends StatelessWidget {
   double _getRightFontSize(double deviceWidth, double deviceHeight) {
 
     final bool isSmallPhone = deviceWidth < 321 && deviceHeight < 540;
-    final bool isSmallLandscape = deviceWidth < 540;
+    final bool isSmallLandscape = deviceWidth < 700;
     final bool isPhone = deviceWidth < 415;
+
+    print(deviceWidth);
 
     if (isSmallPhone) {
       return 15;
@@ -28,7 +30,7 @@ class Button extends StatelessWidget {
       return 25;
     }
 
-    return 30;
+    return 25;
   }
 
   double _getRightButtonSize(double deviceWidth, double deviceHeight) {

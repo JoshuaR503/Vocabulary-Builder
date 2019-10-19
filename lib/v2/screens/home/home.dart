@@ -1,3 +1,4 @@
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/config/config.dart';
 
@@ -11,6 +12,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with TickerProviderStateMixin {
+
+  final InterstitialAd _beautifulAd = InterstitialAd(
+    //adUnitId: 'ca-app-pub-2727987234768252/9844346682',
+    adUnitId: InterstitialAd.testAdUnitId,
+    targetingInfo: MobileAdTargetingInfo(
+      keywords: <String>['english', 'spanish', 'language', 'learning', 'pronunciation'],
+      childDirected: false,
+    ),
+    listener: (MobileAdEvent event) {
+      print("InterstitialAd event is $event");
+    },
+  );
 
   AnimationController controller;
   Animation<double> animation;
@@ -30,6 +43,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     );
 
     controller.forward();
+
+    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-2727987234768252~2837027158');
   }
 
   @override
@@ -82,6 +97,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+
+  _beautifulAd
+    ..load()
+    ..show();
 
     final Size size = MediaQuery.of(context).size;
     final double deviceWidth = size.width;

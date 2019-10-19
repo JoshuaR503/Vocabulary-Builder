@@ -39,6 +39,11 @@
         "saved": {
             "message": "Save words to study \n later or offline",
             "solution": "Save as many words as you can \n Just tap the heart in a word"
+        },
+
+
+        "level": {
+            "message": "Select a \ndifficulty level"
         }
     },
 
@@ -46,7 +51,7 @@
     "app": "Vocabulario",
 
     "welcome_screen": {
-        "title": "Choose a language to \n study",
+        "title": "Choose a language to \nstudy",
         "en": "English",
         "es": "Spanish"
     },

@@ -21,10 +21,12 @@ class VocabularyBuilderSettingsClient {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     final bool hasCompleted = preferences.containsKey(key);
 
+    print('$key $hasCompleted');
+
     if (hasCompleted) {
-      return false;
-    } else {
       return true;
+    } else {
+      return false;
     }
   }
 

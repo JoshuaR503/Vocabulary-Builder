@@ -5,10 +5,12 @@ import 'package:vocabulary_builder/v2/blocs/config/bloc.dart';
 import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.dart';
 import 'package:vocabulary_builder/v2/screens/home/home.dart';
 import 'package:vocabulary_builder/v2/screens/language/language.dart';
+import 'package:vocabulary_builder/v2/screens/level/level.dart';
 
 class VocabularyBuilderHomeScreenManager extends StatelessWidget {
 
   final SettingsRepository settingsRepository = SettingsRepository();
+  
   
   @override
   Widget build(BuildContext context) {
@@ -16,16 +18,16 @@ class VocabularyBuilderHomeScreenManager extends StatelessWidget {
     return BlocBuilder<ConfigBloc, ConfigState>(
       builder: (BuildContext context, ConfigState state) {
 
-        if (state.isFirstTime) {
-          // Return Slider
-        }
+        // if (state.isFirstTime) {
+        //   // Return Slider
+        // }
 
         if (!state.hasLanguage) {
           return LanguageScreen();
         }
 
         if (!state.hasLevel) {
-          // Return level screen
+          return LevelScreen();
         }
         
         return Home();

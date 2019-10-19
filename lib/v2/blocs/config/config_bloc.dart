@@ -34,10 +34,22 @@ class ConfigBloc extends Bloc<ConfigEvent, ConfigState> {
 
     if (event is LanguageChangedEvent) {
       settingsRepository.setUserLanguage(language: event.config);
+
+      yield ConfigState(
+        isFirstTime: this.isFirstTime,
+        hasLevel: this.hasLevel,
+        hasLanguage: true,
+      );
     }
 
     if (event is LevelChangedEvent) {
       settingsRepository.setUserLevel(level: event.config);
+
+      yield ConfigState(
+        isFirstTime: this.isFirstTime,
+        hasLanguage: this.hasLanguage,
+        hasLevel: true
+      );
     }
   }
 }

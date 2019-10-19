@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:vocabulary_builder/v2/screens/language/widgets/button.dart';
 import 'package:vocabulary_builder/v2/screens/language/widgets/title.dart';
+import 'package:vocabulary_builder/v2/widgets/components/button.dart';
 
 class HorizontalLayout extends StatelessWidget {
   @override

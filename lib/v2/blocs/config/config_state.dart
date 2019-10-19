@@ -1,10 +1,17 @@
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
-abstract class ConfigState extends Equatable {
-  const ConfigState();
-}
+@immutable
+class ConfigState extends Equatable {
 
-class InitialConfigState extends ConfigState {
-  @override
-  List<Object> get props => [];
+  ConfigState({
+    @required this.isFirstTime,
+    @required this.hasLanguage,
+    @required this.hasLevel
+  }) : super([isFirstTime, hasLanguage, hasLevel]);
+
+  final bool isFirstTime;
+  final bool hasLanguage;
+  final bool hasLevel;
+
 }

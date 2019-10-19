@@ -1,8 +1,22 @@
-import 'package:flutter/cupertino.dart';
-import 'package:vocabulary_builder/v2/screens/language/widgets/button.dart';
+import 'package:flutter/material.dart';
+import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.dart';
+import 'package:vocabulary_builder/v2/screens/home/home.dart';
 import 'package:vocabulary_builder/v2/screens/language/widgets/title.dart';
+import 'package:vocabulary_builder/v2/widgets/components/button.dart';
 
 class VerticalLayout extends StatelessWidget {
+
+  void _onTap(String language, BuildContext context) {
+
+    final SettingsRepository settingsRepository = SettingsRepository();
+
+    settingsRepository.setUserLanguage(language: language);
+
+    Navigator
+    .of(context)
+    .push(MaterialPageRoute(builder: (context) => Home()));
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -21,12 +35,12 @@ class VerticalLayout extends StatelessWidget {
   
           Container(
             padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
-            child: Button('English', null, targetWidth),
+            child: Button('English', () => _onTap('en', context), targetWidth),
           ),
   
           Container(
             padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
-            child: Button('Spanish', null, targetWidth),
+            child: Button('Spanish', () => _onTap('es', context), targetWidth),
           )
         ],
       ),

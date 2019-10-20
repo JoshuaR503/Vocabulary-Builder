@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/widgets/ui/slider/slider.dart';
 
-class IntroScreen extends StatelessWidget {
-  
+class IntroScreen extends StatefulWidget {
+
+  @override
+  _IntroScreenState createState() => _IntroScreenState();
+}
+
+class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return IntroSlider(
@@ -36,15 +41,6 @@ class IntroScreen extends StatelessWidget {
           backgroundColor: Color(0xff203152),
         ),
       ],
-      onDonePress: () {},
-      // model
-      // .setData()
-      // .then((_) => Navigator.pushReplacementNamed(context, '/home')),
-
-      onSkipPress: () {}
-      // model
-      // .setData()
-      // .then((_) => Navigator.pushReplacementNamed(context, '/home')),
     );
   }
 }

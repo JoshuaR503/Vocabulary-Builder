@@ -12,6 +12,10 @@ class SettingsRepository {
     _client.setUserLevel(level: level);
   }
 
+  void setUserSlider() {
+    _client.setUserSlider();
+  }
+
   Future<bool> hasCompleted({String key}) async {
     return await _client.hasCompleted(key: key);
   }

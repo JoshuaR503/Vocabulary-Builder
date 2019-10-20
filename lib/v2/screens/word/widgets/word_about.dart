@@ -143,6 +143,31 @@ class WordAboutCard extends StatelessWidget {
     );
   }
 
+  Widget _buildSection() {
+
+    final Text title = Text(
+      'Something you must know',
+      style: TextStyles.titleStyle
+    );
+
+    final Text definition = Text(
+      this.word.en.note,
+      style: TextStyles.definitionStyle,
+    );
+
+    return WordDataCard(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          title,
+          _buildSizedBox(height: 15),
+          definition
+        ],
+      )
+    );
+  }
+
   Widget _buildVerticallLayout() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -157,6 +182,10 @@ class WordAboutCard extends StatelessWidget {
               _buildSizedBox(height: 15),
               _buildDefinitonSection(),
               _buildSizedBox(height: 15),
+
+              if (word.en.note != null) _buildSection(),
+              if (word.en.note != null) _buildSizedBox(height: 15),
+
               _buildGramaticalCategory(),
               _buildSizedBox(height: 60),
             ],

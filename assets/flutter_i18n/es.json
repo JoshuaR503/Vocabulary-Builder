@@ -35,6 +35,17 @@
         }
     },
 
+    "screens" : {
+        "saved": {
+            "message": "Guarda palabras para\nestudiar más tarde",
+            "solution": "Guarda tantas palabras \ncomo puedas. \nToca el corazón en una palabra"
+        },
+
+
+        "level": {
+            "message": "Selecciona \nun nivel de\ndificultad."
+        }
+    },
 
 
     "app": "Vocabulary",

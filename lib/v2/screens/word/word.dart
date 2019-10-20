@@ -46,7 +46,7 @@ class _WordState extends State<WordScreen> {
   void _handler() {
     BlocProvider
       .of<WordBloc>(context)
-      .dispatch(InsertWordEvent(word: this.widget.word));
+      .add(InsertWordEvent(word: this.widget.word));
   }
 
   void _changeScreen() {

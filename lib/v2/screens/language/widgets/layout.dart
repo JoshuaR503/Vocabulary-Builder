@@ -23,7 +23,7 @@ class _LanguageLayoutState extends State<LanguageLayout> {
   void _onTap(String language, BuildContext context) {
     BlocProvider
       .of<ConfigBloc>(context)
-      .dispatch(LanguageChangedEvent(config: language));
+      .add(LanguageChangedEvent(config: language));
       
     Navigator
     .of(context)

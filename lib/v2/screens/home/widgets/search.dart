@@ -30,7 +30,7 @@ class _VocabularyBuilderSearchState extends State<VocabularyBuilderSearch> {
       onFieldSubmitted: (value) {
         BlocProvider
           .of<SearchBloc>(context)
-          .dispatch(SearchWordsEvent(query: value));
+          .add(SearchWordsEvent(query: value));
 
         Navigator
           .of(context)

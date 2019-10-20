@@ -23,7 +23,7 @@ class _LevelLayoutState extends State<LevelLayout> {
   void _onTap(String level) {
     BlocProvider
       .of<ConfigBloc>(context)
-      .dispatch(LevelChangedEvent(config: level));
+      .add(LevelChangedEvent(config: level));
 
     Navigator
     .of(context)

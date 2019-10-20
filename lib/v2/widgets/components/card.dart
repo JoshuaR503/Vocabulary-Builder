@@ -69,7 +69,6 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
   }
 
   List<Widget> _buildLeftColumn(bool isSmall) {
-    final int maxLines = isSmall ? 2 : 1;
 
     return [
       Padding(
@@ -77,7 +76,7 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
         child: Text(
           this.widget.word.en.word,
           overflow: TextOverflow.ellipsis,
-          maxLines: maxLines,
+          maxLines: 1,
           style: TextStyles.titleStyle
         ),
       ),
@@ -86,7 +85,7 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
         child: Text(
           this.widget.word.es.word,
           overflow: TextOverflow.ellipsis,
-          maxLines: maxLines,
+          maxLines: 1,
           style: TextStyle(
             fontSize: 18.5, 
             fontWeight: FontWeight.w300

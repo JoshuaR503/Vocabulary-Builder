@@ -27,7 +27,7 @@ class _LevelLayoutState extends State<LevelLayout> {
 
     Navigator
     .of(context)
-    .pushNamed('/');
+    .pushNamed('/home');
   }
 
   Widget _buildVerticalLayout(double targetWidth) {

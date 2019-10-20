@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:vocabulary_builder/v2/blocs/config/bloc.dart';
 
 class IntroSlider extends StatefulWidget {
 
@@ -36,12 +38,10 @@ class IntroSlider extends StatefulWidget {
   IntroSliderState createState() => IntroSliderState(
     slides: this.slides,
     renderSkipBtn: this.renderSkipBtn,
-    onSkipPress: this.onSkipPress,
     isShowSkipBtn: this.isShowSkipBtn,
     borderRadiusSkipBtn: this.borderRadiusSkipBtn,
     renderNextBtn: this.renderNextBtn,
     renderDoneBtn: this.renderDoneBtn,
-    onDonePress: this.onDonePress,
     borderRadiusDoneBtn: this.borderRadiusDoneBtn,
     isShowDotIndicator: this.isShowDotIndicator,
   );
@@ -52,15 +52,12 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
   final List<Slide> slides;
 
   Widget renderSkipBtn;
-  Function onSkipPress;
 
   bool isShowSkipBtn;
   double borderRadiusSkipBtn;
 
   Widget renderNextBtn;
   Widget renderDoneBtn;
-
-  Function onDonePress;
 
   double borderRadiusNextBtn;
   double borderRadiusDoneBtn;
@@ -78,14 +75,12 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
 
     // Skip button
     @required this.renderSkipBtn,
-    @required this.onSkipPress,
     @required this.isShowSkipBtn,
     @required this.borderRadiusSkipBtn,
 
     // Done button
     @required this.renderNextBtn,
     @required this.renderDoneBtn,
-    @required this.onDonePress,
     @required this.borderRadiusDoneBtn,
 
     // Dot indicator
@@ -101,6 +96,16 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
   List<Widget> dots = List();
   double fontSize = 14;
 
+  void _onTap() {
+    BlocProvider
+      .of<ConfigBloc>(context)
+      .add(SliderSeenEvent());
+
+    Navigator
+      .of(context)
+      .pushNamed('/');
+  }
+
   @override
   void initState() {
     super.initState();
@@ -110,16 +115,9 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
       this.setState(() {});
     });
 
-    // Skip button
-    if (onSkipPress == null) {
-      onSkipPress = () {};
-    }
+
     if (isShowSkipBtn == null) {
       isShowSkipBtn = true;
-    }
-
-    if (onDonePress == null) {
-      onDonePress = () {};
     }
 
     if (isShowDotIndicator == null) {
@@ -166,7 +164,11 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
           (tabController.index + 1 != slides.length && isShowSkipBtn)
               ? Container(
                 child: FlatButton(
-                    onPressed: onSkipPress,
+                    onPressed: () {
+                      print('Hello');
+
+                      _onTap();
+                    },
                     child: Text(FlutterI18n.translate(context, 'slide_show.options.skip'),
                       style: TextStyle(
                         color: Colors.white,
@@ -191,11 +193,11 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
           // Dot indicator
           Flexible(
             child: isShowDotIndicator
-                ? Row(
-                    children: renderListDots(),
-                    mainAxisAlignment: MainAxisAlignment.center,
-                  )
-                : Container(),
+            ? Row(
+                children: renderListDots(),
+                mainAxisAlignment: MainAxisAlignment.center,
+              )
+            : Container(),
           ),
 
           // Next, Done button
@@ -203,7 +205,9 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
 
             child: tabController.index + 1 == slides.length
               ? FlatButton(
-                onPressed: onDonePress,
+                onPressed: () {
+                  _onTap();
+                },
                 child: Text(FlutterI18n.translate(context, 'slide_show.options.done'),
                   style: TextStyle(
                     color: Colors.white,
@@ -308,8 +312,7 @@ class IntroSliderState extends State<IntroSlider> with SingleTickerProviderState
               description,
               style: TextStyle(
                 color: Colors.white, 
-                fontSize: 18.0,
-                fontFamily: 'Lato'
+                fontSize: 20.0,
               ),
               textAlign: TextAlign.center,
             ),

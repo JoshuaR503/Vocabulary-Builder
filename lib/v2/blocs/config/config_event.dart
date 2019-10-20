@@ -19,3 +19,5 @@ class LevelChangedEvent extends ConfigEvent {
 
   final String config;
 }
+
+class SliderSeenEvent extends ConfigEvent {}

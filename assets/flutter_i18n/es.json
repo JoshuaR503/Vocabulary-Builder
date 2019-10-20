@@ -40,7 +40,7 @@
     "app": "Vocabulary",
 
     "welcome_screen": {
-        "title": "¿Qué idioma \n estás \n aprendiendo?",
+        "title": "¿Qué idioma estás \naprendiendo?",
         "en": "Inglés",
         "es": "Español"
     },

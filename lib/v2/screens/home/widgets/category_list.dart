@@ -19,7 +19,7 @@ class _CategoryListState extends State<CategoryList> {
   void _pushCategory({String route, String name, Color color}) {
     BlocProvider
       .of<WordsBloc>(context)
-      .dispatch(FetchWords(category: route));
+      .add(FetchWords(category: route));
 
     Navigator
       .of(context)
@@ -31,10 +31,10 @@ class _CategoryListState extends State<CategoryList> {
       ));
   }
 
-  void _dispatchEvent() {
+  void _addEvent() {
     BlocProvider
       .of<WordBloc>(context)
-      .dispatch(FetchWordsEvent());
+      .add(FetchWordsEvent());
   }
 
   void _pushSpecial({String route}) {
@@ -77,7 +77,7 @@ class _CategoryListState extends State<CategoryList> {
           if (categories[index].isSpecial) {
             _pushSpecial(route: routeName);
 
-            if (categoryName == 'Favorite Words') _dispatchEvent();
+            if (categoryName == 'Favorite Words') _addEvent();
             
           } else {
             _pushCategory(

@@ -41,7 +41,7 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
 
     BlocProvider
       .of<WordBloc>(context)
-      .dispatch(DeleteWordEvent(word: word));
+      .add(DeleteWordEvent(word: word));
   } 
 
   Widget _buildVocabularyBuilderCard(Word word) {

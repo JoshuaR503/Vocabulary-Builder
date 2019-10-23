@@ -39,6 +39,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 subtitle: 'Tap to change',
                 onTap: () => Navigator.of(context).pushNamed('/level'),
               ),
+
+              CommonTitle('View Introduction'),
+              ListCell(
+                title: 'You will be redirected to the introdcution screen',
+                subtitle: 'Tap to view',
+                onTap: () => Navigator.of(context).pushNamed('/into'),
+              ),
               
             ],
           )

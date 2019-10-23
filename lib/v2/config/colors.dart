@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color black = Color(0xFF303943);
+  static const Color snackBar = Color(0xFF303943);
+
   static const Color blue = Color(0xFF1e89e9);
   static const Color brown = Color(0xFFab675f);
   static const Color grey = Color(0x64303943);
@@ -22,5 +24,6 @@ class AppFontColors {
 }
 
 class AppCardColors {
-  
+  static const backgroundColor = const Color(0xFF141414);
+  static const backgroundCardColor = const Color(0xFF1e1e1e);
 }

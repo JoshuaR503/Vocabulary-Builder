@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
+import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/help/help.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
@@ -66,10 +67,10 @@ class _WordState extends State<WordScreen> {
 
     final SnackBar snackbar = SnackBar(
       duration: Duration(seconds: 2),
-      backgroundColor: Color(0XFF383838),
+      backgroundColor: AppColors.snackBar,
       content: content,
       action: SnackBarAction(
-        label: 'Show Me',
+        label: 'Show me',
         textColor: Colors.amber,
         onPressed: _changeScreen,
       ),
@@ -119,7 +120,7 @@ class _WordState extends State<WordScreen> {
     return DefaultTabController(
       length: _tabs.length,
       child: Scaffold(
-        backgroundColor: Color(0xFF1e1e1e),
+        backgroundColor: AppCardColors.backgroundCardColor,
         appBar: _buildAppBar(),
         body: SafeArea(
           child: TabBarView(children: _children),

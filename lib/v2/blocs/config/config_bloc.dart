@@ -34,45 +34,19 @@ class ConfigBloc extends Bloc<ConfigEvent, ConfigState> {
 
     if (event is LanguageChangedEvent) {
       settingsRepository.setUserLanguage(language: event.config);
-      
-      final bool isFirstTime = await settingsRepository.hasCompleted(key: 'seen');
-      final bool hasLanguage = await settingsRepository.hasCompleted(key: 'language');
-      final bool hasLevel = await settingsRepository.hasCompleted(key: 'level');
 
       // Set fetched words in State.
-      yield ConfigState(
-        isFirstTime: isFirstTime,
-        hasLanguage: hasLanguage,
-        hasLevel: hasLevel
-      );
+      yield* _updateState();
       
     } else if (event is LevelChangedEvent) {
       settingsRepository.setUserLevel(level: event.config);
-      
-      final bool isFirstTime = await settingsRepository.hasCompleted(key: 'seen');
-      final bool hasLanguage = await settingsRepository.hasCompleted(key: 'language');
-      final bool hasLevel = await settingsRepository.hasCompleted(key: 'level');
-
       // Set fetched words in State.
-      yield ConfigState(
-        isFirstTime: isFirstTime,
-        hasLanguage: hasLanguage,
-        hasLevel: hasLevel
-      );
+      yield* _updateState();
 
     } else if (event is SliderSeenEvent) {
       settingsRepository.setUserSlider();
-
-      final bool isFirstTime = await settingsRepository.hasCompleted(key: 'seen');
-      final bool hasLanguage = await settingsRepository.hasCompleted(key: 'language');
-      final bool hasLevel = await settingsRepository.hasCompleted(key: 'level');
-
       // Set fetched words in State.
-      yield ConfigState(
-        isFirstTime: isFirstTime,
-        hasLanguage: hasLanguage,
-        hasLevel: hasLevel
-      );
+      yield* _updateState();
     }
   }
 

@@ -56,13 +56,16 @@ class WordAboutCard extends StatelessWidget {
 
   List<Widget> _buildDefinitionSectionEnChildren() {
 
+    final bool hasDefinition = this.word.en.definition != null;
+    final String text = hasDefinition ? this.word.en.definition : 'No definition was not provided.';
+
     final Text title2 = Text(
       '${this.word.en.word}',
       style: TextStyles.titleStyle
     );
 
     final Text definition1 = Text(
-      '${this.word.en.definition}',
+      text,
       style: TextStyles.definitionStyle
     );
 
@@ -90,6 +93,9 @@ class WordAboutCard extends StatelessWidget {
 
   List<Widget> _buildDefinitionSectionChildren() {
 
+    final bool hasDefinition = this.word.es.definition != null;
+    final String text = hasDefinition ? this.word.es.definition : 'No definition was not provided.';
+
     final Text title2 = Text(
       '${this.word.es.word}',
       overflow: TextOverflow.ellipsis,
@@ -97,7 +103,7 @@ class WordAboutCard extends StatelessWidget {
     );
 
     final Text definition2 = Text(
-      '${this.word.es.definition}',
+      text,
       style: TextStyles.definitionStyle
     );
 

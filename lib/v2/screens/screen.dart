@@ -36,9 +36,7 @@ class VocabularyBuilderHomeScreenManager extends StatelessWidget {
     return FutureBuilder(
       future: _futureBuilder(),
       builder: (context, snapshot) {
-
-        print(snapshot.data);
-
+        
         if (snapshot.data == 'slider') {
           return IntroScreen();
         }

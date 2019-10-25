@@ -28,15 +28,17 @@ class _VocabularyBuilderSearchState extends State<VocabularyBuilderSearch> {
       ),
 
       onFieldSubmitted: (value) {
-        BlocProvider
-          .of<SearchBloc>(context)
-          .add(SearchWordsEvent(query: value));
-
-        Navigator
-          .of(context)
-          .push(MaterialPageRoute(
-            builder: (context) => SearchScreen(search: value)
-          ));
+        if (value.length > 1) {
+          BlocProvider
+            .of<SearchBloc>(context)
+            .add(SearchWordsEvent(query: value));
+  
+          Navigator
+            .of(context)
+            .push(MaterialPageRoute(
+              builder: (context) => SearchScreen(search: value)
+            ));
+        }
       }
     );
   }

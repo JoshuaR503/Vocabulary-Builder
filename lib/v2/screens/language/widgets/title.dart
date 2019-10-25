@@ -14,7 +14,7 @@ class LanguageTitle extends StatelessWidget {
     }
     
     if (isPhone || isPhoneLandscape) {
-      return 48;
+      return 43;
     }
 
     return 60;

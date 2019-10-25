@@ -98,9 +98,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
 
-  // _beautifulAd
-  //   ..load()
-  //   ..show();
+    _beautifulAd
+      ..load()
+      ..show();
 
     final Size size = MediaQuery.of(context).size;
     final double deviceWidth = size.width;
@@ -115,20 +115,17 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     ? smallWidth : isBig 
     ? bigWidth : 0;
 
-    return WillPopScope(
-      onWillPop: () async => false,
+    return FadeTransition(
+      opacity: animation,
       child: Scaffold(
-        body: FadeTransition(
-          opacity: animation,
-          child:  Container(
-            padding: EdgeInsets.symmetric(horizontal: horizontal),
-            decoration: BoxDecoration(color: Theme.of(context).accentColor),
-            child: ListView(
-              children: <Widget>[
-                _buildContent()
-              ],
-            )
-          ),
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: horizontal),
+          decoration: BoxDecoration(color: Theme.of(context).accentColor),
+          child: ListView(
+            children: <Widget>[
+              _buildContent()
+            ],
+          )
         ),
         floatingActionButton: _buildButton()
       ),

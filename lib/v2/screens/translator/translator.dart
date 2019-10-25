@@ -13,7 +13,7 @@ class _TranslatorScreenState extends State<TranslatorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.teal,
+        backgroundColor: AppColors.tealAccent,
         title: Text('Translator Screen'),
         centerTitle: true,
       ),

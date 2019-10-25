@@ -16,7 +16,7 @@ class CategoryList extends StatefulWidget {
 
 class _CategoryListState extends State<CategoryList> {
 
-  void _pushCategory({String route, String name, Color color}) {
+  void _pushCategory({String route, String name, Color color, Color accentColor}) {
     BlocProvider
       .of<WordsBloc>(context)
       .add(FetchWords(category: route));
@@ -27,6 +27,7 @@ class _CategoryListState extends State<CategoryList> {
         builder: (context) => Category(
           title: name,
           color: color,
+          accentColor: accentColor,
         )
       ));
   }
@@ -73,6 +74,7 @@ class _CategoryListState extends State<CategoryList> {
           final String routeName = categories[index].routeName;
           final String categoryName = categories[index].name;
           final Color categoryColor = categories[index].color;
+          final Color categoryAccentColor = categories[index].accentColor;
 
           if (categories[index].isSpecial) {
             _pushSpecial(route: routeName);
@@ -83,7 +85,8 @@ class _CategoryListState extends State<CategoryList> {
             _pushCategory(
               name: categoryName,
               route: routeName,
-              color: categoryColor
+              color: categoryColor,
+              accentColor: categoryAccentColor
             );  
           }
         }

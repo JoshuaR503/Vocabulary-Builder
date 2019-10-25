@@ -53,7 +53,7 @@ class Word {
   static Color _color(String category) {
     switch (category) {
       case 'noun':
-        return AppColors.amber;
+        return AppColors.amberAccent;
       case 'verb':
         return AppColors.red;
       case 'adjective':

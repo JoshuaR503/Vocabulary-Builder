@@ -13,12 +13,15 @@ class Category extends StatefulWidget {
   
   final String title;
   final Color color;
+  final Color accentColor;
 
   Category({
     @required this.title,
-    @required this.color
+    @required this.color,
+    @required this.accentColor
   }) : assert(title != null),
-       assert(color != null);
+       assert(color != null),
+       assert(accentColor != null);
 
   @override
   _CategoryState createState() => _CategoryState();
@@ -86,7 +89,7 @@ class _CategoryState extends State<Category> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: this.widget.color,
+        backgroundColor: this.widget.accentColor,
         title: Text(this.widget.title),
         actions: <Widget>[
           Tooltip(

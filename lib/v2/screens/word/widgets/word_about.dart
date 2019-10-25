@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/core/functions.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
@@ -15,46 +14,49 @@ class WordAboutCard extends StatelessWidget {
     this.word
   }) : assert(word != null);
 
-
   Widget _buildSizedBox({double height = 30.0}) {
     return SizedBox(height: height);
   }
 
   Widget _buildAnimatedContainer({Widget child, Function onTap}) {
 
-    final Widget icon = AnimatedContainer(
-      duration: Duration(seconds: 1),
-      curve: Curves.easeIn,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color:  Colors.black.withOpacity(0.5),
-      ),
-      height: 35.0,
-      width: 50,
-      child: InkWell(
-        onTap: onTap,
-        child: Center(
-          child: Icon(Icons.volume_up)
-        ),
+    // Box Decoration.
+    final BoxDecoration boxDecoration = BoxDecoration(
+      borderRadius: BorderRadius.circular(10.0),
+      color:  Colors.black.withOpacity(0.5),
+    );
+
+    // Ink Well.
+    final InkWell ink = InkWell(
+      onTap: onTap,
+      child: Center(
+        child: Icon(Icons.volume_up)
       ),
     );
 
+    // Widget
+    final Widget icon = AnimatedContainer(
+      duration: Duration(seconds: 1),
+      decoration: boxDecoration,
+      curve: Curves.easeIn,
+      height: 35.0,
+      width: 50,
+      child: ink
+    );
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-
         Padding(
           padding: EdgeInsets.only(right: 15),
           child: child,
         ),
-
         icon
       ]
     );
   }
 
-  List<Widget> _buildDefinitionSectionEnChildren() {
+  List<Widget> _buildDefinitonEnSectionChildren() {
 
     final bool hasDefinition = this.word.en.definition != null;
     final String text = hasDefinition ? this.word.en.definition : 'No definition was not provided.';
@@ -86,12 +88,12 @@ class WordAboutCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _buildDefinitionSectionEnChildren(),
+        children: _buildDefinitonEnSectionChildren(),
       )
     );
   }
 
-  List<Widget> _buildDefinitionSectionChildren() {
+  List<Widget> _buildDefinitonSectionChildren() {
 
     final bool hasDefinition = this.word.es.definition != null;
     final String text = hasDefinition ? this.word.es.definition : 'No definition was not provided.';
@@ -124,12 +126,10 @@ class WordAboutCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _buildDefinitionSectionChildren(),
+        children: _buildDefinitonSectionChildren(),
       )
     );
   }
-
-  
 
   Widget _buildGramaticalCategory() {
 

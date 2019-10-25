@@ -32,19 +32,16 @@ class WordCateogry extends StatelessWidget {
     ? length * 18.0 
     : length * 14.0;
 
-    return AnimatedContainer(
-      duration: Duration(seconds: 1),
-      curve: Curves.easeIn,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color:  Colors.black.withOpacity(0.5),
-      ),
-      height: 35.0,
-      width: width,
-      child: InkWell(
-        onTap: () {
-          if (this.word != null) _playAudio(cleanText);
-        },
+    return GestureDetector(
+      onTap: () { if (this.word != null) _playAudio(cleanText); },
+      child: Container(
+        width: width,
+
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          color:  Colors.black.withOpacity(0.5),
+        ),
+
         child: Center(
           child: Text(
             text,
@@ -71,7 +68,8 @@ class WordCateogry extends StatelessWidget {
     );
   }
 
-  Widget _build() {
+  @override
+  Widget build(BuildContext context) {
     final List categories = category.split(',');
     final int categoriesSzie = categories.length;
   
@@ -81,10 +79,5 @@ class WordCateogry extends StatelessWidget {
       ? _buildContainers(size: categoriesSzie, categories: categories)
       : _buildContainer(text: category),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _build();
   }
 }

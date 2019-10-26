@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/core/functions.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 
-import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_data_card.dart';
 import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
 
 class WordAboutCard extends StatelessWidget {
@@ -14,124 +14,46 @@ class WordAboutCard extends StatelessWidget {
     this.word
   }) : assert(word != null);
 
-  Widget _buildSizedBox({double height = 30.0}) {
-    return SizedBox(height: height);
-  }
-
-  Widget _buildAnimatedContainer({Widget child, Function onTap}) {
-
-    // Box Decoration.
-    final BoxDecoration boxDecoration = BoxDecoration(
-      borderRadius: BorderRadius.circular(10.0),
-      color:  Colors.black.withOpacity(0.5),
-    );
-
-    // Ink Well.
-    final InkWell ink = InkWell(
-      onTap: onTap,
-      child: Center(
-        child: Icon(Icons.volume_up)
+  // Helpers
+  Widget _buildCard({Widget child}) {
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      width: double.infinity,
+      child: Material(
+        elevation: 10.0,
+        borderRadius: BorderRadius.circular(10.0),
+        child: child,
       ),
     );
+  }
 
-    // Widget
-    final Widget icon = AnimatedContainer(
-      duration: Duration(seconds: 1),
-      decoration: boxDecoration,
-      curve: Curves.easeIn,
-      height: 35.0,
-      width: 50,
-      child: ink
-    );
+  Widget _buildSection({List<Widget> children}) {
 
-    return Row(
+    final Widget child = Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(right: 15),
-          child: child,
-        ),
-        icon
-      ]
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: children
+    );
+
+    return _buildCard(child: child);
+  }
+
+  // Actuall Widgets.
+  Widget _buildFirstCard(BuildContext context) {
+    return WordCard(
+      word: this.word.en.word,
+      definition: this.word.en.definition,
     );
   }
 
-  List<Widget> _buildDefinitonEnSectionChildren() {
-
-    final bool hasDefinition = this.word.en.definition != null;
-    final String text = hasDefinition ? this.word.en.definition : 'No definition was not provided.';
-
-    final Text title2 = Text(
-      '${this.word.en.word}',
-      style: TextStyles.titleStyle
-    );
-
-    final Text definition1 = Text(
-      text,
-      style: TextStyles.definitionStyle
-    );
-
-    final Widget header2 = _buildAnimatedContainer(
-      child: title2,
-      onTap: () => functions.playAudio(audio: this.word.en.wordPronuntiation)
-    );
-
-    return [
-      header2,
-      _buildSizedBox(height: 10),
-      definition1,
-    ];
-  }
-
-  Widget _buildDefinitonEnSection() {
-    return WordDataCard(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: _buildDefinitonEnSectionChildren(),
-      )
+  Widget _buildSecondCard(BuildContext context) {
+    return WordCard(
+      word: this.word.es.word,
+      definition: this.word.es.definition,
     );
   }
 
-  List<Widget> _buildDefinitonSectionChildren() {
-
-    final bool hasDefinition = this.word.es.definition != null;
-    final String text = hasDefinition ? this.word.es.definition : 'No definition was not provided.';
-
-    final Text title2 = Text(
-      '${this.word.es.word}',
-      overflow: TextOverflow.ellipsis,
-      style: TextStyles.titleStyle
-    );
-
-    final Text definition2 = Text(
-      text,
-      style: TextStyles.definitionStyle
-    );
-
-    final Widget header2 = _buildAnimatedContainer(
-      child: title2,
-      onTap: () => functions.playAudio(audio: this.word.es.wordPronuntiation)
-    );
-
-    return [
-      header2,
-      _buildSizedBox(height: 10),
-      definition2,
-    ];
-  }
-  
-  Widget _buildDefinitonSection() {
-    return WordDataCard(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: _buildDefinitonSectionChildren(),
-      )
-    );
-  }
-
-  Widget _buildGramaticalCategory() {
+  Widget _buildCategorySection() {
 
     final Text title = Text(
       'Gramatical Category',
@@ -143,20 +65,21 @@ class WordAboutCard extends StatelessWidget {
       style: TextStyles.definitionStyle,
     );
 
-    return WordDataCard(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          title,
-          _buildSizedBox(height: 15),
-          definition
-        ],
+    final List<Widget> children = <Widget>[
+      Padding(
+        padding: EdgeInsets.only(right: 30, left: 30, top: 25, bottom: 10),
+        child: title
+      ),
+      Padding(
+        padding: EdgeInsets.only(right: 30, left: 30, top: 10, bottom: 25),
+        child: definition
       )
-    );
+    ];
+
+    return _buildSection(children: children);
   }
 
-  Widget _buildSection() {
+  Widget _buildNoteSection() {
 
     final Text title = Text(
       'Something you must know',
@@ -168,20 +91,42 @@ class WordAboutCard extends StatelessWidget {
       style: TextStyles.definitionStyle,
     );
 
-    return WordDataCard(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          title,
-          _buildSizedBox(height: 15),
-          definition
-        ],
+    final List<Widget> children = <Widget>[
+      Padding(
+        padding: EdgeInsets.only(right: 30, left: 30, top: 25, bottom: 10),
+        child: title
+      ),
+      Padding(
+        padding: EdgeInsets.only(right: 30, left: 30, top: 10, bottom: 25),
+        child: definition
       )
-    );
+    ];
+
+    return _buildSection(children: children);
   }
 
-  Widget _buildVerticallLayout() {
+  Widget _builGif() {
+
+    final List<Widget> children = <Widget>[
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        child: Image.network('https://media.giphy.com/media/ycpCka5zPAUvMr6PU6/giphy.gif'),
+      ),
+      
+      Padding(
+        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 30),
+        child: Text(
+          'Provided by Giphy', 
+          style: TextStyles.titleStyle
+        ),
+      )
+    ];
+
+    return _buildSection(children: children);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: ListView(
@@ -190,25 +135,28 @@ class WordAboutCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              _buildSizedBox(height: 15),
-              _buildDefinitonSection(),
-              _buildSizedBox(height: 15),
-              _buildDefinitonEnSection(),
-              _buildSizedBox(height: 15),
-              if (word.en.note != null) _buildSection(),
-              if (word.en.note != null) _buildSizedBox(height: 15),
+              
+              SizedBox(height: 15),
+              _buildFirstCard(context),
 
-              _buildGramaticalCategory(),
-              _buildSizedBox(height: 60),
+              SizedBox(height: 5),
+              _buildSecondCard(context),
+
+              SizedBox(height: 5),
+              _buildCategorySection(),
+
+              if (word.gift != null) SizedBox(height: 5),
+              if (word.gift != null) _builGif(),
+
+              SizedBox(height: 10),
+              if (word.en.note != null) _buildNoteSection(),
+              if (word.en.note != null) SizedBox(height: 15),
+
+              SizedBox(height: 40),
             ],
           ),
         ],
       )
     );
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return _buildVerticallLayout();
-  } 
 }

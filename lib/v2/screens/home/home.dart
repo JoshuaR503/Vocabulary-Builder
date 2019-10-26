@@ -98,9 +98,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
 
-    _beautifulAd
-      ..load()
-      ..show();
+    // _beautifulAd
+    //   ..load()
+    //   ..show();
 
     final Size size = MediaQuery.of(context).size;
     final double deviceWidth = size.width;

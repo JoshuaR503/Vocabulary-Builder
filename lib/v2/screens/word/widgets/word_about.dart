@@ -69,17 +69,17 @@ class WordAboutCard extends StatelessWidget {
     );
 
     final Text definition = Text(
-      '${word.en.category}: is a word that describes the action of the subject.',
+      'Here will to be a definition of "${word.en.category}" with the objective to not leave blank space.',
       style: TextStyles.definitionStyle,
     );
 
     final List<Widget> children = <Widget>[
       Padding(
-        padding: EdgeInsets.only(right: 30, left: 30, top: 25, bottom: 10),
+        padding: EdgeInsets.only(right: 30, left: 30, top: 25, bottom: 5),
         child: title
       ),
       Padding(
-        padding: EdgeInsets.only(right: 30, left: 30, top: 10, bottom: 25),
+        padding: EdgeInsets.only(right: 30, left: 30, top: 5, bottom: 30),
         child: definition
       )
     ];

@@ -11,7 +11,7 @@ class Word {
   final WordData en;
   final WordData es;
 
-  final String gift;
+  final String gif;
   
   bool isSaved = false;
   int id;
@@ -24,7 +24,7 @@ class Word {
     this.en,
     this.es,
 
-    this.gift,
+    this.gif,
   });
 
   static List<Word> converToList(List<dynamic> response) {
@@ -40,7 +40,7 @@ class Word {
         en: WordData.fromJson(data['EN']),
         es: WordData.fromJson(data['ES']),
 
-        gift: data['gift'],
+        gif: data['gif'],
         level: data['level']
       );
 
@@ -94,7 +94,7 @@ class Word {
       en: WordData.fromMap(map['en']),
       es: WordData.fromMap(map['es']),
 
-      gift: map['gift'],
+      gif: map['gif'],
     );
   }
 
@@ -107,6 +107,6 @@ class Word {
     'en': en.toMap(),
     'es': es.toMap(),
     
-    'gift': gift,
+    'gif': gif,
   };
 }

@@ -110,7 +110,7 @@ class WordAboutCard extends StatelessWidget {
     final List<Widget> children = <Widget>[
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        child: Image.network('https://media.giphy.com/media/ycpCka5zPAUvMr6PU6/giphy.gif'),
+        child: Image.network(this.word.gif),
       ),
       
       Padding(
@@ -145,8 +145,8 @@ class WordAboutCard extends StatelessWidget {
               SizedBox(height: 5),
               _buildCategorySection(),
 
-              if (word.gift != null) SizedBox(height: 5),
-              if (word.gift != null) _builGif(),
+              if (word.gif != null) SizedBox(height: 5),
+              if (word.gif != null) _builGif(),
 
               SizedBox(height: 10),
               if (word.en.note != null) _buildNoteSection(),

@@ -14,7 +14,7 @@ class WordDataCard extends StatelessWidget {
       color: Color(0XFF2b2b2b),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
         child: child,
       )
     );

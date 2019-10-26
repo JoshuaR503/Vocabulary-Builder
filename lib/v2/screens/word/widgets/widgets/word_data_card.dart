@@ -13,10 +13,12 @@ class WordCard extends StatelessWidget {
   }) : assert(word != null),
        assert(definition != null);
 
+  // Helpers
   String _cleanString({String text}) {
     return text.trim();
   }
 
+  // Actuall Widgets
   List<Widget> _buildVolumeIcon() {
     final ShapeBorder shape = RoundedRectangleBorder( 
       borderRadius: BorderRadius.circular(10)
@@ -34,14 +36,14 @@ class WordCard extends StatelessWidget {
     ];
   }
 
-  List<Widget> _buildTitle(bool isSmall) {
+  List<Widget> _buildTitle() {
     final String text = this._cleanString(text: this.word);
 
     return [
       Text(
         text,
-        overflow: TextOverflow.ellipsis,
         maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: TextStyles.titleStyle
       ),
     ];
@@ -59,14 +61,11 @@ class WordCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final Size size = MediaQuery.of(context).size;
-    final bool isSmall = size.width <= 479;
-
     final Widget definition = _buildDefinition();
     final Column leftColumn = Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: _buildTitle(isSmall)
+      children: _buildTitle()
     );
 
     final Column rightColumn = Column(
@@ -82,8 +81,9 @@ class WordCard extends StatelessWidget {
         elevation: 10.0,
         borderRadius: BorderRadius.circular(10.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          
           children: <Widget>[
-
             Padding(
               padding: EdgeInsets.only(left: 30, top: 20),
               child: Row(

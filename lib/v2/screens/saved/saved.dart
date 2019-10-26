@@ -67,7 +67,7 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
           return _buildErrorMessage('Deleting words...');
         }
 
-        return VocabularyBuilderSpinner(color: AppColors.brown);
+        return VocabularyBuilderSpinner(color: AppColors.indigo);
       }
     );
   }

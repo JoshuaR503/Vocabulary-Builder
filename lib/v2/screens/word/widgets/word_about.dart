@@ -3,6 +3,7 @@ import 'package:vocabulary_builder/v2/core/functions.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dart';
+import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_data_card.dart';
 import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
 
 class WordAboutCard extends StatelessWidget {
@@ -16,119 +17,6 @@ class WordAboutCard extends StatelessWidget {
 
   Widget _buildSizedBox({double height = 30.0}) {
     return SizedBox(height: height);
-  }
-
-  Widget _buildAnimatedContainer({Widget child, Function onTap}) {
-
-    // Box Decoration.
-    final BoxDecoration boxDecoration = BoxDecoration(
-      borderRadius: BorderRadius.circular(10.0),
-      color:  Colors.black.withOpacity(0.5),
-    );
-
-    // Ink Well.
-    final InkWell ink = InkWell(
-      onTap: onTap,
-      child: Center(
-        child: Icon(Icons.volume_up)
-      ),
-    );
-
-    // Widget
-    final Widget icon = AnimatedContainer(
-      duration: Duration(seconds: 1),
-      decoration: boxDecoration,
-      curve: Curves.easeIn,
-      height: 35.0,
-      width: 50,
-      child: ink
-    );
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(right: 15),
-          child: child,
-        ),
-        icon
-      ]
-    );
-  }
-
-  List<Widget> _buildDefinitonEnSectionChildren() {
-
-    final bool hasDefinition = this.word.en.definition != null;
-    final String text = hasDefinition ? this.word.en.definition : 'No definition was not provided.';
-
-    final Text title2 = Text(
-      '${this.word.en.word}',
-      style: TextStyles.titleStyle
-    );
-
-    final Text definition1 = Text(
-      text,
-      style: TextStyles.definitionStyle
-    );
-
-    final Widget header2 = _buildAnimatedContainer(
-      child: title2,
-      onTap: () => functions.playAudio(audio: this.word.en.wordPronuntiation)
-    );
-
-    return [
-      header2,
-      _buildSizedBox(height: 10),
-      definition1,
-    ];
-  }
-
-  Widget _buildDefinitonEnSection() {
-    return WordDataCard(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: _buildDefinitonEnSectionChildren(),
-      )
-    );
-  }
-
-  List<Widget> _buildDefinitonSectionChildren() {
-
-    final bool hasDefinition = this.word.es.definition != null;
-    final String text = hasDefinition ? this.word.es.definition : 'No definition was not provided.';
-
-    final Text title2 = Text(
-      '${this.word.es.word}',
-      overflow: TextOverflow.ellipsis,
-      style: TextStyles.titleStyle
-    );
-
-    final Text definition2 = Text(
-      text,
-      style: TextStyles.definitionStyle
-    );
-
-    final Widget header2 = _buildAnimatedContainer(
-      child: title2,
-      onTap: () => functions.playAudio(audio: this.word.es.wordPronuntiation)
-    );
-
-    return [
-      header2,
-      _buildSizedBox(height: 10),
-      definition2,
-    ];
-  }
-  
-  Widget _buildDefinitonSection() {
-    return WordDataCard(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: _buildDefinitonSectionChildren(),
-      )
-    );
   }
 
   Widget _buildGramaticalCategory() {
@@ -181,7 +69,22 @@ class WordAboutCard extends StatelessWidget {
     );
   }
 
-  Widget _buildVerticallLayout() {
+  Widget _buildFirstCard(BuildContext context) {
+    return WordCard(
+      word: this.word.en.word,
+      definition: this.word.en.definition,
+    );
+  }
+
+  Widget _buildSecondCard(BuildContext context) {
+    return WordCard(
+      word: this.word.es.word,
+      definition: this.word.es.definition,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: ListView(
@@ -190,11 +93,14 @@ class WordAboutCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              
               _buildSizedBox(height: 15),
-              _buildDefinitonSection(),
-              _buildSizedBox(height: 15),
-              _buildDefinitonEnSection(),
-              _buildSizedBox(height: 15),
+              _buildFirstCard(context),
+
+              _buildSizedBox(height: 5),
+              _buildSecondCard(context),
+
+              _buildSizedBox(height: 10),
               if (word.en.note != null) _buildSection(),
               if (word.en.note != null) _buildSizedBox(height: 15),
 
@@ -207,8 +113,4 @@ class WordAboutCard extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return _buildVerticallLayout();
-  } 
 }

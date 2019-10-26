@@ -6,19 +6,21 @@ class WordCard extends StatelessWidget {
 
   final String word;
   final String definition;
+  final Function onPressed;
 
   WordCard({
     @required this.word,
-    @required this.definition
+    @required this.definition,
+    @required this.onPressed
   }) : assert(word != null),
        assert(definition != null);
 
-  // Helpers
+  // Methods
   String _cleanString({String text}) {
     return text.trim();
   }
 
-  // Actuall Widgets
+  // Actual Widgets
   List<Widget> _buildVolumeIcon() {
     final ShapeBorder shape = RoundedRectangleBorder( 
       borderRadius: BorderRadius.circular(10)
@@ -30,7 +32,7 @@ class WordCard extends StatelessWidget {
         elevation: 2,
         color: AppCardColors.backgroundColor,
         shape: shape,
-        onPressed: () {},
+        onPressed: this.onPressed,
         child: Icon(Icons.volume_up)
       ),
     ];
@@ -110,4 +112,3 @@ class WordCard extends StatelessWidget {
     );
   }
 }
-

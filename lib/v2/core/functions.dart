@@ -13,16 +13,12 @@ class VocabularyBuilderFunctions {
   }
 
   void deleteFile(String url) async {
-
-    print('Audio file deleted');
-
     await DefaultCacheManager().removeFile(url);
   }
 
   Future<String> saveToCache(String url) async {
     final FileInfo file =  await DefaultCacheManager().downloadFile(url);
     final String fileUrl = file.file.path;
-  
     return fileUrl;
   }
 }

@@ -6,6 +6,10 @@ class WordData {
   final String secondPerson;
   final String thirdPerson;
 
+  final String firstPersonPlural;
+  final String secondPersonPlural;
+  final String thirdPersonPlural;
+
   final String past;
   final String root;
   final String present;
@@ -25,6 +29,10 @@ class WordData {
     this.firstPerson,
     this.secondPerson,
     this.thirdPerson,
+
+    this.firstPersonPlural,
+    this.secondPersonPlural,
+    this.thirdPersonPlural,
 
     this.past,
     this.root,
@@ -48,6 +56,10 @@ class WordData {
       secondPerson: json['secondPerson'],
       thirdPerson: json['thirdPerson'],
 
+      firstPersonPlural: json['firstPersonPlural'],
+      secondPersonPlural: json['secondPersonPlural'],
+      thirdPersonPlural: json['thirdPersonPlural'],
+
       past: json['past'],
       root: json['root'],
       present: json['present'],
@@ -69,6 +81,10 @@ class WordData {
     'firstPerson': firstPerson,
     'secondPerson': secondPerson,
     'thirdPerson': thirdPerson,
+
+    'firstPersonPlural': firstPersonPlural,
+    'secondPersonPlural': secondPersonPlural,
+    'thirdPersonPlural': thirdPersonPlural,
 
     'past': past,
     'root': root,
@@ -92,6 +108,10 @@ class WordData {
       'secondPerson': secondPerson,
       'thirdPerson': thirdPerson,
 
+      'firstPersonPlural': firstPersonPlural,
+      'secondPersonPlural': secondPersonPlural,
+      'thirdPersonPlural': thirdPersonPlural,
+
       'past': past,
       'root': root,
       'present': present,
@@ -114,6 +134,10 @@ class WordData {
       firstPerson: map['firstPerson'],
       secondPerson: map['secondPerson'],
       thirdPerson: map['thirdPerson'],
+
+      firstPersonPlural: map['firstPersonPlural'],
+      secondPersonPlural: map['secondPersonPlural'],
+      thirdPersonPlural: map['thirdPersonPlural'],
 
       past: map['past'],
       root: map['root'],

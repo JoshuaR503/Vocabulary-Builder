@@ -11,30 +11,72 @@ class RowItem extends StatelessWidget {
     assert(subtitle != null);
 
   final TextStyle titleStyle = TextStyle(
-    fontSize: 16.5,
+    fontSize: 18,
     color: Colors.white,
   );
 
   final TextStyle subtitleStyle = TextStyle(
-    fontSize: 16.5,
+    fontSize: 18,
     fontWeight: FontWeight.w100,
     color: AppFontColors.secondaryText
   );
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            title,
-            style: titleStyle,
-          ),
 
-          Text(
-            subtitle,
-            style: subtitleStyle,
+    final Column leftColumn = Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: titleStyle,
+        ),
+      ]
+    );
+
+    final Column rightColumn = Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(
+          subtitle,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: subtitleStyle,
+        ),
+      ]
+    );
+
+    // final Column pronunciationColumn = Column(
+    //   mainAxisAlignment: MainAxisAlignment.start,
+    //   crossAxisAlignment: CrossAxisAlignment.end,
+    //   children: [
+    //     MaterialButton(
+    //       minWidth: 2,
+    //       elevation: 2,
+    //       color: AppCardColors.backgroundColor,
+    //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    //       onPressed: () {},
+    //       child: Icon(Icons.volume_up)
+    //     ),
+    //   ]
+    // );
+
+
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Expanded(child: leftColumn, flex: 2),
+              Expanded(child: rightColumn, flex: 2),
+              // Expanded(child: pronunciationColumn, flex: 1)
+            ],
           ),
         ],
       ),

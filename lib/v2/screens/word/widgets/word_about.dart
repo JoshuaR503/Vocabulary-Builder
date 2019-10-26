@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/core/functions.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
@@ -13,6 +14,11 @@ class WordAboutCard extends StatelessWidget {
   WordAboutCard({
     this.word
   }) : assert(word != null);
+
+  // Methods
+  void _playAudio({String audio}) {
+    functions.playAudio(audio: audio);
+  }
 
   // Helpers
   Widget _buildCard({Widget child}) {
@@ -38,11 +44,12 @@ class WordAboutCard extends StatelessWidget {
     return _buildCard(child: child);
   }
 
-  // Actuall Widgets.
+  // Actual Widgets.
   Widget _buildFirstCard(BuildContext context) {
     return WordCard(
       word: this.word.en.word,
       definition: this.word.en.definition,
+      onPressed: () => _playAudio(audio: this.word.en.wordPronuntiation),
     );
   }
 
@@ -50,6 +57,7 @@ class WordAboutCard extends StatelessWidget {
     return WordCard(
       word: this.word.es.word,
       definition: this.word.es.definition,
+      onPressed: () => _playAudio(audio: this.word.es.wordPronuntiation),
     );
   }
 
@@ -61,7 +69,7 @@ class WordAboutCard extends StatelessWidget {
     );
 
     final Text definition = Text(
-      this.word.en.category,
+      '${word.en.category}: is a word that describes the action of the subject.',
       style: TextStyles.definitionStyle,
     );
 
@@ -105,26 +113,6 @@ class WordAboutCard extends StatelessWidget {
     return _buildSection(children: children);
   }
 
-  Widget _builGif() {
-
-    final List<Widget> children = <Widget>[
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        child: Image.network(this.word.gif),
-      ),
-      
-      Padding(
-        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 30),
-        child: Text(
-          'Provided by Giphy', 
-          style: TextStyles.titleStyle
-        ),
-      )
-    ];
-
-    return _buildSection(children: children);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -142,15 +130,11 @@ class WordAboutCard extends StatelessWidget {
               SizedBox(height: 5),
               _buildSecondCard(context),
 
+              if (word.en.note != null && word.en.note.length > 1) SizedBox(height: 5),
+              if (word.en.note != null && word.en.note.length > 1) _buildNoteSection(),
+
               SizedBox(height: 5),
               _buildCategorySection(),
-
-              if (word.gif != null) SizedBox(height: 5),
-              if (word.gif != null) _builGif(),
-
-              SizedBox(height: 10),
-              if (word.en.note != null) _buildNoteSection(),
-              if (word.en.note != null) SizedBox(height: 15),
 
               SizedBox(height: 40),
             ],

@@ -1,8 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_button.dart';
-import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dart';
 import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
 
 class WordExamplesCard extends StatelessWidget {
@@ -13,8 +13,93 @@ class WordExamplesCard extends StatelessWidget {
     this.word
   }) : assert(word != null);
 
-  Widget _buildSizedBox({double height = 30.0}) {
-    return SizedBox(height: height);
+  // Helpers
+  Widget _buildCard({Widget child}) {
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      width: double.infinity,
+      child: Material(
+        color: Color(0XFF2b2b2b),
+        elevation: 10.0,
+        borderRadius: BorderRadius.circular(10.0),
+        child: child,
+      ),
+    );
+  }
+
+  Widget _buildWordsCard({Widget title, Widget data}) {
+
+    final List<Widget> children = <Widget>[
+      Padding(
+        padding: EdgeInsets.only(right: 30, left: 30, top: 25, bottom: 10),
+        child: title
+      ),
+
+      Padding(
+        padding: EdgeInsets.only(right: 30, left: 30, top: 10, bottom: 25),
+        child: data
+      )
+    ];
+
+    return _buildSection(children: children);
+  }
+
+  Widget _buildSection({List<Widget> children}) {
+
+    final Widget child = Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: children
+    );
+
+    return _buildCard(child: child);
+  }
+
+  // Actual Widgets
+  Widget _builGif(BuildContext context) {
+
+    final Widget errorWidget = Center(
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 30, bottom: 10),
+            child: Icon(Icons.warning),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 10, bottom: 30),
+            child: Text('Could not load picture.', style: TextStyles.definitionStyle)
+          ),
+        ],
+      )
+    );
+
+    final Widget placeholder = Center(
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 30, bottom: 10),
+            child: CircularProgressIndicator(),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 10, bottom: 30),
+            child: Text('Loading Gif.', style: TextStyles.definitionStyle)
+          ),
+        ],
+      )
+    );
+
+    final List<Widget> children = <Widget>[
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        child: CachedNetworkImage(
+          imageUrl: this.word.gif,
+          placeholder: (context, url) => placeholder,
+          errorWidget: (context, url, error) => errorWidget
+        )
+      ),
+    ];
+
+    return _buildSection(children: children);
   }
 
   Widget _buildExamplesCard() {
@@ -24,96 +109,73 @@ class WordExamplesCard extends StatelessWidget {
       style: TextStyles.titleStyle
     );
 
-    final SelectableText examples = SelectableText(
+    final SelectableText data = SelectableText(
       '${this.word.en.examples}',
-      style: TextStyles.definitionStyle
+      style: TextStyles.definitionStyle,
+      cursorColor: this.word.color,
     );
 
-    return WordDataCard(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          title,
-          _buildSizedBox(height: 20),
-          examples,
-        ],
-      ),
-    );
+    return _buildWordsCard(title: title, data: data);
   }
 
   Widget _buildSynonymsCard() {
 
     final Text title = Text(
-      'Synonyms',
+      'Similar Words',
       style: TextStyles.titleStyle
     );
 
-    return WordDataCard(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          title,
-          _buildSizedBox(height: 15),
-          WordCateogry(
-            category: this.word.en.synonyms,
-            word: this.word,
-          ),
-        ],
-      )
+    final Widget data = WordCateogry(
+      category: this.word.en.synonyms,
+      word: this.word,
     );
+
+    return _buildWordsCard(title: title, data: data);
   }
 
   Widget _buildAntonymsCard() {
 
-    final Text title2 = Text(
-      'Antonyms',
+    final Text title = Text(
+      'Oposite Words',
       style: TextStyles.titleStyle
     );
 
-    return WordDataCard(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          title2,
-          _buildSizedBox(height: 15),
-          WordCateogry(
-            category: this.word.en.antonyms,
-            word: this.word,
-          ),
-        ],
-      )
+    final Widget data = WordCateogry(
+      category: this.word.en.antonyms,
+      word: this.word,
     );
-  }
 
-  Widget _buildVerticallLayout() {
-    return ListView(
-      children: <Widget>[
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            _buildSizedBox(height: 15),
-            _buildExamplesCard(),
-            if (word.en.synonyms != null) _buildSizedBox(height: 15),
-            if (word.en.synonyms != null) _buildSynonymsCard(),
-            if (word.en.antonyms != null) _buildSizedBox(height: 15),
-            if (word.en.antonyms != null) _buildAntonymsCard(),
-            _buildSizedBox(height: 90),
-          ],
-        ),
-      ],
-    );
+    return _buildWordsCard(title: title, data: data);
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
-      child: _buildVerticallLayout()
+      child: ListView(
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+
+              if (word.gif != null && word.gif.length > 1) SizedBox(height: 5),
+              if (word.gif != null && word.gif.length > 1) _builGif(context),
+
+              if (word.gif == null || word.gif.length < 1) SizedBox(height: 10),
+              _buildExamplesCard(),
+
+              if (word.en.synonyms != null && word.en.synonyms.length > 1) SizedBox(height: 5),
+              if (word.en.synonyms != null && word.en.synonyms.length > 1) _buildSynonymsCard(),
+
+              if (word.en.antonyms != null && word.en.antonyms.length > 1) SizedBox(height: 5),
+              if (word.en.antonyms != null && word.en.antonyms.length > 1) _buildAntonymsCard(),
+
+              SizedBox(height: 40),
+            ],
+          ),
+        ],
+      )
     );
   } 
 }
-

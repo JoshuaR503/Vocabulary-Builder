@@ -112,4 +112,3 @@ class WordCard extends StatelessWidget {
     );
   }
 }
-

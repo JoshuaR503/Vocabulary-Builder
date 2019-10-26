@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_button.dart';
+import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
 import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
 
 class WordExamplesCard extends StatelessWidget {
@@ -78,7 +79,7 @@ class WordExamplesCard extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(top: 30, bottom: 10),
-            child: CircularProgressIndicator(),
+            child: VocabularyBuilderSpinner(color: this.word.color),
           ),
           Padding(
             padding: EdgeInsets.only(top: 10, bottom: 30),
@@ -91,10 +92,12 @@ class WordExamplesCard extends StatelessWidget {
     final List<Widget> children = <Widget>[
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        child: CachedNetworkImage(
-          imageUrl: this.word.gif,
-          placeholder: (context, url) => placeholder,
-          errorWidget: (context, url, error) => errorWidget
+        child: Center(
+          child: CachedNetworkImage(
+            imageUrl: this.word.gif,
+            placeholder: (context, url) => placeholder,
+            errorWidget: (context, url, error) => errorWidget
+          ),
         )
       ),
     ];

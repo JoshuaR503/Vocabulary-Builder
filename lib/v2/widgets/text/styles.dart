@@ -9,7 +9,7 @@ class TextStyles {
   );
 
   static const TextStyle definitionStyle = const TextStyle(
-    fontSize: 17,
+    fontSize: 15.5,
     fontWeight: FontWeight.w100,
     color: AppFontColors.secondaryText
   );

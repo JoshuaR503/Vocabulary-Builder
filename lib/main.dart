@@ -7,25 +7,20 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:vocabulary_builder/v2/blocs/config/bloc.dart';
 
 import 'package:vocabulary_builder/v2/blocs/delegate.dart';
 import 'package:vocabulary_builder/v2/blocs/search/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
+import 'package:vocabulary_builder/v2/blocs/translation/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/word/word_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 
 import 'package:vocabulary_builder/v2/config/themes/themes.dart';
 import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.dart';
-import 'package:vocabulary_builder/v2/screens/home/home.dart';
 
-import 'package:vocabulary_builder/v2/screens/intro/intro.dart';
-import 'package:vocabulary_builder/v2/screens/language/language.dart';
-import 'package:vocabulary_builder/v2/screens/level/level.dart';
-import 'package:vocabulary_builder/v2/screens/saved/saved.dart';
-import 'package:vocabulary_builder/v2/screens/screen.dart';
-import 'package:vocabulary_builder/v2/screens/settings/settings.dart';
-import 'package:vocabulary_builder/v2/screens/translator/translator.dart';
+import 'package:vocabulary_builder/v2/screens/screens.dart';
 
 void main() async {
 
@@ -54,6 +49,10 @@ void main() async {
 
         BlocProvider<SearchBloc>(
           builder: (context) => SearchBloc(),
+        ),
+
+        BlocProvider<TranslationBloc>(
+          builder: (context) => TranslationBloc(),
         ),
 
         BlocProvider<ConfigBloc>(

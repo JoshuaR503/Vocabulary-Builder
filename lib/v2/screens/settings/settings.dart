@@ -25,27 +25,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: ListView(
             children: <Widget>[
 
-              CommonTitle('Change Language'),
+              CommonTitle('Change Learning Language'),
               ListCell(
-                title: 'You will be redirected to another screen where you can change the app\'s language',
-                subtitle: 'Tap to change',
+                title: 'You can always change this setting here. Just tap English or Spanish.',
+                subtitle: 'Change language',
                 onTap: () => Navigator.of(context).pushNamed('/language'),
+                leading: Image.asset(
+                  'assets/pictures/translate.png',
+                  height: 50.0,
+                  width: 50.0,
+                ),
               ),
 
 
-              CommonTitle('Change Difficulty'),
+              CommonTitle("Change Difficulty Level"),
               ListCell(
-                title: 'You will be redirected to another screen where you can change the app\'s difficulty',
-                subtitle: 'Tap to change',
+                title: 'Is it too hard or maybe too easy?\nYou can always change this setting\nat any time.',
+                subtitle: 'Change difficulty level',
                 onTap: () => Navigator.of(context).pushNamed('/level'),
+                leading: Image.asset(
+                  'assets/pictures/team-support.png',
+                  height: 50.0,
+                  width: 50.0,
+                ),
               ),
 
-              CommonTitle('View Introduction'),
-              ListCell(
-                title: 'You will be redirected to the introdcution screen',
-                subtitle: 'Tap to view',
-                onTap: () => Navigator.of(context).pushNamed('/into'),
-              ),
+              // CommonTitle('View Introduction'),
+              // ListCell(
+              //   title: 'You will be redirected to the introdcution screen',
+              //   subtitle: 'Tap to view',
+              //   onTap: () => Navigator.of(context).pushNamed('/into'),
+              // ),
               
             ],
           )

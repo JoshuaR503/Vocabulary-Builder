@@ -16,9 +16,9 @@ class VocabularyBuilderHomeScreenManager extends StatelessWidget {
     final bool hasLanguage = await settingsRepository.hasCompleted(key: 'language');
     final bool hasLevel = await settingsRepository.hasCompleted(key: 'level');
 
-    if (!hasSeenSlider) {
-      return 'slider';
-    }
+    // if (!hasSeenSlider) {
+    //   return 'slider';
+    // }
 
     if (!hasLanguage) {
       return 'language';
@@ -37,9 +37,9 @@ class VocabularyBuilderHomeScreenManager extends StatelessWidget {
       future: _futureBuilder(),
       builder: (context, snapshot) {
         
-        if (snapshot.data == 'slider') {
-          return IntroScreen();
-        }
+        // if (snapshot.data == 'slider') {
+        //   return IntroScreen();
+        // }
 
         if (snapshot.data == 'language') {
           return LanguageScreen();

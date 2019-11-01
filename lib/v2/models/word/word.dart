@@ -58,6 +58,8 @@ class Word {
         return AppColors.red;
       case 'adjective':
         return AppColors.blue;
+      case 'adverb':
+        return AppColors.tealAccent;
       case 'phrasal verb':
         return AppColors.orange;
       case 'idiom':

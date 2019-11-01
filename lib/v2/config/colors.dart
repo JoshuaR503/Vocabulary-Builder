@@ -10,13 +10,13 @@ class AppColors {
   static const Color indigo = Color(0xFF5c6bd7);
 
   static const Color purple = Color(0xFF714c80);
-  static const Color red = Color(0xFFf82600);
+  static const Color red = Color(0xFFff320d);
   
   static const Color teal = Color(0xFF08cc75);
   static const Color tealAccent = Color(0xFF06be77);
   
   static const Color yellow = Color(0xFFF6C747);
-  static const Color orange = Color(0xFFff4220);
+  static const Color orange = Color(0xFFff5334);
 
   static const Color amber = Color(0xFFffab1a);
   static const Color amberAccent = Color(0XFFf19a00);

@@ -12,23 +12,16 @@ class EmptyTranslationState extends TranslationState {}
 
 class LoadingTranslationState extends TranslationState {}
 
-class LoaedTranslationState extends TranslationState {
-  final String translation;
-
-  LoaedTranslationState({
-    @required this.translation
-  })
-    : assert(translation != null),
-      super([translation]); 
-}
-
 class LoaedTranslationSavedState extends TranslationState {
 
   final List<Translation> translations;
+  final String translation;
 
   LoaedTranslationSavedState({
-    @required this.translations
+    @required this.translations,
+    @required this.translation
   })
     : assert(translations != null),
-      super([translations]); 
+      assert(translation != null),
+      super([translations, translation]); 
 }

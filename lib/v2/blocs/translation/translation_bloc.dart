@@ -14,10 +14,6 @@ class TranslationBloc extends Bloc<TranslationEvent, TranslationState> {
   @override
   Stream<TranslationState> mapEventToState(TranslationEvent event) async* {
 
-    if (event is TranslationSaveFetch) {
-      yield* _fetch();
-    }
-
     if (event is TranslationText) {
       yield LoadingTranslationState();
 
@@ -39,19 +35,22 @@ class TranslationBloc extends Bloc<TranslationEvent, TranslationState> {
 
       // Show response from server.
       
-      yield LoaedTranslationState(translation: translation);
+      yield* _fetch(translation: translation);
     }
   }
 
-  Stream<TranslationState> _fetch() async* {
+  Stream<TranslationState> _fetch({String translation}) async* {
 
     // Fetch translation from Database.
-    final List<Translation> translation = await _translationRepository.fetchSavedTranslations();
-    final bool translationIsNotEmpty = translation.isNotEmpty;
+    final List<Translation> translations = await _translationRepository.fetchSavedTranslations();
+    final bool translationIsNotEmpty = translations.isNotEmpty;
 
     // Set fetched translation in State.
     yield translationIsNotEmpty
-    ? LoaedTranslationSavedState(translations: translation)
+    ? LoaedTranslationSavedState(
+      translations: translations,
+      translation: translation
+    )
     : EmptyTranslationState();
   }
 }

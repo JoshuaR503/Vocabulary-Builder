@@ -51,9 +51,9 @@ void main() async {
           builder: (context) => SearchBloc(),
         ),
 
-        BlocProvider<TranslationBloc>(
-          builder: (context) => TranslationBloc(),
-        ),
+        // BlocProvider<TranslationBloc>(
+        //   builder: (context) => TranslationBloc(),
+        // ),
 
         BlocProvider<ConfigBloc>(
           builder: (context) => ConfigBloc(

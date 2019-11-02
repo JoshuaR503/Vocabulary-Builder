@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
@@ -13,11 +14,13 @@ import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
 class Category extends StatefulWidget {
   
   final String title;
+  final String route;
   final Color color;
   final Color accentColor;
 
   Category({
     @required this.title,
+    @required this.route,
     @required this.color,
     @required this.accentColor
   }) : assert(title != null),
@@ -38,6 +41,12 @@ class _CategoryState extends State<Category> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _reloadContent() {
+    BlocProvider
+      .of<WordsBloc>(context)
+      .add(FetchWords(category: this.widget.route));
   }
 
   Widget _buildErrorMessage(String message) {
@@ -108,7 +117,7 @@ class _CategoryState extends State<Category> {
             message: 'Reload Content',
             child: IconButton(
               icon: Icon(Icons.refresh),
-              onPressed: () {}
+              onPressed: _reloadContent
             ),
           ),
         ],

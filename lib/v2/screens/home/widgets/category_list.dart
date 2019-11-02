@@ -25,6 +25,7 @@ class _CategoryListState extends State<CategoryList> {
       .of(context)
       .push(MaterialPageRoute(
         builder: (context) => Category(
+          route: route,
           title: name,
           color: color,
           accentColor: accentColor,

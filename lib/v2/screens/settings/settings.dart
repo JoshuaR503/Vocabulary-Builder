@@ -18,8 +18,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         backgroundColor: Color(0xFF2b2b2b),
         title: Text('Settings Screen'),
-        centerTitle: true,
-
       ),
       
       body: Container(

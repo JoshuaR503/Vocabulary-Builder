@@ -32,8 +32,8 @@ class WordsApiClient {
   Future<List<Word>> fetchWordsFromCategory(String category) async {
 
     // Get Word Count.
-    // final int wordCount = await this._fetchWordCount();
-    // final int skip = wordCount != 0 ? wordCount : 0;
+    final int wordCount = await this._fetchWordCount();
+    final int skip = wordCount != 0 ? wordCount : 0;
 
     final String serverUrl = '$baseUrl/v3/word/category/$category';
     final Response<dynamic> response = await _fetchData(url: serverUrl);

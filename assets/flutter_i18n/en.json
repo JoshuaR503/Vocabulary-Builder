@@ -19,15 +19,11 @@
         }
     },
     
-    "screens" : {
-        "saved": {
-            "message": "Save words to study \n later or offline",
-            "solution": "Save as many words as you can \n Just tap the heart in a word"
-        },
-
-        "level": {
-            "message": "Select a \ndifficulty level"
-        }
+    "saved": {
+        "section_title": "Favorite Words",
+        
+        "title": "Save words to study \n later or offline",
+        "message": "Save as many words as you can \n Just tap the heart in a word"
     },
 
     "category": {

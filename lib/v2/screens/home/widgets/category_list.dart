@@ -35,7 +35,7 @@ class _CategoryListState extends State<CategoryList> {
       ));
   }
 
-  void _addEvent() {
+  void _loadFavortieWords() {
     BlocProvider
       .of<WordBloc>(context)
       .add(FetchWordsEvent());
@@ -141,7 +141,7 @@ class _CategoryListState extends State<CategoryList> {
           if (categories[index].isSpecial) {
             _pushSpecial(route: routeName);
 
-            if (categoryName == 'Favorite Words') _addEvent();
+            if (routeName == 'saved') _loadFavortieWords();
             
           } else {
             _pushCategory(

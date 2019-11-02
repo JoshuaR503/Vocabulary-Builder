@@ -18,16 +18,11 @@
         }
     },
 
-    "screens" : {
-        "saved": {
-            "message": "Guarda palabras para\nestudiar más tarde",
-            "solution": "Para guardar una palabra solo\ntoca el corazón y aparecera aqui"
-        },
+    "saved": {
+        "section_title": "Palabras Favoritas",
 
-
-        "level": {
-            "message": "Selecciona \nun nivel de\ndificultad."
-        }
+        "title": "Guarda palabras para\nestudiar más tarde",
+        "message": "Para guardar una palabra solo\ntoque el corazón y aparecerá aquí."
     },
 
     "category": {

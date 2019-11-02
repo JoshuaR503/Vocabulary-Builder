@@ -80,7 +80,7 @@
 
     "category": {
         "reload": "Actualizar",
-        "empty": "No hay nada aquí",
+        "empty": "No hay nada aquí\n\n",
 
         "no_connection": {
             "title": "No se pudo conectar al servidor",

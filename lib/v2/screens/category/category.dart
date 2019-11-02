@@ -5,13 +5,11 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
-import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
 
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/solution.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
-import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
 
 class Category extends StatefulWidget {
   
@@ -47,7 +45,7 @@ class _CategoryState extends State<Category> {
   }
 
   // Helpers
-  Widget _buildErrorMessage(String message, String solution) {
+  Widget _buildError(String message, String solution) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -59,6 +57,10 @@ class _CategoryState extends State<Category> {
         VocabularyBuilderSolutionMessage(solution: solution)
       ],
     );
+  }
+
+  Widget _buildErrorMessage(String message) {
+    return VocabularyBuilderMessage(message: message);
   }
 
   Widget _createWordsCard(List<Word> words) {
@@ -91,30 +93,27 @@ class _CategoryState extends State<Category> {
         }
 
         if (state is WordsZero) {
-          return _buildErrorMessage(
+          return _buildError(
             FlutterI18n.translate(context, 'category.empty'),
             FlutterI18n.translate(context, 'category.empty'),
           );
         }
 
         if (state is WordsNoConnection) {
-          return _buildErrorMessage(
+          return _buildError(
             FlutterI18n.translate(context, 'category.no_connection.title'),
             FlutterI18n.translate(context, 'category.no_connection.message'),
           );
         }
 
         if (state is WordsError) {
-          return _buildErrorMessage(
+          return _buildError(
             FlutterI18n.translate(context, 'category.error.title'),
             FlutterI18n.translate(context, 'category.error.message'),
           );
         }
 
-        return _buildErrorMessage(
-          FlutterI18n.translate(context, 'category.empty'),
-          FlutterI18n.translate(context, 'category.empty'),
-        );
+        return _buildErrorMessage(  FlutterI18n.translate(context, 'category.empty'));
       }
     );
   }

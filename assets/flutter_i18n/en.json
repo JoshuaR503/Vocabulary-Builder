@@ -1,40 +1,24 @@
 {
-    "app_name": "Constructor de Vocabulario",
+
+    "home": {
+        "app_text": "Vocabulary Builder",
+        "search_text": "Search nouns, verbs, adjectives, etc",
+
+        "category": {
+            "adverbs": "Adverbs",
+            "verb": "Verbs",
     
-    "categories": {
-        "translator": {
-            "name": "Translator"
-        },
-
-        "verb": {
-            "name": "Verbs"
-        },
-
-        "adjectives": {
-            "name": "Adjectives"
-        },
-
-        "phrasal_verbs": {
-            "name": "Phrasal Verbs"
-        },
-
-        "idioms": {
-            "name": "Idioms"
-        },
-
-        "nouns": {
-            "name": "Nouns"
-        },
-
-        "all_words": {
-            "name": "All Words"
-        },
-
-        "saved": {
-            "name": "Favorite Words"
+            "adjectives": "Adjectives",
+            "phrasal_verbs": "Phrasal Verbs",
+    
+            "idioms": "Idioms",
+            "nouns": "Nouns",
+    
+            "all_words": "Word Bank",
+            "saved": "Favorite Words"
         }
     },
-
+    
     "screens" : {
         "saved": {
             "message": "Save words to study \n later or offline",
@@ -48,40 +32,12 @@
     },
 
 
-    "app": "Vocabulario",
-
     "welcome_screen": {
         "title": "Choose a language to \nstudy",
         "en": "English",
         "es": "Spanish"
     },
 
-    "home": {
-        "title": "Home",
-        "appbar": {
-            "icons": {
-                "refresh_tooltip": "Show more words",
-                "heart_tooltip": "Saved words"
-            }
-        },
-        "drawer": {
-            "title": "Options",
-            "thidItem": "Share this app",
-            "language": "Change Language",
-            "web_version": "Web Version",
-            "web_feedback": "Send Feedback",
-
-            "show_slide": "Show Intro Slide",
-            "credits": "Credits",
-
-            "privacy": "Privacy Policy",
-            "terms": "Terms & Conditions"
-
-        },
-
-        "button_name": "Listen Pronunciation",
-        "button_playing": "Speaking"
-    },
 
     "settings": {
         "title": "Settings",
@@ -326,48 +282,6 @@
             "subtitle": "Tap the icon to find out more",
             "subtitle_two": "Icons made by Freepik from www.flaticon.com"
         }
-    },
-
-    "slide_show": {
-        "slide_one": {
-            "title": "VOCABULARY",
-            "description": "Increase your vocabulary with handy words."
-        },
-
-        "slide_two": {
-            "title": "LEARN ON THE GO",
-            "description": "With at least 10 minutes per day you can increase your vocabulary."
-        },
-
-        "slide_three": {
-            "title": "OFFLINE MODE",
-            "description": "If you like a word, touch the heart next to it to make it available offline."
-        },
-
-        "slide_four": {
-            "title": "TAP IT!",
-            "description": "If you want to get more information of a word, just tap it!"
-        },
-
-        "options": {
-            "skip": "SKIP",
-            "done": "DONE",
-            "next": "NEXT"
-        }
-    },
-
-    "snackbar": {
-        "success_message_clipboard": "Text copied to clipboard",
-        "success_message_clipboard_label": "Got it!",
-
-        "error_message_clipboard": "There was an error copying to clipboard",
-        "error_message_clipboard_label": "Got it",
-
-        "success_saving_word": "Word Saved",
-        "success_saving_word_label": "Got it!",
-
-        "error_saving_word": "There was an error saving the word",
-        "error_saving_word_label": "Got it"
     },
 
     "error_message": {

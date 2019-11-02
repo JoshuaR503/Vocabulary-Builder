@@ -1,6 +1,6 @@
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
-import 'package:vocabulary_builder/v2/config/config.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'package:vocabulary_builder/v2/screens/home/widgets/category_list.dart';
 import 'package:vocabulary_builder/v2/screens/home/widgets/container.dart';
@@ -54,15 +54,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   Widget _buildAppTitle() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 32),
-      child: Text(
-        appName,
-        style: TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.w900,
-        ),
-      )
+    return Text(
+      FlutterI18n.translate(context, 'home.app_text'),
+      style: TextStyle(
+        fontSize: 32,
+        fontWeight: FontWeight.w900,
+      ),
     );
   }
 
@@ -71,7 +68,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       VocabularyBuilderContainer(
         children: <Widget>[        
           SizedBox(height: 60),
-          _buildAppTitle(),
+
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32),
+            child: _buildAppTitle() 
+          ),
 
           SizedBox(height: 40),
           VocabularyBuilderSearch(),
@@ -84,17 +85,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         ],
       )
     ];
-  }
-
-  Widget _buildButton() {
-    return FloatingActionButton(
-      child: Icon(Icons.settings),
-      onPressed: () {
-        Navigator
-        .of(context)
-        .pushNamed('/settings');
-      }
-    );
   }
 
   @override
@@ -128,7 +118,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             children: _buildContent()
           )
         ),
-        floatingActionButton: _buildButton()
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.settings),
+          onPressed: () => Navigator
+            .of(context)
+            .pushNamed('/settings')
+        )
       ),
     );
   }

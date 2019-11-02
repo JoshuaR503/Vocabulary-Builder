@@ -1,39 +1,24 @@
 {
-    "app_name": "Vocabulary Builder",
+    "home": {
+        "app_text": "El Constructor de Vocabulario",
+        "search_text": "Búsqueda de sustantivos, verbos, adjetivos, etc",
 
-    "categories": {
-        "translator": {
-            "name": "Traductor"
-        },
-
-        "verb": {
-            "name": "Verbos"
-        },
-
-        "adjectives": {
-            "name": "Adjetivos"
-        },
-
-        "phrasal_verbs": {
-            "name": "Verbos Frasales"
-        },
-
-        "idioms": {
-            "name": "Modismos"
-        },
-
-        "nouns": {
-            "name": "Sustantivos"
-        },
-
-        "all_words": {
-            "name": "Banco de Palabras"
-        },
-
-        "saved": {
-            "name": "Palabras guardadas"
+        "category": {
+            "adverbs": "Adverbios",
+            "verb": "Verbos",
+    
+            "adjectives": "Adjetivos",
+            "phrasal_verbs": "Verbos Frasales",
+    
+            "idioms": "Modismos",
+            "nouns": "Sustantivos",
+    
+            "all_words": "Todas las Palabras",
+            "saved": "Palabras Favoritas"
         }
     },
+
+    
 
     "screens" : {
         "saved": {
@@ -48,45 +33,16 @@
     },
 
 
-    "app": "Vocabulary",
-
     "welcome_screen": {
         "title": "¿Qué idioma estás \naprendiendo?",
         "en": "Inglés",
         "es": "Español"
     },
 
-    "home": {
-        "title": "Inicio",
-        "appbar": {
-            "icons": {
-                "refresh_tooltip": "Cargar más palabras",
-                "heart_tooltip": "Palabras guardadas"
-            }
-        },
-        "drawer": {
-            "title": "Opciones",
-            "thidItem": "Compartir aplicación",
-            "language": "Cambiar Idioma",
-            "web_version": "Versión web",
-            "web_feedback": "Enviar comentarios",
-
-            "show_slide": "Repetir Introducción",
-            "credits": "Créditos",
-
-            "privacy": "Política de privacidad",
-            "terms": "Términos y condiciones"
-        },
-
-        "button_name": "Escuchar Pronunciación",
-        "button_playing": "Pronunciando Palabra"
-    },
-
     "settings": {
         "title": "Ajustes",
         "option_one": "Cambiar Idioma"
     },
-
 
     "saved_words": {
         "title": "Palabras Guardadas",
@@ -329,33 +285,6 @@
         }
     },
 
-    "slide_show": {
-        "slide_one": {
-            "title": "VOCABULARIO",
-            "description": "Aumenta tu vocabulario con palabras aleatorias de una manera simple."
-        },
-
-        "slide_two": {
-            "title": "APRENDE A TU RITMO",
-            "description": "Con 5 minutos al día puedes aprender nuevas palabras."
-        },
-
-        "slide_three": {
-            "title": "MODO OFFLINE",
-            "description": "Si te gusta una palabra, toca el corazón junto a ella para verla sin conexión."
-        },
-
-        "slide_four": {
-            "title": "TOCA LA PALABRA",
-            "description": "Si quieres más información de una palabra, simplemente tócala."
-        },
-
-        "options": {
-            "skip": "SALTAR",
-            "done": "LISTO",
-            "next": "SIGUIENTE"
-        }
-    },
 
     "snackbar": {
         "success_message_clipboard": "Texto copiado al portapapeles con éxito",

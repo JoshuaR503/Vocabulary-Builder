@@ -59,6 +59,22 @@
         "message": "Save as many words as you can \n Just tap the heart in a word"
     },
 
+    "search": {
+        "section_title": "Search {search}",
+
+        "no_connection": {
+            "title": "No connection"
+        },
+
+        "error": {
+            "title": "Something unexpected happened"
+        },
+
+        "empty": {
+            "message": "No results found"
+        }
+    },
+
     "category": {
         "reload": "Refresh Content",
         "empty": "Nothing here",
@@ -137,7 +153,6 @@
         }
     },
 
-    "search": "Search",
     "help": "Help and information",
 
     "question_answers": {

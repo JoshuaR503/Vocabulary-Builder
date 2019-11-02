@@ -27,3 +27,5 @@ class ErrorSearchState extends SearchState {
 }
 
 class EmptySearchState extends SearchState {}
+
+class SearchNoConnectionState extends SearchState {}

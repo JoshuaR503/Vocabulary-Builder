@@ -60,6 +60,24 @@
         "message": "Para guardar una palabra solo\ntoque el corazón y aparecerá aquí."
     },
 
+    "search": {
+        "section_title": "Buscando {search}",
+
+        "no_connection": {
+            "title": "No se pudo conectar al servidor",
+            "message": "\nPor favor verifique su conexión a internet e intente de nuevo"
+        },
+
+        "error": {
+            "title": "Se produjo un error desconocido al ejecutar la búsqueda.",
+            "message": "\nEstamos trabajando para solucionar este problema"
+        },
+
+        "empty": {
+            "message": "No se han encontrado resultados"
+        }
+    },
+
     "category": {
         "reload": "Actualizar",
         "empty": "No hay nada aquí",
@@ -129,8 +147,7 @@
         }
     },
 
-    "search": "Busqueda",
-    "help": "Ayuda e información",
+
 
     "question_answers": {
         "title": "Preguntas",

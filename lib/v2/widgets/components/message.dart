@@ -11,10 +11,11 @@ class VocabularyBuilderMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 26.0, vertical: 40.0),
+      padding: EdgeInsets.symmetric(horizontal: 26.0, vertical: 20.0),
       child: Center(
         child: Text(
           message,
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,

@@ -132,8 +132,22 @@ class WordConjugationCard extends StatelessWidget {
     final bool hasPersonSingular = this.word.en.firstPerson != null && this.word.en.firstPerson.length > 1;
     final bool hasPersonPlural = this.word.en.firstPersonPlural != null && this.word.en.firstPersonPlural.length > 1;
 
+    final Size size = MediaQuery.of(context).size;
+    final double deviceWidth = size.width;
+    final double deviceHeight = size.height;
+
+    final bool isSmall = deviceWidth < 480 && deviceHeight < 200;
+    final bool isBig = deviceWidth >= 500.0;
+  
+    final double smallWidth = deviceWidth / 30;
+    final double bigWidth = deviceWidth / 10;
+    
+    final double horizontal = isSmall 
+    ? smallWidth : isBig
+    ? bigWidth : 10;
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: horizontal),
       child: ListView(
         children: <Widget>[
           Column(

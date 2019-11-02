@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vocabulary_builder/v2/blocs/translation/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 import 'package:vocabulary_builder/v2/config/categories.dart';
@@ -37,13 +36,6 @@ class _CategoryListState extends State<CategoryList> {
     BlocProvider
       .of<WordBloc>(context)
       .add(FetchWordsEvent());
-  }
-
-  void _fetchTranslations() {
-
-    BlocProvider
-      .of<TranslationBloc>(context)
-      .add(TranslationSaveFetch());
   }
   
   void _pushSpecial({String route}) {
@@ -88,7 +80,6 @@ class _CategoryListState extends State<CategoryList> {
             _pushSpecial(route: routeName);
 
             if (categoryName == 'Favorite Words') _addEvent();
-            if (categoryName == 'Translator') _fetchTranslations();
             
           } else {
             _pushCategory(

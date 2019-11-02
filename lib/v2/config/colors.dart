@@ -4,13 +4,13 @@ class AppColors {
   static const Color black = Color(0xFF303943);
   static const Color snackBar = Color(0XFF383838);
 
-  static const Color blue = Color(0xFF1e89e9);
-  static const Color brown = Color(0xFFab675f);
+  static const Color blue = Color(0xFF167fde);
+  static const Color brown = Color(0xFFa25d55);
   static const Color grey = Color(0x64303943);
-  static const Color indigo = Color(0xFF5c6bd7);
+  static const Color indigo = Color(0xFF4c5dd3);
 
   static const Color purple = Color(0xFF714c80);
-  static const Color red = Color(0xFFff320d);
+  static const Color red = Color(0xFFff4321);
   
   static const Color teal = Color(0xFF08cc75);
   static const Color tealAccent = Color(0xFF06be77);

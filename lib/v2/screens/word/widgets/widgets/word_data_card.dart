@@ -78,7 +78,6 @@ class WordCard extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.all(10.0),
-      width: double.infinity,
       child: Material(
         elevation: 10.0,
         borderRadius: BorderRadius.circular(10.0),

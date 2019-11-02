@@ -9,14 +9,11 @@ import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.
 class ConfigBloc extends Bloc<ConfigEvent, ConfigState> {
 
   ConfigBloc({
-    @required this.isFirstTime,
     @required this.hasLanguage,
     @required this.hasLevel
-  }) : assert(isFirstTime != null),
-       assert(hasLanguage != null),
+  }) : assert(hasLanguage != null),
        assert(hasLevel != null);
 
-  final bool isFirstTime;
   final bool hasLanguage;
   final bool hasLevel;
 
@@ -24,7 +21,6 @@ class ConfigBloc extends Bloc<ConfigEvent, ConfigState> {
 
   @override
   ConfigState get initialState => ConfigState(
-    isFirstTime: this.isFirstTime,
     hasLanguage: this.hasLanguage,
     hasLevel: this.hasLevel
   );
@@ -43,22 +39,16 @@ class ConfigBloc extends Bloc<ConfigEvent, ConfigState> {
       // Set fetched words in State.
       yield* _updateState();
 
-    } else if (event is SliderSeenEvent) {
-      settingsRepository.setUserSlider();
-      // Set fetched words in State.
-      yield* _updateState();
     }
   }
 
   Stream<ConfigState> _updateState() async* {
     // Fetch words from Database.
-    final bool isFirstTime = await settingsRepository.hasCompleted(key: 'seen');
     final bool hasLanguage = await settingsRepository.hasCompleted(key: 'language');
     final bool hasLevel = await settingsRepository.hasCompleted(key: 'level');
 
     // Set fetched words in State.
     yield ConfigState(
-      isFirstTime: isFirstTime,
       hasLanguage: hasLanguage,
       hasLevel: hasLevel
     );

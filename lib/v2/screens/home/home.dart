@@ -14,8 +14,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   final InterstitialAd _beautifulAd = InterstitialAd(
-    //adUnitId: 'ca-app-pub-2727987234768252/9844346682',
-    adUnitId: InterstitialAd.testAdUnitId,
+    adUnitId: 'ca-app-pub-2727987234768252/9844346682',
+    //adUnitId: InterstitialAd.testAdUnitId,
     targetingInfo: MobileAdTargetingInfo(
       keywords: <String>['english', 'spanish', 'language', 'learning', 'pronunciation'],
       childDirected: false,
@@ -66,22 +66,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildContent() {
-    return VocabularyBuilderContainer(
-      children: <Widget>[        
-        SizedBox(height: 60),
-        _buildAppTitle(),
+  List<Widget> _buildContent() {
+    return [
+      VocabularyBuilderContainer(
+        children: <Widget>[        
+          SizedBox(height: 60),
+          _buildAppTitle(),
 
-        SizedBox(height: 40),
-        VocabularyBuilderSearch(),
+          SizedBox(height: 40),
+          VocabularyBuilderSearch(),
 
-        SizedBox(height: 40),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25),
-          child: CategoryList(),
-        )
-      ],
-    );
+          SizedBox(height: 40),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25),
+            child: CategoryList(),
+          )
+        ],
+      )
+    ];
   }
 
   Widget _buildButton() {
@@ -98,33 +100,32 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
 
-    // _beautifulAd
-    //   ..load()
-    //   ..show();
+    _beautifulAd
+      ..load()
+      ..show();
 
     final Size size = MediaQuery.of(context).size;
     final double deviceWidth = size.width;
     final double deviceHeight = size.height;
 
     final bool isSmall = deviceWidth < 480 && deviceHeight < 200;
-    final bool isBig = deviceWidth >= 890.0;
+    final bool isBig = deviceWidth >= 500.0;
   
     final double smallWidth = deviceWidth / 30;
     final double bigWidth = deviceWidth / 10;
+    
     final double horizontal = isSmall 
-    ? smallWidth : isBig 
+    ? smallWidth : isBig
     ? bigWidth : 0;
 
     return FadeTransition(
       opacity: animation,
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: horizontal),
+          padding: EdgeInsets.symmetric(horizontal: horizontal ),
           decoration: BoxDecoration(color: Theme.of(context).accentColor),
           child: ListView(
-            children: <Widget>[
-              _buildContent()
-            ],
+            children: _buildContent()
           )
         ),
         floatingActionButton: _buildButton()

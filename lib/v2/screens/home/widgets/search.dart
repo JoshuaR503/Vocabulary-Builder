@@ -28,7 +28,7 @@ class _VocabularyBuilderSearchState extends State<VocabularyBuilderSearch> {
       ),
 
       onFieldSubmitted: (value) {
-        if (value.length > 1) {
+        if (value.length > 0) {
           BlocProvider
             .of<SearchBloc>(context)
             .add(SearchWordsEvent(query: value));

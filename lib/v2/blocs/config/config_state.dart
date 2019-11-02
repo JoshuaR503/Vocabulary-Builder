@@ -5,12 +5,10 @@ import 'package:meta/meta.dart';
 class ConfigState extends Equatable {
 
   ConfigState({
-    @required this.isFirstTime,
     @required this.hasLanguage,
     @required this.hasLevel
-  }) : super([isFirstTime, hasLanguage, hasLevel]);
+  }) : super([hasLanguage, hasLevel]);
 
-  final bool isFirstTime;
   final bool hasLanguage;
   final bool hasLevel;
 

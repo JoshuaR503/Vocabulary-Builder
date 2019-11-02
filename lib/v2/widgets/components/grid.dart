@@ -59,7 +59,7 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
   Widget _buildGridView() {
     final Size size = MediaQuery.of(context).size;
 
-    final bool isSmall = size.width <= 479;
+    final bool isSmall = size.width <= 480;
 
     final double width = size.width;
     final double childAspectRatio = isSmall 
@@ -74,8 +74,8 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         childAspectRatio: childAspectRatio,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
       ),
       padding: EdgeInsets.only(left: 16, right: 16, top: 16),
       itemCount: length,

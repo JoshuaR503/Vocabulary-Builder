@@ -13,12 +13,12 @@ import 'package:vocabulary_builder/v2/blocs/config/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/delegate.dart';
 import 'package:vocabulary_builder/v2/blocs/search/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
-import 'package:vocabulary_builder/v2/blocs/translation/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/word/word_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 
 import 'package:vocabulary_builder/v2/config/themes/themes.dart';
 import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.dart';
+import 'package:vocabulary_builder/v2/screens/language/language.dart';
 
 import 'package:vocabulary_builder/v2/screens/screens.dart';
 
@@ -26,9 +26,7 @@ void main() async {
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
-  // Data from SP.
   final SettingsRepository settingsRepository = SettingsRepository();
-  final bool isFirstTime = await settingsRepository.hasCompleted(key: 'seen');
   final bool hasLanguage = await settingsRepository.hasCompleted(key: 'language');
   final bool hasLevel = await settingsRepository.hasCompleted(key: 'level');
 
@@ -51,13 +49,8 @@ void main() async {
           builder: (context) => SearchBloc(),
         ),
 
-        // BlocProvider<TranslationBloc>(
-        //   builder: (context) => TranslationBloc(),
-        // ),
-
         BlocProvider<ConfigBloc>(
           builder: (context) => ConfigBloc(
-            isFirstTime: isFirstTime,
             hasLanguage: hasLanguage,
             hasLevel: hasLevel
           ),
@@ -76,10 +69,8 @@ class VocabularyBuilderApp extends StatelessWidget {
     '/': (BuildContext context) => VocabularyBuilderHomeScreenManager(),
     '/home':  (BuildContext context) => Home(),
     
-    '/into': (BuildContext context) => IntroScreen(),
     '/saved': (BuildContext context) => SavedWordsScreen(),
     '/settings': (BuildContext context) => SettingsScreen(),
-    '/translator': (BuildContext context) => TranslatorScreen(),
 
     '/language': (BuildContext context) => LanguageScreen(),
     '/level': (BuildContext context) => LevelScreen(),

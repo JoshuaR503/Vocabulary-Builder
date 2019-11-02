@@ -9,6 +9,14 @@
         }
     },
 
+    "language": {
+        "title": "Choose a language to \nstudy",
+        "options": {
+            "spanish": "Spanish",
+            "english": "English"
+        }
+    },
+
     "home": {
         "app_text": "Vocabulary Builder",
         "search_text": "Search nouns, verbs, adjectives, etc",
@@ -48,13 +56,6 @@
             "title": "Something unexpected happened",
             "message": "\nWe are working to fix this issue\nPlease try again later\n"
         }
-    },
-
-
-    "welcome_screen": {
-        "title": "Choose a language to \nstudy",
-        "en": "English",
-        "es": "Spanish"
     },
 
 

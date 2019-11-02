@@ -33,7 +33,7 @@ class LanguageTitle extends StatelessWidget {
     return Container(
       width: targetWidth,
       padding: EdgeInsets.only(top: deviceHeight / 6),
-      child: Text(FlutterI18n.translate(context, 'welcome_screen.title'),
+      child: Text(FlutterI18n.translate(context, 'language.title'),
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.bold

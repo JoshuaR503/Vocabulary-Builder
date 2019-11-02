@@ -9,6 +9,15 @@
         }
     },
 
+    "language": {
+        "title": "¿Qué idioma estás \naprendiendo?",
+        "options": {
+            "spanish": "Español",
+            "english": "Inglés",
+            "any": "Cualquiera"
+        }
+    },
+
     "home": {
         "app_text": "El Constructor de Vocabulario",
         "search_text": "Búsqueda de sustantivos, verbos, adjetivos, etc",
@@ -48,13 +57,6 @@
             "title": "No se pudo conectar al servidor",
             "message": "\nEstamos trabajando para solucionar este problema"
         }
-    },
-
-
-    "welcome_screen": {
-        "title": "¿Qué idioma estás \naprendiendo?",
-        "en": "Inglés",
-        "es": "Español"
     },
 
     "settings": {

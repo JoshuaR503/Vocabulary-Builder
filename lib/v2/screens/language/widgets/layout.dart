@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:meta/meta.dart';
 import 'package:vocabulary_builder/v2/blocs/config/bloc.dart';
 
@@ -43,12 +44,12 @@ class _LanguageLayoutState extends State<LanguageLayout> {
   
           Container(
             padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
-            child: Button('English', () => _onTap('en', context), targetWidth),
+            child: Button(FlutterI18n.translate(context, 'language.options.english'), () => _onTap('en', context), targetWidth),
           ),
   
           Container(
             padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
-            child: Button('Spanish', () => _onTap('es', context), targetWidth),
+            child: Button(FlutterI18n.translate(context, 'language.options.spanish'), () => _onTap('es', context), targetWidth),
           )
         ],
       ),
@@ -68,9 +69,9 @@ class _LanguageLayoutState extends State<LanguageLayout> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Button('English',  () => _onTap('en', context), targetWidth),
+              Button(FlutterI18n.translate(context, 'language.options.english'),  () => _onTap('en', context), targetWidth),
               Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
-              Button('Spanish',  () => _onTap('es', context), targetWidth),
+              Button(FlutterI18n.translate(context, 'language.options.spanish'),  () => _onTap('es', context), targetWidth),
             ],
           )
         ],

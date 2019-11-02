@@ -1,4 +1,14 @@
 {
+
+    "level": {
+        "title": "Selecciona un nivel de dificultad",
+        "options": {
+            "beginner": "Principiante",
+            "experienced": "Experimentado",
+            "any": "Cualquiera"
+        }
+    },
+
     "home": {
         "app_text": "El Constructor de Vocabulario",
         "search_text": "Búsqueda de sustantivos, verbos, adjetivos, etc",

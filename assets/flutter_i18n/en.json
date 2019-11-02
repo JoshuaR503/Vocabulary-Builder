@@ -1,5 +1,14 @@
 {
 
+    "level": {
+        "title": "Select a difficulty level",
+        "options": {
+            "beginner": "Beginner",
+            "experienced": "Experienced",
+            "any": "Doesn't matter"
+        }
+    },
+
     "home": {
         "app_text": "Vocabulary Builder",
         "search_text": "Search nouns, verbs, adjectives, etc",

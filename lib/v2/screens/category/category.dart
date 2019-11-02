@@ -44,6 +44,7 @@ class _CategoryState extends State<Category> {
       .add(FetchWords(category: this.widget.route));
   }
 
+  // Helpers
   Widget _buildErrorMessage(String message) {
     return VocabularyBuilderMessage(message: message);
   }
@@ -62,6 +63,7 @@ class _CategoryState extends State<Category> {
     );
   }
 
+  // Actual Widgets
   BlocBuilder<WordsBloc, WordsState> _buildExpanded() {
     return BlocBuilder<WordsBloc, WordsState>(
       builder: (BuildContext context, WordsState state) {
@@ -77,26 +79,26 @@ class _CategoryState extends State<Category> {
         }
 
         if (state is WordsZero) {
-          return _buildErrorMessage('Section under construction. Come back later.');
+          return _buildErrorMessage(FlutterI18n.translate(context, 'category.empty'));
         }
 
         if (state is WordsNoConnection) {
           return EmptyStateScreen(
-            message: "No Connection",
+            message: FlutterI18n.translate(context, 'category.no_connection.title'),
+            fixMessage: FlutterI18n.translate(context, 'category.no_connection.message'),
             pathImage: 'assets/pictures/warning.png',
-            fixMessage: '\nSlow or not internet connection\nPlease check your connection'
           );
         }
 
         if (state is WordsError) {
           return EmptyStateScreen(
-            message: 'Something unexpected\nwent wrong',
-            pathImage: 'assets/pictures/settings.png',
-            fixMessage: '\nWe are working to fix this issue\nPlease try again later\n'
+            message: FlutterI18n.translate(context, 'category.error.title'),
+            fixMessage: FlutterI18n.translate(context, 'category.error.message'),
+            pathImage: 'assets/pictures/settings.png'
           );
         }
 
-        return _buildErrorMessage('Something Unexpected Happened. Did not work.');
+        return _buildErrorMessage(FlutterI18n.translate(context, 'category.empty'));
       }
     );
   }
@@ -109,7 +111,7 @@ class _CategoryState extends State<Category> {
         title: Text(this.widget.title),
         actions: <Widget>[
           Tooltip(
-            message: 'Reload Content',
+            message: FlutterI18n.translate(context, 'category.reload'),
             child: IconButton(
               icon: Icon(Icons.refresh),
               onPressed: _reloadContent

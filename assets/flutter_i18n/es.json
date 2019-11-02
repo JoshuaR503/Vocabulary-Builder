@@ -18,8 +18,6 @@
         }
     },
 
-    
-
     "screens" : {
         "saved": {
             "message": "Guarda palabras para\nestudiar más tarde",
@@ -29,6 +27,21 @@
 
         "level": {
             "message": "Selecciona \nun nivel de\ndificultad."
+        }
+    },
+
+    "category": {
+        "reload": "Actualizar",
+        "empty": "No hay nada aquí",
+
+        "no_connection": {
+            "title": "No se pudo conectar al servidor",
+            "message": "\nPor favor verifique su conexión a internet e intente de nuevo"
+        },
+
+        "error": {
+            "title": "No se pudo conectar al servidor",
+            "message": "\nEstamos trabajando para solucionar este problema"
         }
     },
 

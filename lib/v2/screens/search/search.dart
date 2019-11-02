@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/search/bloc.dart';
@@ -56,7 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
         }
 
         if (state is EmptySearchState) {
-          return _buildErrorMessage('Did not match anything realted to: ${this.widget.search}');
+          return _buildErrorMessage('No results found');
         }
 
         if (state is ErrorSearchState) {
@@ -68,13 +67,12 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF2b2b2b),
-        title: Text('Searching ${widget.search}'),
+        title: Text('Searching ${this.widget.search.toLowerCase()}'),
       ),
       
       body: Container(

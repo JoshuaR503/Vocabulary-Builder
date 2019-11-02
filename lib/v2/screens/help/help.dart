@@ -7,9 +7,11 @@ import 'package:vocabulary_builder/v2/screens/help/widgets/solutions.dart';
 class HelpScreen extends StatefulWidget {
 
   final Color color;
+  final int initialIndex;
 
   HelpScreen({
-    this.color
+    this.color,
+    this.initialIndex = 0
   }) : assert(color != null);
 
   @override
@@ -50,6 +52,7 @@ class _HelpScreenState extends State<HelpScreen> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
+      initialIndex: widget.initialIndex,
       child: Scaffold(
         backgroundColor: Color(0xFF1e1e1e),
         appBar: _buildAppBar(),

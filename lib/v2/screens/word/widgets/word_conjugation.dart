@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/row_item.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dart';
+import 'package:vocabulary_builder/v2/widgets/ui/container.dart';
 
 class WordConjugationCard extends StatelessWidget {
 
@@ -132,8 +133,7 @@ class WordConjugationCard extends StatelessWidget {
     final bool hasPersonSingular = this.word.en.firstPerson != null && this.word.en.firstPerson.length > 1;
     final bool hasPersonPlural = this.word.en.firstPersonPlural != null && this.word.en.firstPersonPlural.length > 1;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+    return SimpleContainer(
       child: ListView(
         children: <Widget>[
           Column(

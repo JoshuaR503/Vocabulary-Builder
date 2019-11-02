@@ -1,9 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
+
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
 
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
@@ -12,11 +14,13 @@ import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
 class Category extends StatefulWidget {
   
   final String title;
+  final String route;
   final Color color;
   final Color accentColor;
 
   Category({
     @required this.title,
+    @required this.route,
     @required this.color,
     @required this.accentColor
   }) : assert(title != null),
@@ -30,15 +34,15 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void dispose() {
     super.dispose();
   }
 
+  void _reloadContent() {
+    BlocProvider
+      .of<WordsBloc>(context)
+      .add(FetchWords(category: this.widget.route));
+  }
 
   Widget _buildErrorMessage(String message) {
     return VocabularyBuilderMessage(message: message);
@@ -76,8 +80,20 @@ class _CategoryState extends State<Category> {
           return _buildErrorMessage('Section under construction. Come back later.');
         }
 
+        if (state is WordsNoConnection) {
+          return EmptyStateScreen(
+            message: "No Connection",
+            pathImage: 'assets/pictures/warning.png',
+            fixMessage: '\nSlow or not internet connection\nPlease check your connection'
+          );
+        }
+
         if (state is WordsError) {
-          return _buildErrorMessage(state.error.toString());
+          return EmptyStateScreen(
+            message: 'Something unexpected\nwent wrong',
+            pathImage: 'assets/pictures/settings.png',
+            fixMessage: '\nWe are working to fix this issue\nPlease try again later\n'
+          );
         }
 
         return _buildErrorMessage('Something Unexpected Happened. Did not work.');
@@ -96,7 +112,7 @@ class _CategoryState extends State<Category> {
             message: 'Reload Content',
             child: IconButton(
               icon: Icon(Icons.refresh),
-              onPressed: () {}
+              onPressed: _reloadContent
             ),
           ),
         ],

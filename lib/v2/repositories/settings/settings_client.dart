@@ -12,11 +12,6 @@ class VocabularyBuilderSettingsClient {
     preferences.setString('level', level);
   }
 
-  void setUserSlider() async {
-    final SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setBool('seen', true);
-  }
-
   Future<bool> hasCompleted({String key}) async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     final bool hasCompleted = preferences.containsKey(key);

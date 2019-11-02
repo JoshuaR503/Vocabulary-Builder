@@ -30,9 +30,35 @@ class VocabularyBuilderGrid extends StatefulWidget {
   _VocabularyBuilderGridState createState() => _VocabularyBuilderGridState();
 }
 
-class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
+class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> with TickerProviderStateMixin {
 
   final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
+
+  AnimationController controller;
+  Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = AnimationController(
+      duration: Duration(milliseconds: 500),
+      vsync: this
+    );
+
+    animation = CurvedAnimation(
+      parent: controller, 
+      curve: Curves.easeIn
+    );
+
+    controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   void _deleteWord({Word word}) {
     // Delete audio files
@@ -56,10 +82,12 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
     );
   }
 
-  Widget _buildGridView() {
-    final Size size = MediaQuery.of(context).size;
 
-    final bool isSmall = size.width <= 479;
+  @override
+  Widget build(BuildContext context) {
+    
+    final Size size = MediaQuery.of(context).size;
+    final bool isSmall = size.width <= 480;
 
     final double width = size.width;
     final double childAspectRatio = isSmall 
@@ -69,26 +97,25 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
     final int length = this.widget.words.length;
     final int crossAxisCount = isSmall ? 1 : 2;
 
+    // Widget
     return GridView.builder(
       physics: BouncingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         childAspectRatio: childAspectRatio,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
       ),
       padding: EdgeInsets.only(left: 16, right: 16, top: 16),
       itemCount: length,
       itemBuilder: (context, index) {
         final Word word = this.widget.words[index];        
 
-        return _buildVocabularyBuilderCard(word);
+        return FadeTransition(
+          opacity: animation,
+          child: _buildVocabularyBuilderCard(word)
+        );
       }
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _buildGridView();
   }
 }

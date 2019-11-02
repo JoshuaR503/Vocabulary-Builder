@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 class WordDataCard extends StatelessWidget {
 
   final Widget child;
+  final EdgeInsets padding;
 
-  WordDataCard({this.child}) 
+  WordDataCard({
+    this.child,
+    this.padding = const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+  }) 
     : assert (child != null);
   
   @override
@@ -14,7 +18,7 @@ class WordDataCard extends StatelessWidget {
       color: Color(0XFF2b2b2b),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+        padding: padding,
         child: child,
       )
     );

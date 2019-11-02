@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:vocabulary_builder/v2/config/colors.dart';
+import 'package:vocabulary_builder/v2/screens/help/help.dart';
 import 'package:vocabulary_builder/v2/widgets/text/index.dart';
+import 'package:vocabulary_builder/v2/widgets/ui/container.dart';
 import 'package:vocabulary_builder/v2/widgets/ui/index.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -15,42 +18,46 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         backgroundColor: Color(0xFF2b2b2b),
         title: Text('Settings Screen'),
-        centerTitle: true,
       ),
       
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: Theme.of(context).accentColor),
         child: SafeArea(
-          child: ListView(
-            children: <Widget>[
+          child: SimpleContainer(
+            child: ListView(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              children: <Widget>[
 
-              CommonTitle('Change Language'),
-              ListCell(
-                title: 'You will be redirected to another screen where you can change the app\'s language',
-                subtitle: 'Tap to change',
-                onTap: () => Navigator.of(context).pushNamed('/language'),
-              ),
+                CommonTitle('Change Learning Language'),
+                ListCell(
+                  title: 'You can always change this setting here. Just tap English or Spanish.',
+                  subtitle: 'Change language',
+                  onTap: () => Navigator.of(context).pushNamed('/language'),
 
+                ),
 
-              CommonTitle('Change Difficulty'),
-              ListCell(
-                title: 'You will be redirected to another screen where you can change the app\'s difficulty',
-                subtitle: 'Tap to change',
-                onTap: () => Navigator.of(context).pushNamed('/level'),
-              ),
-
-              CommonTitle('View Introduction'),
-              ListCell(
-                title: 'You will be redirected to the introdcution screen',
-                subtitle: 'Tap to view',
-                onTap: () => Navigator.of(context).pushNamed('/into'),
-              ),
-              
-            ],
+                CommonTitle("Change Experience Level"),
+                ListCell(
+                  title: 'Is it too hard or maybe too easy?\nDoesn\'t matter. Just tap to change it.',
+                  subtitle: 'Change Experience level',
+                  onTap: () => Navigator.of(context).pushNamed('/level'),
+                ),
+              ],
+            ),
           )
         )
       ),
+
+      floatingActionButton: FloatingActionButton(
+          child: Text('🤔', style: TextStyle(fontSize: 35)),
+          onPressed: () =>
+            Navigator
+              .of(context)
+              .push(MaterialPageRoute(
+                builder: (context) => HelpScreen(color: AppColors.red, initialIndex: 2)
+              )),
+        ),
     );
   }
 }

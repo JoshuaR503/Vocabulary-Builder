@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:vocabulary_builder/v2/core/network.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/repositories/repositories.dart';
@@ -7,7 +8,8 @@ import './bloc.dart';
 
 class WordsBloc extends Bloc<WordsEvent, WordsState> {
 
-  final WordsRepository wordsRepository = WordsRepository();
+  final WordsRepository _wordsRepository = WordsRepository();
+  final NetworkInfoImpl _networkInfoImpl = NetworkInfoImpl();
 
   @override
   WordsState get initialState => WordsEmpty();
@@ -18,29 +20,28 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
     // Fetch Words Event.
     if (event is FetchWords) {
 
-      yield WordsLoading();
+      final bool isConnected = await _networkInfoImpl.isConnected;
 
-      try {
+      if (isConnected) {
+        try {
+          yield WordsLoading();
 
-        if (event.category != 'All Words') {
-          final List<Word> words = await wordsRepository.fetchWordsFromCategory(event.category);
-
-          yield words.length == 0
-          ? WordsZero()
-          : WordsLoaded(words: words);
-          
-        } else {
-          final List<Word> words = await wordsRepository.fetchWords();
+          final List<Word> words = event.category == 'All Words' 
+          ? await _wordsRepository.fetchWords()
+          : await _wordsRepository.fetchWordsFromCategory(event.category);
 
           yield words.length == 0
           ? WordsZero()
           : WordsLoaded(words: words);
+
+        } catch (e) {
+          yield WordsError(error: e);
         }
-        
-      } catch (e) {
-        yield WordsError(error: e);
+      } 
+
+      if (!isConnected) {
+        yield WordsNoConnection();  
       }
     }
-
   }
 }

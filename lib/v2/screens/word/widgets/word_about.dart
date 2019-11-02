@@ -4,6 +4,7 @@ import 'package:vocabulary_builder/v2/models/models.dart';
 
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_data_card.dart';
 import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
+import 'package:vocabulary_builder/v2/widgets/ui/container.dart';
 
 class WordAboutCard extends StatelessWidget {
 
@@ -114,8 +115,8 @@ class WordAboutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+
+    return SimpleContainer(
       child: ListView(
         children: <Widget>[
           Column(

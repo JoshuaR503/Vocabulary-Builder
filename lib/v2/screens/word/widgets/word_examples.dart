@@ -5,6 +5,7 @@ import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_button.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
 import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
+import 'package:vocabulary_builder/v2/widgets/ui/container.dart';
 
 class WordExamplesCard extends StatelessWidget {
 
@@ -153,23 +154,7 @@ class WordExamplesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final Size size = MediaQuery.of(context).size;
-    final double deviceWidth = size.width;
-    final double deviceHeight = size.height;
-
-    final bool isSmall = deviceWidth < 480 && deviceHeight < 200;
-    final bool isBig = deviceWidth >= 500.0;
-  
-    final double smallWidth = deviceWidth / 30;
-    final double bigWidth = deviceWidth / 10;
-    
-    final double horizontal = isSmall 
-    ? smallWidth : isBig
-    ? bigWidth : 10;
-
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: horizontal),
+    return SimpleContainer(
       child: ListView(
         children: <Widget>[
           Column(

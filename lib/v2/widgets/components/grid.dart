@@ -48,10 +48,16 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> with Tick
 
     animation = CurvedAnimation(
       parent: controller, 
-      curve: Curves.decelerate
+      curve: Curves.easeIn
     );
 
     controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   void _deleteWord({Word word}) {
@@ -76,9 +82,11 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> with Tick
     );
   }
 
-  Widget _buildGridView() {
-    final Size size = MediaQuery.of(context).size;
 
+  @override
+  Widget build(BuildContext context) {
+    
+    final Size size = MediaQuery.of(context).size;
     final bool isSmall = size.width <= 480;
 
     final double width = size.width;
@@ -89,6 +97,7 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> with Tick
     final int length = this.widget.words.length;
     final int crossAxisCount = isSmall ? 1 : 2;
 
+    // Widget
     return GridView.builder(
       physics: BouncingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -108,10 +117,5 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> with Tick
         );
       }
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _buildGridView();
   }
 }

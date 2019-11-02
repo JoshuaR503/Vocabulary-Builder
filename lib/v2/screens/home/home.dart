@@ -100,9 +100,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
 
-    // _beautifulAd
-    //   ..load()
-    //   ..show();
+    _beautifulAd
+      ..load()
+      ..show();
 
     final Size size = MediaQuery.of(context).size;
     final double deviceWidth = size.width;
@@ -112,7 +112,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     final bool isBig = deviceWidth >= 500.0;
   
     final double smallWidth = deviceWidth / 30;
-    final double bigWidth = deviceWidth / 10;
+    final double bigWidth = deviceWidth / 8;
     
     final double horizontal = isSmall 
     ? smallWidth : isBig

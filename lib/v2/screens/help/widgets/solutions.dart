@@ -109,23 +109,13 @@ class SolutionsTab extends StatelessWidget {
                 subtitle: FlutterI18n.translate(context, 'troubleshooting.no_volume.solution_one'),
                 onTap: () {},
               ),
-            ]
-          ),
 
-          _createCard(
-            context: context, 
-            children: <Widget>[
               ListCell(
                 title: FlutterI18n.translate(context, 'troubleshooting.no_volume.response_two'),
                 subtitle: FlutterI18n.translate(context, 'troubleshooting.no_volume.solution_two'),
                 onTap: () {},
               ),
-            ]
-          ),
 
-          _createCard(
-            context: context, 
-            children: <Widget>[
               ListCell(
                 title: FlutterI18n.translate(context, 'troubleshooting.no_volume.response_three'),
                 subtitle: FlutterI18n.translate(context, 'troubleshooting.no_volume.solution_three'),

@@ -30,9 +30,29 @@ class VocabularyBuilderGrid extends StatefulWidget {
   _VocabularyBuilderGridState createState() => _VocabularyBuilderGridState();
 }
 
-class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
+class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> with TickerProviderStateMixin {
 
   final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
+
+  AnimationController controller;
+  Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = AnimationController(
+      duration: Duration(milliseconds: 500),
+      vsync: this
+    );
+
+    animation = CurvedAnimation(
+      parent: controller, 
+      curve: Curves.decelerate
+    );
+
+    controller.forward();
+  }
 
   void _deleteWord({Word word}) {
     // Delete audio files
@@ -82,7 +102,10 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> {
       itemBuilder: (context, index) {
         final Word word = this.widget.words[index];        
 
-        return _buildVocabularyBuilderCard(word);
+        return FadeTransition(
+          opacity: animation,
+          child: _buildVocabularyBuilderCard(word)
+        );
       }
     );
   }

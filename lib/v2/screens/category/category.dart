@@ -34,11 +34,6 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void dispose() {
     super.dispose();
   }

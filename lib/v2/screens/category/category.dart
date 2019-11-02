@@ -9,7 +9,9 @@ import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
 
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
+import 'package:vocabulary_builder/v2/widgets/components/solution.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
+import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
 
 class Category extends StatefulWidget {
   
@@ -45,8 +47,18 @@ class _CategoryState extends State<Category> {
   }
 
   // Helpers
-  Widget _buildErrorMessage(String message) {
-    return VocabularyBuilderMessage(message: message);
+  Widget _buildErrorMessage(String message, String solution) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        VocabularyBuilderMessage(message: message),
+        Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: Text('🙁', style: TextStyle(fontSize: 55)),
+        ),
+        VocabularyBuilderSolutionMessage(solution: solution)
+      ],
+    );
   }
 
   Widget _createWordsCard(List<Word> words) {
@@ -79,26 +91,30 @@ class _CategoryState extends State<Category> {
         }
 
         if (state is WordsZero) {
-          return _buildErrorMessage(FlutterI18n.translate(context, 'category.empty'));
+          return _buildErrorMessage(
+            FlutterI18n.translate(context, 'category.empty'),
+            FlutterI18n.translate(context, 'category.empty'),
+          );
         }
 
         if (state is WordsNoConnection) {
-          return EmptyStateScreen(
-            message: FlutterI18n.translate(context, 'category.no_connection.title'),
-            fixMessage: FlutterI18n.translate(context, 'category.no_connection.message'),
-            pathImage: 'assets/pictures/warning.png',
+          return _buildErrorMessage(
+            FlutterI18n.translate(context, 'category.no_connection.title'),
+            FlutterI18n.translate(context, 'category.no_connection.message'),
           );
         }
 
         if (state is WordsError) {
-          return EmptyStateScreen(
-            message: FlutterI18n.translate(context, 'category.error.title'),
-            fixMessage: FlutterI18n.translate(context, 'category.error.message'),
-            pathImage: 'assets/pictures/settings.png'
+          return _buildErrorMessage(
+            FlutterI18n.translate(context, 'category.error.title'),
+            FlutterI18n.translate(context, 'category.error.message'),
           );
         }
 
-        return _buildErrorMessage(FlutterI18n.translate(context, 'category.empty'));
+        return _buildErrorMessage(
+          FlutterI18n.translate(context, 'category.empty'),
+          FlutterI18n.translate(context, 'category.empty'),
+        );
       }
     );
   }

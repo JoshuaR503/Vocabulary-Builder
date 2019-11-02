@@ -84,12 +84,12 @@
 
         "no_connection": {
             "title": "No se pudo conectar al servidor",
-            "message": "\nPor favor verifique su conexión a internet e intente de nuevo"
+            "message": "\nPor favor verifique su conexión a internet e intente de nuevo\n\n\n"
         },
 
         "error": {
-            "title": "No se pudo conectar al servidor",
-            "message": "\nEstamos trabajando para solucionar este problema"
+            "title": "Se produjo un error inesperado",
+            "message": "\nPor favor regresa más tarde\n\n\n"
         }
     },
 

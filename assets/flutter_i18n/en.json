@@ -81,12 +81,12 @@
 
         "no_connection": {
             "title": "Could not connect to the server",
-            "message": "\nSlow or not internet connection\nPlease check your connection"
+            "message": "\nSlow or not internet connection\nPlease check your connection\n\n\n"
         },
 
         "error": {
             "title": "Something unexpected happened",
-            "message": "\nWe are working to fix this issue\nPlease try again later\n"
+            "message": "\nWe are working to fix this issue\nPlease try again later\n\n\n"
         }
     },
 

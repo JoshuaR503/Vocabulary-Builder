@@ -18,7 +18,7 @@ class EmptyStateScreen extends StatelessWidget {
 
   final TextStyle bottomStyle = TextStyle(
     color: Colors.white,
-    fontWeight: FontWeight.w400,
+    fontFamily: "CircularStd",
     fontSize: 20.0
   );
 

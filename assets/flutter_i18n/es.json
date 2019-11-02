@@ -38,7 +38,7 @@
     "screens" : {
         "saved": {
             "message": "Guarda palabras para\nestudiar más tarde",
-            "solution": "Guarda tantas palabras \ncomo puedas. \nToca el corazón en una palabra"
+            "solution": "Para guardar una palabra solo\ntoca el corazón y aparecera aqui"
         },
 
 

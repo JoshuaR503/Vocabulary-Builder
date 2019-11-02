@@ -24,7 +24,8 @@ class WordsError extends WordsState {
   WordsError({@required this.error})
     : assert(error != null),
       super([error]); 
-
 }
 
 class WordsZero extends WordsState {}
+
+class WordsNoConnection extends WordsState {}

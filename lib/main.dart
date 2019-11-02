@@ -81,6 +81,7 @@ class VocabularyBuilderApp extends StatelessWidget {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (BuildContext context, ThemeState state) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           
           title: 'Vocabulary Builder',
           theme: appTheme['Dark'],

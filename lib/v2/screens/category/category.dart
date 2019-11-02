@@ -1,9 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
 
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
@@ -38,7 +39,6 @@ class _CategoryState extends State<Category> {
   void dispose() {
     super.dispose();
   }
-
 
   Widget _buildErrorMessage(String message) {
     return VocabularyBuilderMessage(message: message);
@@ -76,8 +76,20 @@ class _CategoryState extends State<Category> {
           return _buildErrorMessage('Section under construction. Come back later.');
         }
 
+        if (state is WordsNoConnection) {
+          return EmptyStateScreen(
+            message: "No Connection",
+            pathImage: 'assets/pictures/warning.png',
+            fixMessage: '\nSlow or not internet connection\nPlease check your connection'
+          );
+        }
+
         if (state is WordsError) {
-          return _buildErrorMessage(state.error.toString());
+          return EmptyStateScreen(
+            message: 'Something unexpected\nwent wrong',
+            pathImage: 'assets/pictures/settings.png',
+            fixMessage: '\nWe are working to fix this issue\nPlease try again later\n'
+          );
         }
 
         return _buildErrorMessage('Something Unexpected Happened. Did not work.');

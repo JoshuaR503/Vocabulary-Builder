@@ -18,6 +18,22 @@
         }
     },
 
+    "settings": {
+        "section_title": "Configuración",
+
+        "change_language": {
+            "title": "Cambiar Idioma",
+            "message": "Siempre puede cambiar esta configuración aquí. Simplemente seleccione inglés o español.",
+            "subtitle": "Cambiar idioma"
+        },
+
+        "change_level": {
+            "title": "Cambiar Nivel de Dificultad",
+            "message": "¿Es demasiado difícil o quizás demasiado fácil? No hay problema. Simplemente toque para cambiarlo.",
+            "subtitle": "Elegir un nuevo idioma"
+        }
+    },
+
     "home": {
         "app_text": "El Constructor de Vocabulario",
         "search_text": "Búsqueda de sustantivos, verbos, adjetivos, etc",
@@ -56,20 +72,6 @@
         "error": {
             "title": "No se pudo conectar al servidor",
             "message": "\nEstamos trabajando para solucionar este problema"
-        }
-    },
-
-    "settings": {
-        "title": "Ajustes",
-        "option_one": "Cambiar Idioma"
-    },
-
-    "saved_words": {
-        "title": "Palabras Guardadas",
-        "appbar": {
-            "icons": {
-                "search_tooltip": "Búsqueda de Palabras"
-            }
         }
     },
 

@@ -35,6 +35,22 @@
             "saved": "Favorite Words"
         }
     },
+
+    "settings": {
+        "section_title": "Ajustes",
+
+        "change_language": {
+            "title": "Change Learning Language",
+            "message": "You can always change this setting here. Simply select English or Spanish.",
+            "subtitle": "Change language"
+        },
+
+        "change_level": {
+            "title": "Change Experience Level",
+            "message": "Is it too hard or maybe too easy?\nDoesn't matter. Just tap to change it.",
+            "subtitle": "Change Experience level"
+        }
+    },
     
     "saved": {
         "section_title": "Favorite Words",
@@ -58,11 +74,6 @@
         }
     },
 
-
-    "settings": {
-        "title": "Settings",
-        "option_one": "Change Language"
-    },
 
     "saved_words": {
         "title": "Saved Words",

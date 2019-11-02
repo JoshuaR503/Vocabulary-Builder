@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/screens/help/help.dart';
 import 'package:vocabulary_builder/v2/widgets/text/index.dart';
@@ -16,8 +17,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2b2b2b),
-        title: Text('Settings Screen'),
+        backgroundColor: AppColors.defaultBlack,
+        title: Text(FlutterI18n.translate(context, 'settings.section_title')),
       ),
       
       body: Container(
@@ -29,18 +30,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               children: <Widget>[
 
-                CommonTitle('Change Learning Language'),
+                CommonTitle(FlutterI18n.translate(context, 'settings.change_language.title')),
                 ListCell(
-                  title: 'You can always change this setting here. Just tap English or Spanish.',
-                  subtitle: 'Change language',
+                  title: FlutterI18n.translate(context, 'settings.change_level.message'),
+                  subtitle: FlutterI18n.translate(context, 'settings.change_level.subtitle'),
                   onTap: () => Navigator.of(context).pushNamed('/language'),
 
                 ),
 
-                CommonTitle("Change Experience Level"),
+                CommonTitle(FlutterI18n.translate(context, 'settings.change_level.title')),
                 ListCell(
-                  title: 'Is it too hard or maybe too easy?\nDoesn\'t matter. Just tap to change it.',
-                  subtitle: 'Change Experience level',
+                  title: FlutterI18n.translate(context, 'settings.change_level.message'),
+                  subtitle: FlutterI18n.translate(context, 'settings.change_level.subtitle'),
                   onTap: () => Navigator.of(context).pushNamed('/level'),
                 ),
               ],
@@ -50,14 +51,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
 
       floatingActionButton: FloatingActionButton(
-          child: Text('🤔', style: TextStyle(fontSize: 35)),
-          onPressed: () =>
-            Navigator
-              .of(context)
-              .push(MaterialPageRoute(
-                builder: (context) => HelpScreen(color: AppColors.red, initialIndex: 2)
-              )),
-        ),
+        child: Text('🤔', style: TextStyle(fontSize: 35)),
+        onPressed: () =>
+          Navigator
+          .of(context)
+          .push(MaterialPageRoute(
+            builder: (context) => HelpScreen(color: AppColors.red, initialIndex: 2)
+          )),
+      ),
     );
   }
 }

@@ -90,6 +90,16 @@
         }
     },
 
+    "word": {
+        "tabs": {
+            "about": "About",
+            "examples": "Examples",
+            "conjugation": "Conjugation"
+        },
+
+        "action": "Add to Favorites"
+    },
+
 
     "saved_words": {
         "title": "Saved Words",

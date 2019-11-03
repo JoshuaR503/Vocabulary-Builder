@@ -93,6 +93,16 @@
         }
     },
 
+    "word": {
+        "tabs": {
+            "about": "Información",
+            "examples": "Ejemplos",
+            "conjugation": "Conjugación"
+        },
+
+        "action": "Agregar a Palabras Favoritas"
+    },
+
     "single_palabra": {
 
         "conjugation_indicative": {

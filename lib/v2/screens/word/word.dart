@@ -119,7 +119,7 @@ class _WordState extends State<WordScreen> {
           title: Text(this.widget.word.en.word),
           actions: _buildActions(),
           bottom: TabBar(
-            indicatorWeight: 5,
+            indicatorWeight: 3,
             tabs: [
 
               Tab(text: FlutterI18n.translate(context, 'word.tabs.about')),

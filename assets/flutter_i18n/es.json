@@ -114,7 +114,6 @@
                 "noun": "Sustantivo. ",
                 "verb": "Verbo. ",
                 "adverb": "Adverbio. ",
-
                 "adjective": "Adjetivo. ",
                 "phasal_verb": "Verbo Frasal. ",
                 "idiom": "Modismo. "
@@ -159,7 +158,7 @@
     },
 
     "help" : {
-        "section_title": "Information",
+        "section_title": "Información",
         "tabs": {
             "questions": "Preguntas",
             "help": "Ayuda",

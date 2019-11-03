@@ -22,7 +22,7 @@ class CategoryCard extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 15.5,
             fontWeight: FontWeight.w100,
             color: Colors.white,
           ),

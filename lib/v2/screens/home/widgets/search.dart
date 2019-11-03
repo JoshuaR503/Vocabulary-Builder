@@ -22,7 +22,7 @@ class _VocabularyBuilderSearchState extends State<VocabularyBuilderSearch> {
     return TextFormField(
       decoration: InputDecoration(
         hintText: FlutterI18n.translate(context, 'home.search_text'),
-        hintStyle: TextStyle(fontSize: 16),
+        hintStyle: TextStyle(fontSize: 15.5),
         border: InputBorder.none,
       ),
 

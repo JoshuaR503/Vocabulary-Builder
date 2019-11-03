@@ -25,7 +25,7 @@ class ListCell extends StatelessWidget {
           
           Text(
             title,
-            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400),
+            style: TextStyle(fontSize: 16.5, fontWeight: FontWeight.w400),
           ),
           
           Separator.spacer(height: 6.0),

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/word.dart';
 import 'package:vocabulary_builder/v2/widgets/text/index.dart';
@@ -87,9 +88,10 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: TextStyle(
-            fontSize: 18.5, 
-            fontWeight: FontWeight.w300
-          ),
+            fontSize: 18,
+            fontWeight: FontWeight.w100,
+            color: AppFontColors.secondaryText
+          )
         ),
       ),
     ];

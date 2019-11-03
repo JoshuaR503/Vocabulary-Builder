@@ -109,7 +109,17 @@
 
         "about_section": {
             "gramatical_category": "Categoría Gramatical",
-            "note": "Algo que debes saber"
+            "note": "Algo que debes saber",
+
+            "category": {
+                "noun": "Sustantivo. ",
+                "verb": "Verbo. ",
+                "adverbs": "Adverbio. ",
+
+                "adjective": "Adjetivo. ",
+                "phasal_verb": "Verbo Frasal. ",
+                "idiom": "Modismo. "
+            }
         },
 
         "examples_section": {

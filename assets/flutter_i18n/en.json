@@ -99,7 +99,6 @@
             "conjugation": "Conjugation"
         },
 
-        
         "snackbar": {
             "text": "Word Saved",
             "action": "Show me"
@@ -107,6 +106,15 @@
 
         "about_section": {
             "gramatical_category": "Grammatical Category",
+            "category": {
+                "noun": "Noun. ",
+                "verb": "Verb. ",
+                "adverb": "Adverb. ",
+                "adjective": "Adjective. ",
+                "phasal_verb": "Phrasal Verb. ",
+                "idiom": "Idiom. "
+            },
+
             "note": "Something you must know"
         },
 
@@ -119,6 +127,7 @@
             "sentences": "Sentences",
             "similar_words": "Similar Words",
             "oposite_words": "Oposite Words"
+
         },
 
         "conjugation_section": {

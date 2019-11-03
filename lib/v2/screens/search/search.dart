@@ -5,7 +5,7 @@ import 'package:vocabulary_builder/v2/blocs/search/bloc.dart';
 
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/word/word.dart';
-import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
+
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';

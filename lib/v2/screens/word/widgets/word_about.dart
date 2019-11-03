@@ -21,6 +21,43 @@ class WordAboutCard extends StatelessWidget {
     functions.playAudio(audio: audio);
   }
 
+  String _findDefinition({String category, BuildContext context}) {
+    switch (category) {
+      case 'noun':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.noun') +
+        FlutterI18n.translate(context, 'question_answers.noun.answer');
+
+      case 'verb':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.verb') +
+        FlutterI18n.translate(context, 'question_answers.verb.answer');
+
+      case 'adjective':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.adjective') +
+        FlutterI18n.translate(context, 'question_answers.adjective.answer');
+
+      case 'adverb':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.adverb') +
+        FlutterI18n.translate(context, 'question_answers.adverb.answer');
+
+      case 'phrasal verb':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.phrasal_verbs') +
+        FlutterI18n.translate(context, 'question_answers.phasal_verbs.answer');
+
+      case 'idiom':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.idioms') +
+        FlutterI18n.translate(context, 'question_answers.idiom.answer');
+
+      default:
+        return 'Unknown';
+    }
+  }
+
   // Helpers
   Widget _buildCard({Widget child}) {
     return Container(
@@ -70,7 +107,11 @@ class WordAboutCard extends StatelessWidget {
     );
 
     final Text definition = Text(
-      'Here will to be a definition of "${word.en.category}" with the objective to not leave blank space.',
+      _findDefinition(
+        context: context,
+        category: word.en.category
+      ),
+
       style: TextStyles.definitionStyle,
     );
 

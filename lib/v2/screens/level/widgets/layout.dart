@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:meta/meta.dart';
 import 'package:vocabulary_builder/v2/blocs/config/bloc.dart';
 
@@ -20,6 +21,7 @@ class LevelLayout extends StatefulWidget {
 
 class _LevelLayoutState extends State<LevelLayout> {
   
+  // Helpers
   void _onTap(String level) {
     BlocProvider
       .of<ConfigBloc>(context)
@@ -30,6 +32,7 @@ class _LevelLayoutState extends State<LevelLayout> {
     .pushNamed('/home');
   }
 
+  // Layouts
   Widget _buildVerticalLayout(double targetWidth) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -41,20 +44,19 @@ class _LevelLayoutState extends State<LevelLayout> {
           
           SizedBox(height: targetWidth / 10),
 
-
           Container(
             padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
-            child: Button("Beginner ", () => _onTap('easy'), 480),
+            child: Button(FlutterI18n.translate(context, 'level.options.beginner'), () => _onTap('easy'), 480),
           ),
 
           Container(
             padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
-            child: Button("Experienced ", () => _onTap('normal'), 480),
-          ),  
+            child: Button(FlutterI18n.translate(context, 'level.options.experienced'), () => _onTap('normal'), 480),
+          ),
 
           Container(
             padding: EdgeInsets.symmetric(vertical: targetWidth / 50),
-            child: Button("Doesn't matter", () => _onTap('all'), targetWidth),
+            child: Button(FlutterI18n.translate(context, 'level.options.any'), () => _onTap('all'), targetWidth),
           )
         ],
       ),
@@ -74,9 +76,9 @@ class _LevelLayoutState extends State<LevelLayout> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Button('Beginner', () => _onTap('easy'), targetWidth),
+              Button(FlutterI18n.translate(context, 'level.options.beginner'), () => _onTap('easy'), targetWidth),
               Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
-              Button('Experienced', () => _onTap('normal'), targetWidth)
+              Button(FlutterI18n.translate(context, 'level.options.experienced'), () => _onTap('normal'), targetWidth)
             ],
           ),
 
@@ -84,7 +86,7 @@ class _LevelLayoutState extends State<LevelLayout> {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.symmetric(vertical: targetWidth / 30),
-                child: Button("Doesn't matter", () => _onTap('all'), targetWidth),
+                child: Button(FlutterI18n.translate(context, 'level.options.any'), () => _onTap('all'), targetWidth),
               )
             ],
           )
@@ -93,6 +95,7 @@ class _LevelLayoutState extends State<LevelLayout> {
     );
   }
 
+  // Actual W
   @override
   Widget build(BuildContext context) {
 

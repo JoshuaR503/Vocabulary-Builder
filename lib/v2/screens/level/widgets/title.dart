@@ -33,7 +33,7 @@ class LevelTitle extends StatelessWidget {
     return Container(
       width: targetWidth,
       padding: EdgeInsets.only(top: deviceHeight / 6),
-      child: Text(FlutterI18n.translate(context, 'screens.level.message'),
+      child: Text(FlutterI18n.translate(context, 'level.title'),
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.bold

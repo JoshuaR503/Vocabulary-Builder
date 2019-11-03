@@ -1,91 +1,156 @@
 {
-    "app_name": "Constructor de Vocabulario",
-    
-    "categories": {
-        "translator": {
-            "name": "Translator"
-        },
-
-        "verb": {
-            "name": "Verbs"
-        },
-
-        "adjectives": {
-            "name": "Adjectives"
-        },
-
-        "phrasal_verbs": {
-            "name": "Phrasal Verbs"
-        },
-
-        "idioms": {
-            "name": "Idioms"
-        },
-
-        "nouns": {
-            "name": "Nouns"
-        },
-
-        "all_words": {
-            "name": "All Words"
-        },
-
-        "saved": {
-            "name": "Favorite Words"
+    "level": {
+        "title": "Select a difficulty level",
+        "options": {
+            "beginner": "Beginner",
+            "experienced": "Experienced",
+            "any": "Doesn't matter"
         }
     },
 
-    "screens" : {
-        "saved": {
-            "message": "Save words to study \n later or offline",
-            "solution": "Save as many words as you can \n Just tap the heart in a word"
-        },
-
-
-        "level": {
-            "message": "Select a \ndifficulty level"
-        }
-    },
-
-
-    "app": "Vocabulario",
-
-    "welcome_screen": {
+    "language": {
         "title": "Choose a language to \nstudy",
-        "en": "English",
-        "es": "Spanish"
+        "options": {
+            "spanish": "Spanish",
+            "english": "English"
+        }
     },
 
     "home": {
-        "title": "Home",
-        "appbar": {
-            "icons": {
-                "refresh_tooltip": "Show more words",
-                "heart_tooltip": "Saved words"
-            }
-        },
-        "drawer": {
-            "title": "Options",
-            "thidItem": "Share this app",
-            "language": "Change Language",
-            "web_version": "Web Version",
-            "web_feedback": "Send Feedback",
+        "app_text": "Vocabulary Builder",
+        "search_text": "Search nouns, verbs, adjectives, etc",
 
-            "show_slide": "Show Intro Slide",
-            "credits": "Credits",
-
-            "privacy": "Privacy Policy",
-            "terms": "Terms & Conditions"
-
-        },
-
-        "button_name": "Listen Pronunciation",
-        "button_playing": "Speaking"
+        "category": {
+            "adverbs": "Adverbs",
+            "verb": "Verbs",
+    
+            "adjectives": "Adjectives",
+            "phrasal_verbs": "Phrasal Verbs",
+    
+            "idioms": "Idioms",
+            "nouns": "Nouns",
+    
+            "all_words": "Word Bank",
+            "saved": "Favorite Words"
+        }
     },
 
     "settings": {
-        "title": "Settings",
-        "option_one": "Change Language"
+        "section_title": "Ajustes",
+
+        "change_language": {
+            "title": "Change Learning Language",
+            "message": "You can always change this setting here. Simply select English or Spanish.",
+            "subtitle": "Change language"
+        },
+
+        "change_level": {
+            "title": "Change Experience Level",
+            "message": "Is it too hard or maybe too easy?\nDoesn't matter. Just tap to change it.",
+            "subtitle": "Change Experience level"
+        }
+    },
+    
+    "saved": {
+        "section_title": "Favorite Words",
+        
+        "title": "Save words to study \n later or offline",
+        "message": "Save as many words as you can \n Just tap the heart in a word"
+    },
+
+    "search": {
+        "section_title": "Search {search}",
+
+        "no_connection": {
+            "title": "No connection"
+        },
+
+        "error": {
+            "title": "Something unexpected happened"
+        },
+
+        "empty": {
+            "message": "No results found"
+        }
+    },
+
+    "category": {
+        "reload": "Refresh Content",
+        "empty": "Nothing here",
+
+        "no_connection": {
+            "title": "Could not connect to the server",
+            "message": "\nSlow or not internet connection\nPlease check your connection\n\n\n"
+        },
+
+        "error": {
+            "title": "Something unexpected happened",
+            "message": "\nWe are working to fix this issue\nPlease try again later\n\n\n"
+        }
+    },
+
+    "word": {
+        "action": "Add to Favorites",
+
+        "tabs": {
+            "about": "About",
+            "examples": "Examples",
+            "conjugation": "Conjugation"
+        },
+
+        "snackbar": {
+            "text": "Word Saved",
+            "action": "Show me"
+        },
+
+        "about_section": {
+            "gramatical_category": "Grammatical Category",
+            "category": {
+                "noun": "Noun. ",
+                "verb": "Verb. ",
+                "adverb": "Adverb. ",
+                "adjective": "Adjective. ",
+                "phasal_verb": "Phrasal Verb. ",
+                "idiom": "Idiom. "
+            },
+
+            "note": "Something you must know"
+        },
+
+        "examples_section": {
+            "gif": {
+                "loading": "Loading...",
+                "notLoading": "Could not load content"
+            },
+
+            "sentences": "Sentences",
+            "similar_words": "Similar Words",
+            "oposite_words": "Oposite Words"
+
+        },
+
+        "conjugation_section": {
+            "verb_form": {
+                "title": "Verb Conjugation",
+                "infinitive": "Infinitive",
+                "present": "Present",
+                "past": "Past"    
+            },
+
+            "first_person_singular": {
+                "title": "First Person Singular",
+                "first": "I",
+                "second": "You",
+                "third": "She/He/It"
+            },
+
+            "first_person_plural": {
+                "title": "Primera Persona Plural",
+                "first": "We",
+                "second": "You",
+                "third": "They"
+            }
+        }
     },
 
     "saved_words": {
@@ -97,64 +162,17 @@
         }
     },
 
-    "single_palabra": {
-        
-        "conjugation_indicative": {
-            "title": "Indicative Conjugation",
-            "primera_persona": "First person",
-            "segunda_persona": "Second person",
-            "tercera_persona": "Third person"
-        },
+    "help" : {
+        "section_title": "Information",
 
-        "verb_card": {
-            "title": "Verb Conjugation",
-            
-            "present": "Root Form",
-            "present_continuous": "Present Participle",
-            "past": "Past Form",
-            "future": "Future Form"
-        },
-
-        "p_s": {
-            "first_item": "{palabra} in Plural",
-            "second_item": "{palabra} in Singular"
-        },
-
-        "definition": {
-            "first_item": "Brief definition in English",
-            "second_item": "Brief definition in Spanish"
-        },
-
-        "example": {
-            "first_item": "{palabra} in a sentence",
-            "second_item": "{palabra} used in another sentence"
-        },
-
-        "antonyms": "Opposite Words",
-        "synonyms": "Similar Words",
-
-        "note": "Note",
-        "spanish_translation": "Spanish Translation:",
-
-        "extra_details": {
-            "title": "Additional details",
-            "first_tiem": "Word",
-            "second_item": "Translation",
-            "third_item": "Grammatical category"
-        },
-
-        "not_available": {
-            "title": "Not available",
-            "ns": "The database couldn't find synonyms for this word.",
-            "na": "The database couldn't find antonyms for this word."
+        "tabs": {
+            "questions": "Questions",
+            "help": "Help",
+            "credits": "Credits"
         }
     },
 
-    "search": "Search",
-    "help": "Help and information",
-
     "question_answers": {
-        "title": "Questions",
 
         "question_one": {
             "question": "How do I get more words?",
@@ -242,8 +260,6 @@
     },
     
     "troubleshooting": {
-        "title": "Solutions",
-
         "no_words": {
             "title": "Words are not showing up!",
             "subtitle": "I always get the message: Couldn't connect to the server",
@@ -299,8 +315,6 @@
     },
 
     "credits": {
-        "title": "Credits",
-
         "developer": {
             "title": "Application developed by Joshua García",
             "title_two": "Tap to get in touch",
@@ -325,86 +339,6 @@
             "title_two": "All the colored icons, except the man running and the application icon, were designed and created by Freepik.",
             "subtitle": "Tap the icon to find out more",
             "subtitle_two": "Icons made by Freepik from www.flaticon.com"
-        }
-    },
-
-    "slide_show": {
-        "slide_one": {
-            "title": "VOCABULARY",
-            "description": "Increase your vocabulary with handy words."
-        },
-
-        "slide_two": {
-            "title": "LEARN ON THE GO",
-            "description": "With at least 10 minutes per day you can increase your vocabulary."
-        },
-
-        "slide_three": {
-            "title": "OFFLINE MODE",
-            "description": "If you like a word, touch the heart next to it to make it available offline."
-        },
-
-        "slide_four": {
-            "title": "TAP IT!",
-            "description": "If you want to get more information of a word, just tap it!"
-        },
-
-        "options": {
-            "skip": "SKIP",
-            "done": "DONE",
-            "next": "NEXT"
-        }
-    },
-
-    "snackbar": {
-        "success_message_clipboard": "Text copied to clipboard",
-        "success_message_clipboard_label": "Got it!",
-
-        "error_message_clipboard": "There was an error copying to clipboard",
-        "error_message_clipboard_label": "Got it",
-
-        "success_saving_word": "Word Saved",
-        "success_saving_word_label": "Got it!",
-
-        "error_saving_word": "There was an error saving the word",
-        "error_saving_word_label": "Got it"
-    },
-
-    "error_message": {
-        "no_server_connection": {
-            "message": "Couldn't connect to the server",
-            "solution": "Swipe down to try again"
-        },
-
-        "no_internet": {
-            "message": "You need internet connection",
-            "solution": "When you have no connection \n you can only see the words you saved"
-        },
-
-        "no_connection": {
-            "message": "You need internet connection",
-            "solution": "You need internet connection to listen to the pronunciation of this word",
-            "btn": "Okay"
-        },
-
-        "no_saved_words": {
-            "message": "Add words to study \n later or offline",
-            "solution": "Just tap the heart next to a word"
-        },
-
-        "limit_reached": {
-            "message": "You've reached your free tier usage",
-            "solution": "That's it for today. You can always study the words you saved"
-        },
-
-        "server_maintenance": {
-            "message": "We're undergoing a \n scheduled maintenance",
-            "solution": "Unfortunately, the server is down. \n Please come back later"
-        },
-
-        "server_understood": {
-            "message": "The server understood the request",
-            "solution": "But is refusing to fulfill it swipe down to try again"
         }
     }
 }

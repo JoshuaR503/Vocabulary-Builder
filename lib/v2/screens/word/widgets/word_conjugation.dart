@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/row_item.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_card.dart';
@@ -12,10 +13,10 @@ class WordConjugationCard extends StatelessWidget {
     this.word
   }) : assert(word != null);
 
-  Widget _buildVerbConjugationCard() {
+  Widget _buildVerbConjugationCard(BuildContext context) {
 
     final Text title = Text(
-      'Verb Forms',
+      FlutterI18n.translate(context, 'word.conjugation_section.verb_form.title'),
       style: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold
@@ -30,17 +31,17 @@ class WordConjugationCard extends StatelessWidget {
           title,
           SizedBox(height: 25),
           RowItem(
-            title: 'Infinitive',
+            title: FlutterI18n.translate(context, 'word.conjugation_section.verb_form.infinitive'),
             subtitle: '${this.word.en.root}',
           ),
           SizedBox(height: 20),
           RowItem(
-            title: 'Present Participle',
+            title: FlutterI18n.translate(context, 'word.conjugation_section.verb_form.present'),
             subtitle: '${this.word.en.present}',
           ),
           SizedBox(height: 20),
           RowItem(
-            title: 'Past Participle',
+            title: FlutterI18n.translate(context, 'word.conjugation_section.verb_form.past'),
             subtitle: '${this.word.en.past}',
           ),
         ],
@@ -48,10 +49,10 @@ class WordConjugationCard extends StatelessWidget {
     );
   }
 
-  Widget _buildConjugationSingular() {
+  Widget _buildConjugationSingular(BuildContext context) {
 
     final Text title = Text(
-      'First Person Singular',
+      FlutterI18n.translate(context, 'word.conjugation_section.first_person_singular.title'),
       style: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold
@@ -67,19 +68,19 @@ class WordConjugationCard extends StatelessWidget {
 
           SizedBox(height: 25),
           RowItem(
-            title: 'I',
+            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_singular.first'),
             subtitle: '${this.word.en.firstPerson}',
           ),
 
           SizedBox(height: 20),
           RowItem(
-            title: 'You',
+            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_singular.second'),
             subtitle: '${this.word.en.secondPerson}',
           ),
 
           SizedBox(height: 20),
           RowItem(
-            title: 'she/he/it',
+            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_singular.third'),
             subtitle: '${this.word.en.thirdPerson}',
           ),
         ],
@@ -87,10 +88,10 @@ class WordConjugationCard extends StatelessWidget {
     );
   }
 
-  Widget _buildConjugationCardPlural() {
+  Widget _buildConjugationCardPlural(BuildContext context) {
 
     final Text title = Text(
-      'First Person Plural',
+      FlutterI18n.translate(context, 'word.conjugation_section.first_person_plural.title'),
       style: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold
@@ -106,19 +107,19 @@ class WordConjugationCard extends StatelessWidget {
 
           SizedBox(height: 20),
           RowItem(
-            title: 'We',
+            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_plural.first'),
             subtitle: '${this.word.en.firstPersonPlural}',
           ),
 
           SizedBox(height: 20),
           RowItem(
-            title: 'You',
+            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_plural.second'),
             subtitle: '${this.word.en.secondPersonPlural}',
           ),
 
           SizedBox(height: 20),
           RowItem(
-            title: 'They',
+            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_plural.third'),
             subtitle: '${this.word.en.thirdPersonPlural}',
           ),
         ],
@@ -142,13 +143,13 @@ class WordConjugationCard extends StatelessWidget {
             children: <Widget>[
 
               if (hasVerbForms) SizedBox(height: 15),
-              if (hasVerbForms) _buildVerbConjugationCard(),
+              if (hasVerbForms) _buildVerbConjugationCard(context),
 
               if (hasPersonSingular) SizedBox(height: 15),
-              if (hasPersonSingular) _buildConjugationSingular(),
+              if (hasPersonSingular) _buildConjugationSingular(context),
 
               if (hasPersonPlural) SizedBox(height: 15),
-              if (hasPersonPlural) _buildConjugationCardPlural(),
+              if (hasPersonPlural) _buildConjugationCardPlural(context),
 
               SizedBox(height: 40),
             ],
@@ -158,3 +159,4 @@ class WordConjugationCard extends StatelessWidget {
     );
   } 
 }
+

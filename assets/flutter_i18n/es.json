@@ -1,162 +1,173 @@
 {
-    "app_name": "Vocabulary Builder",
-
-    "categories": {
-        "translator": {
-            "name": "Traductor"
-        },
-
-        "verb": {
-            "name": "Verbos"
-        },
-
-        "adjectives": {
-            "name": "Adjetivos"
-        },
-
-        "phrasal_verbs": {
-            "name": "Verbos Frasales"
-        },
-
-        "idioms": {
-            "name": "Modismos"
-        },
-
-        "nouns": {
-            "name": "Sustantivos"
-        },
-
-        "all_words": {
-            "name": "Banco de Palabras"
-        },
-
-        "saved": {
-            "name": "Palabras guardadas"
+    "level": {
+        "title": "Selecciona un nivel de dificultad",
+        "options": {
+            "beginner": "Principiante",
+            "experienced": "Experimentado",
+            "any": "Cualquiera"
         }
     },
 
-    "screens" : {
-        "saved": {
-            "message": "Guarda palabras para\nestudiar más tarde",
-            "solution": "Para guardar una palabra solo\ntoca el corazón y aparecera aqui"
-        },
-
-
-        "level": {
-            "message": "Selecciona \nun nivel de\ndificultad."
-        }
-    },
-
-
-    "app": "Vocabulary",
-
-    "welcome_screen": {
+    "language": {
         "title": "¿Qué idioma estás \naprendiendo?",
-        "en": "Inglés",
-        "es": "Español"
-    },
-
-    "home": {
-        "title": "Inicio",
-        "appbar": {
-            "icons": {
-                "refresh_tooltip": "Cargar más palabras",
-                "heart_tooltip": "Palabras guardadas"
-            }
-        },
-        "drawer": {
-            "title": "Opciones",
-            "thidItem": "Compartir aplicación",
-            "language": "Cambiar Idioma",
-            "web_version": "Versión web",
-            "web_feedback": "Enviar comentarios",
-
-            "show_slide": "Repetir Introducción",
-            "credits": "Créditos",
-
-            "privacy": "Política de privacidad",
-            "terms": "Términos y condiciones"
-        },
-
-        "button_name": "Escuchar Pronunciación",
-        "button_playing": "Pronunciando Palabra"
+        "options": {
+            "spanish": "Español",
+            "english": "Inglés",
+            "any": "Cualquiera"
+        }
     },
 
     "settings": {
-        "title": "Ajustes",
-        "option_one": "Cambiar Idioma"
+        "section_title": "Configuración",
+
+        "change_language": {
+            "title": "Cambiar Idioma",
+            "message": "Siempre puede cambiar esta configuración aquí. Simplemente seleccione inglés o español.",
+            "subtitle": "Cambiar idioma"
+        },
+
+        "change_level": {
+            "title": "Cambiar Nivel de Dificultad",
+            "message": "¿Es demasiado difícil o quizás demasiado fácil? No hay problema. Simplemente toque para cambiarlo.",
+            "subtitle": "Elegir un nuevo idioma"
+        }
     },
 
+    "home": {
+        "app_text": "El Constructor de Vocabulario",
+        "search_text": "Búsqueda de sustantivos, verbos, adjetivos, etc",
 
-    "saved_words": {
-        "title": "Palabras Guardadas",
-        "appbar": {
-            "icons": {
-                "search_tooltip": "Búsqueda de Palabras"
+        "category": {
+            "adverbs": "Adverbios",
+            "verb": "Verbos",
+    
+            "adjectives": "Adjetivos",
+            "phrasal_verbs": "Verbos Frasales",
+    
+            "idioms": "Modismos",
+            "nouns": "Sustantivos",
+    
+            "all_words": "Todas las Palabras",
+            "saved": "Palabras Favoritas"
+        }
+    },
+
+    "saved": {
+        "section_title": "Palabras Favoritas",
+
+        "title": "Guarda palabras para\nestudiar más tarde",
+        "message": "Para guardar una palabra solo\ntoque el corazón y aparecerá aquí."
+    },
+
+    "search": {
+        "section_title": "Buscando {search}",
+
+        "no_connection": {
+            "title": "No se pudo conectar al servidor",
+            "message": "\nPor favor verifique su conexión a internet e intente de nuevo"
+        },
+
+        "error": {
+            "title": "Se produjo un error desconocido al ejecutar la búsqueda.",
+            "message": "\nEstamos trabajando para solucionar este problema"
+        },
+
+        "empty": {
+            "message": "No se han encontrado resultados"
+        }
+    },
+
+    "category": {
+        "reload": "Actualizar",
+        "empty": "No hay nada aquí\n\n",
+
+        "no_connection": {
+            "title": "No se pudo conectar al servidor",
+            "message": "\nPor favor verifique su conexión a internet e intente de nuevo\n\n\n"
+        },
+
+        "error": {
+            "title": "Se produjo un error inesperado",
+            "message": "\nPor favor regresa más tarde\n\n\n"
+        }
+    },
+
+    "word": {
+        "action": "Agregar a Palabras Favoritas",
+
+        "tabs": {
+            "about": "Información",
+            "examples": "Ejemplos",
+            "conjugation": "Conjugación"
+        },
+
+        "snackbar": {
+            "text": "Palabra Guardada",
+            "action": "Muéstrame"
+        },
+
+        "about_section": {
+            "gramatical_category": "Categoría Gramatical",
+            "note": "Algo que debes saber",
+
+            "category": {
+                "noun": "Sustantivo. ",
+                "verb": "Verbo. ",
+                "adverb": "Adverbio. ",
+
+                "adjective": "Adjetivo. ",
+                "phasal_verb": "Verbo Frasal. ",
+                "idiom": "Modismo. "
             }
+        },
+
+        "examples_section": {
+            "gif": {
+                "loading": "Cargando...",
+                "notLoading": "No se pudo cargar el contenido"
+            },
+
+            
+            "sentences": "Ejemplos",
+            "similar_words": "Palabras Similares",
+            "oposite_words": "Palabras Opuestas"
+        },
+
+        "conjugation_section": {
+            "verb_form": {
+                "title": "Conjugación de verbo",
+                "infinitive": "Infinitivo",
+                "present": "Presente",
+                "past": "Pasado"    
+            },
+
+            "first_person_singular": {
+                "title": "Primera Persona Singular",
+                "first": "Yo",
+                "second": "Tú",
+                "third": "Ella/Él/Eso"
+            },
+
+            "first_person_plural": {
+                "title": "Primera Persona Plural",
+                "first": "Nosotros/as",
+                "second": "Ustedes",
+                "third": "Ellos/as"
+            }
+            
         }
     },
 
-    "single_palabra": {
-
-        "conjugation_indicative": {
-            "title": "Conjugación indicativa",
-            "primera_persona": "Primera persona",
-            "segunda_persona": "Segunda persona",
-            "tercera_persona": "Tercera persona"
-        },
-
-
-        "verb_card": {
-            "title": "Conjugación verbal",
-
-            "present_continuous": "Presente Continuo",
-            "present": "Presente",
-            "past": "Pasado",
-            "future": "Futuro"
-        },
-
-        "p_s": {
-            "first_item": "{palabra} en Plural",
-            "second_item": "{palabra} en Singular"
-        },
-
-        "definition": {
-            "first_item": "Breve definición en Inglés",
-            "second_item": "Breve definición en Español"
-        },
-
-        "example": {
-            "first_item": "{palabra} en una oración",
-            "second_item": "{palabra} en otra oración:"
-        },
-
-        "antonyms": "Palabras opuestas",
-        "synonyms": "Palabras similares",
-
-        "note": "Nota",
-        "spanish_translation": "Traducción en Español:",
-
-        "extra_details": {
-            "title": "Detalles adicionales",
-            "first_tiem": "Palabra",
-            "second_item": "Traducción",
-            "third_item": "Categoría gramatical"
-        },
-
-        "not_available": {
-            "title": "No pudimos encontrar ejemplos :(",
-            "ns": "La base de datos no pudo encontrar sinónimos para esta palabra.",
-            "na": "La base de datos no pudo encontrar antónimos para esta palabra."
+    "help" : {
+        "section_title": "Information",
+        "tabs": {
+            "questions": "Preguntas",
+            "help": "Ayuda",
+            "credits": "Créditos"
         }
     },
-
-    "search": "Busqueda",
-    "help": "Ayuda e información",
 
     "question_answers": {
-        "title": "Preguntas",
-
         "question_one": {
             "question": "¿Cómo obtengo más palabras?",
             "title": "Una simple solución",
@@ -243,7 +254,7 @@
     },
 
     "troubleshooting": {
-        "title": "Problemas",
+        "title": "Ayuda",
 
         "no_words": {
             "title": "No me aparecen palabras",
@@ -298,8 +309,6 @@
     },
 
     "credits": {
-        "title": "Créditos",
-
         "developer": {
             "title": "Aplicación desarrollada por Joshua García",
             "title_two": "Toca para contactar",
@@ -327,87 +336,5 @@
             "subtitle": "Toca para obtener más información.",
             "subtitle_two": "Todos los iconos de colores, excepto el hombre corriendo y el icono de la aplicación, fueron diseñados y creados por Freepik."
         }
-    },
-
-    "slide_show": {
-        "slide_one": {
-            "title": "VOCABULARIO",
-            "description": "Aumenta tu vocabulario con palabras aleatorias de una manera simple."
-        },
-
-        "slide_two": {
-            "title": "APRENDE A TU RITMO",
-            "description": "Con 5 minutos al día puedes aprender nuevas palabras."
-        },
-
-        "slide_three": {
-            "title": "MODO OFFLINE",
-            "description": "Si te gusta una palabra, toca el corazón junto a ella para verla sin conexión."
-        },
-
-        "slide_four": {
-            "title": "TOCA LA PALABRA",
-            "description": "Si quieres más información de una palabra, simplemente tócala."
-        },
-
-        "options": {
-            "skip": "SALTAR",
-            "done": "LISTO",
-            "next": "SIGUIENTE"
-        }
-    },
-
-    "snackbar": {
-        "success_message_clipboard": "Texto copiado al portapapeles con éxito",
-        "success_message_clipboard_label": "Ok!",
-
-        "error_message_clipboard": "Hubo un error al intentar pegar al portapapeles",
-        "error_message_clipboard_label": "Ok!",
-
-        "success_saving_word": "Palabra guardada correctamente",
-        "success_saving_word_label": "Ok!",
-
-        "error_saving_word": "Hubo un error al guardar la palabra.",
-        "error_saving_word_label": "Ok!"
-    },
-
-    "error_message": {
-        "no_server_connection": {
-            "message": "No se pudo conectar con el servidor",
-            "solution": "Desliza hacia abajo para intentar de nuevo"
-        },
-        
-        "no_internet": {
-            "message": "Parece que no tienes conexión a internet",
-            "solution": "Cuando no tienes conexión, solo puedes ver las palabras que guardaste"
-        },
-
-        "no_connection": {
-            "message": "Necesitas conexión a internet",
-            "solution": "Necesitas conexión a internet para escuchar la pronunciación de esta palabra",
-            "btn": "Entiendo"
-        },
-
-        "no_saved_words": {
-            "message": "Parece que aún no has guardado ninguna palabra",
-            "solution": "Puedes tocar en el corazón al lado de una palabra para guardarla"
-        },
-
-        "limit_reached": {
-            "message": "¡Has alcanzado el limite gratuito!",
-            "solution": "Ya no puedes ver más palabras, pero puedes ver las palabras guardadas"
-        },
-
-        "server_maintenance": {
-            "message": "El servidor esta en mantenimiento",
-            "solution": "Estamos trabajando en algunas actualizaciones. \n Por favor vuelve más tarde"
-        },
-
-        "server_understood": {
-            "message": "El servidor entendió tu petición",
-            "solution": "Pero se niega a cumplirla, desliza hacia abajo para intentar de nuevo"
-        }
-
-
     }
 }

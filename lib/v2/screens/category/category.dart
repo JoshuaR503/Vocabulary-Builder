@@ -5,11 +5,12 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
-import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
 
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
+import 'package:vocabulary_builder/v2/widgets/components/solution.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
+import 'package:vocabulary_builder/v2/widgets/ui/container.dart';
 
 class Category extends StatefulWidget {
   
@@ -44,6 +45,25 @@ class _CategoryState extends State<Category> {
       .add(FetchWords(category: this.widget.route));
   }
 
+  // Helpers
+  Widget _buildError(String message, String solution) {
+    return SimpleContainer(
+      child: ListView(
+        children: <Widget>[
+          SizedBox(height: MediaQuery.of(context).size.height / 6.5.toDouble()),
+          VocabularyBuilderMessage(message: message),
+          Image.asset(
+            'assets/pictures/sad.png',
+            width: 140.0,
+            height: 140.0,
+            fit: BoxFit.contain,
+          ),
+          VocabularyBuilderSolutionMessage(solution: solution)
+        ],
+      ),
+    );
+  }
+
   Widget _buildErrorMessage(String message) {
     return VocabularyBuilderMessage(message: message);
   }
@@ -62,6 +82,7 @@ class _CategoryState extends State<Category> {
     );
   }
 
+  // Actual Widgets
   BlocBuilder<WordsBloc, WordsState> _buildExpanded() {
     return BlocBuilder<WordsBloc, WordsState>(
       builder: (BuildContext context, WordsState state) {
@@ -77,26 +98,27 @@ class _CategoryState extends State<Category> {
         }
 
         if (state is WordsZero) {
-          return _buildErrorMessage('Section under construction. Come back later.');
+          return _buildError(
+            FlutterI18n.translate(context, 'category.empty'),
+            FlutterI18n.translate(context, 'category.empty'),
+          );
         }
 
         if (state is WordsNoConnection) {
-          return EmptyStateScreen(
-            message: "No Connection",
-            pathImage: 'assets/pictures/warning.png',
-            fixMessage: '\nSlow or not internet connection\nPlease check your connection'
+          return _buildError(
+            FlutterI18n.translate(context, 'category.no_connection.title'),
+            FlutterI18n.translate(context, 'category.no_connection.message'),
           );
         }
 
         if (state is WordsError) {
-          return EmptyStateScreen(
-            message: 'Something unexpected\nwent wrong',
-            pathImage: 'assets/pictures/settings.png',
-            fixMessage: '\nWe are working to fix this issue\nPlease try again later\n'
+          return _buildError(
+            FlutterI18n.translate(context, 'category.error.title'),
+            FlutterI18n.translate(context, 'category.error.message'),
           );
         }
 
-        return _buildErrorMessage('Something Unexpected Happened. Did not work.');
+        return _buildErrorMessage(  FlutterI18n.translate(context, 'category.empty'));
       }
     );
   }
@@ -109,7 +131,7 @@ class _CategoryState extends State<Category> {
         title: Text(this.widget.title),
         actions: <Widget>[
           Tooltip(
-            message: 'Reload Content',
+            message: FlutterI18n.translate(context, 'category.reload'),
             child: IconButton(
               icon: Icon(Icons.refresh),
               onPressed: _reloadContent

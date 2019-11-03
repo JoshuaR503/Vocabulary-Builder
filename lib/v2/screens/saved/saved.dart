@@ -9,7 +9,6 @@ import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/saved/widgets/search.dart';
 import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
-import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
 
 class SavedWordsScreen extends StatefulWidget {
@@ -19,16 +18,7 @@ class SavedWordsScreen extends StatefulWidget {
 
 class _SavedWordsScreenState extends State<SavedWordsScreen> {
 
-  // void _deleteHandler() {
-  //   BlocProvider
-  //     .of<WordBloc>(context)
-  //     .dispatch(DeleteWordsEvent());
-  // }
-
-  Widget _buildErrorMessage(String message) {
-    return VocabularyBuilderMessage(message: message);
-  }
-
+  // Helpers
   Widget _createWordsCard(List<Word> words) {
 
     final Icon bottomIcon = Icon(Icons.forward,  color: Colors.white);
@@ -43,6 +33,7 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
     );
   }
 
+  // Actual Widgets
   BlocBuilder<WordBloc, WordState> _buildExpanded() {
     return BlocBuilder<WordBloc, WordState>(
       builder: (BuildContext context, WordState state) {
@@ -57,14 +48,10 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
 
         if (state is EmptyWordState) {
           return EmptyStateScreen(
-            message: FlutterI18n.translate(context, 'screens.saved.message'),
+            message: FlutterI18n.translate(context, 'saved.title'),
+            fixMessage: FlutterI18n.translate(context, 'saved.message'),
             pathImage: 'assets/pictures/box.png',
-            fixMessage: FlutterI18n.translate(context, 'screens.saved.solution')
           );
-        }
-
-        if (state is DeleteWordsEvent) {
-          return _buildErrorMessage('Deleting words...');
         }
 
         return VocabularyBuilderSpinner(color: AppColors.indigo);
@@ -95,23 +82,19 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
       }
     );
   }
-
-  List<Widget> _buildAppbarActions(){
-    return [
-      Tooltip(
-        message: 'Search',
-        child: _buildSearchIcon()
-      ),
-    ];
-  }
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.indigo,
-        title: Text('Saved'),
-        actions: _buildAppbarActions(),
+        title: Text(FlutterI18n.translate(context, 'saved.section_title')),
+        actions: <Widget>[
+          Tooltip(
+            message: 'Search',
+            child: _buildSearchIcon()
+          ),
+        ]
       ),
       
       body: Container(

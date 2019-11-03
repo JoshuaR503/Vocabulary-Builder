@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/core/functions.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 
@@ -18,6 +19,43 @@ class WordAboutCard extends StatelessWidget {
   // Methods
   void _playAudio({String audio}) {
     functions.playAudio(audio: audio);
+  }
+
+  String _findDefinition({String category, BuildContext context}) {
+    switch (category) {
+      case 'noun':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.noun') +
+        FlutterI18n.translate(context, 'question_answers.noun.answer');
+
+      case 'verb':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.verb') +
+        FlutterI18n.translate(context, 'question_answers.verb.answer');
+
+      case 'adjective':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.adjective') +
+        FlutterI18n.translate(context, 'question_answers.adjective.answer');
+
+      case 'adverb':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.adverb') +
+        FlutterI18n.translate(context, 'question_answers.adverb.answer');
+
+      case 'phrasal verb':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.phrasal_verbs') +
+        FlutterI18n.translate(context, 'question_answers.phasal_verbs.answer');
+
+      case 'idiom':
+        return 
+        FlutterI18n.translate(context, 'word.about_section.category.idioms') +
+        FlutterI18n.translate(context, 'question_answers.idiom.answer');
+
+      default:
+        return category;
+    }
   }
 
   // Helpers
@@ -61,15 +99,19 @@ class WordAboutCard extends StatelessWidget {
     );
   }
 
-  Widget _buildCategorySection() {
+  Widget _buildCategorySection(BuildContext context) {
 
     final Text title = Text(
-      'Gramatical Category',
+      FlutterI18n.translate(context, 'word.about_section.gramatical_category'),
       style: TextStyles.titleStyle
     );
 
     final Text definition = Text(
-      'Here will to be a definition of "${word.en.category}" with the objective to not leave blank space.',
+      _findDefinition(
+        context: context,
+        category: word.en.category
+      ),
+
       style: TextStyles.definitionStyle,
     );
 
@@ -87,10 +129,10 @@ class WordAboutCard extends StatelessWidget {
     return _buildSection(children: children);
   }
 
-  Widget _buildNoteSection() {
+  Widget _buildNoteSection(BuildContext context) {
 
     final Text title = Text(
-      'Something you must know',
+      FlutterI18n.translate(context, 'word.about_section.note'),
       style: TextStyles.titleStyle
     );
 
@@ -131,10 +173,10 @@ class WordAboutCard extends StatelessWidget {
               _buildSecondCard(context),
 
               if (word.en.note != null && word.en.note.length > 1) SizedBox(height: 5),
-              if (word.en.note != null && word.en.note.length > 1) _buildNoteSection(),
+              if (word.en.note != null && word.en.note.length > 1) _buildNoteSection(context),
 
               SizedBox(height: 5),
-              _buildCategorySection(),
+              _buildCategorySection(context),
 
               SizedBox(height: 40),
             ],

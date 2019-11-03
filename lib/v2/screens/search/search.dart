@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/blocs/search/bloc.dart';
 
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/word/word.dart';
+
 import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
@@ -22,6 +24,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
 
+  // Helpers
   Widget _buildErrorMessage(String message) {
     return VocabularyBuilderMessage(message: message);
   }
@@ -40,6 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
+  // Actual Widgets
   BlocBuilder<SearchBloc, SearchState> _buildExpanded() {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (BuildContext context, SearchState state) {
@@ -48,21 +52,23 @@ class _SearchScreenState extends State<SearchScreen> {
           return VocabularyBuilderSpinner(color: AppColors.amber);
         }
 
-        if (state is LoadedSearchState) {
-          final List<Word> words = state.words;
-
-          return _createWordsCard(words);
+        if (state is EmptySearchState) {
+          return _buildErrorMessage(FlutterI18n.translate(context, 'search.empty.message'));
         }
 
-        if (state is EmptySearchState) {
-          return _buildErrorMessage('No results found');
+        if (state is LoadedSearchState) {
+          return _createWordsCard(state.words);
+        }
+
+        if (state is SearchNoConnectionState) {
+          return _buildErrorMessage(FlutterI18n.translate(context, 'search.no_connection.title'));
         }
 
         if (state is ErrorSearchState) {
-          return _buildErrorMessage(state.error.toString());
+          return _buildErrorMessage(FlutterI18n.translate(context, 'search.error.title'));
         }
 
-        return _buildErrorMessage('Something Unexpected Happened. Did not work.');
+        return _buildErrorMessage(FlutterI18n.translate(context, 'search.empty.message'));
       }
     );
   }
@@ -71,8 +77,8 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2b2b2b),
-        title: Text('Searching ${this.widget.search.toLowerCase()}'),
+        backgroundColor: AppColors.defaultBlack,
+        title: Text(FlutterI18n.translate(context, 'search.section_title', {'search': widget.search})),
       ),
       
       body: Container(

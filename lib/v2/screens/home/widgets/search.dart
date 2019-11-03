@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/blocs/search/bloc.dart';
 import 'package:vocabulary_builder/v2/screens/search/search.dart';
 
@@ -20,10 +21,8 @@ class _VocabularyBuilderSearchState extends State<VocabularyBuilderSearch> {
   Widget _buildTextFormField(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-        hintText: "Search nouns, verbs, adjectives, etc...",
-        hintStyle: TextStyle(
-          fontSize: 16,
-        ),
+        hintText: FlutterI18n.translate(context, 'home.search_text'),
+        hintStyle: TextStyle(fontSize: 16),
         border: InputBorder.none,
       ),
 

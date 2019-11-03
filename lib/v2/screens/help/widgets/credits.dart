@@ -62,24 +62,6 @@ class CreditsTab extends StatelessWidget {
           _createCard(
             context: context,
             children: <Widget> [
-              CommonTitle(FlutterI18n.translate(context, 'credits.icon_designer_one.title')),
-              CommonSubtitle(FlutterI18n.translate(context, 'credits.icon_designer_one.subtitle')),
-              ListCell(
-                leading: Image.asset(
-                  'assets/pictures/settings.png',
-                  height: 50.0,
-                  width: 50.0,
-                ),
-                title: FlutterI18n.translate(context, 'credits.icon_designer_one.title_two'),
-                subtitle: FlutterI18n.translate(context, 'credits.icon_designer_one.subtitle_two'),
-                onTap: () => FlutterWebBrowser.openWebPage(url: 'https://www.flaticon.com/authors/monkik'),
-              ),
-            ]
-          ),
-
-          _createCard(
-            context: context,
-            children: <Widget> [
               CommonTitle(FlutterI18n.translate(context, 'credits.icon_designer_two.title')),
               CommonSubtitle(FlutterI18n.translate(context, 'credits.icon_designer_two.subtitle')),
               ListCell(

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
+
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/help/help.dart';
+
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_conjugation.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_examples.dart';
@@ -23,10 +26,6 @@ class WordScreen extends StatefulWidget {
 class _WordState extends State<WordScreen> {
   
   final List<Widget> _children = [];
-  final List<Tab> _tabs = [
-    Tab(text: 'About'),
-    Tab(text: 'Examples')
-  ];
 
   @override
   void initState() {
@@ -37,13 +36,13 @@ class _WordState extends State<WordScreen> {
       this.widget.word.en.root != null && 
       this.widget.word.es.root != null
     ) {
-      _tabs.add(Tab(text: 'Conjugation'));
       _children.add(WordConjugationCard(word: this.widget.word));
     }
 
     super.initState();
   }
 
+  // Helpers
   void _handler() {
     BlocProvider
       .of<WordBloc>(context)
@@ -59,7 +58,7 @@ class _WordState extends State<WordScreen> {
   void _builder(context) {
     
     final Text content = Text(
-      'Word Saved',
+      FlutterI18n.translate(context, 'word.snackbar.text'),
       style: TextStyle(
         color: Colors.white
       ),
@@ -70,7 +69,7 @@ class _WordState extends State<WordScreen> {
       backgroundColor: AppColors.snackBar,
       content: content,
       action: SnackBarAction(
-        label: 'Show me',
+        label: FlutterI18n.translate(context, 'word.snackbar.action'),
         textColor: Colors.amber,
         onPressed: _changeScreen,
       ),
@@ -85,7 +84,7 @@ class _WordState extends State<WordScreen> {
   List<Widget> _buildActions() {
     return [
       Tooltip(
-        message: 'Add to favorites',
+        message: FlutterI18n.translate(context, 'word.action'),
         child: Builder(
           builder: (context) => IconButton(
             icon: this.widget.word.isSaved 
@@ -99,32 +98,46 @@ class _WordState extends State<WordScreen> {
           )
         )
       ),
-
     ];
   }
   
-  Widget _buildAppBar() {
-    return AppBar(
-      backgroundColor: this.widget.word.color,
-      title: Text(this.widget.word.en.word),
-      actions: _buildActions(),
-      bottom: TabBar(
-        indicatorWeight: 3,
-        tabs: _tabs
-      ),
-    );
-  }
-
+  // Actual Widgets
   @override
   Widget build(BuildContext context) {
+
+    final bool hasVerbs = this.widget.word.en.root != null && this.widget.word.es.root != null;
+    final int tabsLength = hasVerbs
+    ? 3
+    : 2;
+
     return DefaultTabController(
-      length: _tabs.length,
+      length: tabsLength,
       child: Scaffold(
         backgroundColor: AppCardColors.backgroundCardColor,
-        appBar: _buildAppBar(),
+        appBar: AppBar(
+          backgroundColor: this.widget.word.color,
+          title: Text(this.widget.word.en.word),
+          actions: _buildActions(),
+          bottom: TabBar(
+            indicatorWeight: 5,
+            tabs: [
+
+              Tab(text: FlutterI18n.translate(context, 'word.tabs.about')),
+              Tab(text: FlutterI18n.translate(context, 'word.tabs.examples')),
+
+              if(
+                this.widget.word.en.root != null && 
+                this.widget.word.es.root != null
+              ) Tab(text: FlutterI18n.translate(context, 'word.tabs.conjugation')),
+
+            ]
+          ),
+        ),
+
         body: SafeArea(
           child: TabBarView(children: _children),
         ),
+
         floatingActionButton: FloatingActionButton(
           child: Text('🤔', style: TextStyle(fontSize: 35)),
           onPressed: () => Navigator

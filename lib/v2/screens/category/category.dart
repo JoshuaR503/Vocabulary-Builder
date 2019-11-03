@@ -10,6 +10,7 @@ import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/solution.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
+import 'package:vocabulary_builder/v2/widgets/ui/container.dart';
 
 class Category extends StatefulWidget {
   
@@ -46,16 +47,20 @@ class _CategoryState extends State<Category> {
 
   // Helpers
   Widget _buildError(String message, String solution) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        VocabularyBuilderMessage(message: message),
-        Padding(
-          padding: EdgeInsets.only(top: 10),
-          child: Text('🙁', style: TextStyle(fontSize: 55)),
-        ),
-        VocabularyBuilderSolutionMessage(solution: solution)
-      ],
+    return SimpleContainer(
+      child: ListView(
+        children: <Widget>[
+          SizedBox(height: MediaQuery.of(context).size.height / 6.5.toDouble()),
+          VocabularyBuilderMessage(message: message),
+          Image.asset(
+            'assets/pictures/sad.png',
+            width: 140.0,
+            height: 140.0,
+            fit: BoxFit.contain,
+          ),
+          VocabularyBuilderSolutionMessage(solution: solution)
+        ],
+      ),
     );
   }
 

@@ -1,5 +1,4 @@
 {
-
     "level": {
         "title": "Select a difficulty level",
         "options": {
@@ -154,7 +153,6 @@
         }
     },
 
-
     "saved_words": {
         "title": "Saved Words",
         "appbar": {
@@ -164,8 +162,17 @@
         }
     },
 
+    "help" : {
+        "section_title": "Information",
+
+        "tabs": {
+            "questions": "Questions",
+            "help": "Help",
+            "credits": "Credits"
+        }
+    },
+
     "question_answers": {
-        "title": "Questions",
 
         "question_one": {
             "question": "How do I get more words?",
@@ -253,8 +260,6 @@
     },
     
     "troubleshooting": {
-        "title": "Solutions",
-
         "no_words": {
             "title": "Words are not showing up!",
             "subtitle": "I always get the message: Couldn't connect to the server",
@@ -310,8 +315,6 @@
     },
 
     "credits": {
-        "title": "Credits",
-
         "developer": {
             "title": "Application developed by Joshua García",
             "title_two": "Tap to get in touch",
@@ -336,44 +339,6 @@
             "title_two": "All the colored icons, except the man running and the application icon, were designed and created by Freepik.",
             "subtitle": "Tap the icon to find out more",
             "subtitle_two": "Icons made by Freepik from www.flaticon.com"
-        }
-    },
-
-    "error_message": {
-        "no_server_connection": {
-            "message": "Couldn't connect to the server",
-            "solution": "Swipe down to try again"
-        },
-
-        "no_internet": {
-            "message": "You need internet connection",
-            "solution": "When you have no connection \n you can only see the words you saved"
-        },
-
-        "no_connection": {
-            "message": "You need internet connection",
-            "solution": "You need internet connection to listen to the pronunciation of this word",
-            "btn": "Okay"
-        },
-
-        "no_saved_words": {
-            "message": "Add words to study \n later or offline",
-            "solution": "Just tap the heart next to a word"
-        },
-
-        "limit_reached": {
-            "message": "You've reached your free tier usage",
-            "solution": "That's it for today. You can always study the words you saved"
-        },
-
-        "server_maintenance": {
-            "message": "We're undergoing a \n scheduled maintenance",
-            "solution": "Unfortunately, the server is down. \n Please come back later"
-        },
-
-        "server_understood": {
-            "message": "The server understood the request",
-            "solution": "But is refusing to fulfill it swipe down to try again"
         }
     }
 }

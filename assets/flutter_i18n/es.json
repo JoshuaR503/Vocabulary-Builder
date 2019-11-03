@@ -1,5 +1,4 @@
 {
-
     "level": {
         "title": "Selecciona un nivel de dificultad",
         "options": {
@@ -114,7 +113,7 @@
             "category": {
                 "noun": "Sustantivo. ",
                 "verb": "Verbo. ",
-                "adverbs": "Adverbio. ",
+                "adverb": "Adverbio. ",
 
                 "adjective": "Adjetivo. ",
                 "phasal_verb": "Verbo Frasal. ",
@@ -159,9 +158,16 @@
         }
     },
 
-    "question_answers": {
-        "title": "Preguntas",
+    "help" : {
+        "section_title": "Information",
+        "tabs": {
+            "questions": "Preguntas",
+            "help": "Ayuda",
+            "credits": "Créditos"
+        }
+    },
 
+    "question_answers": {
         "question_one": {
             "question": "¿Cómo obtengo más palabras?",
             "title": "Una simple solución",
@@ -248,7 +254,7 @@
     },
 
     "troubleshooting": {
-        "title": "Problemas",
+        "title": "Ayuda",
 
         "no_words": {
             "title": "No me aparecen palabras",
@@ -303,8 +309,6 @@
     },
 
     "credits": {
-        "title": "Créditos",
-
         "developer": {
             "title": "Aplicación desarrollada por Joshua García",
             "title_two": "Toca para contactar",
@@ -332,46 +336,5 @@
             "subtitle": "Toca para obtener más información.",
             "subtitle_two": "Todos los iconos de colores, excepto el hombre corriendo y el icono de la aplicación, fueron diseñados y creados por Freepik."
         }
-    },
-
-
-    "error_message": {
-        "no_server_connection": {
-            "message": "No se pudo conectar con el servidor",
-            "solution": "Desliza hacia abajo para intentar de nuevo"
-        },
-        
-        "no_internet": {
-            "message": "Parece que no tienes conexión a internet",
-            "solution": "Cuando no tienes conexión, solo puedes ver las palabras que guardaste"
-        },
-
-        "no_connection": {
-            "message": "Necesitas conexión a internet",
-            "solution": "Necesitas conexión a internet para escuchar la pronunciación de esta palabra",
-            "btn": "Entiendo"
-        },
-
-        "no_saved_words": {
-            "message": "Parece que aún no has guardado ninguna palabra",
-            "solution": "Puedes tocar en el corazón al lado de una palabra para guardarla"
-        },
-
-        "limit_reached": {
-            "message": "¡Has alcanzado el limite gratuito!",
-            "solution": "Ya no puedes ver más palabras, pero puedes ver las palabras guardadas"
-        },
-
-        "server_maintenance": {
-            "message": "El servidor esta en mantenimiento",
-            "solution": "Estamos trabajando en algunas actualizaciones. \n Por favor vuelve más tarde"
-        },
-
-        "server_understood": {
-            "message": "El servidor entendió tu petición",
-            "solution": "Pero se niega a cumplirla, desliza hacia abajo para intentar de nuevo"
-        }
-
-
     }
 }

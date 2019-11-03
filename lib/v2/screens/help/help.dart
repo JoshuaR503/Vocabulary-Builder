@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/screens/help/widgets/credits.dart';
 import 'package:vocabulary_builder/v2/screens/help/widgets/questions.dart';
 import 'package:vocabulary_builder/v2/screens/help/widgets/solutions.dart';
@@ -23,14 +24,14 @@ class _HelpScreenState extends State<HelpScreen> {
   Widget _buildAppBar() {
     return AppBar(
       backgroundColor: this.widget.color,
-      title: Text('Help and Information'),
+      title: Text(FlutterI18n.translate(context, 'help.section_title')),
       centerTitle: true,
       bottom: TabBar(
         indicatorWeight: 3,
         tabs: [
-          Tab(text: 'Questions'),
-          Tab(text: 'Solutions'),
-          Tab(text: 'Credits'),
+          Tab(text: FlutterI18n.translate(context, 'help.tabs.questions')),
+          Tab(text: FlutterI18n.translate(context, 'help.tabs.help')),
+          Tab(text: FlutterI18n.translate(context, 'help.tabs.credits')),
         ]
       ),
     );

@@ -54,7 +54,7 @@ class WordAboutCard extends StatelessWidget {
         FlutterI18n.translate(context, 'question_answers.idiom.answer');
 
       default:
-        return 'Unknown';
+        return category;
     }
   }
 

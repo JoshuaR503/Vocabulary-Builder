@@ -94,13 +94,23 @@
     },
 
     "word": {
+        "action": "Agregar a Palabras Favoritas",
+
         "tabs": {
             "about": "Información",
             "examples": "Ejemplos",
             "conjugation": "Conjugación"
         },
 
-        "action": "Agregar a Palabras Favoritas"
+        "snackbar": {
+            "text": "Palabra Guardada",
+            "action": "Muéstrame"
+        },
+
+        "about_section": {
+            "gramatical_category": "Categoría Gramatical",
+            "note": "Algo que debes saber"
+        }
     },
 
     "single_palabra": {

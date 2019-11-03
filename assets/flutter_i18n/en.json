@@ -91,13 +91,34 @@
     },
 
     "word": {
+        "action": "Add to Favorites",
+
         "tabs": {
             "about": "About",
             "examples": "Examples",
             "conjugation": "Conjugation"
         },
 
-        "action": "Add to Favorites"
+        
+        "snackbar": {
+            "text": "Word Saved",
+            "action": "Show me"
+        },
+
+        "about_section": {
+            "gramatical_category": "Grammatical Category",
+            "note": "Something you must know"
+        },
+
+        "verb_card": {
+            "title": "Verb Conjugation",
+            "present": "Root Form",
+
+            "present_continuous": "Present Participle",
+
+            "past": "Past Form",
+            "future": "Future Form"
+        }
     },
 
 

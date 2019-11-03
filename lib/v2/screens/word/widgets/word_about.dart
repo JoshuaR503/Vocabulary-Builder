@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/core/functions.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 
@@ -61,10 +62,10 @@ class WordAboutCard extends StatelessWidget {
     );
   }
 
-  Widget _buildCategorySection() {
+  Widget _buildCategorySection(BuildContext context) {
 
     final Text title = Text(
-      'Gramatical Category',
+      FlutterI18n.translate(context, 'word.about_section.gramatical_category'),
       style: TextStyles.titleStyle
     );
 
@@ -87,10 +88,10 @@ class WordAboutCard extends StatelessWidget {
     return _buildSection(children: children);
   }
 
-  Widget _buildNoteSection() {
+  Widget _buildNoteSection(BuildContext context) {
 
     final Text title = Text(
-      'Something you must know',
+      FlutterI18n.translate(context, 'word.about_section.note'),
       style: TextStyles.titleStyle
     );
 
@@ -131,10 +132,10 @@ class WordAboutCard extends StatelessWidget {
               _buildSecondCard(context),
 
               if (word.en.note != null && word.en.note.length > 1) SizedBox(height: 5),
-              if (word.en.note != null && word.en.note.length > 1) _buildNoteSection(),
+              if (word.en.note != null && word.en.note.length > 1) _buildNoteSection(context),
 
               SizedBox(height: 5),
-              _buildCategorySection(),
+              _buildCategorySection(context),
 
               SizedBox(height: 40),
             ],

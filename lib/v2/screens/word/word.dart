@@ -58,7 +58,7 @@ class _WordState extends State<WordScreen> {
   void _builder(context) {
     
     final Text content = Text(
-      'Word Saved',
+      FlutterI18n.translate(context, 'word.snackbar.text'),
       style: TextStyle(
         color: Colors.white
       ),
@@ -69,7 +69,7 @@ class _WordState extends State<WordScreen> {
       backgroundColor: AppColors.snackBar,
       content: content,
       action: SnackBarAction(
-        label: 'Show me',
+        label: FlutterI18n.translate(context, 'word.snackbar.action'),
         textColor: Colors.amber,
         onPressed: _changeScreen,
       ),

@@ -122,64 +122,32 @@
             "sentences": "Ejemplos",
             "similar_words": "Palabras Similares",
             "oposite_words": "Palabras Opuestas"
+        },
+
+        "conjugation_section": {
+            "verb_form": {
+                "title": "Conjugación de verbo",
+                "infinitive": "Infinitivo",
+                "present": "Presente",
+                "past": "Pasado"    
+            },
+
+            "first_person_singular": {
+                "title": "Primera Persona Singular",
+                "first": "Yo",
+                "second": "Tú",
+                "third": "Ella/Él/Eso"
+            },
+
+            "first_person_plural": {
+                "title": "Primera Persona Plural",
+                "first": "Nosotros/as",
+                "second": "Ustedes",
+                "third": "Ellos/as"
+            }
+            
         }
     },
-
-    "single_palabra": {
-
-        "conjugation_indicative": {
-            "title": "Conjugación indicativa",
-            "primera_persona": "Primera persona",
-            "segunda_persona": "Segunda persona",
-            "tercera_persona": "Tercera persona"
-        },
-
-
-        "verb_card": {
-            "title": "Conjugación verbal",
-
-            "present_continuous": "Presente Continuo",
-            "present": "Presente",
-            "past": "Pasado",
-            "future": "Futuro"
-        },
-
-        "p_s": {
-            "first_item": "{palabra} en Plural",
-            "second_item": "{palabra} en Singular"
-        },
-
-        "definition": {
-            "first_item": "Breve definición en Inglés",
-            "second_item": "Breve definición en Español"
-        },
-
-        "example": {
-            "first_item": "{palabra} en una oración",
-            "second_item": "{palabra} en otra oración:"
-        },
-
-        "antonyms": "Palabras opuestas",
-        "synonyms": "Palabras similares",
-
-        "note": "Nota",
-        "spanish_translation": "Traducción en Español:",
-
-        "extra_details": {
-            "title": "Detalles adicionales",
-            "first_tiem": "Palabra",
-            "second_item": "Traducción",
-            "third_item": "Categoría gramatical"
-        },
-
-        "not_available": {
-            "title": "No pudimos encontrar ejemplos :(",
-            "ns": "La base de datos no pudo encontrar sinónimos para esta palabra.",
-            "na": "La base de datos no pudo encontrar antónimos para esta palabra."
-        }
-    },
-
-
 
     "question_answers": {
         "title": "Preguntas",
@@ -356,20 +324,6 @@
         }
     },
 
-
-    "snackbar": {
-        "success_message_clipboard": "Texto copiado al portapapeles con éxito",
-        "success_message_clipboard_label": "Ok!",
-
-        "error_message_clipboard": "Hubo un error al intentar pegar al portapapeles",
-        "error_message_clipboard_label": "Ok!",
-
-        "success_saving_word": "Palabra guardada correctamente",
-        "success_saving_word_label": "Ok!",
-
-        "error_saving_word": "Hubo un error al guardar la palabra.",
-        "error_saving_word_label": "Ok!"
-    },
 
     "error_message": {
         "no_server_connection": {

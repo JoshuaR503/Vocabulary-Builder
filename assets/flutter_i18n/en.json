@@ -116,21 +116,32 @@
                 "notLoading": "Could not load content"
             },
 
-            
             "sentences": "Sentences",
             "similar_words": "Similar Words",
             "oposite_words": "Oposite Words"
-
         },
 
-        "verb_card": {
-            "title": "Verb Conjugation",
-            "present": "Root Form",
+        "conjugation_section": {
+            "verb_form": {
+                "title": "Verb Conjugation",
+                "infinitive": "Infinitive",
+                "present": "Present",
+                "past": "Past"    
+            },
 
-            "present_continuous": "Present Participle",
+            "first_person_singular": {
+                "title": "First Person Singular",
+                "first": "I",
+                "second": "You",
+                "third": "She/He/It"
+            },
 
-            "past": "Past Form",
-            "future": "Future Form"
+            "first_person_plural": {
+                "title": "Primera Persona Plural",
+                "first": "We",
+                "second": "You",
+                "third": "They"
+            }
         }
     },
 
@@ -143,61 +154,6 @@
             }
         }
     },
-
-    "single_palabra": {
-        
-        "conjugation_indicative": {
-            "title": "Indicative Conjugation",
-            "primera_persona": "First person",
-            "segunda_persona": "Second person",
-            "tercera_persona": "Third person"
-        },
-
-        "verb_card": {
-            "title": "Verb Conjugation",
-            
-            "present": "Root Form",
-            "present_continuous": "Present Participle",
-            "past": "Past Form",
-            "future": "Future Form"
-        },
-
-        "p_s": {
-            "first_item": "{palabra} in Plural",
-            "second_item": "{palabra} in Singular"
-        },
-
-        "definition": {
-            "first_item": "Brief definition in English",
-            "second_item": "Brief definition in Spanish"
-        },
-
-        "example": {
-            "first_item": "{palabra} in a sentence",
-            "second_item": "{palabra} used in another sentence"
-        },
-
-        "antonyms": "Opposite Words",
-        "synonyms": "Similar Words",
-
-        "note": "Note",
-        "spanish_translation": "Spanish Translation:",
-
-        "extra_details": {
-            "title": "Additional details",
-            "first_tiem": "Word",
-            "second_item": "Translation",
-            "third_item": "Grammatical category"
-        },
-
-        "not_available": {
-            "title": "Not available",
-            "ns": "The database couldn't find synonyms for this word.",
-            "na": "The database couldn't find antonyms for this word."
-        }
-    },
-
-    "help": "Help and information",
 
     "question_answers": {
         "title": "Questions",

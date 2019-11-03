@@ -50,7 +50,7 @@ class WordAboutCard extends StatelessWidget {
 
       case 'idiom':
         return 
-        FlutterI18n.translate(context, 'word.about_section.category.idioms') +
+        FlutterI18n.translate(context, 'word.about_section.category.idiom') +
         FlutterI18n.translate(context, 'question_answers.idiom.answer');
 
       default:

@@ -110,6 +110,18 @@
         "about_section": {
             "gramatical_category": "Categoría Gramatical",
             "note": "Algo que debes saber"
+        },
+
+        "examples_section": {
+            "gif": {
+                "loading": "Cargando...",
+                "notLoading": "No se pudo cargar el contenido"
+            },
+
+            
+            "sentences": "Ejemplos",
+            "similar_words": "Palabras Similares",
+            "oposite_words": "Palabras Opuestas"
         }
     },
 

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_button.dart';
@@ -69,7 +70,10 @@ class WordExamplesCard extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(top: 10, bottom: 30),
-            child: Text('Could not load picture.', style: TextStyles.definitionStyle)
+            child: Text(
+              FlutterI18n.translate(context, 'word.examples_section.gif.notLoading'), 
+              style: TextStyles.definitionStyle
+            )
           ),
         ],
       )
@@ -84,7 +88,10 @@ class WordExamplesCard extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(top: 10, bottom: 30),
-            child: Text('Loading Gif.', style: TextStyles.definitionStyle)
+            child: Text(
+              FlutterI18n.translate(context, 'word.examples_section.gif.loading'), 
+              style: TextStyles.definitionStyle
+            )
           ),
         ],
       )
@@ -106,10 +113,10 @@ class WordExamplesCard extends StatelessWidget {
     return _buildSection(children: children);
   }
 
-  Widget _buildExamplesCard() {
+  Widget _buildExamplesCard(BuildContext context) {
 
     final Text title = Text(
-      'Sentences',
+      FlutterI18n.translate(context, 'word.examples_section.sentences'),
       style: TextStyles.titleStyle
     );
 
@@ -122,10 +129,10 @@ class WordExamplesCard extends StatelessWidget {
     return _buildWordsCard(title: title, data: data);
   }
 
-  Widget _buildSynonymsCard() {
+  Widget _buildSynonymsCard(BuildContext context) {
 
     final Text title = Text(
-      'Similar Words',
+      FlutterI18n.translate(context, 'word.examples_section.similar_words'),
       style: TextStyles.titleStyle
     );
 
@@ -137,10 +144,10 @@ class WordExamplesCard extends StatelessWidget {
     return _buildWordsCard(title: title, data: data);
   }
 
-  Widget _buildAntonymsCard() {
+  Widget _buildAntonymsCard(BuildContext context) {
 
     final Text title = Text(
-      'Oposite Words',
+      FlutterI18n.translate(context, 'word.examples_section.oposite_words'),
       style: TextStyles.titleStyle
     );
 
@@ -166,13 +173,13 @@ class WordExamplesCard extends StatelessWidget {
               if (word.gif != null && word.gif.length > 1) _builGif(context),
 
               if (word.gif == null || word.gif.length < 1) SizedBox(height: 10),
-              _buildExamplesCard(),
+              _buildExamplesCard(context),
 
               if (word.en.synonyms != null && word.en.synonyms.length > 1) SizedBox(height: 5),
-              if (word.en.synonyms != null && word.en.synonyms.length > 1) _buildSynonymsCard(),
+              if (word.en.synonyms != null && word.en.synonyms.length > 1) _buildSynonymsCard(context),
 
               if (word.en.antonyms != null && word.en.antonyms.length > 1) SizedBox(height: 5),
-              if (word.en.antonyms != null && word.en.antonyms.length > 1) _buildAntonymsCard(),
+              if (word.en.antonyms != null && word.en.antonyms.length > 1) _buildAntonymsCard(context),
 
               SizedBox(height: 40),
             ],

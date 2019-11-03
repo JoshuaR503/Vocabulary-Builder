@@ -110,6 +110,19 @@
             "note": "Something you must know"
         },
 
+        "examples_section": {
+            "gif": {
+                "loading": "Loading...",
+                "notLoading": "Could not load content"
+            },
+
+            
+            "sentences": "Sentences",
+            "similar_words": "Similar Words",
+            "oposite_words": "Oposite Words"
+
+        },
+
         "verb_card": {
             "title": "Verb Conjugation",
             "present": "Root Form",

@@ -50,14 +50,8 @@ class _CategoryState extends State<Category> {
     return SimpleContainer(
       child: ListView(
         children: <Widget>[
-          SizedBox(height: MediaQuery.of(context).size.height / 6.5.toDouble()),
+          SizedBox(height: MediaQuery.of(context).size.height / 3.5.toDouble()),
           VocabularyBuilderMessage(message: message),
-          Image.asset(
-            'assets/pictures/sad.png',
-            width: 140.0,
-            height: 140.0,
-            fit: BoxFit.contain,
-          ),
           VocabularyBuilderSolutionMessage(solution: solution)
         ],
       ),

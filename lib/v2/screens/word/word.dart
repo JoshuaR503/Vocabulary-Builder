@@ -5,6 +5,7 @@ import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
 
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/repositories/word/word_repository.dart';
 import 'package:vocabulary_builder/v2/screens/help/help.dart';
 
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
@@ -24,7 +25,8 @@ class WordScreen extends StatefulWidget {
 }
 
 class _WordState extends State<WordScreen> {
-  
+
+  final WordRepository _wordRepository = WordRepository();
   final List<Widget> _children = [];
 
   @override
@@ -43,42 +45,61 @@ class _WordState extends State<WordScreen> {
   }
 
   // Helpers
-  void _handler() {
-    BlocProvider
-      .of<WordBloc>(context)
-      .add(InsertWordEvent(word: this.widget.word));
-  }
-
-  void _changeScreen() {
-    Navigator
-      .of(context)
-      .pushNamed('/saved');
-  }
-
-  void _builder(context) {
-    
+  Widget _buildSnackbar({SnackBarAction action, String message}) {
     final Text content = Text(
-      FlutterI18n.translate(context, 'word.snackbar.text'),
+      message,
       style: TextStyle(
         color: Colors.white
       ),
     );
 
-    final SnackBar snackbar = SnackBar(
-      duration: Duration(seconds: 2),
+    return SnackBar(
+      duration: Duration(seconds: 3),
       backgroundColor: AppColors.snackBar,
       content: content,
-      action: SnackBarAction(
+      action: action
+    );
+  }
+
+  void _changeScreen() {
+    BlocProvider
+        .of<WordBloc>(context)
+        .add(InsertWordEvent());
+
+    Navigator
+      .of(context)
+      .pushNamed('/saved');
+  }
+
+  void _onPressedHandler(BuildContext context) async {
+
+    // Save word hardCoded.
+    final dynamic response = await _wordRepository.insertWord(word: this.widget.word);
+
+    if (response != null) {
+      final String message = FlutterI18n.translate(context, 'word.snackbar.text');
+      final SnackBarAction action = SnackBarAction(
         label: FlutterI18n.translate(context, 'word.snackbar.action'),
         textColor: Colors.amber,
         onPressed: _changeScreen,
-      ),
-    );
+      );
 
-    Scaffold
-    .of(context)
-    .showSnackBar(snackbar);
-    _handler();
+      Scaffold
+        .of(context)
+        .showSnackBar(_buildSnackbar(action: action, message: message));
+
+    } else {
+      final String message = 'Could not save word';
+      final SnackBarAction action = SnackBarAction(
+        label: 'Got it',
+        textColor: Colors.amber,
+        onPressed: () {},
+      );
+      
+      Scaffold
+        .of(context)
+        .showSnackBar(_buildSnackbar(action: action, message: message));
+    }
   }
 
   List<Widget> _buildActions() {
@@ -92,7 +113,7 @@ class _WordState extends State<WordScreen> {
             : Icon(Icons.favorite_border),
             
             onPressed: () {
-              if (!widget.word.isSaved) _builder(context);
+              if (!widget.word.isSaved) _onPressedHandler(context);
               if (widget.word.isSaved) return null;
             }
           )
@@ -139,7 +160,7 @@ class _WordState extends State<WordScreen> {
         ),
 
         floatingActionButton: FloatingActionButton(
-          child: Text('🤔', style: TextStyle(fontSize: 35)),
+          child: Text('🤔', style: TextStyle(fontSize: 45)),
           onPressed: () => Navigator
             .of(context)
             .push(MaterialPageRoute(

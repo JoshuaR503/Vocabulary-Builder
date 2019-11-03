@@ -7,7 +7,7 @@ import './bloc.dart';
 
 class WordBloc extends Bloc<WordEvent, WordState> {
 
-  WordRepository _wordRepository = WordRepository();
+  final WordRepository _wordRepository = WordRepository();
 
   @override
   WordState get initialState => InitialWordState();
@@ -20,7 +20,6 @@ class WordBloc extends Bloc<WordEvent, WordState> {
 
     } else if (event is InsertWordEvent) {
 
-      await _wordRepository.insertWord(word: event.word);
       yield* _fetchWords();
 
     } else if (event is DeleteWordEvent) {

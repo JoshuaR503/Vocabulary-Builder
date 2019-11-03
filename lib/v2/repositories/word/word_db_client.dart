@@ -11,20 +11,23 @@ class WordDatabaseClient {
 
   Future<Database> get _database async => await VocabularyBuilderDatabase.instance.database;
 
-  Future<void> insert({Word data}) async {
+  Future<int> insert({Word data}) async {
+    try {
+      final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
 
-    final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
+      // update word's fields.
+      final wordData = data.toMap();
 
-    // update word's fields.
-    final wordData = data.toMap();
+      final wordPronuntiationEn = wordData['en']['wordPronuntiation'];
+      final wordPronuntiationEs = wordData['es']['wordPronuntiation'];
 
-    final wordPronuntiationEn = wordData['en']['wordPronuntiation'];
-    final wordPronuntiationEs = wordData['es']['wordPronuntiation'];
+      wordData['en']['wordPronuntiation'] = await functions.saveToCache(wordPronuntiationEn);
+      wordData['es']['wordPronuntiation'] = await functions.saveToCache(wordPronuntiationEs);
 
-    wordData['en']['wordPronuntiation'] = await functions.saveToCache(wordPronuntiationEn);
-    wordData['es']['wordPronuntiation'] = await functions.saveToCache(wordPronuntiationEs);
-
-    await _wordsStore.add(await _database, wordData);
+      return await _wordsStore.add(await _database, wordData);  
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<void> delete({Word word}) async {

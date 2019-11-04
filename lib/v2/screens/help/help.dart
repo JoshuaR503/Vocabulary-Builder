@@ -25,7 +25,6 @@ class _HelpScreenState extends State<HelpScreen> {
     return AppBar(
       backgroundColor: this.widget.color,
       title: Text(FlutterI18n.translate(context, 'help.section_title')),
-      centerTitle: true,
       bottom: TabBar(
         indicatorWeight: 3,
         tabs: [

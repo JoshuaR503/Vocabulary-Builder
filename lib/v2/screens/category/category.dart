@@ -16,12 +16,16 @@ class Category extends StatefulWidget {
   
   final String title;
   final String route;
+  final String categoryName;
+
   final Color color;
   final Color accentColor;
 
   Category({
     @required this.title,
     @required this.route,
+    @required this.categoryName,
+
     @required this.color,
     @required this.accentColor
   }) : assert(title != null),
@@ -38,7 +42,10 @@ class _CategoryState extends State<Category> {
   void _reloadContent() {
     BlocProvider
       .of<WordsBloc>(context)
-      .add(FetchWords(category: this.widget.route));
+      .add(FetchWords(
+        category: this.widget.route,
+        categoryName: this.widget.categoryName
+      ));
   }
 
   // Helpers

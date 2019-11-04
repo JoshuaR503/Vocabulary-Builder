@@ -18,15 +18,25 @@ class CategoryList extends StatefulWidget {
 
 class _CategoryListState extends State<CategoryList> {
   
-  void _pushCategory({String route, String name, Color color, Color accentColor}) {
+  void _pushCategory({
+    String route,
+    String name,
+    dynamic categoryName, 
+    Color color, 
+    Color accentColor }) {
+
     BlocProvider
       .of<WordsBloc>(context)
-      .add(FetchWords(category: route));
+      .add(FetchWords(
+        categoryName: categoryName,
+        category: route
+      ));
 
     Navigator
       .of(context)
       .push(MaterialPageRoute(
         builder: (context) => Category(
+          categoryName: categoryName,
           route: route,
           title: name,
           color: color,
@@ -59,13 +69,15 @@ class _CategoryListState extends State<CategoryList> {
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.adverbs'),
         routeName: 'Adverbs',
+        categoryName: 'adverb',
         color: AppColors.tealAccent,
         accentColor: AppColors.tealAccent,
       ),
 
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.verb'),
-        routeName: "Verbs", 
+        routeName: "Verbs",
+        categoryName: 'verb',
         color: AppColors.red,
         accentColor: AppColors.red,
       ),
@@ -73,6 +85,7 @@ class _CategoryListState extends State<CategoryList> {
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.adjectives'),
         routeName: "Adjectives",
+        categoryName: 'adjective',
         color: AppColors.blue,
         accentColor: AppColors.blue
       ),
@@ -80,6 +93,7 @@ class _CategoryListState extends State<CategoryList> {
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.phrasal_verbs'),
         routeName: "phrasal_verbs",
+        categoryName: 'phrasal verb',
         color: AppColors.orange,
         accentColor: AppColors.orange,
       ),
@@ -95,6 +109,8 @@ class _CategoryListState extends State<CategoryList> {
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.nouns'),
         routeName: "Nouns", 
+        categoryName: 'noun',
+
         color: AppColors.amber,
         accentColor: AppColors.amberAccent
       ),
@@ -109,6 +125,7 @@ class _CategoryListState extends State<CategoryList> {
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.idioms'),
         routeName: 'Idioms',
+        categoryName: 'idiom',
         color: AppColors.brown,
         accentColor: AppColors.brown,
       ),
@@ -134,7 +151,8 @@ class _CategoryListState extends State<CategoryList> {
         
         onPress: () {
           final String routeName = categories[index].routeName;
-          final String categoryName = categories[index].name;
+          final String name = categories[index].name;
+          final String categoryName = categories[index].categoryName;
           final Color categoryColor = categories[index].color;
           final Color categoryAccentColor = categories[index].accentColor;
 
@@ -145,7 +163,8 @@ class _CategoryListState extends State<CategoryList> {
             
           } else {
             _pushCategory(
-              name: categoryName,
+              name: name,
+              categoryName: categoryName,
               route: routeName,
               color: categoryColor,
               accentColor: categoryAccentColor

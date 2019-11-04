@@ -77,9 +77,9 @@ class _WordState extends State<WordScreen> {
     final dynamic response = await _wordRepository.insertWord(word: this.widget.word);
 
     if (response != null) {
-      final String message = FlutterI18n.translate(context, 'word.snackbar.text');
+      final String message = FlutterI18n.translate(context, 'word.snackbar.success.text');
       final SnackBarAction action = SnackBarAction(
-        label: FlutterI18n.translate(context, 'word.snackbar.action'),
+        label: FlutterI18n.translate(context, 'word.snackbar.success.action'),
         textColor: Colors.amber,
         onPressed: _changeScreen,
       );
@@ -89,9 +89,9 @@ class _WordState extends State<WordScreen> {
         .showSnackBar(_buildSnackbar(action: action, message: message));
 
     } else {
-      final String message = 'Could not save word';
+      final String message = FlutterI18n.translate(context, 'word.snackbar.fail.text');
       final SnackBarAction action = SnackBarAction(
-        label: 'Got it',
+        label: FlutterI18n.translate(context, 'word.snackbar.fail.action'),
         textColor: Colors.amber,
         onPressed: () {},
       );

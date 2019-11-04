@@ -99,8 +99,15 @@
         },
 
         "snackbar": {
-            "text": "Word Saved",
-            "action": "Show me"
+            "success": {
+                "text": "Word Saved",
+                "action": "Show me"
+            },
+
+            "fail": {
+                "text": "Failed to save word",
+                "action": "Got it"
+            }
         },
 
         "about_section": {

@@ -102,8 +102,15 @@
         },
 
         "snackbar": {
-            "text": "Palabra Guardada",
-            "action": "Muéstrame"
+            "success": {
+                "text": "Palabra Guardada",
+                "action": "Muéstrame"
+            },
+
+            "fail": {
+                "text": "Error al guardar la palabra",
+                "action": "Entiendo"
+            }
         },
 
         "about_section": {

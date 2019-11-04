@@ -42,6 +42,7 @@ class WordCard extends StatelessWidget {
     final String text = this._cleanString(text: this.word);
 
     return [
+      
       Text(
         text,
         maxLines: 1,

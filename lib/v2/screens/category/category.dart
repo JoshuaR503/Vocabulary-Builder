@@ -5,8 +5,8 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/widgets/components/cards/grid.dart';
 
-import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/solution.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
@@ -34,11 +34,7 @@ class Category extends StatefulWidget {
 
 class _CategoryState extends State<Category> {
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+  // Methods
   void _reloadContent() {
     BlocProvider
       .of<WordsBloc>(context)
@@ -56,10 +52,6 @@ class _CategoryState extends State<Category> {
         ],
       ),
     );
-  }
-
-  Widget _buildErrorMessage(String message) {
-    return VocabularyBuilderMessage(message: message);
   }
 
   Widget _createWordsCard(List<Word> words) {
@@ -112,7 +104,7 @@ class _CategoryState extends State<Category> {
           );
         }
 
-        return _buildErrorMessage(  FlutterI18n.translate(context, 'category.empty'));
+        return VocabularyBuilderSpinner(color: this.widget.color);
       }
     );
   }

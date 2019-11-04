@@ -7,8 +7,8 @@ import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/saved/widgets/search.dart';
+import 'package:vocabulary_builder/v2/widgets/components/cards/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
-import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
 
 class SavedWordsScreen extends StatefulWidget {

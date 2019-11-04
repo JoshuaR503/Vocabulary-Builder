@@ -6,7 +6,7 @@ import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
 import 'package:vocabulary_builder/v2/core/functions.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
-import 'package:vocabulary_builder/v2/widgets/components/card.dart';
+import 'package:vocabulary_builder/v2/widgets/components/cards/card.dart';
 
 class VocabularyBuilderGrid extends StatefulWidget {
   
@@ -30,7 +30,7 @@ class VocabularyBuilderGrid extends StatefulWidget {
   _VocabularyBuilderGridState createState() => _VocabularyBuilderGridState();
 }
 
-class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> with TickerProviderStateMixin {
+class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid>  with TickerProviderStateMixin {
 
   final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
 
@@ -59,7 +59,8 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> with Tick
     controller.dispose();
     super.dispose();
   }
-
+  
+  // Methods
   void _deleteWord({Word word}) {
     // Delete audio files
     functions.deleteFile(word.en.wordPronuntiation);
@@ -70,6 +71,7 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> with Tick
       .add(DeleteWordEvent(word: word));
   } 
 
+  // Actual Widgets
   Widget _buildVocabularyBuilderCard(Word word) {
     return VocabularyBuilderCard(
       word: word,
@@ -81,7 +83,6 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid> with Tick
       }
     );
   }
-
 
   @override
   Widget build(BuildContext context) {

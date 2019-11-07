@@ -75,7 +75,7 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
       Padding(
         padding: EdgeInsets.only(left: 30.0, top: 20),
         child: Text(
-          this.widget.word.en.word,
+          this.widget.word.targetLanguage.word,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: TextStyles.titleStyle
@@ -84,12 +84,12 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
       Padding(
         padding: EdgeInsets.only(left: 30.0, top: 10),
         child: Text(
-          this.widget.word.es.word,
+          this.widget.word.firstLanguage.word,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w100,
+            fontSize: 18.5,
+            fontWeight: FontWeight.normal,
           )
         ),
       ),

@@ -16,7 +16,7 @@ class SettingsRepository {
     return await _client.hasCompleted(key: key);
   }
 
-  Future<String> getUserLanguage() async {
+  Future<Map<String, String>> getUserLanguage() async {
     return await _client.getUserLanguage();
   }
 

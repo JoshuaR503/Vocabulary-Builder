@@ -16,8 +16,6 @@ class VocabularyBuilderSettingsClient {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     final bool hasCompleted = preferences.containsKey(key);
 
-    print('$key $hasCompleted');
-
     if (hasCompleted) {
       return true;
     } else {
@@ -25,11 +23,22 @@ class VocabularyBuilderSettingsClient {
     }
   }
 
-  Future<String> getUserLanguage() async {
+  Future<Map<String, String>> getUserLanguage() async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     final String language = preferences.getString('language');
 
-    return language;
+    // If learning lang is Spanish, then second lang will be English
+    if (language == 'es') {
+      return {
+        'firstLanguage': 'EN',
+        'targetLanguage': 'ES'
+      };
+    }
+
+    return {
+      'firstLanguage': 'ES',
+      'targetLanguage': 'EN'
+    };
   }
 
   Future<String> getUserLevel() async {

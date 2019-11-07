@@ -1,12 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.dart';
 
 class SearchApiClient {
 
   static final String baseUrl = 'https://vocabulary-builder.herokuapp.com';
+  
+  final SettingsRepository settingsRepository = SettingsRepository();
   final Dio httpClient = Dio();
 
   Future<List<Word>> searchWords({String search}) async {
+
+    final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
 
     // Get Word Count.
     final String url = '$baseUrl/v1/search/en/?search=$search';
@@ -21,7 +26,7 @@ class SearchApiClient {
 
     final data = response.data;
     final List<dynamic> wordsResponse = data['response'];
-    final List<Word> words = Word.converToList(wordsResponse);
+    final List<Word> words = Word.converToList(wordsResponse, langMetaData);
   
     return words;
   }

@@ -31,16 +31,15 @@ class _WordState extends State<WordScreen> {
 
   @override
   void initState() {
+
     _children.add(WordAboutCard(word: this.widget.word));
     _children.add(WordExamplesCard(word: this.widget.word));
 
     if (
-      this.widget.word.en.root != null && 
-      this.widget.word.es.root != null
-    ) {
-      _children.add(WordConjugationCard(word: this.widget.word));
-    }
-
+      this.widget.word.targetLanguage.root != null && 
+      this.widget.word.firstLanguage.root != null
+    ) _children.add(WordConjugationCard(word: this.widget.word,));
+    
     super.initState();
   }
 
@@ -126,7 +125,7 @@ class _WordState extends State<WordScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final bool hasVerbs = this.widget.word.en.root != null && this.widget.word.es.root != null;
+    final bool hasVerbs = this.widget.word.targetLanguage.root != null && this.widget.word.firstLanguage.root != null;
     final int tabsLength = hasVerbs
     ? 3
     : 2;
@@ -137,7 +136,7 @@ class _WordState extends State<WordScreen> {
         backgroundColor: AppCardColors.backgroundCardColor,
         appBar: AppBar(
           backgroundColor: this.widget.word.color,
-          title: Text(this.widget.word.en.word),
+          title: Text(this.widget.word.targetLanguage.word),
           actions: _buildActions(),
           bottom: TabBar(
             indicatorWeight: 3,
@@ -147,8 +146,8 @@ class _WordState extends State<WordScreen> {
               Tab(text: FlutterI18n.translate(context, 'word.tabs.examples')),
 
               if(
-                this.widget.word.en.root != null && 
-                this.widget.word.es.root != null
+                this.widget.word.targetLanguage.root != null && 
+                this.widget.word.firstLanguage.root != null
               ) Tab(text: FlutterI18n.translate(context, 'word.tabs.conjugation')),
 
             ]

@@ -2,11 +2,13 @@ import 'package:sembast/sembast.dart';
 import 'package:vocabulary_builder/v2/core/functions.dart';
 import 'package:vocabulary_builder/v2/data/database.dart';
 import 'package:vocabulary_builder/v2/models/word/word.dart';
+import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.dart';
 
 class WordDatabaseClient {
 
   static const String WORD_STORE_NAME = 'words';
 
+  final SettingsRepository settingsRepository = SettingsRepository();
   final _wordsStore = intMapStoreFactory.store(WORD_STORE_NAME);
 
   Future<Database> get _database async => await VocabularyBuilderDatabase.instance.database;
@@ -47,6 +49,8 @@ class WordDatabaseClient {
   
   Future<List<Word>> fetchSavedWords() async {
 
+    final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
+
     final Finder finder = Finder(
       sortOrders: [SortOrder(Field.key, false)]
     );
@@ -59,7 +63,7 @@ class WordDatabaseClient {
     return response
     .map((snapshot) {
 
-      final Word word = Word.fromMap(snapshot.value);
+      final Word word = Word.fromMap(snapshot.value, langMetaData);
       word.id = snapshot.key;
       word.isSaved = true;
 

@@ -1,14 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.dart';
 
 class WordsApiClient {
 
   static final String baseUrl = 'https://vocabulary-builder.herokuapp.com';
   final Dio httpClient = Dio();
+  final SettingsRepository settingsRepository = SettingsRepository();
 
   Future<List<Word>> fetchWords(int skip) async {
 
-    final String url = '$baseUrl/v3/word/public?skip=$skip';
+    final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
+
+    // TODO: CHANGE WHEN APP READY.
+    final String url = '$baseUrl/v3/word/public?skip=0';
 
     // http request - words.
     final Response<dynamic> response = await this._fetchData(url: url);
@@ -20,14 +25,20 @@ class WordsApiClient {
 
     final data = response.data;
     final List<dynamic> wordsResponse = data['response'];
-    final List<Word> words = Word.converToList(wordsResponse);
+
+    wordsResponse.add('Lang');
+
+    final List<Word> words = Word.converToList(wordsResponse, langMetaData);
   
     return words;
   }
 
+  // TODO: CHANGE WHEN APP READY.
   Future<List<Word>> fetchWordsFromCategory(String category, int skip) async {
 
-    final String serverUrl = '$baseUrl/v3/word/category/$category?skip=$skip';
+    final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
+
+    final String serverUrl = '$baseUrl/v3/word/category/$category?skip=0';
     final Response<dynamic> response = await _fetchData(url: serverUrl);
 
     // Handle more status code responses.
@@ -38,7 +49,7 @@ class WordsApiClient {
     final data = response.data;
 
     final List<dynamic> wordsResponse = data['response'];
-    final List<Word> words = Word.converToList(wordsResponse);
+    final List<Word> words = Word.converToList(wordsResponse, langMetaData);
 
     return words;
   }

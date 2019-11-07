@@ -63,8 +63,8 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid>  with Tic
   // Methods
   void _deleteWord({Word word}) {
     // Delete audio files
-    functions.deleteFile(word.en.wordPronuntiation);
-    functions.deleteFile(word.es.wordPronuntiation);
+    functions.deleteFile(word.targetLanguage.wordPronuntiation);
+    functions.deleteFile(word.firstLanguage.wordPronuntiation);
 
     BlocProvider
       .of<WordBloc>(context)
@@ -78,7 +78,7 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid>  with Tic
       topIcon: widget.topIcon,
       bottomIcon: widget.bottomIcon,
       onPressed: () {
-        if (widget.methodName == 'audio') functions.playAudio(audio: word.en.wordPronuntiation);
+        if (widget.methodName == 'audio') functions.playAudio(audio: word.targetLanguage.wordPronuntiation);
         if (widget.methodName == 'delete') _deleteWord(word: word);
       }
     );

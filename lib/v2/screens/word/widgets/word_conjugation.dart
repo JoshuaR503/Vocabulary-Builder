@@ -10,7 +10,7 @@ class WordConjugationCard extends StatelessWidget {
   final Word word;
 
   WordConjugationCard({
-    this.word
+    @required this.word,
   }) : assert(word != null);
 
   Widget _buildVerbConjugationCard(BuildContext context) {
@@ -32,17 +32,17 @@ class WordConjugationCard extends StatelessWidget {
           SizedBox(height: 25),
           RowItem(
             title: FlutterI18n.translate(context, 'word.conjugation_section.verb_form.infinitive'),
-            subtitle: '${this.word.en.root}',
+            subtitle: '${this.word.targetLanguage.root}',
           ),
           SizedBox(height: 20),
           RowItem(
             title: FlutterI18n.translate(context, 'word.conjugation_section.verb_form.present'),
-            subtitle: '${this.word.en.present}',
+            subtitle: '${this.word.targetLanguage.present}',
           ),
           SizedBox(height: 20),
           RowItem(
             title: FlutterI18n.translate(context, 'word.conjugation_section.verb_form.past'),
-            subtitle: '${this.word.en.past}',
+            subtitle: '${this.word.targetLanguage.past}',
           ),
         ],
       ),
@@ -69,19 +69,19 @@ class WordConjugationCard extends StatelessWidget {
           SizedBox(height: 25),
           RowItem(
             title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_singular.first'),
-            subtitle: '${this.word.en.firstPerson}',
+            subtitle: '${this.word.targetLanguage.firstPerson}',
           ),
 
           SizedBox(height: 20),
           RowItem(
             title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_singular.second'),
-            subtitle: '${this.word.en.secondPerson}',
+            subtitle: '${this.word.targetLanguage.secondPerson}',
           ),
 
           SizedBox(height: 20),
           RowItem(
             title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_singular.third'),
-            subtitle: '${this.word.en.thirdPerson}',
+            subtitle: '${this.word.targetLanguage.thirdPerson}',
           ),
         ],
       ),
@@ -108,19 +108,19 @@ class WordConjugationCard extends StatelessWidget {
           SizedBox(height: 20),
           RowItem(
             title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_plural.first'),
-            subtitle: '${this.word.en.firstPersonPlural}',
+            subtitle: '${this.word.targetLanguage.firstPersonPlural}',
           ),
 
           SizedBox(height: 20),
           RowItem(
             title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_plural.second'),
-            subtitle: '${this.word.en.secondPersonPlural}',
+            subtitle: '${this.word.targetLanguage.secondPersonPlural}',
           ),
 
           SizedBox(height: 20),
           RowItem(
             title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_plural.third'),
-            subtitle: '${this.word.en.thirdPersonPlural}',
+            subtitle: '${this.word.targetLanguage.thirdPersonPlural}',
           ),
         ],
       ),
@@ -130,9 +130,9 @@ class WordConjugationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final bool hasVerbForms = this.word.en.root != null && this.word.en.root.length > 1;
-    final bool hasPersonSingular = this.word.en.firstPerson != null && this.word.en.firstPerson.length > 1;
-    final bool hasPersonPlural = this.word.en.firstPersonPlural != null && this.word.en.firstPersonPlural.length > 1;
+    final bool hasVerbForms = this.word.targetLanguage.root != null && this.word.targetLanguage.root.length > 1;
+    final bool hasPersonSingular = this.word.targetLanguage.firstPerson != null && this.word.targetLanguage.firstPerson.length > 1;
+    final bool hasPersonPlural = this.word.targetLanguage.firstPersonPlural != null && this.word.targetLanguage.firstPersonPlural.length > 1;
 
     return SimpleContainer(
       child: ListView(

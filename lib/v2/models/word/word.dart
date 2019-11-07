@@ -8,8 +8,8 @@ class Word {
   final Color accentColor;
   final String level;
   
-  final WordData en;
-  final WordData es;
+  final WordData firstLanguage;
+  final WordData targetLanguage;
 
   final String gif;
   
@@ -21,24 +21,24 @@ class Word {
     this.color,
     this.level,
     
-    this.en,
-    this.es,
+    this.firstLanguage,
+    this.targetLanguage,
 
     this.gif,
   });
 
-  static List<Word> converToList(List<dynamic> response) {
+  static List<Word> converToList(List<dynamic> response, Map<String, String> langMedaData) {
     final List<Word> words = [];
 
     response.forEach((data) {
-      
+
       final WordData json = WordData.fromJson(data['EN']);
       final Word word = Word(
         accentColor: _accentColor(json.category),
         color: _color(json.category),
         
-        en: WordData.fromJson(data['EN']),
-        es: WordData.fromJson(data['ES']),
+        firstLanguage: WordData.fromJson(data[langMedaData['firstLanguage']]),
+        targetLanguage: WordData.fromJson(data[langMedaData['targetLanguage']]),
 
         gif: data['gif'],
         level: data['level']
@@ -86,15 +86,15 @@ class Word {
     }
   }
 
-  static Word fromMap(Map<String, dynamic> map) {
+  static Word fromMap(Map<String, dynamic> map, Map<String, String> langMedaData) {
     return Word(
       accentColor: AppColors.indigo,
       color: AppColors.indigo,
 
       level: map['level'],
 
-      en: WordData.fromMap(map['en']),
-      es: WordData.fromMap(map['es']),
+      firstLanguage: WordData.fromJson(map[langMedaData['firstLanguage']]),
+      targetLanguage: WordData.fromJson(map[langMedaData['targetLanguage']]),
 
       gif: map['gif'],
     );
@@ -106,9 +106,10 @@ class Word {
 
     'level': level,
   
-    'en': en.toMap(),
-    'es': es.toMap(),
+    'firstLanguage': firstLanguage.toMap(),
+    'targetLanguage': targetLanguage.toMap(),
     
     'gif': gif,
   };
 }
+

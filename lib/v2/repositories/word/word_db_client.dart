@@ -16,17 +16,19 @@ class WordDatabaseClient {
   Future<int> insert({Word data}) async {
     try {
       final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
+      final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
 
       // update word's fields.
       final wordData = data.toMap();
 
-      final wordPronuntiationEn = wordData['en']['wordPronuntiation'];
-      final wordPronuntiationEs = wordData['es']['wordPronuntiation'];
+      final firstLanguage = wordData['firstLanguage']['wordPronuntiation'];
+      final targetLanguage = wordData['targetLanguage']['wordPronuntiation'];
 
-      wordData['en']['wordPronuntiation'] = await functions.saveToCache(wordPronuntiationEn);
-      wordData['es']['wordPronuntiation'] = await functions.saveToCache(wordPronuntiationEs);
+      wordData['firstLanguage']['wordPronuntiation'] = await functions.saveToCache(firstLanguage);
+      wordData['targetLanguage']['wordPronuntiation'] = await functions.saveToCache(targetLanguage);
 
-      return await _wordsStore.add(await _database, wordData);  
+      return await _wordsStore.add(await _database, wordData);
+      
     } catch (e) {
       return null;
     }

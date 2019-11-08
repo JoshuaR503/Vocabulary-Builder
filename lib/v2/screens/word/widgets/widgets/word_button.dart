@@ -18,7 +18,7 @@ class WordCateogry extends StatelessWidget {
     final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
 
     final String lang = 'en';
-    final String word = this.word.en.word.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
+    final String word = this.word.targetLanguage.word.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
     final String fileName = text.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
     final String url = 'https://vocabulary-builder-sounds-bucket.s3.amazonaws.com/$lang-$word-$fileName.mp3';
 

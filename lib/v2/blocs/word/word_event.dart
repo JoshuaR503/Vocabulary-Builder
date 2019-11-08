@@ -19,10 +19,4 @@ class DeleteWordEvent extends WordEvent {
   }) : super([word]);
 }
 
-class InsertWordEvent extends WordEvent {
-  final Word word;
-
-  InsertWordEvent({
-    @required this.word
-  }) : super([word]);
-}
+class InsertWordEvent extends WordEvent {}

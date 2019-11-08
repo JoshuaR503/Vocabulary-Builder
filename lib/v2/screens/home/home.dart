@@ -25,31 +25,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     },
   );
 
-  AnimationController controller;
-  Animation<double> animation;
-
   @override
   void initState() {
     super.initState();
-
-    controller = AnimationController(
-      duration: Duration(milliseconds: 1500),
-      vsync: this
-    );
-
-    animation = CurvedAnimation(
-      parent: controller, 
-      curve: Curves.decelerate
-    );
-
-    controller.forward();
-
     FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-2727987234768252~2837027158');
   }
 
   @override
   void dispose() {
-    controller.dispose();
     super.dispose();
   }
 
@@ -108,23 +91,20 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     ? smallWidth : isBig
     ? bigWidth : 0;
 
-    return FadeTransition(
-      opacity: animation,
-      child: Scaffold(
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: horizontal ),
-          decoration: BoxDecoration(color: Theme.of(context).accentColor),
-          child: ListView(
-            children: _buildContent()
-          )
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.settings),
-          onPressed: () => Navigator
-            .of(context)
-            .pushNamed('/settings')
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: horizontal ),
+        decoration: BoxDecoration(color: Theme.of(context).accentColor),
+        child: ListView(
+          children: _buildContent()
         )
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.settings),
+        onPressed: () => Navigator
+          .of(context)
+          .pushNamed('/settings')
+      )
     );
   }
 }

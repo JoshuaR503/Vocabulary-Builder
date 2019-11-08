@@ -17,7 +17,7 @@ class WordRepository {
     await this._client.deleteAll();
   }
 
-  Future<void> insertWord({Word word}) async {
-    await this._client.insert(data: word);
+  Future<int> insertWord({Word word}) async {
+    return await this._client.insert(data: word);
   }
 }

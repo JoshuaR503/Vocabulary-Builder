@@ -13,7 +13,7 @@ class WordExamplesCard extends StatelessWidget {
   final Word word;
 
   WordExamplesCard({
-    this.word
+    @required this.word,
   }) : assert(word != null);
 
   // Helpers
@@ -121,7 +121,7 @@ class WordExamplesCard extends StatelessWidget {
     );
 
     final SelectableText data = SelectableText(
-      '${this.word.en.examples}',
+      '${this.word.targetLanguage.examples}',
       style: TextStyles.definitionStyle,
       cursorColor: this.word.color,
     );
@@ -137,7 +137,7 @@ class WordExamplesCard extends StatelessWidget {
     );
 
     final Widget data = WordCateogry(
-      category: this.word.en.synonyms,
+      category: this.word.targetLanguage.synonyms,
       word: this.word,
     );
 
@@ -152,7 +152,7 @@ class WordExamplesCard extends StatelessWidget {
     );
 
     final Widget data = WordCateogry(
-      category: this.word.en.antonyms,
+      category: this.word.targetLanguage.antonyms,
       word: this.word,
     );
 
@@ -175,11 +175,11 @@ class WordExamplesCard extends StatelessWidget {
               if (word.gif == null || word.gif.length < 1) SizedBox(height: 10),
               _buildExamplesCard(context),
 
-              if (word.en.synonyms != null && word.en.synonyms.length > 1) SizedBox(height: 5),
-              if (word.en.synonyms != null && word.en.synonyms.length > 1) _buildSynonymsCard(context),
+              if (word.targetLanguage.synonyms != null && word.targetLanguage.synonyms.length > 1) SizedBox(height: 5),
+              if (word.targetLanguage.synonyms != null && word.targetLanguage.synonyms.length > 1) _buildSynonymsCard(context),
 
-              if (word.en.antonyms != null && word.en.antonyms.length > 1) SizedBox(height: 5),
-              if (word.en.antonyms != null && word.en.antonyms.length > 1) _buildAntonymsCard(context),
+              if (word.targetLanguage.antonyms != null && word.targetLanguage.antonyms.length > 1) SizedBox(height: 5),
+              if (word.targetLanguage.antonyms != null && word.targetLanguage.antonyms.length > 1) _buildAntonymsCard(context),
 
               SizedBox(height: 40),
             ],

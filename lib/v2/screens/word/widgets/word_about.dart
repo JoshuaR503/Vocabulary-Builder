@@ -13,9 +13,9 @@ class WordAboutCard extends StatelessWidget {
   final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
 
   WordAboutCard({
-    this.word
+    @required this.word,
   }) : assert(word != null);
-
+  
   // Methods
   void _playAudio({String audio}) {
     functions.playAudio(audio: audio);
@@ -45,13 +45,13 @@ class WordAboutCard extends StatelessWidget {
 
       case 'phrasal verb':
         return 
-        FlutterI18n.translate(context, 'word.about_section.category.phrasal_verbs') +
+        FlutterI18n.translate(context, 'word.about_section.category.phasal_verb') +
         FlutterI18n.translate(context, 'question_answers.phasal_verbs.answer');
 
       case 'idiom':
         return 
-        FlutterI18n.translate(context, 'word.about_section.category.idioms') +
-        FlutterI18n.translate(context, 'question_answers.idiom.answer');
+        FlutterI18n.translate(context, 'word.about_section.category.idiom') +
+        FlutterI18n.translate(context, 'question_answers.idioms.answer');
 
       default:
         return category;
@@ -85,17 +85,17 @@ class WordAboutCard extends StatelessWidget {
   // Actual Widgets.
   Widget _buildFirstCard(BuildContext context) {
     return WordCard(
-      word: this.word.en.word,
-      definition: this.word.en.definition,
-      onPressed: () => _playAudio(audio: this.word.en.wordPronuntiation),
+      word: this.word.targetLanguage.word,
+      definition: this.word.targetLanguage.definition,
+      onPressed: () => _playAudio(audio: this.word.targetLanguage.wordPronuntiation),
     );
   }
 
   Widget _buildSecondCard(BuildContext context) {
     return WordCard(
-      word: this.word.es.word,
-      definition: this.word.es.definition,
-      onPressed: () => _playAudio(audio: this.word.es.wordPronuntiation),
+      word: this.word.firstLanguage.word,
+      definition: this.word.firstLanguage.definition,
+      onPressed: () => _playAudio(audio: this.word.firstLanguage.wordPronuntiation),
     );
   }
 
@@ -109,7 +109,7 @@ class WordAboutCard extends StatelessWidget {
     final Text definition = Text(
       _findDefinition(
         context: context,
-        category: word.en.category
+        category: word.targetLanguage.category
       ),
 
       style: TextStyles.definitionStyle,
@@ -137,7 +137,7 @@ class WordAboutCard extends StatelessWidget {
     );
 
     final Text definition = Text(
-      this.word.en.note,
+      this.word.targetLanguage.note,
       style: TextStyles.definitionStyle,
     );
 
@@ -172,8 +172,8 @@ class WordAboutCard extends StatelessWidget {
               SizedBox(height: 5),
               _buildSecondCard(context),
 
-              if (word.en.note != null && word.en.note.length > 1) SizedBox(height: 5),
-              if (word.en.note != null && word.en.note.length > 1) _buildNoteSection(context),
+              if (word.targetLanguage.note != null && word.targetLanguage.note.length > 1) SizedBox(height: 5),
+              if (word.targetLanguage.note != null && word.targetLanguage.note.length > 1) _buildNoteSection(context),
 
               SizedBox(height: 5),
               _buildCategorySection(context),

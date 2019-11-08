@@ -30,7 +30,6 @@ class ConfigBloc extends Bloc<ConfigEvent, ConfigState> {
 
     if (event is LanguageChangedEvent) {
       settingsRepository.setUserLanguage(language: event.config);
-
       // Set fetched words in State.
       yield* _updateState();
       

@@ -99,8 +99,15 @@
         },
 
         "snackbar": {
-            "text": "Word Saved",
-            "action": "Show me"
+            "success": {
+                "text": "Word Saved",
+                "action": "Show me"
+            },
+
+            "fail": {
+                "text": "Failed to save word",
+                "action": "Got it"
+            }
         },
 
         "about_section": {
@@ -159,6 +166,11 @@
             "icons": {
                 "search_tooltip": "Word Search"
             }
+        },
+
+        "error": {
+            "title": "Something unexpected happened",
+            "message": "\nCould not\naccess local database\n\n"
         }
     },
 

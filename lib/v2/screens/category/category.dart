@@ -5,8 +5,8 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/blocs/words/bloc.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/widgets/components/cards/grid.dart';
 
-import 'package:vocabulary_builder/v2/widgets/components/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/solution.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
@@ -16,12 +16,16 @@ class Category extends StatefulWidget {
   
   final String title;
   final String route;
+  final String categoryName;
+
   final Color color;
   final Color accentColor;
 
   Category({
     @required this.title,
     @required this.route,
+    @required this.categoryName,
+
     @required this.color,
     @required this.accentColor
   }) : assert(title != null),
@@ -34,15 +38,14 @@ class Category extends StatefulWidget {
 
 class _CategoryState extends State<Category> {
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+  // Methods
   void _reloadContent() {
     BlocProvider
       .of<WordsBloc>(context)
-      .add(FetchWords(category: this.widget.route));
+      .add(FetchWords(
+        category: this.widget.route,
+        categoryName: this.widget.categoryName
+      ));
   }
 
   // Helpers
@@ -50,22 +53,12 @@ class _CategoryState extends State<Category> {
     return SimpleContainer(
       child: ListView(
         children: <Widget>[
-          SizedBox(height: MediaQuery.of(context).size.height / 6.5.toDouble()),
+          SizedBox(height: MediaQuery.of(context).size.height / 3.5.toDouble()),
           VocabularyBuilderMessage(message: message),
-          Image.asset(
-            'assets/pictures/sad.png',
-            width: 140.0,
-            height: 140.0,
-            fit: BoxFit.contain,
-          ),
           VocabularyBuilderSolutionMessage(solution: solution)
         ],
       ),
     );
-  }
-
-  Widget _buildErrorMessage(String message) {
-    return VocabularyBuilderMessage(message: message);
   }
 
   Widget _createWordsCard(List<Word> words) {
@@ -118,7 +111,7 @@ class _CategoryState extends State<Category> {
           );
         }
 
-        return _buildErrorMessage(  FlutterI18n.translate(context, 'category.empty'));
+        return VocabularyBuilderSpinner(color: this.widget.color);
       }
     );
   }

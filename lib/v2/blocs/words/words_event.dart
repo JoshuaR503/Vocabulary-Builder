@@ -8,8 +8,12 @@ abstract class WordsEvent extends Equatable {
 class FetchWords extends WordsEvent {
 
   final String category;
+  final String categoryName;
 
-  FetchWords({@required this.category}) : super([category]);
+  FetchWords({
+    @required this.category,
+    @required this.categoryName
+  }) : super([category, categoryName]);
 }
 
 class FetchMoreWords extends WordsEvent {}

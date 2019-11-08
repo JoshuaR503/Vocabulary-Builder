@@ -33,7 +33,7 @@ dependencies:
   font_awesome_flutter: ^8.5.0
 
   ## State managment
-  flutter_bloc: ^1.0.0
+  flutter_bloc: ^2.0.0
   equatable: ^0.5.1
 
   ## Revenue

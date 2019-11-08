@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/word.dart';
 import 'package:vocabulary_builder/v2/widgets/text/index.dart';
@@ -74,7 +75,7 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
       Padding(
         padding: EdgeInsets.only(left: 30.0, top: 20),
         child: Text(
-          this.widget.word.en.word,
+          this.widget.word.targetLanguage.word,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: TextStyles.titleStyle
@@ -83,13 +84,13 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
       Padding(
         padding: EdgeInsets.only(left: 30.0, top: 10),
         child: Text(
-          this.widget.word.es.word,
+          this.widget.word.firstLanguage.word,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: TextStyle(
-            fontSize: 18.5, 
-            fontWeight: FontWeight.w300
-          ),
+            fontSize: 18.5,
+            fontWeight: FontWeight.normal,
+          )
         ),
       ),
     ];

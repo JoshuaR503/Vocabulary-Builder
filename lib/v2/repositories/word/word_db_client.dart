@@ -2,29 +2,36 @@ import 'package:sembast/sembast.dart';
 import 'package:vocabulary_builder/v2/core/functions.dart';
 import 'package:vocabulary_builder/v2/data/database.dart';
 import 'package:vocabulary_builder/v2/models/word/word.dart';
+import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.dart';
 
 class WordDatabaseClient {
 
-  static const String WORD_STORE_NAME = 'words';
+  static const String WORD_STORE_NAME = 'wordss';
 
+  final SettingsRepository settingsRepository = SettingsRepository();
   final _wordsStore = intMapStoreFactory.store(WORD_STORE_NAME);
 
   Future<Database> get _database async => await VocabularyBuilderDatabase.instance.database;
 
-  Future<void> insert({Word data}) async {
+  Future<int> insert({Word data}) async {
+    try {
+      final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
+      final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
 
-    final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
+      // update word's fields.
+      final wordData = data.toMap();
 
-    // update word's fields.
-    final wordData = data.toMap();
+      final firstLanguage = wordData['firstLanguage']['wordPronuntiation'];
+      final targetLanguage = wordData['targetLanguage']['wordPronuntiation'];
 
-    final wordPronuntiationEn = wordData['en']['wordPronuntiation'];
-    final wordPronuntiationEs = wordData['es']['wordPronuntiation'];
+      wordData['firstLanguage']['wordPronuntiation'] = await functions.saveToCache(firstLanguage);
+      wordData['targetLanguage']['wordPronuntiation'] = await functions.saveToCache(targetLanguage);
 
-    wordData['en']['wordPronuntiation'] = await functions.saveToCache(wordPronuntiationEn);
-    wordData['es']['wordPronuntiation'] = await functions.saveToCache(wordPronuntiationEs);
-
-    await _wordsStore.add(await _database, wordData);
+      return await _wordsStore.add(await _database, wordData);
+      
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<void> delete({Word word}) async {
@@ -44,6 +51,8 @@ class WordDatabaseClient {
   
   Future<List<Word>> fetchSavedWords() async {
 
+    final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
+
     final Finder finder = Finder(
       sortOrders: [SortOrder(Field.key, false)]
     );
@@ -53,15 +62,19 @@ class WordDatabaseClient {
       finder: finder
     );
 
-    return response
-    .map((snapshot) {
+    try {
+      return response
+      .map((snapshot) {
+        final Word word = Word.fromMap(snapshot.value, langMetaData);
+        word.id = snapshot.key;
+        word.isSaved = true;
 
-      final Word word = Word.fromMap(snapshot.value);
-      word.id = snapshot.key;
-      word.isSaved = true;
-
-      return word;
-    })
-    .toList();
+        return word;
+      })
+      .toList();  
+      
+    } catch (e) {
+      return null;
+    }
   }
 }

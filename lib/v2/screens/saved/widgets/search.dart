@@ -17,7 +17,7 @@ searchWords({BuildContext context, List<Word> list}) {
           .map((Word word) => MaterialSearchResult<Word>(
             icon: Icons.search,
             value: word,
-            text: word.en.word,
+            text: word.targetLanguage.word,
           ))
           .toList(),
 

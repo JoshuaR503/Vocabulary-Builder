@@ -56,7 +56,12 @@
         "section_title": "Palabras Favoritas",
 
         "title": "Guarda palabras para\nestudiar más tarde",
-        "message": "Para guardar una palabra solo\ntoque el corazón y aparecerá aquí."
+        "message": "Para guardar una palabra solo\ntoque el corazón y aparecerá aquí.",
+
+        "error": {
+            "title": "Se produjo un error inesperado",
+            "message": "\nError al acceder\na la base de datos local\n\n\n"
+        }
     },
 
     "search": {
@@ -102,8 +107,15 @@
         },
 
         "snackbar": {
-            "text": "Palabra Guardada",
-            "action": "Muéstrame"
+            "success": {
+                "text": "Palabra Guardada",
+                "action": "Muéstrame"
+            },
+
+            "fail": {
+                "text": "Error al guardar la palabra",
+                "action": "Entiendo"
+            }
         },
 
         "about_section": {
@@ -114,7 +126,6 @@
                 "noun": "Sustantivo. ",
                 "verb": "Verbo. ",
                 "adverb": "Adverbio. ",
-
                 "adjective": "Adjetivo. ",
                 "phasal_verb": "Verbo Frasal. ",
                 "idiom": "Modismo. "
@@ -159,7 +170,7 @@
     },
 
     "help" : {
-        "section_title": "Information",
+        "section_title": "Información",
         "tabs": {
             "questions": "Preguntas",
             "help": "Ayuda",

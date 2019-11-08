@@ -21,6 +21,8 @@ class LanguageLayout extends StatefulWidget {
 }
 
 class _LanguageLayoutState extends State<LanguageLayout> {
+
+  // Methods
   void _onTap(String language, BuildContext context) {
     BlocProvider
       .of<ConfigBloc>(context)
@@ -31,6 +33,7 @@ class _LanguageLayoutState extends State<LanguageLayout> {
     .pushNamed('/');
   }
 
+  // Helpers
   Widget _buildVerticalLayout(double targetWidth, BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -79,6 +82,7 @@ class _LanguageLayoutState extends State<LanguageLayout> {
     );
   }
 
+  // Actual Widgets
   @override
   Widget build(BuildContext context) {
 

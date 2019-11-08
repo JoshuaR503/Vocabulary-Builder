@@ -5,8 +5,8 @@ import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.
 class WordsApiClient {
 
   static final String baseUrl = 'https://vocabulary-builder.herokuapp.com';
-  final Dio httpClient = Dio();
   final SettingsRepository settingsRepository = SettingsRepository();
+  final Dio httpClient = Dio();
 
   Future<List<Word>> fetchWords(int skip) async {
 
@@ -25,8 +25,6 @@ class WordsApiClient {
 
     final data = response.data;
     final List<dynamic> wordsResponse = data['response'];
-
-    wordsResponse.add('Lang');
 
     final List<Word> words = Word.converToList(wordsResponse, langMetaData);
   

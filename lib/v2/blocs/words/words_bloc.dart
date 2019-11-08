@@ -36,7 +36,7 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
           ? await _wordsRepository.fetchWords(skip: randomNumber)
           : await _wordsRepository.fetchWordsFromCategory(category: event.category, skip: randomNumber);
 
-          yield words.length == 0
+          yield words.isEmpty
           ? WordsZero()
           : WordsLoaded(words: words);
 

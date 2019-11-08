@@ -6,7 +6,7 @@ import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.
 
 class WordDatabaseClient {
 
-  static const String WORD_STORE_NAME = 'words';
+  static const String WORD_STORE_NAME = 'wordss';
 
   final SettingsRepository settingsRepository = SettingsRepository();
   final _wordsStore = intMapStoreFactory.store(WORD_STORE_NAME);
@@ -62,15 +62,19 @@ class WordDatabaseClient {
       finder: finder
     );
 
-    return response
-    .map((snapshot) {
+    try {
+      return response
+      .map((snapshot) {
+        final Word word = Word.fromMap(snapshot.value, langMetaData);
+        word.id = snapshot.key;
+        word.isSaved = true;
 
-      final Word word = Word.fromMap(snapshot.value, langMetaData);
-      word.id = snapshot.key;
-      word.isSaved = true;
-
-      return word;
-    })
-    .toList();
+        return word;
+      })
+      .toList();  
+      
+    } catch (e) {
+      return null;
+    }
   }
 }

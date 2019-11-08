@@ -56,7 +56,12 @@
         "section_title": "Palabras Favoritas",
 
         "title": "Guarda palabras para\nestudiar más tarde",
-        "message": "Para guardar una palabra solo\ntoque el corazón y aparecerá aquí."
+        "message": "Para guardar una palabra solo\ntoque el corazón y aparecerá aquí.",
+
+        "error": {
+            "title": "Se produjo un error inesperado",
+            "message": "\nError al acceder\na la base de datos local\n\n\n"
+        }
     },
 
     "search": {

@@ -37,11 +37,15 @@ class WordBloc extends Bloc<WordEvent, WordState> {
   Stream<WordState> _fetchWords() async* {
     // Fetch words from Database.
     final List<Word> words = await _wordRepository.fetchWords();
-    final bool wordsIsNotEmpty = words.isNotEmpty;
 
-    // Set fetched words in State.
-    yield wordsIsNotEmpty
-    ? LoadedWordState(words: words)
-    : EmptyWordState();
+    if (words == null) {
+      yield ErrorWordState();
+
+    } else if (words.isNotEmpty) {
+      yield LoadedWordState(words: words);
+
+    } else {
+      yield EmptyWordState();
+    }
   }
 }

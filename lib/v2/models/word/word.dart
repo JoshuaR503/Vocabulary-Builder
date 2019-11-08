@@ -93,8 +93,8 @@ class Word {
 
       level: map['level'],
 
-      firstLanguage: WordData.fromJson(map[langMedaData['firstLanguage']]),
-      targetLanguage: WordData.fromJson(map[langMedaData['targetLanguage']]),
+      firstLanguage: WordData.fromJson(map['firstLanguage']),
+      targetLanguage: WordData.fromJson(map['targetLanguage']),
 
       gif: map['gif'],
     );

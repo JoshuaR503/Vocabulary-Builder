@@ -9,7 +9,10 @@ import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/saved/widgets/search.dart';
 import 'package:vocabulary_builder/v2/widgets/components/cards/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
+import 'package:vocabulary_builder/v2/widgets/components/message.dart';
+import 'package:vocabulary_builder/v2/widgets/components/solution.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
+import 'package:vocabulary_builder/v2/widgets/ui/container.dart';
 
 class SavedWordsScreen extends StatefulWidget {
   @override
@@ -19,6 +22,18 @@ class SavedWordsScreen extends StatefulWidget {
 class _SavedWordsScreenState extends State<SavedWordsScreen> {
 
   // Helpers
+  Widget _buildError(String message, String solution) {
+    return SimpleContainer(
+      child: ListView(
+        children: <Widget>[
+          SizedBox(height: MediaQuery.of(context).size.height / 3.5.toDouble()),
+          VocabularyBuilderMessage(message: message),
+          VocabularyBuilderSolutionMessage(solution: solution)
+        ],
+      ),
+    );
+  }
+  
   Widget _createWordsCard(List<Word> words) {
 
     final Icon bottomIcon = Icon(Icons.forward,  color: Colors.white);
@@ -44,6 +59,13 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
 
         if (state is LoadedWordState) {
           return _createWordsCard(state.words);
+        }
+
+        if (state is ErrorWordState) {
+          return _buildError(
+            FlutterI18n.translate(context, 'saved.error.title'),
+            FlutterI18n.translate(context, 'saved.error.message'),
+          );
         }
 
         if (state is EmptyWordState) {

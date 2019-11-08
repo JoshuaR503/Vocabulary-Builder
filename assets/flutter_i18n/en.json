@@ -166,6 +166,11 @@
             "icons": {
                 "search_tooltip": "Word Search"
             }
+        },
+
+        "error": {
+            "title": "Something unexpected happened",
+            "message": "\nCould not\naccess local database\n\n"
         }
     },
 

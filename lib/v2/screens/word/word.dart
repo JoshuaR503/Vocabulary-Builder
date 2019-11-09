@@ -159,7 +159,11 @@ class _WordState extends State<WordScreen> {
         ),
 
         floatingActionButton: FloatingActionButton(
-          child: Text('🤔', style: TextStyle(fontSize: 45)),
+          child: Image.asset(
+            'assets/pictures/thinking.png',
+            height: 50.0,
+            width: 50.0,
+          ),
           onPressed: () => Navigator
             .of(context)
             .push(MaterialPageRoute(

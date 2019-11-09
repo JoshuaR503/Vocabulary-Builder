@@ -51,7 +51,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
 
       floatingActionButton: FloatingActionButton(
-        child: Text('🤔', style: TextStyle(fontSize: 35)),
+        child: Image.asset(
+          'assets/pictures/thinking.png',
+          height: 50.0,
+          width: 50.0,
+        ),
         onPressed: () =>
           Navigator
           .of(context)

@@ -330,6 +330,12 @@
             "subtitle": "El objetivo de esta aplicación es ayudar a aumentar el vocabulario de las peronas que estan aprendiendo inglés o español, de una manera rapida y sencilla."
         },
 
+        "content": {
+            "title": "Gifs proporcionados por Giphy",
+            "title_two": "Toca para obtener más información",
+            "subtitle": "Joshua García no es el propietario de ningún gif que se muestre en esta aplicación."
+        },
+
         "icon_designer_one": {
             "title": "Iconos Diseñados por mynamepong",
             "title_two": "Diseñador del icono del hombre corriendo.",

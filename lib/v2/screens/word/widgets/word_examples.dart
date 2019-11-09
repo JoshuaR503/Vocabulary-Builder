@@ -106,7 +106,7 @@ class WordExamplesCard extends StatelessWidget {
             placeholder: (context, url) => placeholder,
             errorWidget: (context, url, error) => errorWidget
           ),
-        )
+        ),
       ),
     ];
 

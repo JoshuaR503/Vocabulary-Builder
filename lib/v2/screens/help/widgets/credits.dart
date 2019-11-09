@@ -44,6 +44,18 @@ class CreditsTab extends StatelessWidget {
           _createCard(
             context: context,
             children: <Widget> [
+              CommonTitle(FlutterI18n.translate(context, 'credits.content.title')),
+              ListCell(
+                title: FlutterI18n.translate(context, 'credits.content.title_two'),
+                subtitle: FlutterI18n.translate(context, 'credits.content.subtitle'),
+                onTap: () => FlutterWebBrowser.openWebPage(url: 'https://giphy.com'),              
+              ),
+            ]
+          ),
+
+          _createCard(
+            context: context,
+            children: <Widget> [
               CommonTitle(FlutterI18n.translate(context, 'credits.icon_designer_one.title')),
               CommonSubtitle(FlutterI18n.translate(context, 'credits.icon_designer_one.subtitle')),
               ListCell(

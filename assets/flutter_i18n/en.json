@@ -336,6 +336,13 @@
             "title_two": "Would you like to help me improve the application? If so, tap here to make a donation",
             "subtitle": "The objective of this app is to help increase the vocabulary of the people who are learning Spanish, on the go."
         },
+
+        "content": {
+            "title": "Gifs provided by Giphy",
+            "title_two": "Tap to find out more about Giphy",
+            "subtitle": "Joshua García is not the owner of any gifs shown in this app."
+        },
+
         "icon_designer_one": {
             "title": "Icons Designed by mynamepong",
             "title_two": "Tap the icon to find out more",

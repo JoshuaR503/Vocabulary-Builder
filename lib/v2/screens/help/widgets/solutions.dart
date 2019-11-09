@@ -27,23 +27,23 @@ class SolutionsTab extends StatelessWidget {
       child: ListView(
         children: <Widget> [
 
-          _createCard(
-            context: context, 
-            children: <Widget>[
-              CommonTitle(FlutterI18n.translate(context, 'troubleshooting.no_server.title')),
-              CommonSubtitle(FlutterI18n.translate(context, 'troubleshooting.no_server.subtitle')),
-              ListCell(
-                leading: Image.asset(
-                  'assets/pictures/limit.png',
-                  height: 50.0,
-                  width: 50.0,
-                ),
-                title: FlutterI18n.translate(context, 'troubleshooting.no_server.response_one'),
-                subtitle: FlutterI18n.translate(context, 'troubleshooting.no_server.solution_one'),
-                onTap: () {},
-              ),
-            ]
-          ),
+          // _createCard(
+          //   context: context, 
+          //   children: <Widget>[
+          //     CommonTitle(FlutterI18n.translate(context, 'troubleshooting.no_server.title')),
+          //     CommonSubtitle(FlutterI18n.translate(context, 'troubleshooting.no_server.subtitle')),
+          //     ListCell(
+          //       leading: Image.asset(
+          //         'assets/pictures/limit.png',
+          //         height: 50.0,
+          //         width: 50.0,
+          //       ),
+          //       title: FlutterI18n.translate(context, 'troubleshooting.no_server.response_one'),
+          //       subtitle: FlutterI18n.translate(context, 'troubleshooting.no_server.solution_one'),
+          //       onTap: () {},
+          //     ),
+          //   ]
+          // ),
 
           _createCard(
             context: context, 

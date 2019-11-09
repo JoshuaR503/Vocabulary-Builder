@@ -40,6 +40,10 @@ class WordsApiClient {
     final Response<dynamic> response = await _fetchData(url: serverUrl);
 
     // Handle more status code responses.
+    if (response.statusCode == 429) {
+      throw Exception('You have reached your free tier limit');
+    }
+
     if (response.statusCode != 200 ) {
       throw Exception('There was an error with the Server');
     }

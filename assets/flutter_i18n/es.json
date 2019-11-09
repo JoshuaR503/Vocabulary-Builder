@@ -44,7 +44,7 @@
             "adjectives": "Adjetivos",
             "phrasal_verbs": "Verbos Frasales",
     
-            "idioms": "Modismos",
+            "idioms": "Frases",
             "nouns": "Sustantivos",
     
             "all_words": "Todas las Palabras",
@@ -287,13 +287,6 @@
             "solution_one": "Puedes hacer hasta 100 solicitudes cada 5 horas, si el servidor detectó que ya hiciste 100 solicitudes, no funcionará más. Siempre puedes usar la versión web que no tiene límites."
         },
 
-        "stupid_voice": {
-            "title": "¡La pronunciación es horrenda!",
-            "subtitle": "¡Lamento los inconvenientes ocasionados!",
-            "response_one": "Sistema operativo",
-            "solution_one": "La voz en la sección de palabras guardadas depende del sistema operativo y puede cambiar según el dispositivo que tengas y no hay nada que pueda hacer más que disculparme."
-        },
-
         "voice": {
             "title": "¡La voz no habla!",
             "subtitle": "La voz depende de tu velocidad de internet.",
@@ -345,7 +338,6 @@
             "subtitle": "Toca para obtener más información.",
             "subtitle_two": "Icono hecho por srip de www.flaticon.com"
         },
-
 
         "icon_designer_two": {
             "title": "Iconos Diseñados por Freepik",

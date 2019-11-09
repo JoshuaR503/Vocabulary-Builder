@@ -130,22 +130,22 @@ class QuestionsTab extends StatelessWidget {
           //   ]
           // ),
 
-          // _createCard(
-          //   context: context,
-          //   children: <Widget> [
-          //     CommonTitle(FlutterI18n.translate(context, 'question_answers.subject.question')),
-          //     ListCell(
-          //       leading: Image.asset(
-          //         'assets/pictures/parrot.png',
-          //         height: 50.0,
-          //         width: 50.0,
-          //       ),
-          //       title: FlutterI18n.translate(context, 'question_answers.subject.title'),
-          //       subtitle: FlutterI18n.translate(context, 'question_answers.subject.answer'),
-          //       onTap: () {},
-          //     ),
-          //   ]
-          // ),
+          _createCard(
+            context: context,
+            children: <Widget> [
+              CommonTitle(FlutterI18n.translate(context, 'question_answers.subject.question')),
+              ListCell(
+                leading: Image.asset(
+                  'assets/pictures/parrot.png',
+                  height: 50.0,
+                  width: 50.0,
+                ),
+                title: FlutterI18n.translate(context, 'question_answers.subject.title'),
+                subtitle: FlutterI18n.translate(context, 'question_answers.subject.answer'),
+                onTap: () {},
+              ),
+            ]
+          ),
 
           _createCard(
             context: context,

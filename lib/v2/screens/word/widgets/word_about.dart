@@ -158,6 +158,14 @@ class WordAboutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+
+    final bool hasNote = 
+    word.targetLanguage.note != null &&
+    word.firstLanguage.note != null
+
+    && word.firstLanguage.note.length > 1 
+    && word.targetLanguage.note.length > 1;
+
     return SimpleContainer(
       child: ListView(
         children: <Widget>[
@@ -172,8 +180,8 @@ class WordAboutCard extends StatelessWidget {
               SizedBox(height: 5),
               _buildSecondCard(context),
 
-              if (word.targetLanguage.note != null && word.targetLanguage.note.length > 1) SizedBox(height: 5),
-              if (word.targetLanguage.note != null && word.targetLanguage.note.length > 1) _buildNoteSection(context),
+              if (hasNote) SizedBox(height: 5),
+              if (hasNote) _buildNoteSection(context),
 
               SizedBox(height: 5),
               _buildCategorySection(context),

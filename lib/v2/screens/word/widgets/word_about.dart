@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/core/functions.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
+import 'package:vocabulary_builder/v2/screens/help/help.dart';
 
 import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_data_card.dart';
 import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
@@ -17,8 +19,42 @@ class WordAboutCard extends StatelessWidget {
   }) : assert(word != null);
   
   // Methods
-  void _playAudio({String audio}) {
-    functions.playAudio(audio: audio);
+  Widget _buildSnackbar({SnackBarAction action, String message}) {
+    final Text content = Text(
+      message,
+      style: TextStyle(
+        color: Colors.white
+      ),
+    );
+
+    return SnackBar(
+      duration: Duration(seconds: 3),
+      backgroundColor: AppColors.snackBar,
+      content: content,
+      action: action
+    );
+  }
+  
+  void _playAudio({String audio, BuildContext context}) async {
+    final int result = await functions.playAudio(audio: audio);
+
+    if (result == 0) {
+      final String message = FlutterI18n.translate(context, 'word.snackbar.audio_error.text');
+      final SnackBarAction action = SnackBarAction(
+        label: FlutterI18n.translate(context, 'word.snackbar.audio_error.action'),
+        textColor: Colors.amber,
+        onPressed: () => 
+        Navigator
+        .of(context)
+        .push(MaterialPageRoute(
+          builder: (context) => HelpScreen(color: AppColors.red, initialIndex: 1)
+        )),
+      );
+
+      Scaffold
+      .of(context)
+      .showSnackBar(_buildSnackbar(action: action, message: message));
+    }
   }
 
   String _findDefinition({String category, BuildContext context}) {
@@ -87,7 +123,7 @@ class WordAboutCard extends StatelessWidget {
     return WordCard(
       word: this.word.targetLanguage.word,
       definition: this.word.targetLanguage.definition,
-      onPressed: () => _playAudio(audio: this.word.targetLanguage.wordPronuntiation),
+      onPressed: () => _playAudio(audio: this.word.targetLanguage.wordPronuntiation, context: context),
     );
   }
 
@@ -95,7 +131,7 @@ class WordAboutCard extends StatelessWidget {
     return WordCard(
       word: this.word.firstLanguage.word,
       definition: this.word.firstLanguage.definition,
-      onPressed: () => _playAudio(audio: this.word.firstLanguage.wordPronuntiation),
+      onPressed: () => _playAudio(audio: this.word.firstLanguage.wordPronuntiation, context: context),
     );
   }
 

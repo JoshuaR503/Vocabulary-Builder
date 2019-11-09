@@ -107,6 +107,11 @@
             "fail": {
                 "text": "Failed to save word",
                 "action": "Got it"
+            },
+
+            "audio_error": {
+                "text": "Missing audio files",
+                "action": "Got it"
             }
         },
 

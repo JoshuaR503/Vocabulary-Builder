@@ -6,12 +6,13 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class VocabularyBuilderFunctions {
 
-  void playAudio({String audio}) async {
+  Future<int> playAudio({String audio}) async {
     final AudioPlayer audioPlayer = AudioPlayer();
 
-    await audioPlayer
+    return await audioPlayer
     .play(audio, isLocal: true)
-    .catchError((error) => print('Error: $error'));
+    .then((_) => 1)
+    .catchError((error) => 0);
   }
 
   void deleteFile(String url) async {

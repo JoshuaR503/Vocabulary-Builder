@@ -115,6 +115,11 @@
             "fail": {
                 "text": "Error al guardar la palabra",
                 "action": "Entiendo"
+            },
+
+            "audio_error": {
+                "text": "Archivos de audio perdidos",
+                "action": "Entiendo"
             }
         },
 

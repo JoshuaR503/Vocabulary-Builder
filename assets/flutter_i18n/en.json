@@ -191,6 +191,12 @@
             "title": "A simple solution",
             "answer": "To get more words, tap the refresh button on the top right corner or just slide your finger down."
         },
+        
+        "question_one_2": {
+            "question": "What does each color mean?",
+            "title": "Each color represents a grammatical category",
+            "answer": "If you ever see a purple word, it means it has more than one grammatical category or it may even be the same word with different colors."
+        },
 
         "sentence": {
             "question": "What is a Sentence?",
@@ -279,13 +285,6 @@
             "solution_one": "One reason could be that internet connection may be failing or is very slow, please check the internet connection. If it doesn't work, try again later."
         },
 
-        "stupid_voice": {
-            "title": "The pronunciation is horrible!",
-            "subtitle": "Sorry for the inconvenience!",
-            "response_one": "Operative system",
-            "solution_one": "The voice in the saved section relies on the OS and can change depending on the device you have. There's nothing I can do but to apologize."
-        },
-
         "no_server": {
             "title": "I've reached my free tier usage!",
             "subtitle": "Free quota reached",
@@ -329,8 +328,8 @@
     "credits": {
         "developer": {
             "title": "Application developed by Joshua García",
-            "title_two": "Tap to get in touch",
-            "subtitle": "The objective of this application is to help increase the vocabulary of the people who are learning Spanish, on the go."
+            "title_two": "Would you like to help me improve the application? If so, tap here to make a donation",
+            "subtitle": "The objective of this app is to help increase the vocabulary of the people who are learning Spanish, on the go."
         },
         "icon_designer_one": {
             "title": "Icons Designed by mynamepong",

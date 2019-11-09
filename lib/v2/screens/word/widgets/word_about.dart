@@ -137,7 +137,7 @@ class WordAboutCard extends StatelessWidget {
     );
 
     final Text definition = Text(
-      this.word.targetLanguage.note,
+      this.word.firstLanguage.note,
       style: TextStyles.definitionStyle,
     );
 

@@ -185,6 +185,12 @@
             "answer": "Para obtener más palabras, simplemente toca el botón de recarga en la parte superior derecha o simplemente desliza tu dedo hacia abajo."
         },
 
+        "question_one_2": {
+            "question": "¿Qué significa cada color?",
+            "title": "Cada color representa una categoría gramatical",
+            "answer": "Si alguna vez ve una palabra de color púrpura, significa que tiene más de una categoría gramatical o incluso puede que sea la misma palabra con diferentes colores."
+        },
+
         "sentence": {
             "question": "¿Qué es una oración?",
             "title": "Un conjunto de palabras.",
@@ -322,8 +328,8 @@
     "credits": {
         "developer": {
             "title": "Aplicación desarrollada por Joshua García",
-            "title_two": "Toca para contactar",
-            "subtitle": "El objetivo de esta aplicación es ayudar a aumentar el vocabulario de las peronas que estan aprendiendo Inglés, de una manera rapida y sencilla."
+            "title_two": "¿Te gustaría ayudar a mejorar la aplicación? Si es así, toca aquí para hacer una donación",
+            "subtitle": "El objetivo de esta aplicación es ayudar a aumentar el vocabulario de las peronas que estan aprendiendo inglés o español, de una manera rapida y sencilla."
         },
 
         "icon_designer_one": {

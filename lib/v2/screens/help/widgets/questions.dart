@@ -42,14 +42,35 @@ class QuestionsTab extends StatelessWidget {
           _createCard(
             context: context,
             children: <Widget> [
-              CommonTitle(FlutterI18n.translate(context, 'question_answers.sentence.question')),
+              CommonTitle(FlutterI18n.translate(context, 'question_answers.question_one_2.question')),
               ListCell(
-                title: FlutterI18n.translate(context, 'question_answers.sentence.title'),
-                subtitle: FlutterI18n.translate(context, 'question_answers.sentence.answer'),
+                title: FlutterI18n.translate(context, 'question_answers.question_one_2.title'),
+                subtitle: FlutterI18n.translate(context, 'question_answers.question_one_2.answer'),
                 onTap: () {},
               ),
             ]
           ),
+
+          _createCard(
+            context: context,
+            children: <Widget> [
+              CommonTitle(FlutterI18n.translate(context, 'question_answers.noun.question')),
+              ListCell(
+                leading: Image.asset(
+                  'assets/pictures/apple.png',
+                  height: 50.0,
+                  width: 50.0,
+                ),
+                title: FlutterI18n.translate(context, 'question_answers.noun.title'),
+                subtitle: FlutterI18n.translate(context, 'question_answers.noun.answer'),
+                onTap: () {},
+              ),
+            ]
+          ),
+
+          
+
+          
 
           _createCard(
             context: context,
@@ -85,46 +106,46 @@ class QuestionsTab extends StatelessWidget {
             ]
           ),
 
-          _createCard(
-            context: context,
-            children: <Widget> [
-              CommonTitle(FlutterI18n.translate(context, 'question_answers.antonyms.question')),
-              ListCell(
-                title: FlutterI18n.translate(context, 'question_answers.antonyms.title'),
-                subtitle: FlutterI18n.translate(context, 'question_answers.antonyms.answer'),
-                onTap: () {},
-              ),
-            ]
-          ),
+          // _createCard(
+          //   context: context,
+          //   children: <Widget> [
+          //     CommonTitle(FlutterI18n.translate(context, 'question_answers.antonyms.question')),
+          //     ListCell(
+          //       title: FlutterI18n.translate(context, 'question_answers.antonyms.title'),
+          //       subtitle: FlutterI18n.translate(context, 'question_answers.antonyms.answer'),
+          //       onTap: () {},
+          //     ),
+          //   ]
+          // ),
 
-          _createCard(
-            context: context,
-            children: <Widget> [
-              CommonTitle(FlutterI18n.translate(context, 'question_answers.synonyms.question')),
-              ListCell(
-                title: FlutterI18n.translate(context, 'question_answers.synonyms.title'),
-                subtitle: FlutterI18n.translate(context, 'question_answers.synonyms.answer'),
-                onTap: () {},
-              ),
-            ]
-          ),
+          // _createCard(
+          //   context: context,
+          //   children: <Widget> [
+          //     CommonTitle(FlutterI18n.translate(context, 'question_answers.synonyms.question')),
+          //     ListCell(
+          //       title: FlutterI18n.translate(context, 'question_answers.synonyms.title'),
+          //       subtitle: FlutterI18n.translate(context, 'question_answers.synonyms.answer'),
+          //       onTap: () {},
+          //     ),
+          //   ]
+          // ),
 
-          _createCard(
-            context: context,
-            children: <Widget> [
-              CommonTitle(FlutterI18n.translate(context, 'question_answers.subject.question')),
-              ListCell(
-                leading: Image.asset(
-                  'assets/pictures/parrot.png',
-                  height: 50.0,
-                  width: 50.0,
-                ),
-                title: FlutterI18n.translate(context, 'question_answers.subject.title'),
-                subtitle: FlutterI18n.translate(context, 'question_answers.subject.answer'),
-                onTap: () {},
-              ),
-            ]
-          ),
+          // _createCard(
+          //   context: context,
+          //   children: <Widget> [
+          //     CommonTitle(FlutterI18n.translate(context, 'question_answers.subject.question')),
+          //     ListCell(
+          //       leading: Image.asset(
+          //         'assets/pictures/parrot.png',
+          //         height: 50.0,
+          //         width: 50.0,
+          //       ),
+          //       title: FlutterI18n.translate(context, 'question_answers.subject.title'),
+          //       subtitle: FlutterI18n.translate(context, 'question_answers.subject.answer'),
+          //       onTap: () {},
+          //     ),
+          //   ]
+          // ),
 
           _createCard(
             context: context,
@@ -143,22 +164,7 @@ class QuestionsTab extends StatelessWidget {
             ]
           ),
 
-          _createCard(
-            context: context,
-            children: <Widget> [
-              CommonTitle(FlutterI18n.translate(context, 'question_answers.noun.question')),
-              ListCell(
-                leading: Image.asset(
-                  'assets/pictures/apple.png',
-                  height: 50.0,
-                  width: 50.0,
-                ),
-                title: FlutterI18n.translate(context, 'question_answers.noun.title'),
-                subtitle: FlutterI18n.translate(context, 'question_answers.noun.answer'),
-                onTap: () {},
-              ),
-            ]
-          ),
+          
 
           _createCard(
             context: context,
@@ -218,19 +224,19 @@ class QuestionsTab extends StatelessWidget {
             ]
           ),
 
-          _createCard(
-            context: context,
-            children: <Widget> [
-              CommonTitle(FlutterI18n.translate(context, 'question_answers.not_found.question')),
-              ListCell(
-                title: FlutterI18n.translate(context, 'question_answers.not_found.title'),
-                subtitle: FlutterI18n.translate(context, 'question_answers.not_found.subtitle'),
-                onTap: null
-              ),
-            ]
-          ),
+          // _createCard(
+          //   context: context,
+          //   children: <Widget> [
+          //     CommonTitle(FlutterI18n.translate(context, 'question_answers.not_found.question')),
+          //     ListCell(
+          //       title: FlutterI18n.translate(context, 'question_answers.not_found.title'),
+          //       subtitle: FlutterI18n.translate(context, 'question_answers.not_found.subtitle'),
+          //       onTap: null
+          //     ),
+          //   ]
+          // ),
 
-          Separator.spacer(height: 6.0),
+          Separator.spacer(height: 12.0),
         ]
       ),
     );

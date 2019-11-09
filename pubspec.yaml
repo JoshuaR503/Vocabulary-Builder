@@ -51,7 +51,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.7.0
 
 flutter_icons:
-  image_path: "assets/pictures/rounded-icon.png"
+  image_path: "assets/pictures/iccon.png"
   android: true
   ios: false
   adaptive_icon_background: "#FFAFAFA"

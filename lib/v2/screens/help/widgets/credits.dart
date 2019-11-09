@@ -36,7 +36,7 @@ class CreditsTab extends StatelessWidget {
               ListCell(
                 title: FlutterI18n.translate(context, 'credits.developer.title_two'),
                 subtitle: FlutterI18n.translate(context, 'credits.developer.subtitle'),
-                onTap: null
+                onTap: () => FlutterWebBrowser.openWebPage(url: 'https://www.paypal.me/JoshuaG503?locale.x=en_US'),              
               ),
             ]
           ),

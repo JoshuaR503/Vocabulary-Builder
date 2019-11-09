@@ -22,13 +22,13 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
     // Fetch Words Event.
     if (event is FetchWords) {
 
+      yield WordsLoading();
+
       final bool isConnected = await _networkInfoImpl.isConnected;
 
       if (isConnected) {
 
         try {
-          yield WordsLoading();
-
           final int wordCount = await _wordsRepository.fetchWordCount(category: event.categoryName);
           final int randomNumber = _functions.randonNumber(wordCount);
           
@@ -48,7 +48,6 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
       if (!isConnected) {
         yield WordsNoConnection();  
       }
-
     }
   }
 }

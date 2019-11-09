@@ -16,7 +16,6 @@ class WordDatabaseClient {
   Future<int> insert({Word data}) async {
     try {
       final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
-      final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
 
       // update word's fields.
       final wordData = data.toMap();

@@ -111,7 +111,7 @@
 
             "audio_error": {
                 "text": "Missing audio files",
-                "action": "Got it"
+                "action": "Help"
             }
         },
 

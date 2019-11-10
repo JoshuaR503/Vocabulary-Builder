@@ -86,6 +86,11 @@
         "error": {
             "title": "Something unexpected happened",
             "message": "\nWe are working to fix this issue\nPlease try again later\n\n\n"
+        },
+
+        "unavailable": {
+            "title": "This section is only available in English",
+            "message": "\nSorry for the inconvenience"
         }
     },
 
@@ -136,8 +141,8 @@
             },
 
             "sentences": "Sentences",
-            "similar_words": "Similar Words",
-            "oposite_words": "Oposite Words"
+            "similar_words": "Synonyms",
+            "oposite_words": "Antonyms"
 
         },
 

@@ -106,29 +106,29 @@ class QuestionsTab extends StatelessWidget {
             ]
           ),
 
-          // _createCard(
-          //   context: context,
-          //   children: <Widget> [
-          //     CommonTitle(FlutterI18n.translate(context, 'question_answers.antonyms.question')),
-          //     ListCell(
-          //       title: FlutterI18n.translate(context, 'question_answers.antonyms.title'),
-          //       subtitle: FlutterI18n.translate(context, 'question_answers.antonyms.answer'),
-          //       onTap: () {},
-          //     ),
-          //   ]
-          // ),
+          _createCard(
+            context: context,
+            children: <Widget> [
+              CommonTitle(FlutterI18n.translate(context, 'question_answers.antonyms.question')),
+              ListCell(
+                title: FlutterI18n.translate(context, 'question_answers.antonyms.title'),
+                subtitle: FlutterI18n.translate(context, 'question_answers.antonyms.answer'),
+                onTap: () {},
+              ),
+            ]
+          ),
 
-          // _createCard(
-          //   context: context,
-          //   children: <Widget> [
-          //     CommonTitle(FlutterI18n.translate(context, 'question_answers.synonyms.question')),
-          //     ListCell(
-          //       title: FlutterI18n.translate(context, 'question_answers.synonyms.title'),
-          //       subtitle: FlutterI18n.translate(context, 'question_answers.synonyms.answer'),
-          //       onTap: () {},
-          //     ),
-          //   ]
-          // ),
+          _createCard(
+            context: context,
+            children: <Widget> [
+              CommonTitle(FlutterI18n.translate(context, 'question_answers.synonyms.question')),
+              ListCell(
+                title: FlutterI18n.translate(context, 'question_answers.synonyms.title'),
+                subtitle: FlutterI18n.translate(context, 'question_answers.synonyms.answer'),
+                onTap: () {},
+              ),
+            ]
+          ),
 
           _createCard(
             context: context,

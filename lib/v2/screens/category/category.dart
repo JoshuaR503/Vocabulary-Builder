@@ -80,6 +80,13 @@ class _CategoryState extends State<Category> {
     return BlocBuilder<WordsBloc, WordsState>(
       builder: (BuildContext context, WordsState state) {
 
+        if (state is SectionNotAvailable) {
+          return _buildError(
+            FlutterI18n.translate(context, 'category.unavailable.title'),
+            FlutterI18n.translate(context, 'category.unavailable.message'),
+          );
+        }
+
         if (state is WordsLoading) {
           return VocabularyBuilderSpinner(color: this.widget.color);
         }

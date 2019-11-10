@@ -29,3 +29,5 @@ class WordsError extends WordsState {
 class WordsZero extends WordsState {}
 
 class WordsNoConnection extends WordsState {}
+
+class SectionNotAvailable extends WordsState {}

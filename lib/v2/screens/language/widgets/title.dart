@@ -17,7 +17,7 @@ class LanguageTitle extends StatelessWidget {
       return 43;
     }
 
-    return 60;
+    return 50;
   }
   
   @override

@@ -94,6 +94,11 @@
         "error": {
             "title": "Se produjo un error inesperado",
             "message": "\nPor favor regresa más tarde\n\n\n"
+        },
+
+        "unavailable": {
+            "title": "Esta sección solo está disponible en inglés",
+            "message": "\nDisculpe las molestias"
         }
     },
 
@@ -145,8 +150,8 @@
 
             
             "sentences": "Ejemplos",
-            "similar_words": "Palabras Similares",
-            "oposite_words": "Palabras Opuestas"
+            "similar_words": "Sinónimos",
+            "oposite_words": "Antónimos"
         },
 
         "conjugation_section": {

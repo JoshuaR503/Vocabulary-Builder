@@ -13,7 +13,7 @@ class WordsApiClient {
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
 
     // TODO: CHANGE WHEN APP READY.
-    final String url = '$baseUrl/v3/word/public?skip=$skip';
+    final String url = '$baseUrl/v3/word/public?skip=0';
 
     // http request - words.
     final Response<dynamic> response = await this._fetchData(url: url);
@@ -36,7 +36,7 @@ class WordsApiClient {
 
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
 
-    final String serverUrl = '$baseUrl/v3/word/category/$category?skip=$skip';
+    final String serverUrl = '$baseUrl/v3/word/category/$category?skip=0';
     final Response<dynamic> response = await _fetchData(url: serverUrl);
 
     // Handle more status code responses.

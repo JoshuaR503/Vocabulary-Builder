@@ -41,6 +41,17 @@ class VocabularyBuilderSettingsClient {
     };
   }
 
+  Future<bool> userLanguageIsSpanish() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String language = preferences.getString('language');
+
+    if (language == 'es') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   Future<String> getUserLevel() async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     final String level = preferences.getString('level');

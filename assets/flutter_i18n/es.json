@@ -192,7 +192,7 @@
         "question_one": {
             "question": "¿Cómo obtengo más palabras?",
             "title": "Una simple solución",
-            "answer": "Para obtener más palabras, simplemente toca el botón de recarga en la parte superior derecha o simplemente desliza tu dedo hacia abajo."
+            "answer": "Para obtener más palabras, simplemente toca el botón de recarga en la parte superior derecha."
         },
 
         "question_one_2": {
@@ -204,61 +204,61 @@
         "sentence": {
             "question": "¿Qué es una oración?",
             "title": "Un conjunto de palabras.",
-            "answer": "La oración es un conjunto de palabras que expresa una idea o pensamiento. Ejemplos: el hombre esta corriendo, estoy aprendiendo otro idioma."
+            "answer": "La oración es un conjunto de palabras que expresa una idea o pensamiento."
         },
 
         "singular": {
             "question": "¿Qué significa singular?",
             "title": "Un solo objeto",
-            "answer": "Singular se refiere a cuando hablamos de solamente un objeto en particular. Ejemplos: un hongo, el carro, una casa"
+            "answer": "Singular se refiere a cuando hablamos de solamente un objeto en particular."
         },
 
         "plural": {
             "question": "¿Qué significa plural?",
             "title": "Mas de un objeto",
-            "answer": "Plural, se refiere a cuando hablamos de más de una sola cosa. Ejemplos: unos hongos, los arboles, las casas; lo contrario a singular."
+            "answer": "Plural, se refiere a cuando hablamos de más de una sola cosa."
         },
 
         "antonyms": {
             "question": "¿Qué son los antónimos?",
             "title": "Palabras opuestas",
-            "answer": "Los antónimos son aquellas palabras cuyos significados son opuestos. Ejemplos: luz - oscuridad, compar - vender, amar - odiar."
+            "answer": "Los antónimos son aquellas palabras cuyos significados son opuestos."
         },
 
         "synonyms": {
             "question": "¿Qué son los sinónimos?",
             "title": "Palabras similares",
-            "answer": "Los sinónimos son palabras que tienen el mismo significado de otras palabras. Ejemplos: comprender - entender, fácil - sencillo, estudiante - alumno."
+            "answer": "Los sinónimos son palabras que tienen el mismo significado de otras palabras."
         },
 
         "subject": {
             "question": "¿Qué es el sujeto?",
             "title": "De quien se habla",
-            "answer": "El sujeto es la persona, animal o cosa de la que se habla en una oración. Ejemplo: el pájaro, el árbol, la casa."
+            "answer": "El sujeto es la persona, animal o cosa de la que se habla en una oración."
         },
 
         "phasal_verbs": {
             "question": "¿Qué es un verbo frasal?",
-            "title": "Su significado no es obvio.",
-            "answer": "Son verbos compuestos por un verbo principal y un adverbio o preposición. Ejemplos: cheer up (animarse), calm down (calmarse), break up (separar)"
+            "title": "Su significado no es obvio",
+            "answer": "Son verbos compuestos por un verbo principal y un adverbio o preposición."
         },
 
         "verb": {
             "question": "¿Qué es un verbo?",
             "title": "Toda acción del sujeto",
-            "answer": "El verbo es la parte de la oración que expresa la acción del sujeto. Ejemplo: el hombre esta corriendo, el pájaro esta cantando."
+            "answer": "El verbo es la parte de la oración que expresa la acción del sujeto."
         },
 
         "noun": {
             "question": "¿Qué es un sustantivo?",
             "title": "Referencia a un objeto",
-            "answer": "Los sustantivos son palabras con las que se denominan personas, animales, cosas, ideas o pensamientos. Ejemplo: manzana, árbol, casa."
+            "answer": "Los sustantivos son palabras con las que se denominan personas, animales, cosas, ideas o pensamientos."
         },
 
         "adjective": {
             "question": "¿Qué es un adjetivo?",
             "title": "Una descripción",
-            "answer": "Un adjetivo es la palabra que modifica al sustantivo, es el que indica alguna característica o cualidad del sustantivo. Ejemplo: verde, alto, grande. Todos estos son adjetivos para describir a un sustantivo"
+            "answer": "Un adjetivo es la palabra que modifica al sustantivo, es el que indica alguna característica o cualidad del sustantivo."
         },
 
         "idioms": {

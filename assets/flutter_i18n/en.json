@@ -217,43 +217,43 @@
         "singular": {
             "question": "What does singular mean?",
             "title": "A single object",
-            "answer": "Singular expresses a single unit of the beings or objects referred to. Examples: a mushroom, the car, a house"
+            "answer": "Singular expresses a single unit of the beings or objects referred to."
         },
 
         "plural": {
             "question": "What does plural mean?",
             "title": "More than one object",
-            "answer": "Plural refers to more than one thing. Examples: mushrooms, trees, houses. It is the opposite to singular (antonym)"
+            "answer": "Plural refers to more than one thing."
         },
 
         "antonyms": {
             "question": "What are antonyms?",
             "title": "Opposite words",
-            "answer": "Antonyms are those words whose meanings are opposite. Examples: light - dark, high - low, small - large."
+            "answer": "Antonyms are those words whose meanings are opposite."
         },
 
         "synonyms": {
             "question": "What are synonyms?",
             "title": "Similar words",
-            "answer": "Synonyms are words that have the same meaning as other words. Examples: understand - understand, easy - simple, student - scholar."
+            "answer": "Synonyms are words that have the same meaning as other words."
         },
 
         "subject": {
-            "question": "What's a subject?",
+            "question": "What is a subject?",
             "title": "Who we talk about",
-            "answer": "The subject is the person, animal or thing discussed in a sentence. Example: the bird, the tree, the house."
+            "answer": "The subject is the person, animal or thing discussed in a sentence."
         },
 
         "phasal_verbs": {
             "question": "What are phrasal verbs?",
             "title": "Its meaning is not obvious.",
-            "answer": "These are the verbs composed by the main verb and an adverb or proposition. Examples: cheer up, calm down, break up"
+            "answer": "These are the verbs composed by the main verb and an adverb or proposition."
         },
 
         "verb": {
             "question": "Verbs",
             "title": "Every action",
-            "answer": "A verb shows action or state of being; It's the part of the sentence that expresses the subject's action. Example: He worked on Friday."
+            "answer": "A verb shows action or state of being; It's the part of the sentence that expresses the subject's action. "
         },
 
         "noun": {
@@ -265,13 +265,13 @@
         "adjective": {
             "question": "Adjective",
             "title": "A description of a noun.",
-            "answer": "Adjectives describe nouns by modifying them. They can specify color, size, number, etc. Examples: The (red <- adjective) book was the (best <- adjective) one."
+            "answer": "Adjectives describe nouns by modifying them. They can specify color, size, number, etc."
         },
 
         "idioms": {
             "question": "What are idioms?",
-            "title": "Literally translated doesn't make sense.",
-            "answer": "Idioms are phrases of every language that if translated literally, wouldn't make any sense. They're are also known as sayings."
+            "title": "Literally translated they don't make sense.",
+            "answer": "Idioms are phrases of every language that if translated literally, wouldn't make any sense."
         },
 
         "adverb": {

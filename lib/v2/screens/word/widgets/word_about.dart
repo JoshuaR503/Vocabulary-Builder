@@ -120,17 +120,27 @@ class WordAboutCard extends StatelessWidget {
 
   // Actual Widgets.
   Widget _buildFirstCard(BuildContext context) {
+    final bool hasDefinition = this.word.targetLanguage.definition != null;
+    final String definition = hasDefinition 
+    ? this.word.targetLanguage.definition 
+    : FlutterI18n.translate(context, 'word.about_section.no_data');
+
     return WordCard(
       word: this.word.targetLanguage.word,
-      definition: this.word.targetLanguage.definition,
+      definition: definition,
       onPressed: () => _playAudio(audio: this.word.targetLanguage.wordPronuntiation, context: context),
     );
   }
 
   Widget _buildSecondCard(BuildContext context) {
+    final bool hasDefinition = this.word.firstLanguage.definition != null;
+    final String definition = hasDefinition
+    ? this.word.firstLanguage.definition 
+    : FlutterI18n.translate(context, 'word.about_section.no_data');
+
     return WordCard(
       word: this.word.firstLanguage.word,
-      definition: this.word.firstLanguage.definition,
+      definition: definition,
       onPressed: () => _playAudio(audio: this.word.firstLanguage.wordPronuntiation, context: context),
     );
   }

@@ -131,7 +131,9 @@
                 "idiom": "Idiom. "
             },
 
-            "note": "Something you must know"
+            "note": "Something you must know",
+
+            "no_data": "No definition has been provided."
         },
 
         "examples_section": {

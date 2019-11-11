@@ -139,7 +139,9 @@
                 "adjective": "Adjetivo. ",
                 "phasal_verb": "Verbo Frasal. ",
                 "idiom": "Modismo. "
-            }
+            },
+
+            "no_data": "No se proporcionó ninguna definición."
         },
 
         "examples_section": {

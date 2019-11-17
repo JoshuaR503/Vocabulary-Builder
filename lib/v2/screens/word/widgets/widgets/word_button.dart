@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/core/functions.dart';
 
-class WordCateogry extends StatelessWidget {
+class WordCateogry extends StatefulWidget {
 
   final Word word;
   final String category;
@@ -13,16 +15,39 @@ class WordCateogry extends StatelessWidget {
     this.category,
   }) : assert(category != null);
 
+  @override
+  _WordCateogryState createState() => _WordCateogryState();
+}
+
+class _WordCateogryState extends State<WordCateogry> {
+  bool _isPlaying = false;
+  bool _isButtonDisabled = false;
+
+  void _changeState(bool value) {
+    setState(() {
+       _isPlaying = value;
+      _isButtonDisabled = value; 
+    });
+  }
+
+  void callbackManager() {
+    Timer(Duration(milliseconds: 800), () => _changeState(false));
+  }
+  
   void _playAudio(String text) async {
 
     final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
 
     final String lang = 'en';
-    final String word = this.word.targetLanguage.word.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
+    final String word = this.widget.word.targetLanguage.word.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
     final String fileName = text.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
     final String url = 'https://vocabulary-builder-sounds-bucket.s3.amazonaws.com/$lang-$word-$fileName.mp3';
 
-    functions.playAudio(audio: url);
+    print(url);
+
+    functions
+    .playAudio(audio: url)
+    .then((_) => callbackManager());
   }
 
   Widget _buildContainer({String text}) {
@@ -33,7 +58,13 @@ class WordCateogry extends StatelessWidget {
     : length * 14.0;
 
     return GestureDetector(
-      onTap: () { if (this.word != null) _playAudio(cleanText); },
+      onTap: _isButtonDisabled ? () {} : () {
+        if (!_isPlaying) {
+          _changeState(true);
+          _playAudio(cleanText);
+        }
+      },
+
       child: Container(
         width: width,
 
@@ -70,14 +101,14 @@ class WordCateogry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List categories = category.split(',');
+    final List categories = widget.category.split(',');
     final int categoriesSzie = categories.length;
   
     return Container(
       height: 50.0,
       child: categoriesSzie > 1
       ? _buildContainers(size: categoriesSzie, categories: categories)
-      : _buildContainer(text: category),
+      : _buildContainer(text: widget.category),
     );
   }
 }

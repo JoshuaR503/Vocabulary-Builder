@@ -22,6 +22,10 @@ class VocabularyBuilderHomeScreenManager extends StatelessWidget {
       return 'level';
     }
 
+    if (hasLanguage && hasLevel) {
+      return 'home_ad';
+    }
+
     return 'home';
   }
 
@@ -39,7 +43,11 @@ class VocabularyBuilderHomeScreenManager extends StatelessWidget {
           return LevelScreen();
         }
 
-        return Home();
+        if (snapshot.data == 'home_ad') {
+          return Home(shouldAdLoad: true);
+        }
+
+        return Home(shouldAdLoad: false);
       },
     );
   }

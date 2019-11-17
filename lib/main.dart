@@ -67,7 +67,7 @@ class VocabularyBuilderApp extends StatelessWidget {
   final FirebaseAnalytics _analytics = FirebaseAnalytics();
   final Map<String, WidgetBuilder> routes = {
     '/': (BuildContext context) => VocabularyBuilderHomeScreenManager(),
-    '/home':  (BuildContext context) => Home(),
+    '/home':  (BuildContext context) => Home(shouldAdLoad: false,),
     
     '/saved': (BuildContext context) => SavedWordsScreen(),
     '/settings': (BuildContext context) => SettingsScreen(),

@@ -7,6 +7,13 @@ import 'package:vocabulary_builder/v2/screens/home/widgets/container.dart';
 import 'package:vocabulary_builder/v2/screens/home/widgets/search.dart';
 
 class Home extends StatefulWidget {
+
+  final bool shouldAdLoad;
+
+  Home({
+    @required this.shouldAdLoad
+  });
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -36,6 +43,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  
   Widget _buildAppTitle() {
     return Text(
       FlutterI18n.translate(context, 'home.app_text'),
@@ -73,10 +81,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
 
-    // _beautifulAd
-    //   ..load()
-    //   ..show();
-
+    if (this.widget.shouldAdLoad) {
+      // _beautifulAd
+      //   ..load()
+      //   ..show();  
+    } else {
+      print('Will not show ad');
+    }
 
     final Size size = MediaQuery.of(context).size;
     final double deviceWidth = size.width;

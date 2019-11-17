@@ -7,6 +7,7 @@ import 'package:vocabulary_builder/v2/core/functions.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/widgets/components/cards/card.dart';
+import 'dart:async';
 
 class VocabularyBuilderGrid extends StatefulWidget {
   
@@ -37,6 +38,10 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid>  with Tic
   AnimationController controller;
   Animation<double> animation;
 
+
+  bool _isPlaying = false;
+  bool _isButtonDisabled = false;
+
   @override
   void initState() {
     super.initState();
@@ -59,6 +64,17 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid>  with Tic
     controller.dispose();
     super.dispose();
   }
+
+  void _changeState(bool value) {
+    setState(() {
+       _isPlaying = value;
+      _isButtonDisabled = value; 
+    });
+  }
+
+  void callbackManager() {
+    Timer(Duration(seconds: 1), () => _changeState(false));
+  }
   
   // Methods
   void _deleteWord({Word word}) {
@@ -69,7 +85,7 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid>  with Tic
     BlocProvider
       .of<WordBloc>(context)
       .add(DeleteWordEvent(word: word));
-  } 
+  }
 
   // Actual Widgets
   Widget _buildVocabularyBuilderCard(Word word) {
@@ -77,9 +93,15 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid>  with Tic
       word: word,
       topIcon: widget.topIcon,
       bottomIcon: widget.bottomIcon,
-      onPressed: () {
-        if (widget.methodName == 'audio') functions.playAudio(audio: word.targetLanguage.wordPronuntiation);
+      onPressed: _isButtonDisabled ? () {} : () {
         if (widget.methodName == 'delete') _deleteWord(word: word);
+        if (!_isPlaying) {
+          _changeState(true);
+
+          functions
+          .playAudio(audio: word.targetLanguage.wordPronuntiation)
+          .then((_) => callbackManager());
+        }
       }
     );
   }

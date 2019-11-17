@@ -47,7 +47,7 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid>  with Tic
     super.initState();
 
     controller = AnimationController(
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 400),
       vsync: this
     );
 

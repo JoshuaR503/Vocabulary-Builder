@@ -81,9 +81,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
 
     if (this.widget.shouldAdLoad) {
-      // _beautifulAd
-      //   ..load()
-      //   ..show();  
+      _beautifulAd
+        ..load()
+        ..show();  
     }
 
     final Size size = MediaQuery.of(context).size;

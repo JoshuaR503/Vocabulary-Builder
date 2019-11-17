@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/config/colors.dart';
@@ -9,16 +11,35 @@ import 'package:vocabulary_builder/v2/screens/word/widgets/widgets/word_data_car
 import 'package:vocabulary_builder/v2/widgets/text/styles.dart';
 import 'package:vocabulary_builder/v2/widgets/ui/container.dart';
 
-class WordAboutCard extends StatelessWidget {
+class WordAboutCard extends StatefulWidget {
 
   final Word word;
-  final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
 
   WordAboutCard({
     @required this.word,
   }) : assert(word != null);
-  
-  // Methods
+
+  @override
+  _WordAboutCardState createState() => _WordAboutCardState();
+}
+
+class _WordAboutCardState extends State<WordAboutCard> {
+  bool _isPlaying = false;
+  bool _isButtonDisabled = false;
+
+  void _changeState(bool value) {
+    setState(() {
+       _isPlaying = value;
+      _isButtonDisabled = value; 
+    });
+  }
+
+  void callbackManager() {
+    Timer(Duration(milliseconds: 800), () => _changeState(false));
+  }
+
+  final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
+
   Widget _buildSnackbar({SnackBarAction action, String message}) {
     final Text content = Text(
       message,
@@ -34,9 +55,15 @@ class WordAboutCard extends StatelessWidget {
       action: action
     );
   }
-  
+
   void _playAudio({String audio, BuildContext context}) async {
-    final int result = await functions.playAudio(audio: audio);
+    final int result = await functions
+    .playAudio(audio: audio)
+    .then((result) {
+      callbackManager();
+
+      return result;
+    });
 
     if (result == 0) {
       final String message = FlutterI18n.translate(context, 'word.snackbar.audio_error.text');
@@ -94,7 +121,6 @@ class WordAboutCard extends StatelessWidget {
     }
   }
 
-  // Helpers
   Widget _buildCard({Widget child}) {
     return Container(
       padding: EdgeInsets.all(10.0),
@@ -118,30 +144,39 @@ class WordAboutCard extends StatelessWidget {
     return _buildCard(child: child);
   }
 
-  // Actual Widgets.
   Widget _buildFirstCard(BuildContext context) {
-    final bool hasDefinition = this.word.targetLanguage.definition != null;
+    final bool hasDefinition = this.widget.word.targetLanguage.definition != null;
     final String definition = hasDefinition 
-    ? this.word.targetLanguage.definition 
+    ? this.widget.word.targetLanguage.definition 
     : FlutterI18n.translate(context, 'word.about_section.no_data');
 
     return WordCard(
-      word: this.word.targetLanguage.word,
+      word: this.widget.word.targetLanguage.word,
       definition: definition,
-      onPressed: () => _playAudio(audio: this.word.targetLanguage.wordPronuntiation, context: context),
+      onPressed: _isButtonDisabled ? () {} : () {
+        if (!_isPlaying) {
+          _changeState(true);
+          _playAudio(audio: this.widget.word.targetLanguage.wordPronuntiation, context: context);
+        }
+      }
     );
   }
 
   Widget _buildSecondCard(BuildContext context) {
-    final bool hasDefinition = this.word.firstLanguage.definition != null;
+    final bool hasDefinition = this.widget.word.firstLanguage.definition != null;
     final String definition = hasDefinition
-    ? this.word.firstLanguage.definition 
+    ? this.widget.word.firstLanguage.definition 
     : FlutterI18n.translate(context, 'word.about_section.no_data');
 
     return WordCard(
-      word: this.word.firstLanguage.word,
+      word: this.widget.word.firstLanguage.word,
       definition: definition,
-      onPressed: () => _playAudio(audio: this.word.firstLanguage.wordPronuntiation, context: context),
+      onPressed: _isButtonDisabled ? () {} : () {
+        if (!_isPlaying) {
+          _changeState(true);
+          _playAudio(audio: this.widget.word.firstLanguage.wordPronuntiation, context: context);
+        }
+      }
     );
   }
 
@@ -155,7 +190,7 @@ class WordAboutCard extends StatelessWidget {
     final Text definition = Text(
       _findDefinition(
         context: context,
-        category: word.targetLanguage.category
+        category: widget.word.targetLanguage.category
       ),
 
       style: TextStyles.definitionStyle,
@@ -183,7 +218,7 @@ class WordAboutCard extends StatelessWidget {
     );
 
     final Text definition = Text(
-      this.word.firstLanguage.note,
+      this.widget.word.firstLanguage.note,
       style: TextStyles.definitionStyle,
     );
 
@@ -206,11 +241,11 @@ class WordAboutCard extends StatelessWidget {
 
 
     final bool hasNote = 
-    word.targetLanguage.note != null &&
-    word.firstLanguage.note != null
+    widget.word.targetLanguage.note != null &&
+    widget.word.firstLanguage.note != null
 
-    && word.firstLanguage.note.length > 1 
-    && word.targetLanguage.note.length > 1;
+    && widget.word.firstLanguage.note.length > 1 
+    && widget.word.targetLanguage.note.length > 1;
 
     return SimpleContainer(
       child: ListView(

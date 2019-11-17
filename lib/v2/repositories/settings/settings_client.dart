@@ -30,12 +30,14 @@ class VocabularyBuilderSettingsClient {
     // If learning lang is Spanish, then second lang will be English
     if (language == 'es') {
       return {
+        'selectedLang': language,
         'firstLanguage': 'EN',
         'targetLanguage': 'ES'
       };
     }
 
     return {
+      'selectedLang': language,
       'firstLanguage': 'ES',
       'targetLanguage': 'EN'
     };

@@ -43,7 +43,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  
   Widget _buildAppTitle() {
     return Text(
       FlutterI18n.translate(context, 'home.app_text'),
@@ -85,8 +84,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       // _beautifulAd
       //   ..load()
       //   ..show();  
-    } else {
-      print('Will not show ad');
     }
 
     final Size size = MediaQuery.of(context).size;

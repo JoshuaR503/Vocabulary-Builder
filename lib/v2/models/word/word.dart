@@ -12,7 +12,8 @@ class Word {
   final WordData targetLanguage;
 
   final String gif;
-  
+  final String userLang;
+
   bool isSaved = false;
   int id;
 
@@ -25,6 +26,7 @@ class Word {
     this.targetLanguage,
 
     this.gif,
+    this.userLang
   });
 
   static List<Word> converToList(List<dynamic> response, Map<String, String> langMedaData) {
@@ -41,7 +43,8 @@ class Word {
         targetLanguage: WordData.fromJson(data[langMedaData['targetLanguage']]),
 
         gif: data['gif'],
-        level: data['level']
+        level: data['level'],
+        userLang: langMedaData['selectedLang']
       );
 
       words.add(word);
@@ -97,6 +100,7 @@ class Word {
       targetLanguage: WordData.fromJson(map['targetLanguage']),
 
       gif: map['gif'],
+      userLang: langMedaData['selectedLang']
     );
   }
 
@@ -110,6 +114,7 @@ class Word {
     'targetLanguage': targetLanguage.toMap(),
     
     'gif': gif,
+    'selectedLang': userLang
   };
 }
 

@@ -68,19 +68,19 @@ class WordConjugationCard extends StatelessWidget {
 
           SizedBox(height: 25),
           RowItem(
-            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_singular.first'),
+            title: this.word.userLang == 'en' ? 'I' : 'Yo',
             subtitle: '${this.word.targetLanguage.firstPerson}',
           ),
 
           SizedBox(height: 20),
           RowItem(
-            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_singular.second'),
+            title: this.word.userLang == 'en' ? 'You' : 'Tú',
             subtitle: '${this.word.targetLanguage.secondPerson}',
           ),
 
           SizedBox(height: 20),
           RowItem(
-            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_singular.third'),
+            title: this.word.userLang == 'en' ? 'She/He/It' : 'Ella/Él/Eso',
             subtitle: '${this.word.targetLanguage.thirdPerson}',
           ),
         ],
@@ -107,19 +107,19 @@ class WordConjugationCard extends StatelessWidget {
 
           SizedBox(height: 20),
           RowItem(
-            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_plural.first'),
+            title: this.word.userLang == 'en' ? 'We' : 'Nosotros/as',
             subtitle: '${this.word.targetLanguage.firstPersonPlural}',
           ),
 
           SizedBox(height: 20),
           RowItem(
-            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_plural.second'),
+            title: this.word.userLang == 'en' ? 'You' : 'Ustedes',
             subtitle: '${this.word.targetLanguage.secondPersonPlural}',
           ),
 
           SizedBox(height: 20),
           RowItem(
-            title: FlutterI18n.translate(context, 'word.conjugation_section.first_person_plural.third'),
+            title: this.word.userLang == 'en' ? 'They' : 'Ellos/as',
             subtitle: '${this.word.targetLanguage.thirdPersonPlural}',
           ),
         ],
@@ -151,7 +151,7 @@ class WordConjugationCard extends StatelessWidget {
               if (hasPersonPlural) SizedBox(height: 15),
               if (hasPersonPlural) _buildConjugationCardPlural(context),
 
-              SizedBox(height: 40),
+              SizedBox(height: 80),
             ],
           ),
         ],

@@ -55,7 +55,7 @@
     "saved": {
         "section_title": "Palabras Favoritas",
 
-        "title": "Guarda palabras para\nestudiar más tarde",
+        "title": "Guarda palabras para\nestudiar más tarde\n",
         "message": "Para guardar una palabra solo\ntoque el corazón y aparecerá aquí.",
 
         "error": {
@@ -97,7 +97,7 @@
         },
 
         "unavailable": {
-            "title": "Esta sección solo está disponible en inglés",
+            "title": "Esta sección solo está\ndisponible en inglés",
             "message": "\nDisculpe las molestias"
         }
     },

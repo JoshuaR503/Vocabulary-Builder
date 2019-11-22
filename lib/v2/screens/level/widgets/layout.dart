@@ -29,7 +29,7 @@ class _LevelLayoutState extends State<LevelLayout> {
 
     Navigator
     .of(context)
-    .pushNamed('/home');
+    .popAndPushNamed('/home');
   }
 
   // Layouts

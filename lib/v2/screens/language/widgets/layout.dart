@@ -30,7 +30,7 @@ class _LanguageLayoutState extends State<LanguageLayout> {
       
     Navigator
     .of(context)
-    .pushNamed('/');
+    .popAndPushNamed('/');
   }
 
   // Helpers

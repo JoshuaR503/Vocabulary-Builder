@@ -13,6 +13,7 @@ class Word {
 
   final String gif;
   final String userLang;
+  final bool isWordBank;
 
   bool isSaved = false;
   int id;
@@ -26,10 +27,11 @@ class Word {
     this.targetLanguage,
 
     this.gif,
-    this.userLang
+    this.userLang,
+    this.isWordBank
   });
 
-  static List<Word> converToList(List<dynamic> response, Map<String, String> langMedaData) {
+  static List<Word> converToList(List<dynamic> response, Map<String, String> langMedaData, bool isWordBank) {
     final List<Word> words = [];
 
     response.forEach((data) {
@@ -44,7 +46,8 @@ class Word {
 
         gif: data['gif'],
         level: data['level'],
-        userLang: langMedaData['selectedLang']
+        userLang: langMedaData['selectedLang'],
+        isWordBank: isWordBank
       );
 
       words.add(word);
@@ -100,7 +103,8 @@ class Word {
       targetLanguage: WordData.fromJson(map['targetLanguage']),
 
       gif: map['gif'],
-      userLang: langMedaData['selectedLang']
+      userLang: langMedaData['selectedLang'],
+      isWordBank: false
     );
   }
 
@@ -114,7 +118,8 @@ class Word {
     'targetLanguage': targetLanguage.toMap(),
     
     'gif': gif,
-    'selectedLang': userLang
+    'selectedLang': userLang,
+    'isWordBank': false
   };
 }
 

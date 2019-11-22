@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/core/functions.dart';
+import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.dart';
 
 class WordCateogry extends StatefulWidget {
 
@@ -23,6 +24,10 @@ class _WordCateogryState extends State<WordCateogry> {
   bool _isPlaying = false;
   bool _isButtonDisabled = false;
 
+  String clean(String text) {
+    return text.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
+  }
+
   void _changeState(bool value) {
     setState(() {
        _isPlaying = value;
@@ -35,15 +40,20 @@ class _WordCateogryState extends State<WordCateogry> {
   }
   
   void _playAudio(String text) async {
-
+    
+    final SettingsRepository settingsRepository = SettingsRepository();
     final VocabularyBuilderFunctions functions = VocabularyBuilderFunctions();
+    final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
 
-    final String lang = 'en';
-    final String word = this.widget.word.targetLanguage.word.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
+    final bool isSpanish = langMetaData['selectedLang'] == 'es' ;
+    final String lang = langMetaData['selectedLang'];
+
+    final String word = isSpanish 
+    ? clean(this.widget.word.firstLanguage.word)
+    : clean(this.widget.word.targetLanguage.word);
+
     final String fileName = text.trim().replaceAll(RegExp(r"\s+\b|\b\s"), "-");
-    final String url = 'https://vocabulary-builder-sounds-bucket.s3.amazonaws.com/$lang-$word-$fileName.mp3';
-
-    print(url);
+    final String url = 'https://d25rf0p9nsb187.cloudfront.net/$lang-$word-$fileName.mp3';
 
     functions
     .playAudio(audio: url)

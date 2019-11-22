@@ -26,7 +26,7 @@ class SearchApiClient {
 
     final data = response.data;
     final List<dynamic> wordsResponse = data['response'];
-    final List<Word> words = Word.converToList(wordsResponse, langMetaData);
+    final List<Word> words = Word.converToList(wordsResponse, langMetaData, false);
   
     return words;
   }

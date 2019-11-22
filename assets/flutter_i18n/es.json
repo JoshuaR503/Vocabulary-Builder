@@ -44,7 +44,7 @@
             "adjectives": "Adjetivos",
             "phrasal_verbs": "Verbos Frasales",
     
-            "idioms": "Frases",
+            "idioms": "Expresiones",
             "nouns": "Sustantivos",
     
             "all_words": "Todas las Palabras",
@@ -264,7 +264,7 @@
         },
 
         "idioms": {
-            "question": "¿Qué son los modismos?",
+            "question": "¿Qué son las expresiones coloquiales?",
             "title": "Literalmente no tienen sentido",
             "answer": "Los modismos/frases/jerga son expresiones de cada lenguaje que de traducirse literalmente, no tendrían sentido."
         },

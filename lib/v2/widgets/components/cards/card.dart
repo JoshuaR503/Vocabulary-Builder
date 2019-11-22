@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:vocabulary_builder/v2/config/colors.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/word.dart';
@@ -39,11 +40,16 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
 
   Widget _buildMaterialButton({Widget child, Function onPressed}) {
     final ShapeBorder shape = RoundedRectangleBorder( borderRadius: BorderRadius.circular(10));
+    final bool isWordBank = widget.word.isWordBank;
+    
+    final Color color = isWordBank 
+    ? AppColors.purple 
+    : widget.word.color;
 
     return MaterialButton(
       minWidth: 2,
       elevation: 2,
-      color: widget.word.color,
+      color: color,
       shape: shape,
       onPressed: onPressed,
       child: child

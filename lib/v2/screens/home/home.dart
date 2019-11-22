@@ -82,8 +82,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
     if (this.widget.shouldAdLoad) {
       
-      print('\n\n\n ================= SHOULD SHOW AD ================= \n\n\n');
+      //print('\n\n\n ================= SHOULD SHOW AD ================= \n\n\n');
 
+      //TODO('Change for production');
       // _beautifulAd
       //   ..load()
       //   ..show();  

@@ -145,7 +145,7 @@ class _WordAboutCardState extends State<WordAboutCard> {
   }
 
   Widget _buildFirstCard(BuildContext context) {
-    final bool hasDefinition = this.widget.word.targetLanguage.definition != null;
+    final bool hasDefinition = this.widget.word.targetLanguage.definition != null && this.widget.word.targetLanguage.definition.length > 1;
     final String definition = hasDefinition 
     ? this.widget.word.targetLanguage.definition 
     : FlutterI18n.translate(context, 'word.about_section.no_data');

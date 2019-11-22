@@ -27,7 +27,7 @@
             "adjectives": "Adjectives",
             "phrasal_verbs": "Phrasal Verbs",
     
-            "idioms": "Phrases",
+            "idioms": "Colloquialism",
             "nouns": "Nouns",
     
             "all_words": "Word Bank",
@@ -271,8 +271,8 @@
         },
 
         "idioms": {
-            "question": "What are idioms?",
-            "title": "Literally translated they don't make sense.",
+            "question": "What is Colloquialism?",
+            "title": "A word or phrase that is not formal",
             "answer": "Idioms/phrases/slang are expressions of every language that if translated literally, would not make sense."
         },
 

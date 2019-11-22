@@ -11,9 +11,10 @@ class WordsApiClient {
   Future<List<Word>> fetchWords(int skip) async {
 
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
+    final String targetLang = langMetaData['targetLanguage'].toLowerCase();
 
     // TODO: CHANGE WHEN APP READY.
-    final String url = '$baseUrl/v3/word/public?skip=0';
+    final String url = '$baseUrl/v3/word/public?skip=0&lang=$targetLang';
 
     // http request - words.
     final Response<dynamic> response = await this._fetchData(url: url);
@@ -26,7 +27,7 @@ class WordsApiClient {
     final data = response.data;
     final List<dynamic> wordsResponse = data['response'];
 
-    final List<Word> words = Word.converToList(wordsResponse, langMetaData);
+    final List<Word> words = Word.converToList(wordsResponse, langMetaData, true);
   
     return words;
   }
@@ -35,8 +36,9 @@ class WordsApiClient {
   Future<List<Word>> fetchWordsFromCategory(String category, int skip) async {
 
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
+    final String targetLang = langMetaData['targetLanguage'].toLowerCase();
 
-    final String serverUrl = '$baseUrl/v3/word/category/$category?skip=0';
+    final String serverUrl = '$baseUrl/v3/word/category/$category?skip=0&lang=$targetLang';
     final Response<dynamic> response = await _fetchData(url: serverUrl);
 
     // Handle more status code responses.
@@ -51,7 +53,7 @@ class WordsApiClient {
     final data = response.data;
 
     final List<dynamic> wordsResponse = data['response'];
-    final List<Word> words = Word.converToList(wordsResponse, langMetaData);
+    final List<Word> words = Word.converToList(wordsResponse, langMetaData, false);
 
     return words;
   }

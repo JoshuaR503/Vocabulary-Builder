@@ -95,7 +95,7 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid>  with Tic
       bottomIcon: widget.bottomIcon,
       onPressed: _isButtonDisabled ? () {} : () {
         if (widget.methodName == 'delete') _deleteWord(word: word);
-        if (!_isPlaying) {
+        if (widget.methodName != 'delete' && !_isPlaying) {
           _changeState(true);
 
           functions

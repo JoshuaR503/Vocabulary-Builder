@@ -56,7 +56,7 @@ class _WordCateogryState extends State<WordCateogry> {
     final String url = 'https://d25rf0p9nsb187.cloudfront.net/$lang-$word-$fileName.mp3';
 
     functions
-    .playAudio(audio: url)
+    .playAudio(audio: url, isLocal: false)
     .then((_) => callbackManager());
   }
 

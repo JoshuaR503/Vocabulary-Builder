@@ -3,14 +3,15 @@ import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:meta/meta.dart';
 
 class VocabularyBuilderFunctions {
 
-  Future<int> playAudio({String audio}) async {
+  Future<int> playAudio({String audio,@required bool isLocal}) async {
     final AudioPlayer audioPlayer = AudioPlayer();
 
     return await audioPlayer
-    .play(audio, isLocal: true)
+    .play(audio, isLocal: isLocal)
     .then((_) => 1)
     .catchError((error) => 0);
   }

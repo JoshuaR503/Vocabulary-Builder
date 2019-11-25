@@ -56,9 +56,12 @@ class _WordAboutCardState extends State<WordAboutCard> {
     );
   }
 
-  void _playAudio({String audio, BuildContext context}) async {
+  void _playAudio({String audio, bool isLocal, BuildContext context}) async {
     final int result = await functions
-    .playAudio(audio: audio)
+    .playAudio(
+      audio: audio, 
+      isLocal: isLocal
+    )
     .then((result) {
       callbackManager();
 
@@ -156,7 +159,11 @@ class _WordAboutCardState extends State<WordAboutCard> {
       onPressed: _isButtonDisabled ? () {} : () {
         if (!_isPlaying) {
           _changeState(true);
-          _playAudio(audio: this.widget.word.targetLanguage.wordPronuntiation, context: context);
+          _playAudio(
+            audio: this.widget.word.targetLanguage.wordPronuntiation, 
+            isLocal: this.widget.word.isSaved, 
+            context: context
+          );
         }
       }
     );
@@ -173,8 +180,15 @@ class _WordAboutCardState extends State<WordAboutCard> {
       definition: definition,
       onPressed: _isButtonDisabled ? () {} : () {
         if (!_isPlaying) {
+
+          print(this.widget.word.isSaved);
+
           _changeState(true);
-          _playAudio(audio: this.widget.word.firstLanguage.wordPronuntiation, context: context);
+          _playAudio(
+            audio: this.widget.word.firstLanguage.wordPronuntiation, 
+            isLocal: this.widget.word.isSaved, 
+            context: context
+          );
         }
       }
     );

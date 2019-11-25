@@ -99,7 +99,10 @@ class _VocabularyBuilderGridState extends State<VocabularyBuilderGrid>  with Tic
           _changeState(true);
 
           functions
-          .playAudio(audio: word.targetLanguage.wordPronuntiation)
+          .playAudio(
+            audio: word.targetLanguage.wordPronuntiation, 
+            isLocal: word.isSaved
+          )
           .then((_) => callbackManager());
         }
       }

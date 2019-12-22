@@ -27,6 +27,8 @@ class WordsApiClient {
     final data = response.data;
     final List<dynamic> wordsResponse = data['response'];
 
+
+
     final List<Word> words = Word.converToList(wordsResponse, langMetaData, true);
   
     return words;
@@ -53,6 +55,7 @@ class WordsApiClient {
     final data = response.data;
 
     final List<dynamic> wordsResponse = data['response'];
+    print('TOTAL RESPONSE: ${wordsResponse.length}');
     final List<Word> words = Word.converToList(wordsResponse, langMetaData, false);
 
     return words;

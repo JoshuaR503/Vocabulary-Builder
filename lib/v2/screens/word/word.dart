@@ -29,6 +29,8 @@ class _WordState extends State<WordScreen> {
   final WordRepository _wordRepository = WordRepository();
   final List<Widget> _children = [];
 
+  bool hasHartBeenTaped = false;
+
   @override
   void initState() {
 
@@ -83,6 +85,8 @@ class _WordState extends State<WordScreen> {
         onPressed: _changeScreen,
       );
 
+      setState(() => hasHartBeenTaped = true);
+
       Scaffold
         .of(context)
         .showSnackBar(_buildSnackbar(action: action, message: message));
@@ -101,19 +105,24 @@ class _WordState extends State<WordScreen> {
     }
   }
 
+  Widget _renderRightIcon() {
+    if (this.widget.word.isSaved || this.hasHartBeenTaped) {
+      return Icon(Icons.bookmark);
+    }
+
+    return Icon(Icons.bookmark_border);
+  }
+
   List<Widget> _buildActions() {
     return [
       Tooltip(
         message: FlutterI18n.translate(context, 'word.action'),
         child: Builder(
           builder: (context) => IconButton(
-            icon: this.widget.word.isSaved 
-            ? Icon(Icons.favorite) 
-            : Icon(Icons.favorite_border),
-            
+            icon: _renderRightIcon(),
             onPressed: () {
-              if (!widget.word.isSaved) _onPressedHandler(context);
-              if (widget.word.isSaved) return null;
+              if (!widget.word.isSaved || !hasHartBeenTaped) _onPressedHandler(context);
+              if (widget.word.isSaved || hasHartBeenTaped) return null;
             }
           )
         )

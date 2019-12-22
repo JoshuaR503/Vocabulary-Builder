@@ -148,9 +148,12 @@ class _WordAboutCardState extends State<WordAboutCard> {
   }
 
   Widget _buildFirstCard(BuildContext context) {
-    final bool hasDefinition = this.widget.word.targetLanguage.definition != null && this.widget.word.targetLanguage.definition.length > 1;
+    final bool hasDefinition = 
+    this.widget.word.targetLanguage.definition != null && 
+    this.widget.word.targetLanguage.definition.length > 1;
+
     final String definition = hasDefinition 
-    ? this.widget.word.targetLanguage.definition 
+    ? this.widget.word.targetLanguage.definition.trim()
     : FlutterI18n.translate(context, 'word.about_section.no_data');
 
     return WordCard(
@@ -171,8 +174,9 @@ class _WordAboutCardState extends State<WordAboutCard> {
 
   Widget _buildSecondCard(BuildContext context) {
     final bool hasDefinition = this.widget.word.firstLanguage.definition != null;
+
     final String definition = hasDefinition
-    ? this.widget.word.firstLanguage.definition 
+    ? this.widget.word.firstLanguage.definition.trim()
     : FlutterI18n.translate(context, 'word.about_section.no_data');
 
     return WordCard(
@@ -252,7 +256,6 @@ class _WordAboutCardState extends State<WordAboutCard> {
 
   @override
   Widget build(BuildContext context) {
-
 
     final bool hasNote = 
     widget.word.targetLanguage.note != null &&

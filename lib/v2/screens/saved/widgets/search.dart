@@ -21,7 +21,7 @@ searchWords({BuildContext context, List<Word> list}) {
           ))
           .toList(),
 
-        filter: (dynamic value, String criteria) => value.en.word
+        filter: (dynamic value, String criteria) => value.firstLanguage.word
           .toLowerCase()
           .trim()
           .contains(RegExp(r'' + criteria.toLowerCase().trim() + '')),

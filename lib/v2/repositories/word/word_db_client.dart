@@ -19,7 +19,6 @@ class WordDatabaseClient {
 
       // update word's fields.
       final wordData = data.toMap();
-
       final firstLanguage = wordData['firstLanguage']['wordPronuntiation'];
       final targetLanguage = wordData['targetLanguage']['wordPronuntiation'];
 
@@ -29,6 +28,9 @@ class WordDatabaseClient {
       return await _wordsStore.add(await _database, wordData);
       
     } catch (e) {
+
+      print('\n\n\nERROR WHILE SAVING WORD: $e\n\n\n');
+
       return null;
     }
   }

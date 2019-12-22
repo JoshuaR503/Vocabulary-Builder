@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:vocabulary_builder/v2/core/functions.dart';
 import 'package:vocabulary_builder/v2/core/network.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
@@ -12,7 +11,6 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
 
   final WordsRepository _wordsRepository = WordsRepository();
   final NetworkInfoImpl _networkInfoImpl = NetworkInfoImpl();
-  final VocabularyBuilderFunctions _functions = VocabularyBuilderFunctions();
   final SettingsRepository _settingsRepository = SettingsRepository();
 
   @override
@@ -27,37 +25,47 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
       yield WordsLoading();
 
       final bool isConnected = await _networkInfoImpl.isConnected;
-      final bool isSpanish = await _settingsRepository.userLanguageIsSpanish();
 
       if (!isConnected) {
         yield WordsNoConnection();  
       }
 
-      if (isConnected) {
-        try {
-          final int wordCount = await _wordsRepository.fetchWordCount(category: event.categoryName);
-          final int randomNumber = _functions.randonNumber(wordCount);
-          
-          final List<Word> words = event.category == 'All Words'
-          ? await _wordsRepository.fetchWords(skip: randomNumber)
-          : await _wordsRepository.fetchWordsFromCategory(category: event.category, skip: randomNumber);
-
-          if (event.category == 'phrasal_verbs' && isSpanish) {
-            yield SectionNotAvailable();
-          } 
-          
-          else if (words.isEmpty) {
-            yield WordsZero();
-          } 
-          
-          else {
-            yield WordsLoaded(words: words);
-          }
-        } catch (e) {
-          yield WordsError(error: e);
-        }
-      }
+      try {
+        
+        final List<Word> words = await makeRequest(event.category);
+        final bool isSpanish = await _settingsRepository.userLanguageIsSpanish();
+        final bool isSectionNotAviable = event.category == 'phrasal_verbs' && isSpanish;
       
+        if (isSectionNotAviable) {
+          yield SectionNotAvailable();
+        } else if (words.isNotEmpty) {
+          yield WordsLoaded(words: words);
+        } else {
+          yield WordsError(error: 'x');
+        }
+
+      } catch (e) {
+        yield WordsError(error: e);
+      }
     }
+  }
+
+  Future<List<Word>> makeRequest(String category) async {
+
+    final List<Word> words = await request(category);
+
+    if (words.isEmpty) {
+      return await request(category);
+    }
+
+    return words;
+  }
+
+  Future<List<Word>> request(String category) async {
+    final List<Word> words = category == 'All Words'
+    ? await _wordsRepository.fetchWords(skip: 0)
+    : await _wordsRepository.fetchWordsFromCategory(category: category, skip: 0);
+    
+    return words;
   }
 }

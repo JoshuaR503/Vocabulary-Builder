@@ -121,7 +121,7 @@ class WordExamplesCard extends StatelessWidget {
     );
 
     final SelectableText data = SelectableText(
-      '${this.word.targetLanguage.examples}',
+      '${this.word.targetLanguage.examples}'.trim(),
       style: TextStyles.definitionStyle,
       cursorColor: this.word.color,
     );

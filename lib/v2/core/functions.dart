@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 
 class VocabularyBuilderFunctions {
 
-  Future<int> playAudio({String audio,@required bool isLocal}) async {
+  Future<int> playAudio({String audio, @required bool isLocal}) async {
     final AudioPlayer audioPlayer = AudioPlayer();
 
     return await audioPlayer

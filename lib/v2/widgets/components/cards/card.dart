@@ -76,29 +76,39 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
   }
 
   List<Widget> _buildLeftColumn(bool isSmall) {
-
     return [
-      Padding(
-        padding: EdgeInsets.only(left: 30.0, top: 20),
-        child: Text(
-          this.widget.word.targetLanguage.word,
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-          style: TextStyles.titleStyle
+      GestureDetector(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => WordScreen(word: this.widget.word)),
         ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(left: 30.0, top: 10),
-        child: Text(
-          this.widget.word.firstLanguage.word,
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-          style: TextStyle(
-            fontSize: 18.5,
-            fontWeight: FontWeight.normal,
-          )
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(left: 30.0, top: 20),
+              child: Text(
+                this.widget.word.targetLanguage.word,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyles.titleStyle
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 30.0, top: 10),
+              child: Text(
+                this.widget.word.firstLanguage.word,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(
+                  fontSize: 18.5,
+                  fontWeight: FontWeight.normal,
+                )
+              ),
+            ),
+          ],
         ),
-      ),
+      )
     ];
   }
 

@@ -261,7 +261,7 @@
         "noun": {
             "question": "Nouns",
             "title": "Persons, objects, ideas or places.",
-            "answer": "There are nouns which refer to specific persons, objects, ideas or places. Common nouns refer to any persons, objects, ideas or places."
+            "answer": "A word used to identify any of a class of people, places, or things."
         },
 
         "adjective": {
@@ -340,8 +340,8 @@
     "credits": {
         "developer": {
             "title": "Application developed by Joshua García",
-            "title_two": "Would you like to help me improve the application? If so, tap here to make a donation",
-            "subtitle": "The objective of this app is to help increase the vocabulary of the people who are learning Spanish, on the go."
+            "title_two": "Tap here to donate",
+            "subtitle": "The objective of this app is to help you increase your vocabulary."
         },
 
         "content": {

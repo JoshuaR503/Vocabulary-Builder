@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+
 import 'package:vocabulary_builder/v2/config/colors.dart';
-import 'package:vocabulary_builder/v2/screens/help/help.dart';
+import 'package:vocabulary_builder/v2/widgets/components/reusable/question.dart';
 import 'package:vocabulary_builder/v2/widgets/text/index.dart';
 import 'package:vocabulary_builder/v2/widgets/ui/container.dart';
 import 'package:vocabulary_builder/v2/widgets/ui/index.dart';
@@ -50,19 +51,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
         )
       ),
 
-      floatingActionButton: FloatingActionButton(
-        child: Image.asset(
-          'assets/pictures/thinking.png',
-          height: 50.0,
-          width: 50.0,
-        ),
-        onPressed: () =>
-          Navigator
-          .of(context)
-          .push(MaterialPageRoute(
-            builder: (context) => HelpScreen(color: AppColors.red, initialIndex: 2)
-          )),
-      ),
+      floatingActionButton: QuestionIcon(
+        initialIndex: 2,
+      )
     );
   }
 }

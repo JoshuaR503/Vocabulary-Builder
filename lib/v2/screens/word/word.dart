@@ -11,6 +11,7 @@ import 'package:vocabulary_builder/v2/screens/help/help.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_conjugation.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_examples.dart';
+import 'package:vocabulary_builder/v2/widgets/components/reusable/question.dart';
 
 class WordScreen extends StatefulWidget {
 
@@ -134,10 +135,11 @@ class _WordState extends State<WordScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final bool hasVerbs = this.widget.word.targetLanguage.root != null && this.widget.word.firstLanguage.root != null;
-    final int tabsLength = hasVerbs
-    ? 3
-    : 2;
+    final bool hasVerbs = 
+    this.widget.word.targetLanguage.root != null && 
+    this.widget.word.firstLanguage.root != null;
+
+    final int tabsLength = hasVerbs ? 3 : 2;
 
     return DefaultTabController(
       length: tabsLength,
@@ -167,18 +169,7 @@ class _WordState extends State<WordScreen> {
           child: TabBarView(children: _children),
         ),
 
-        floatingActionButton: FloatingActionButton(
-          child: Image.asset(
-            'assets/pictures/thinking.png',
-            height: 50.0,
-            width: 50.0,
-          ),
-          onPressed: () => Navigator
-            .of(context)
-            .push(MaterialPageRoute(
-              builder: (context) => HelpScreen(color: this.widget.word.color)
-            )),
-        ),
+        floatingActionButton: QuestionIcon(initialIndex: 0)
       ),
     );
   }

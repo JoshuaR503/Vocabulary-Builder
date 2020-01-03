@@ -24,6 +24,8 @@ import 'package:vocabulary_builder/v2/screens/screens.dart';
 
 void main() async {
 
+  WidgetsFlutterBinding.ensureInitialized();
+  
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
   final SettingsRepository settingsRepository = SettingsRepository();
@@ -34,23 +36,23 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider<ThemeBloc>(
-          builder: (context) => ThemeBloc(),
+          create: (context) => ThemeBloc(),
         ),
 
         BlocProvider<WordsBloc>(
-          builder: (context) => WordsBloc(),
+          create: (context) => WordsBloc(),
         ),
-
+ 
         BlocProvider<WordBloc>(
-          builder: (context) => WordBloc(),
+          create: (context) => WordBloc(),
         ),
 
         BlocProvider<SearchBloc>(
-          builder: (context) => SearchBloc(),
+          create: (context) => SearchBloc(),
         ),
 
         BlocProvider<ConfigBloc>(
-          builder: (context) => ConfigBloc(
+          create: (context) => ConfigBloc(
             hasLanguage: hasLanguage,
             hasLevel: hasLevel
           ),
@@ -97,7 +99,7 @@ class VocabularyBuilderApp extends StatelessWidget {
           ],
 
           localizationsDelegates: [
-            FlutterI18nDelegate(false, 'en'),
+            FlutterI18nDelegate(useCountryCode: false,  fallbackFile: 'en'),
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate
           ],

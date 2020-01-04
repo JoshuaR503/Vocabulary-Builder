@@ -51,10 +51,10 @@ class _CategoryListState extends State<CategoryList> {
       .add(FetchWordsEvent());
   }
   
-  void _pushSpecial({String route}) {
+  void _pushSpecial({String category}) {
     Navigator
       .of(context)
-      .pushNamed('/$route');
+      .pushNamed('/$category');
   }
 
   GridView _buildGridView() {
@@ -68,39 +68,36 @@ class _CategoryListState extends State<CategoryList> {
     final List<WordCategory> categories = [
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.adverbs'),
-        routeName: 'Adverbs',
-        categoryName: 'adverb',
+        categoryName: 'adverbs',
         color: AppColors.tealAccent,
         accentColor: AppColors.tealAccent,
       ),
 
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.verb'),
-        routeName: "Verbs",
-        categoryName: 'verb',
+        categoryName: 'verbose',
         color: AppColors.red,
         accentColor: AppColors.red,
       ),
 
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.adjectives'),
-        routeName: "Adjectives",
-        categoryName: 'adjective',
+        categoryName: 'adjectives',
         color: AppColors.blue,
         accentColor: AppColors.blue
       ),
 
       WordCategory(
-        name: FlutterI18n.translate(context, 'home.category.phrasal_verbs'),
-        routeName: "phrasal_verbs",
-        categoryName: 'phrasal verb',
+        name: 'Disabled',
+        categoryName: null,
         color: AppColors.orange,
         accentColor: AppColors.orange,
       ),
 
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.saved'),
-        routeName: "saved",
+        categoryName: "saved",
+
         color: AppColors.indigo,
         accentColor: AppColors.indigo,
         isSpecial: true
@@ -108,8 +105,7 @@ class _CategoryListState extends State<CategoryList> {
 
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.nouns'),
-        routeName: "Nouns", 
-        categoryName: 'noun',
+        categoryName: 'nouns',
 
         color: AppColors.amber,
         accentColor: AppColors.amberAccent
@@ -117,15 +113,14 @@ class _CategoryListState extends State<CategoryList> {
 
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.all_words'),
-        routeName: "All Words",
+        categoryName: "All Words",
         color: AppColors.purple,
         accentColor: AppColors.purple,
       ),
 
       WordCategory(
         name: FlutterI18n.translate(context, 'home.category.idioms'),
-        routeName: 'Idioms',
-        categoryName: 'idiom',
+        categoryName: 'idioms',
         color: AppColors.brown,
         accentColor: AppColors.brown,
       ),
@@ -150,22 +145,25 @@ class _CategoryListState extends State<CategoryList> {
         categories[index],
         
         onPress: () {
-          final String routeName = categories[index].routeName;
           final String name = categories[index].name;
           final String categoryName = categories[index].categoryName;
           final Color categoryColor = categories[index].color;
           final Color categoryAccentColor = categories[index].accentColor;
 
           if (categories[index].isSpecial) {
-            _pushSpecial(route: routeName);
 
-            if (routeName == 'saved') _loadFavortieWords();
+            _pushSpecial(category: categoryName);
+
+            if (categoryName == 'saved') {
+              _loadFavortieWords();
+            }
             
           } else {
             _pushCategory(
-              name: name,
               categoryName: categoryName,
-              route: routeName,
+              name: name,
+              
+              
               color: categoryColor,
               accentColor: categoryAccentColor
             );  

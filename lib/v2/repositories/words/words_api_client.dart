@@ -4,7 +4,8 @@ import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.
 
 class WordsApiClient {
 
-  static final String baseUrl = 'https://vocabulary-builder.herokuapp.com';
+  final String baseUrl = 'https://vocabulary-builder.herokuapp.com';
+
   final SettingsRepository settingsRepository = SettingsRepository();
   final Dio httpClient = Dio();
 
@@ -27,20 +28,18 @@ class WordsApiClient {
     final data = response.data;
     final List<dynamic> wordsResponse = data['response'];
 
-
-
     final List<Word> words = Word.converToList(wordsResponse, langMetaData, true);
   
     return words;
   }
 
-  // TODO: CHANGE WHEN APP READY.
+  /// Makes an HTTP request to the an API endpoint set by [category].
   Future<List<Word>> fetchWordsFromCategory(String category, int skip) async {
 
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
     final String targetLang = langMetaData['targetLanguage'].toLowerCase();
 
-    final String serverUrl = '$baseUrl/v3/word/category/$category?skip=0&lang=$targetLang';
+    final String serverUrl = '$baseUrl/v3/word/category/$category?skip=0&limit=100';
     final Response<dynamic> response = await _fetchData(url: serverUrl);
 
     // Handle more status code responses.
@@ -52,15 +51,14 @@ class WordsApiClient {
       throw Exception('There was an error with the Server');
     }
 
-    final data = response.data;
-
-    final List<dynamic> wordsResponse = data['response'];
-    print('TOTAL RESPONSE: ${wordsResponse.length}');
+    final dynamic data = response.data;
+    final List<dynamic> wordsResponse = data['response'];    
     final List<Word> words = Word.converToList(wordsResponse, langMetaData, false);
 
     return words;
   }
 
+  /// Returns an integer with the response of the API endpoint set by [category].
   Future<int> fetchWordCount({dynamic category}) async {
 
     final bool hasCategory = category != null;
@@ -78,6 +76,7 @@ class WordsApiClient {
     return data['response'];
   }
 
+  /// Makes an HTTP request to the API endpoint set by [url].
   Future<Response> _fetchData({String url}) async {
     final response = await this.httpClient.get(url);
     return response;

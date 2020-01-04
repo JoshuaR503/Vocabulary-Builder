@@ -99,7 +99,7 @@ class VocabularyBuilderApp extends StatelessWidget {
           ],
 
           localizationsDelegates: [
-            FlutterI18nDelegate(useCountryCode: false,  fallbackFile: 'en'),
+            FlutterI18nDelegate(useCountryCode: false, fallbackFile: 'en'),
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate
           ],

@@ -32,13 +32,9 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
 
       try {
         
-        final List<Word> words = await makeRequest(event.category);
-        final bool isSpanish = await _settingsRepository.userLanguageIsSpanish();
-        final bool isSectionNotAviable = event.category == 'phrasal_verbs' && isSpanish;
+        final List<Word> words = await makeRequest(event.categoryName);
       
-        if (isSectionNotAviable) {
-          yield SectionNotAvailable();
-        } else if (words.isNotEmpty) {
+        if (words.isNotEmpty) {
           yield WordsLoaded(words: words);
         } else {
           yield WordsError(error: 'x');

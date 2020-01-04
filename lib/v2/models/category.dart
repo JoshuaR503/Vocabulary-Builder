@@ -5,7 +5,6 @@ class WordCategory {
     @required this.name,
     @required this.color,
     @required this.accentColor,
-    @required this.routeName,
 
     this.categoryName,
     this.isSpecial = false,
@@ -15,7 +14,6 @@ class WordCategory {
   final Color accentColor;
 
   final String name;
-  final String routeName;
   final String categoryName;
   final bool isSpecial;
 }

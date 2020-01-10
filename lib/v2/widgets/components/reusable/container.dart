@@ -27,9 +27,7 @@ class VocabularyBuilderContainer extends StatelessWidget {
             Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                if (children != null) ...children,
-              ],
+              children: children
             ),
           ],
         ),

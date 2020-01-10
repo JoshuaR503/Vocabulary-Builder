@@ -37,7 +37,7 @@ class WordsApiClient {
   Future<List<Word>> fetchWordsFromCategory(String category, int skip) async {
 
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
-    final String targetLang = langMetaData['targetLanguage'].toLowerCase();
+    // final String targetLang = langMetaData['targetLanguage'].toLowerCase();
 
     final String serverUrl = '$baseUrl/v3/word/category/$category?skip=0&limit=100';
     final Response<dynamic> response = await _fetchData(url: serverUrl);

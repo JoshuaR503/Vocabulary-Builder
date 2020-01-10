@@ -6,7 +6,6 @@ import 'package:vocabulary_builder/v2/blocs/word/bloc.dart';
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/repositories/word/word_repository.dart';
-import 'package:vocabulary_builder/v2/screens/help/help.dart';
 
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_about.dart';
 import 'package:vocabulary_builder/v2/screens/word/widgets/word_conjugation.dart';
@@ -136,8 +135,12 @@ class _WordState extends State<WordScreen> {
   Widget build(BuildContext context) {
 
     final bool hasVerbs = 
-    this.widget.word.targetLanguage.root != null && 
-    this.widget.word.firstLanguage.root != null;
+      this.widget.word.targetLanguage.root != null && 
+      this.widget.word.firstLanguage.root != null;
+
+    final bool hasConjugation = 
+      this.widget.word.targetLanguage.root != null &&
+      this.widget.word.firstLanguage.root != null;
 
     final int tabsLength = hasVerbs ? 3 : 2;
 
@@ -156,10 +159,8 @@ class _WordState extends State<WordScreen> {
               Tab(text: FlutterI18n.translate(context, 'word.tabs.about')),
               Tab(text: FlutterI18n.translate(context, 'word.tabs.examples')),
 
-              if (
-                this.widget.word.targetLanguage.root != null && 
-                this.widget.word.firstLanguage.root != null
-              ) Tab(text: FlutterI18n.translate(context, 'word.tabs.conjugation')),
+              
+              if (hasConjugation) Tab(text: FlutterI18n.translate(context, 'word.tabs.conjugation')),
 
             ]
           ),

@@ -175,11 +175,25 @@ class WordExamplesCard extends StatelessWidget {
               if (word.gif == null || word.gif.length < 1) SizedBox(height: 10),
               _buildExamplesCard(context),
 
-              if (word.targetLanguage.synonyms != null && word.targetLanguage.synonyms.length > 1) SizedBox(height: 5),
-              if (word.targetLanguage.synonyms != null && word.targetLanguage.synonyms.length > 1) _buildSynonymsCard(context),
+              if (
+                word.targetLanguage.synonyms != null && 
+                word.targetLanguage.synonyms.length > 1
+              ) SizedBox(height: 5),
 
-              if (word.targetLanguage.antonyms != null && word.targetLanguage.antonyms.length > 1) SizedBox(height: 5),
-              if (word.targetLanguage.antonyms != null && word.targetLanguage.antonyms.length > 1) _buildAntonymsCard(context),
+              if (
+                word.targetLanguage.synonyms != null && 
+                word.targetLanguage.synonyms.length > 1
+              ) _buildSynonymsCard(context),
+
+              if (
+                word.targetLanguage.antonyms != null && 
+                word.targetLanguage.antonyms.length > 1
+              ) SizedBox(height: 5),
+
+              if (
+                word.targetLanguage.antonyms != null && 
+                word.targetLanguage.antonyms.length > 1
+              ) _buildAntonymsCard(context),
 
               SizedBox(height: 40),
             ],

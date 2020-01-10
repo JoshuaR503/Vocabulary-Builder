@@ -55,7 +55,7 @@ class WordCard extends StatelessWidget {
   Widget _buildDefinition() {
     final String text = this._cleanString(text: this.definition);
     
-    return Text(
+    return SelectableText(
       text,
       style: TextStyles.definitionStyle
     );

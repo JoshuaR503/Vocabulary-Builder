@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 final Map<String, ThemeData> appTheme = {
   "Dark": ThemeData(
+
+    bottomAppBarTheme: BottomAppBarTheme().copyWith(
+      color: Colors.red,
+    ),
+
     fontFamily: 'CircularStd',
     brightness: Brightness.dark,
     accentColor: Colors.black38,

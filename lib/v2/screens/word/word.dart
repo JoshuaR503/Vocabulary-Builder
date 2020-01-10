@@ -156,7 +156,7 @@ class _WordState extends State<WordScreen> {
               Tab(text: FlutterI18n.translate(context, 'word.tabs.about')),
               Tab(text: FlutterI18n.translate(context, 'word.tabs.examples')),
 
-              if(
+              if (
                 this.widget.word.targetLanguage.root != null && 
                 this.widget.word.firstLanguage.root != null
               ) Tab(text: FlutterI18n.translate(context, 'word.tabs.conjugation')),

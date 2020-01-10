@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'package:vocabulary_builder/v2/screens/home/widgets/category_list.dart';
-import 'package:vocabulary_builder/v2/screens/home/widgets/container.dart';
 import 'package:vocabulary_builder/v2/screens/home/widgets/search.dart';
+import 'package:vocabulary_builder/v2/widgets/components/reusable/container.dart';
 
 class Home extends StatefulWidget {
+
 
   final bool shouldAdLoad;
 
@@ -35,7 +36,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-2727987234768252~2837027158');
+    //FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-2727987234768252~2837027158');
   }
 
   @override
@@ -106,8 +107,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         decoration: BoxDecoration(color: Theme.of(context).accentColor),
         child: ListView(
           children: _buildContent()
-        )
+        ),
       ),
+
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.settings),
         onPressed: () => Navigator

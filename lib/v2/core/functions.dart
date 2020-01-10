@@ -25,9 +25,6 @@ class VocabularyBuilderFunctions {
     final int min = 1;
     final int skip = random.nextInt(max - min);
 
-    print('Max $max');
-    print('Random Number: $skip');
-
     return skip;
   }
 
@@ -36,5 +33,4 @@ class VocabularyBuilderFunctions {
     final String fileUrl = file.file.path;
     return fileUrl;
   }
-
 }

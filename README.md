@@ -1,16 +1,18 @@
-# app
+# Vocabulary Builder - Moblie
 
-A new Flutter project.
+A Flutter project by Joshua García
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Features
+- Users can Get Words
+- Users can Save Words
+- Users can Search Words
+- Users can Get more information about a word
+- Users can Hear pronuntiation
+- Everything in is Spanish and English.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Future (not decided)
+- A test for users to learn test themselves.
+- A speaking function to test themselves.
+- A text function to use Words in the correct order.

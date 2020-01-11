@@ -3,17 +3,22 @@ import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/repositories/words/words_api_client.dart';
 
 class WordsRepository {
-  final WordsApiClient wordsApiClient = WordsApiClient();
 
+  // Words Client.
+  final WordsApiClient _client = WordsApiClient();
+
+  // Fetch word count.
   Future<int> fetchWordCount({dynamic category}) async {
-    return await wordsApiClient.fetchWordCount(category: category);
+    return await _client.fetchWordCount(category: category);
   }
 
+  // Fetch all words.
   Future<List<Word>> fetchWords({int skip}) async {
-    return await wordsApiClient.fetchWords(skip);
+    return await _client.fetchWords(skip);
   }
 
+  // Fetch words from a single category.
   Future<List<Word>> fetchWordsFromCategory({String category, int skip}) async {
-    return await wordsApiClient.fetchWordsFromCategory(category, skip);
+    return await _client.fetchWordsFromCategory(category, skip);
   }
 }

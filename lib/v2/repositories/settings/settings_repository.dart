@@ -2,12 +2,15 @@ import 'package:vocabulary_builder/v2/repositories/settings/settings_client.dart
 
 class SettingsRepository {
 
+  // Settings Client.
   final VocabularyBuilderSettingsClient _client = VocabularyBuilderSettingsClient();
 
+  // Set user language.
   void setUserLanguage({String language}) {
     _client.setUserLanguage(language: language);
   }
 
+  // Set user language level.
   void setUserLevel({String level}) {
     _client.setUserLevel(level: level);
   }

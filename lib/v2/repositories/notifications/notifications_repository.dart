@@ -1,33 +1,15 @@
 
 
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:vocabulary_builder/v2/repositories/notifications/notification_client.dart';
 
-class FirebasePushNotificationRepository {
+class PushNotificationRepository {
 
-  final FirebaseMessaging _messaging = FirebaseMessaging();
+  // Firebase Push Notification Repository.
+  final FirebasePushNotificationClient _client = FirebasePushNotificationClient();
 
+  // Initialize Notifications.
   void initNotifications() {
-    _messaging.requestNotificationPermissions();
-    
-    _messaging
-      .getToken()
-      .then((token) => print(token))
-      .catchError((error) => print(error));
-
-    _messaging.configure(
-
-      onMessage: (info) async {
-        print('onMessage $info');
-      },
-
-      onLaunch: (info) async {
-        print('onLaunch $info');
-      },
-
-      onResume: (info) async {
-        print('onResume $info');
-      }
-    );
+    _client.initNotifications();
   }
 
 }

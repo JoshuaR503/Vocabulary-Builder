@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:sembast/sembast.dart';
 import 'package:vocabulary_builder/v2/data/database.dart';
 import 'package:vocabulary_builder/v2/models/translation.dart';
+import 'package:vocabulary_builder/v2/repositories/constants.dart';
 
 class TranslationApiClient {
 
@@ -19,8 +20,7 @@ class TranslationApiClient {
     String text // Text to translate.
   }) async {
 
-    final String baseUrl = 'https://vocabulary-builder.herokuapp.com';
-    final String url = '$baseUrl/v1/translate/$sl/$tl/?text=$text';
+    final String url = '$kBaseUrl/v1/translate/$sl/$tl/?text=$text';
     final Response<dynamic> response = await this._fetchData(url: url);
 
     // Handle more status code responses.

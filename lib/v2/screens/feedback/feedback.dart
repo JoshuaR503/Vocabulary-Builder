@@ -113,9 +113,6 @@ class FeedbackScreen extends StatelessWidget {
                   onPressed: () {},
                   child: Text(
                     'Submit',
-                    style: TextStyle(
-                      fontSize: 16
-                    ),
                   
                   ),
                   color: Color(0XFF05985f),

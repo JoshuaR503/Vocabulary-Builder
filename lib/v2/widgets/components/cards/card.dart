@@ -39,12 +39,11 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
   }
 
   Widget _buildMaterialButton({Widget child, Function onPressed}) {
-    final ShapeBorder shape = RoundedRectangleBorder( borderRadius: BorderRadius.circular(10));
-    final bool isWordBank = widget.word.isWordBank;
     
-    final Color color = isWordBank 
-    ? AppColors.purple 
-    : widget.word.color;
+    final ShapeBorder shape = RoundedRectangleBorder( borderRadius: BorderRadius.circular(10));    
+    final Color color = widget.word.shouldHaveColor 
+    ? widget.word.color // Color from Word.
+    : AppColors.purple; // Default color.
 
     return MaterialButton(
       minWidth: 2,

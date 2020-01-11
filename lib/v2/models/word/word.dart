@@ -13,7 +13,7 @@ class Word {
 
   final String gif;
   final String userLang;
-  final bool isWordBank;
+  final bool shouldHaveColor;
 
   bool isSaved = false;
   int id;
@@ -28,10 +28,10 @@ class Word {
 
     this.gif,
     this.userLang,
-    this.isWordBank
+    this.shouldHaveColor
   });
 
-  static List<Word> converToList(List<dynamic> response, Map<String, String> langMedaData, bool isWordBank) {
+  static List<Word> converToList(List<dynamic> response, Map<String, String> langMedaData, bool shouldHaveColor) {
     final List<Word> words = [];
 
     response.forEach((data) {
@@ -47,7 +47,7 @@ class Word {
         gif: data['gif'],
         level: data['level'],
         userLang: langMedaData['selectedLang'],
-        isWordBank: isWordBank
+        shouldHaveColor: shouldHaveColor
       );
 
       words.add(word);
@@ -104,7 +104,7 @@ class Word {
 
       gif: map['gif'],
       userLang: langMedaData['selectedLang'],
-      isWordBank: false
+      shouldHaveColor: true
     );
   }
 
@@ -119,7 +119,7 @@ class Word {
     
     'gif': gif,
     'selectedLang': userLang,
-    'isWordBank': false
+    'shouldHaveColor': true
   };
 }
 

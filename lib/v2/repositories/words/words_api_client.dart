@@ -24,7 +24,7 @@ class WordsApiClient {
     final String url = '$kBaseUrl/v3/word/public?skip=0&lang=$targetLang';
 
     // Return Words.
-    return this._fetchWords(url);
+    return this._fetchWords(url: url, shouldHaveColor: false);
   }
 
   /// Makes an HTTP request to the API endpoint set by [category].
@@ -38,7 +38,7 @@ class WordsApiClient {
     // API Endpoint. TODO: Change to URI
     final String url = '$kBaseUrl/v3/word/category/$category?skip=0&limit=100&language=$targetLang';
 
-    return this._fetchWords(url);
+    return this._fetchWords(url: url, shouldHaveColor: true);
   }
 
   /// Makes an HTTP request to the API endpoint set by [category].
@@ -70,7 +70,7 @@ class WordsApiClient {
 
   /// Makes an HTTP request to the API endpoint set by [url].
   /// Returns a list of words.
-  Future<List<Word>> _fetchWords(dynamic url) async {
+  Future<List<Word>> _fetchWords({String url, bool shouldHaveColor}) async {
 
     // User preferences stored.
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
@@ -86,7 +86,7 @@ class WordsApiClient {
     // Handle data.
     final data = response.data;
     final List<dynamic> wordsResponse = data['response'];    
-    final List<Word> words = Word.converToList(wordsResponse, langMetaData, false);
+    final List<Word> words = Word.converToList(wordsResponse, langMetaData, shouldHaveColor);
 
     // Return Words.
     return words;

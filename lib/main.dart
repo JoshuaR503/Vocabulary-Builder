@@ -10,7 +10,6 @@ import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:vocabulary_builder/v2/blocs/config/bloc.dart';
-
 import 'package:vocabulary_builder/v2/blocs/delegate.dart';
 import 'package:vocabulary_builder/v2/blocs/search/bloc.dart';
 import 'package:vocabulary_builder/v2/blocs/theme/bloc.dart';
@@ -35,7 +34,8 @@ void main() async {
   final bool hasLevel = await settingsRepository.hasCompleted(key: 'level');
 
   runApp(
-    MultiBlocProvider(
+    MultiBlocProvider(      
+      child: VocabularyBuilderApp(),
       providers: [
         BlocProvider<ThemeBloc>(
           create: (context) => ThemeBloc(),
@@ -60,8 +60,6 @@ void main() async {
           ),
         )
       ],
-
-      child: VocabularyBuilderApp(),
     ),
   );
 }
@@ -72,12 +70,10 @@ class VocabularyBuilderApp extends StatelessWidget {
   final Map<String, WidgetBuilder> routes = {
     '/': (BuildContext context) => VocabularyBuilderHomeScreenManager(),
     '/home':  (BuildContext context) => Home(shouldAdLoad: false),
-    
+
     '/feedback': (BuildContext context) => FeedbackScreen(),
-    
     '/saved': (BuildContext context) => SavedWordsScreen(),
     '/settings': (BuildContext context) => SettingsScreen(),
-
     '/language': (BuildContext context) => LanguageScreen(),
     '/level': (BuildContext context) => LevelScreen(),
   };

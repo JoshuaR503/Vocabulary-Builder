@@ -15,22 +15,22 @@ class WordBloc extends Bloc<WordEvent, WordState> {
   @override
   Stream<WordState> mapEventToState(WordEvent event) async* {
 
-    if (event is FetchWordsEvent) {
-      yield* _fetchWords();
-
-    } else if (event is InsertWordEvent) {
-
+    if (
+      event is FetchWordsEvent || 
+      event is InsertWordEvent
+    ) {
+      // Fetch words.
       yield* _fetchWords();
 
     } else if (event is DeleteWordEvent) {
+      // Delete a word and then fetch them again.
       await _wordRepository.delete(word: event.word);
       yield* _fetchWords();
 
-    }  else if (event is DeleteWordsEvent) {
-
+    } else if (event is DeleteWordsEvent) {
+      // Delete all words.
       await _wordRepository.deleteAll();
-      yield* _fetchWords();
-  
+      yield EmptyWordState();
     }
   }
 
@@ -38,12 +38,15 @@ class WordBloc extends Bloc<WordEvent, WordState> {
     // Fetch words from Database.
     final List<Word> words = await _wordRepository.fetchWords();
 
+    // Return error if words are null.
     if (words == null) {
       yield ErrorWordState();
 
+    // Return words if they're found.
     } else if (words.isNotEmpty) {
       yield LoadedWordState(words: words);
 
+    // Return empty screen if there are no words.
     } else {
       yield EmptyWordState();
     }

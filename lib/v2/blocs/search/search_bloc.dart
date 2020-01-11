@@ -17,31 +17,30 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> mapEventToState(SearchEvent event) async* {
 
     if (event is SearchWordsEvent) {
+      // Loading State
+      yield LoadingSearchState();
 
+      // Ensure that there is Internet Connection.
       final bool isConnected = await _networkInfoImpl.isConnected;
-      
-      // If it's connected make http request.
-      if (isConnected) {
 
-        try {
-          yield LoadingSearchState();
-
-          final List<Word> words = await _searchRepository.fetchWords(search: event.query);
-
-          yield words.length == 0
-          ? EmptySearchState()
-          : LoadedSearchState(words: words);
-
-        } catch (e) {
-          yield ErrorSearchState(error: e);
-        }
-      }
-
-      // No connected
+      // Handler when there is no Internet Connection.
       if (!isConnected) {
         yield SearchNoConnectionState();
       }
       
+      try {
+        // Words response.
+        final List<Word> words = await _searchRepository.fetchWords(search: event.query);
+
+        // State handler.
+        yield words.isEmpty
+        ? EmptySearchState()
+        : LoadedSearchState(words: words);
+
+      // Error Handling.
+      } catch (e) {
+        yield ErrorSearchState(error: e);
+      }
     }
   }
 }

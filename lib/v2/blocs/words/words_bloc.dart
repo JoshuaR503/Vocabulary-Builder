@@ -18,49 +18,51 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
   @override
   Stream<WordsState> mapEventToState( WordsEvent event ) async* {
 
-    // Fetch Words Event.
     if (event is FetchWords) {
-
+      
+      // Loading State.
       yield WordsLoading();
 
+      // Ensure that there is Internet Connection.
       final bool isConnected = await _networkInfoImpl.isConnected;
 
+      // Handler when there is no Internet Connection.
       if (!isConnected) {
         yield WordsNoConnection();  
       }
 
       try {
-        
-        final List<Word> words = await makeRequest(event.categoryName);
-      
-        if (words.isNotEmpty) {
-          yield WordsLoaded(words: words);
-        } else {
-          yield WordsError(error: 'x');
-        }
+        // Words Response.
+        final List<Word> words = await this.makeRequest(event.categoryName);
+        // State handler.
+        yield words.isEmpty 
+        ? WordsError(error: 'Empty Results')
+        : WordsLoaded(words: words);
 
+      // Error Handling.
       } catch (e) {
         yield WordsError(error: e);
       }
     }
   }
 
+  /// Makes an HTTP request and returns a list of words
+  /// from the response of the API endpoint set by [category].
   Future<List<Word>> makeRequest(String category) async {
 
-    final List<Word> words = await request(category);
+    // Category Type.
+    final bool hasCategory = category == 'All Words';
 
-    if (words.isEmpty) {
-      return await request(category);
-    }
-
-    return words;
-  }
-
-  Future<List<Word>> request(String category) async {
-    final List<Word> words = category == 'All Words'
+    // List of Words.
+    final List<Word> words = hasCategory
     ? await _wordsRepository.fetchWords(skip: 0)
     : await _wordsRepository.fetchWordsFromCategory(category: category, skip: 0);
-    
-    return words;
+
+    // Handler.
+    if (words.isEmpty) {
+      return this.makeRequest(category);
+    } else {
+      return words;
+    }
   }
 }

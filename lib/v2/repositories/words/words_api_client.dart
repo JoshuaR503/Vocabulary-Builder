@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
+
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/repositories/constants.dart';
 import 'package:vocabulary_builder/v2/repositories/httpClient.dart';

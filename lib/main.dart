@@ -80,6 +80,7 @@ class VocabularyBuilderApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (BuildContext context, ThemeState state) {
         return MaterialApp(

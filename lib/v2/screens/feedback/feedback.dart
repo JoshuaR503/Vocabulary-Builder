@@ -1,13 +1,39 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:device_info/device_info.dart';
+
 import 'package:vocabulary_builder/v2/config/colors.dart';
+import 'package:vocabulary_builder/v2/models/device/android.dart';
 
 class FeedbackScreen extends StatelessWidget {
 
+  final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   final TextStyle labelTextStyle = TextStyle(
     color: Colors.white70,
     fontSize: 18,
     fontWeight: FontWeight.w700
   );
+
+  void androidHandler() async {
+    final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    final AndroidDeviceData deviceData = AndroidDeviceData(
+      device: androidInfo.device,
+      host: androidInfo.host,
+      model: androidInfo.model,
+      manufacturer: androidInfo.manufacturer,
+      type: androidInfo.type,
+      sdk: androidInfo.version.sdkInt,
+    );
+
+    print(deviceData.toMap());
+  }
+
+  void handler() async {
+    if (Platform.isAndroid) {
+      this.androidHandler();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +136,7 @@ class FeedbackScreen extends StatelessWidget {
 
                 MaterialButton(
                   height: 50,
-                  onPressed: () {},
+                  onPressed: () => this.handler(),
                   child: Text(
                     'Submit',
                   

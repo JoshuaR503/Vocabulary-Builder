@@ -1,4 +1,5 @@
 
+import 'package:flutter/material.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/repositories/words/words_api_client.dart';
 
@@ -13,8 +14,8 @@ class WordsRepository {
   }
 
   // Fetch all words.
-  Future<List<Word>> fetchWords({int skip}) async {
-    return await _client.fetchWords(skip);
+  Future<List<Word>> fetchWords({int skip, Color forcedColor}) async {
+    return await _client.fetchWords(skip, forcedColor);
   }
 
   // Fetch words from a single category.

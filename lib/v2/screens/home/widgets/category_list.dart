@@ -79,11 +79,10 @@ class _CategoryListState extends State<CategoryList> {
   List<WordCategory> _fetchCategories() {
     return [
       WordCategory(
-        accentColor: AppColors.tealAccent,
-        categoryName: '/feedback',
-        color: AppColors.tealAccent,
-        name: 'Feedback',
-        isSpecial: true
+        accentColor: Color(0XFF289d86),
+        categoryName: 'latest',
+        color: Color(0XFF11b494),
+        name: 'Latest Words',
       ),
 
       WordCategory(
@@ -125,7 +124,7 @@ class _CategoryListState extends State<CategoryList> {
 
       WordCategory(
         accentColor: AppColors.purple,
-        categoryName: "All Words",
+        categoryName: "all",
         color: AppColors.purple,
         name: FlutterI18n.translate(context, 'home.category.all_words'),
       ),

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:vocabulary_builder/v2/config/config.dart';
+import 'package:vocabulary_builder/v2/repositories/notifications/notification_client.dart';
 
 import 'package:vocabulary_builder/v2/screens/home/widgets/category_list.dart';
 import 'package:vocabulary_builder/v2/screens/home/widgets/search.dart';
 import 'package:vocabulary_builder/v2/widgets/components/reusable/container.dart';
-import 'package:vocabulary_builder/v2/repositories/notifications/notifications_repository.dart';
 
 class Home extends StatefulWidget {
 
@@ -21,12 +22,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with TickerProviderStateMixin {
 
-  final PushNotificationRepository _pushNotification = PushNotificationRepository();
+  final FirebasePushNotificationClient _pushNotification = FirebasePushNotificationClient();
+  
   final InterstitialAd _beautifulAd = InterstitialAd(
-    adUnitId: 'ca-app-pub-2727987234768252/1729874670',
-    //adUnitId: InterstitialAd.testAdUnitId,
+    adUnitId: kAdUnitId,
     targetingInfo: MobileAdTargetingInfo(
-      keywords: <String>['english', 'spanish', 'language', 'learning', 'pronunciation'],
+      keywords: kMobileAdTargetingKeyWords,
       childDirected: false,
     ),
     listener: (MobileAdEvent event) {

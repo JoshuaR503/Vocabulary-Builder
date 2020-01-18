@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:bloc/bloc.dart';
+import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/core/network.dart';
 
 import 'package:vocabulary_builder/v2/models/models.dart';
@@ -51,11 +53,18 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
   Future<List<Word>> makeRequest(String category) async {
 
     // Category Type.
-    final bool hasCategory = category == 'All Words';
+    final bool categoryIsSpecial = 
+      category == 'all' || 
+      category == 'latest';
+
+    // Forced Color.
+    final Color forcedColor = category == 'all' 
+    ?  AppColors.purple 
+    :  Color(0XFF289d86);
 
     // List of Words.
-    final List<Word> words = hasCategory
-    ? await _wordsRepository.fetchWords(skip: 0)
+    final List<Word> words = categoryIsSpecial
+    ? await _wordsRepository.fetchWords(skip: 0, forcedColor: forcedColor)
     : await _wordsRepository.fetchWordsFromCategory(category: category, skip: 0);
 
     // Handler.

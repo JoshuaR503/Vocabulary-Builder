@@ -43,7 +43,7 @@ class _VocabularyBuilderCardState extends State<VocabularyBuilderCard> {
     final ShapeBorder shape = RoundedRectangleBorder( borderRadius: BorderRadius.circular(10));    
     final Color color = widget.word.shouldHaveColor 
     ? widget.word.color // Color from Word.
-    : AppColors.purple; // Default color.
+    : widget.word.forcedColor; // Default color.
 
     return MaterialButton(
       minWidth: 2,

@@ -14,7 +14,8 @@ class Word {
   final String gif;
   final String userLang;
   final bool shouldHaveColor;
-
+  
+  Color forcedColor = AppColors.purple;
   bool isSaved = false;
   int id;
 
@@ -28,10 +29,17 @@ class Word {
 
     this.gif,
     this.userLang,
-    this.shouldHaveColor
+    this.shouldHaveColor,
+    this.forcedColor
   });
 
-  static List<Word> converToList(List<dynamic> response, Map<String, String> langMedaData, bool shouldHaveColor) {
+  static List<Word> converToList(
+    List<dynamic> response, 
+    Map<String, String> langMedaData, 
+    bool shouldHaveColor,
+    Color forcedColor,
+  ) {
+
     final List<Word> words = [];
 
     response.forEach((data) {
@@ -47,7 +55,8 @@ class Word {
         gif: data['gif'],
         level: data['level'],
         userLang: langMedaData['selectedLang'],
-        shouldHaveColor: shouldHaveColor
+        shouldHaveColor: shouldHaveColor,
+        forcedColor: forcedColor
       );
 
       words.add(word);

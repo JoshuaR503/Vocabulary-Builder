@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/repositories/constants.dart';
 import 'package:vocabulary_builder/v2/repositories/httpClient.dart';
@@ -33,7 +34,7 @@ class SearchApiClient {
     // Handle data.
     final data = response.data;
     final List<dynamic> wordsResponse = data['response'];
-    final List<Word> words = Word.converToList(wordsResponse, langMetaData, false);
+    final List<Word> words = Word.converToList(wordsResponse, langMetaData, false, AppColors.purple);
   
     // Return Words.
     return words;

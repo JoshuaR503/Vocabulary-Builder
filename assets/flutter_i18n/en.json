@@ -44,6 +44,13 @@
             "subtitle": "Change language"
         },
 
+
+        "send_feedback": {
+            "title": "Send Feedback",
+            "message": "Found an error? Would you like to contact the app owner? Just send a message.",
+            "subtitle": "Change Experience level"
+        },
+
         "change_level": {
             "title": "Change Experience Level",
             "message": "Is it too hard or maybe too easy?\nDoesn't matter. Just tap to change it.",

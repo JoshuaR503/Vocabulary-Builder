@@ -26,6 +26,12 @@
             "subtitle": "Cambiar idioma"
         },
 
+        "send_feedback": {
+            "title": "Enviar comentarios",
+            "message": "¿Has encontrado un error? ¿Quieres contactar con el propietario de la aplicación? Simplemente envía un mensaje.",
+            "subtitle": "Enviar mensaje."
+        },
+
         "change_level": {
             "title": "Cambiar Nivel de Dificultad",
             "message": "¿Es demasiado difícil o quizás demasiado fácil? No hay problema. Simplemente toque para cambiarlo.",

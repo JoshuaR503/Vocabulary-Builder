@@ -1,5 +1,6 @@
-import 'dart:async';
 import 'dart:ui';
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/core/network.dart';

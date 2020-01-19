@@ -21,7 +21,7 @@ class SearchApiClient {
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
 
     // API Endpoint.
-    final Uri uri = Uri.http(kBaseUrl, 'v1/search/en/', {'search': search});
+    final Uri uri = Uri.http(kBaseUri, '/v1/search/en/', {'search': search});
 
     // Make HTTP Request
     final Response<dynamic> response = await this.httpClient.fetchData(uri: uri);
@@ -34,7 +34,7 @@ class SearchApiClient {
     // Handle data.
     final data = response.data;
     final List<dynamic> wordsResponse = data['response'];
-    final List<Word> words = Word.converToList(wordsResponse, langMetaData, false, AppColors.purple);
+    final List<Word> words = Word.converToList(wordsResponse, langMetaData, true, AppColors.purple);
   
     // Return Words.
     return words;

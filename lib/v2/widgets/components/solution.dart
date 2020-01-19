@@ -18,7 +18,7 @@ class VocabularyBuilderSolutionMessage extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white60,
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: FontWeight.w300,
           ),
         ),

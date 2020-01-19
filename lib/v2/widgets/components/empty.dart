@@ -39,17 +39,17 @@ class EmptyStateScreen extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 25),
+          SizedBox(height: 50),
           Container(
             child: Image.asset(
               pathImage,
-              width: 175.0,
-              height: 175.0,
+              width: 125.0,
+              height: 125.0,
               fit: BoxFit.contain,
             ),
           ),
 
-          SizedBox(height: 25),
+          SizedBox(height: 10),
           Container(
             child: Text(
               fixMessage,

@@ -91,7 +91,7 @@ class _WordState extends State<WordScreen> {
         .of(context)
         .showSnackBar(_buildSnackbar(action: action, message: message));
 
-    } else {
+    } else if (!this.widget.word.isSaved) {
       final String message = FlutterI18n.translate(context, 'word.snackbar.fail.text');
       final SnackBarAction action = SnackBarAction(
         label: FlutterI18n.translate(context, 'word.snackbar.fail.action'),

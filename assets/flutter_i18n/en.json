@@ -55,7 +55,7 @@
         "section_title": "Favorite Words",
         
         "title": "Save words to study \n later or offline",
-        "message": "Save as many words as you can \n just tap the bookmark"
+        "message": "\nSimply tap the bookmar icon\nto save a word"
     },
 
     "search": {
@@ -80,7 +80,7 @@
 
         "no_connection": {
             "title": "Could not connect to the server",
-            "message": "\nSlow or not internet connection\nPlease check your connection\n\n\n"
+            "message": "\nPlease check your internet connection\n\n\n"
         },
 
         "error": {

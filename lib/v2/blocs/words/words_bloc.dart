@@ -60,7 +60,7 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
     // Forced Color.
     final Color forcedColor = category == 'all' 
     ?  AppColors.purple 
-    :  Color(0XFF289d86);
+    :  AppColors.kGreenLight;
 
     // List of Words.
     final List<Word> words = categoryIsSpecial

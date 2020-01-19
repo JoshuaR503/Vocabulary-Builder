@@ -1,4 +1,7 @@
 /// Server URL.
+const String kBaseUri = 'vocabulary-builder.herokuapp.com';
+
+/// Server URL.
 const String kBaseUrl = 'https://vocabulary-builder.herokuapp.com';
 
 /// Firebase Server URL.

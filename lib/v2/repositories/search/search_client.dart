@@ -20,11 +20,11 @@ class SearchApiClient {
     // Meta Data from Settings Repository.
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
 
-    // API Endpoint. TODO: Change to URI
-    final String url = '$kBaseUrl/v1/search/en/?search=$search';
+    // API Endpoint.
+    final Uri uri = Uri.http(kBaseUrl, 'v1/search/en/', {'search': search});
 
     // Make HTTP Request
-    final Response<dynamic> response = await this.httpClient.fetchData(url: url);
+    final Response<dynamic> response = await this.httpClient.fetchData(uri: uri);
   
     // Handle other than 200 status code.
     if (response.statusCode != 200) {

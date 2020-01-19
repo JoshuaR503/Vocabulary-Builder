@@ -9,6 +9,7 @@ import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/saved/widgets/search.dart';
 import 'package:vocabulary_builder/v2/widgets/components/cards/grid.dart';
 import 'package:vocabulary_builder/v2/widgets/components/empty.dart';
+
 import 'package:vocabulary_builder/v2/widgets/components/message.dart';
 import 'package:vocabulary_builder/v2/widgets/components/solution.dart';
 import 'package:vocabulary_builder/v2/widgets/components/spinner.dart';
@@ -26,7 +27,7 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
     return SimpleContainer(
       child: ListView(
         children: <Widget>[
-          SizedBox(height: MediaQuery.of(context).size.height / 3.5.toDouble()),
+          SizedBox(height: MediaQuery.of(context).size.height / 3.8.toDouble()),
           VocabularyBuilderMessage(message: message),
           VocabularyBuilderSolutionMessage(solution: solution)
         ],
@@ -69,10 +70,11 @@ class _SavedWordsScreenState extends State<SavedWordsScreen> {
         }
 
         if (state is EmptyWordState) {
+
           return EmptyStateScreen(
             message: FlutterI18n.translate(context, 'saved.title'),
             fixMessage: FlutterI18n.translate(context, 'saved.message'),
-            pathImage: 'assets/pictures/box.png',
+            pathImage: 'assets/pictures/banner.png',
           );
         }
 

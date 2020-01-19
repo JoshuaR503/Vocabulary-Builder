@@ -23,13 +23,13 @@ class FetchClient {
   }
 
   // Fetches data.
-  Future<Response> fetchData({String url}) async {
+  Future<Response> fetchData({Uri uri}) async {
 
     // Add badges. 
     await this._fetchBadgeCount();
 
     // Make HTTP request.
-    final Response<dynamic> response = await this._httpClient.get(url);
+    final Response<dynamic> response = await this._httpClient.getUri(uri);
     return response;
   }
 }

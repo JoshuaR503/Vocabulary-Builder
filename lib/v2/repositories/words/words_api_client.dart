@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:dio/dio.dart';
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/repositories/constants.dart';
@@ -7,56 +6,70 @@ import 'package:vocabulary_builder/v2/repositories/httpClient.dart';
 import 'package:vocabulary_builder/v2/repositories/settings/settings_repository.dart';
 
 class WordsApiClient {
-
+  
   // Settings Repository Class.
   final SettingsRepository settingsRepository = SettingsRepository();
-
   // HTTP Client.
   final FetchClient httpClient = FetchClient();
 
   /// Makes an HTTP request to the Words endpoint in the API.
   /// Returns a list of all words.
   Future<List<Word>> fetchWords(int skip, Color forcedColor) async {
-
     // Meta Data from Settings Repository.
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
     final String targetLang = langMetaData['targetLanguage'].toLowerCase();
 
-    // API Endpoint. TODO: Change to URI
-    final String url = '$kBaseUrl/v3/word/public?skip=0&lang=$targetLang';
+    // API Endpoint.
+    final Uri uri = Uri.https(kBaseUri, '/v3/word/public', {
+      'skip': '0',
+      'lang': targetLang
+    });
 
-    // Return Words.
-    return this._fetchWords(url: url, shouldHaveColor: false, forcedColor: forcedColor);
+    //Return Words.
+    return this._fetchWords(
+      uri: uri, 
+      shouldHaveColor: false, 
+      forcedColor: forcedColor
+    );
   }
 
   /// Makes an HTTP request to the API endpoint set by [category].
   /// Returns a list of words from [category].
   Future<List<Word>> fetchWordsFromCategory(String category, int skip) async {
-
     // Meta Data from Settings Repository.
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
     final String targetLang = langMetaData['targetLanguage'].toLowerCase();
 
-    // API Endpoint. TODO: Change to URI
-    final String url = '$kBaseUrl/v3/word/category/$category?skip=0&limit=100&language=$targetLang';
+    // API Endpoint.
+    final Uri uri = Uri.http(kBaseUri, '/v3/word/category/$category', {
+      'skip': '0',
+      'limit': '0',
+      'language': targetLang
+    });
 
-    return this._fetchWords(url: url, shouldHaveColor: true);
+    // Return Words.
+    return this._fetchWords(
+      uri: uri, 
+      shouldHaveColor: true
+    );
   }
 
   /// Makes an HTTP request to the API endpoint set by [category].
   /// Returns an integer with the count of words in the endpoint set by [category].
   Future<int> fetchWordCount({dynamic category}) async {
-
-    // Ensure that category is not null.
-    final bool hasCategory = category != null;
+    
+    // Ensure that category not null.
+    final bool hasCategory = category == null;
 
     // Decide API endpoint.
-    final String url = hasCategory 
-    ? '$kBaseUrl/v2/word/count/category/?category=$category'
-    : '$kBaseUrl/v2/word/count';
+    final Uri uri = hasCategory 
+    ? Uri.http(kBaseUri, '/v2/word/count')               /// Count all words
+    : Uri.http(kBaseUri, '/v2/word/count/category', {   /// Count all words from [category]
+      'category': category
+    });
 
     // Make HTTP Request
-    final Response<dynamic> response = await this.httpClient.fetchData(url: url);    
+    final Response<dynamic> response = await this.httpClient.fetchData(uri: uri);    
     
     // Handle other than 200 status code.
     if (response.statusCode != 200) {
@@ -72,13 +85,13 @@ class WordsApiClient {
 
   /// Makes an HTTP request to the API endpoint set by [url].
   /// Returns a list of words.
-  Future<List<Word>> _fetchWords({String url, bool shouldHaveColor, Color forcedColor}) async {
+  Future<List<Word>> _fetchWords({Uri uri, bool shouldHaveColor, Color forcedColor}) async {
 
     // User preferences stored.
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
 
     // Make HTTP Request.
-    final Response<dynamic> response = await this.httpClient.fetchData(url: url);
+    final Response<dynamic> response = await this.httpClient.fetchData(uri: uri);
 
     // Handle other than 200 status code.
     if (response.statusCode != 200 ) {

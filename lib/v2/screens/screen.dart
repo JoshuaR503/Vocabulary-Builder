@@ -14,13 +14,15 @@ class VocabularyBuilderHomeScreenManager extends StatelessWidget {
     final bool hasLanguage = await settingsRepository.hasCompleted(key: 'language');
     final bool hasLevel = await settingsRepository.hasCompleted(key: 'level');
 
+    Future.delayed(Duration(milliseconds: 2));
+
     if (!hasLanguage) {
       return 'language';
     }
 
-    if (!hasLevel) {
-      return 'level';
-    }
+    // if (!hasLevel) {
+    //   return 'level';
+    // }
 
     if (hasLanguage && hasLevel) {
       return 'home_ad';

@@ -31,12 +31,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               children: <Widget>[
 
-                CommonTitle(FlutterI18n.translate(context, 'settings.change_level.title')),
-                ListCell(
-                  title: FlutterI18n.translate(context, 'settings.change_level.message'),
-                  subtitle: FlutterI18n.translate(context, 'settings.change_level.subtitle'),
-                  onTap: () => Navigator.of(context).pushNamed('/level'),
-                ),
+                // CommonTitle(FlutterI18n.translate(context, 'settings.change_level.title')),
+                // ListCell(
+                //   title: FlutterI18n.translate(context, 'settings.change_level.message'),
+                //   subtitle: FlutterI18n.translate(context, 'settings.change_level.subtitle'),
+                //   onTap: () => Navigator.of(context).pushNamed('/level'),
+                // ),
 
                 CommonTitle(FlutterI18n.translate(context, 'settings.change_language.title')),
                 ListCell(

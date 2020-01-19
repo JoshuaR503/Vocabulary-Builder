@@ -14,13 +14,15 @@ class WordsApiClient {
 
   /// Makes an HTTP request to the Words endpoint in the API.
   /// Returns a list of all words.
-  Future<List<Word>> fetchWords(int skip, Color forcedColor) async {
+  Future<List<Word>> fetchWords({int skip, Color forcedColor, bool random}) async {
+
     // Meta Data from Settings Repository.
     final Map<String, String> langMetaData = await settingsRepository.getUserLanguage();
     final String targetLang = langMetaData['targetLanguage'].toLowerCase();
+    final String path = random ? kRandomPath : kStandardPath;
 
     // API Endpoint.
-    final Uri uri = Uri.https(kBaseUri, '/v3/word/public', {
+    final Uri uri = Uri.https(kBaseUri, path,{
       'skip': '0',
       'lang': targetLang
     });

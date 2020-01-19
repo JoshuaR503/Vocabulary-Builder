@@ -30,7 +30,7 @@
             "idioms": "Colloquialism",
             "nouns": "Nouns",
     
-            "all_words": "Word Bank",
+            "all_words": "Random Words",
             "saved": "Favorite Words"
         }
     },
@@ -341,7 +341,7 @@
         "developer": {
             "title": "Application developed by Joshua García",
             "title_two": "Tap here to donate",
-            "subtitle": "The objective of this app is to help you increase your vocabulary."
+            "subtitle": "We'll keep adding more content and features to the app."
         },
 
         "content": {

@@ -23,6 +23,8 @@ class AppColors {
   static const Color amberAccent = Color(0XFFf19a00);
 
   static const Color kGreenLight = Color(0XFF289d86);
+  static const Color kGreenLightAccent = Color(0XFF11b494);
+
 }
 
 class AppFontColors {

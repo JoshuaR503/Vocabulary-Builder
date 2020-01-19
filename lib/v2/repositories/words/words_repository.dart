@@ -14,8 +14,12 @@ class WordsRepository {
   }
 
   // Fetch all words.
-  Future<List<Word>> fetchWords({int skip, Color forcedColor}) async {
-    return await _client.fetchWords(skip, forcedColor);
+  Future<List<Word>> fetchWords({int skip, Color forcedColor, bool random}) async {
+    return await _client.fetchWords(
+      skip: skip,
+      random: random,
+      forcedColor: forcedColor,
+    );
   }
 
   // Fetch words from a single category.

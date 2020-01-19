@@ -15,7 +15,6 @@ class BadgeManager {
     } else {
       // Save badgeCount 
       this._setBadge(badgeCount);
-
       // Default badge count.
       return badgeCount;
     }
@@ -31,7 +30,6 @@ class BadgeManager {
 
   // Update Badge count.
   void updateBadgeCount(int badgeCount) async {
-
     // Get saved badge amount.
     final int savedBadgeCount = await _fetchBadges(badgeCount);
 
@@ -39,15 +37,13 @@ class BadgeManager {
     if (badgeCount == savedBadgeCount) {
       // Remove Badge
       FlutterAppBadger.removeBadge();
-      
     } else if (badgeCount != savedBadgeCount) {
-
       // Set badge.
       this._setBadge(badgeCount);
-
       // Update badge
       FlutterAppBadger.updateBadgeCount(badgeCount);
     }
   }
 
 }
+

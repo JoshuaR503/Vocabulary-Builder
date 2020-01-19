@@ -236,7 +236,7 @@ class _WordAboutCardState extends State<WordAboutCard> {
     );
 
     final Text definition = Text(
-      this.widget.word.firstLanguage.note,
+      this.widget.word.targetLanguage.note,
       style: TextStyles.definitionStyle,
     );
 

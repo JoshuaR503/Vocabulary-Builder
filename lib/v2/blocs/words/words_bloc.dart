@@ -51,20 +51,22 @@ class WordsBloc extends Bloc<WordsEvent, WordsState> {
   /// Makes an HTTP request and returns a list of words
   /// from the response of the API endpoint set by [category].
   Future<List<Word>> makeRequest(String category) async {
-
+    // Category is random.
+    final bool random = category == 'random';
     // Category Type.
+    
     final bool categoryIsSpecial = 
-      category == 'all' || 
+      category == 'random' || 
       category == 'latest';
 
     // Forced Color.
-    final Color forcedColor = category == 'all' 
+    final Color forcedColor = random
     ?  AppColors.purple 
     :  AppColors.kGreenLight;
 
-    // List of Words.
+    // List of words.
     final List<Word> words = categoryIsSpecial
-    ? await _wordsRepository.fetchWords(skip: 0, forcedColor: forcedColor)
+    ? await _wordsRepository.fetchWords(skip: 0, forcedColor: forcedColor, random: random)
     : await _wordsRepository.fetchWordsFromCategory(category: category, skip: 0);
 
     // Handler.

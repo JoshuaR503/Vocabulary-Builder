@@ -40,7 +40,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     super.initState();
 
     _pushNotification.initNotifications();
-    //FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-2727987234768252~2837027158');
+    //FirebaseAdMob.instance.initialize(appId: kPublishedId);
   }
 
   @override

@@ -1,7 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:vocabulary_builder/v2/config/colors.dart';
-
 import 'package:vocabulary_builder/v2/models/models.dart';
 import 'package:vocabulary_builder/v2/screens/word/word.dart';
 import 'package:vocabulary_builder/v2/widgets/text/index.dart';

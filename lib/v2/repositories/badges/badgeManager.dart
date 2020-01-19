@@ -13,6 +13,9 @@ class BadgeManager {
       // Saved badge count.
       return preferences.getInt('badgeCount');
     } else {
+      // Save badgeCount 
+      this._setBadge(badgeCount);
+
       // Default badge count.
       return badgeCount;
     }
@@ -38,9 +41,12 @@ class BadgeManager {
       FlutterAppBadger.removeBadge();
       
     } else if (badgeCount != savedBadgeCount) {
+
+      // Set badge.
+      this._setBadge(badgeCount);
+
       // Update badge
       FlutterAppBadger.updateBadgeCount(badgeCount);
-      this._setBadge(badgeCount);
     }
   }
 

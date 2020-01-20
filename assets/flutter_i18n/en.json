@@ -21,6 +21,8 @@
         "search_text": "Search nouns, verbs, adjectives, etc",
 
         "category": {
+            "latest": "Latest",
+            
             "adverbs": "Adverbs",
             "verb": "Verbs",
     

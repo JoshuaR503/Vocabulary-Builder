@@ -70,8 +70,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
       final int response = await this.handler();
 
       final String text = response == 1 
-      ? FlutterI18n.translate(context, 'feedback.form.success')
-      : FlutterI18n.translate(context, 'feedback.form.error'); 
+      ? FlutterI18n.translate(context, 'feedback.message.success')
+      : FlutterI18n.translate(context, 'feedback.message.error'); 
     
       this.clean();
       this.disable();

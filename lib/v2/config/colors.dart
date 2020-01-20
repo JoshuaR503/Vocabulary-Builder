@@ -9,7 +9,7 @@ class AppColors {
   static const Color brown = Color(0xFFa25d55);
   static const Color grey = Color(0x64303943);
   static const Color indigo = Color(0xFF4c5dd3);
-  static const Color kIndigoAccent = Color(0xFF2e3fb6);
+  static const Color kIndigoAccent = Color(0xFF3244c6);
 
   static const Color purple = Color(0xFF714c80);
   static const Color red = Color(0xFFff4321);

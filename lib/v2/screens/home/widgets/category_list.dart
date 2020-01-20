@@ -82,7 +82,7 @@ class _CategoryListState extends State<CategoryList> {
         accentColor: AppColors.kGreenLight,
         categoryName: 'latest',
         color: AppColors.kGreenLightAccent,
-        name: 'Latest Words',
+        name: FlutterI18n.translate(context, 'home.category.latest'),
       ),
 
       WordCategory(

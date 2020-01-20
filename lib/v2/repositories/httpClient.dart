@@ -32,4 +32,11 @@ class FetchClient {
     final Response<dynamic> response = await this._httpClient.getUri(uri);
     return response;
   }
+
+  // Posts data.
+  Future<Response> post({Uri uri, Map<String, dynamic> data}) async {
+    // Make HTTP request.
+    final Response<dynamic> response = await this._httpClient.postUri(uri, data: data);
+    return response;
+  }
 }

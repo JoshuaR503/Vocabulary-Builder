@@ -1,4 +1,4 @@
-class AndroidDeviceData {
+class DeviceData {
 
   final String device;
   final String host;
@@ -6,15 +6,15 @@ class AndroidDeviceData {
 
   final String model;
   final String type;
-  final int sdk;
+  final dynamic osVersion;
 
-  AndroidDeviceData({
+  DeviceData({
     this.device,
     this.host,
     this.manufacturer,
     this.model,
     this.type,
-    this.sdk
+    this.osVersion
   });
 
   Map<String, dynamic> toMap() => <String, dynamic> {
@@ -23,6 +23,6 @@ class AndroidDeviceData {
     'manufacturer': manufacturer,
     'model': model,
     'type': type,
-    'sdk': sdk,
+    'osVersion': osVersion,
   };
 }

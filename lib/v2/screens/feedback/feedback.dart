@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:device_info/device_info.dart';
-
 import 'package:vocabulary_builder/v2/config/colors.dart';
-import 'package:vocabulary_builder/v2/models/device/android.dart';
+import 'package:vocabulary_builder/v2/repositories/feedback/feedback_client.dart';
+import 'package:vocabulary_builder/v2/screens/feedback/helpers/platform.dart';
+import 'package:vocabulary_builder/v2/screens/feedback/widgets/field.dart';
 
+// TODO: Translate
 class FeedbackScreen extends StatefulWidget {
   @override
   _FeedbackScreenState createState() => _FeedbackScreenState();
@@ -11,116 +14,90 @@ class FeedbackScreen extends StatefulWidget {
 
 class _FeedbackScreenState extends State<FeedbackScreen> {
 
+  /// Widget related.
+  bool _isButtonDisabled = false;
+ 
+  /// Form realted.
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _titleTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _commentTextController = TextEditingController();
 
-  final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-  final TextStyle labelTextStyle = TextStyle(
-    color: Colors.white70,
-    fontSize: 18,
-    fontWeight: FontWeight.w700
-  );
+  /// Helpers.
+  final PlatfromHelper _platfromHelper = PlatfromHelper();
+  final FeedbackApiClient _feedbackApiClient = FeedbackApiClient();
 
-  void androidHandler() async {
-    final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    final AndroidDeviceData deviceData = AndroidDeviceData(
-      device: androidInfo.device,
-      host: androidInfo.host,
-      model: androidInfo.model,
-      manufacturer: androidInfo.manufacturer,
-      type: androidInfo.type,
-      sdk: androidInfo.version.sdkInt,
-    );
+  /// Makes HTTP request and returns an integer.
+  Future<int> handler() async {
+    final dynamic deviceData = 
+      Platform.isAndroid ? await this._platfromHelper.androidHandler()
+    : Platform.isIOS ? await this._platfromHelper.iosHandler()
+    : null;
 
-    print(deviceData.toMap());
-  }
-
-  void handler() async {
-    Scaffold
-    .of(context)
-    .showSnackBar(SnackBar(content: Text('Thank you for your comments')));
+    return await _feedbackApiClient.post(data: {
+      'title': this._titleTextController.text,
+      'email': this._emailTextController.text,
+      'text': this._commentTextController.text,
+      'device_data': deviceData
+    });
   }
 
   @override
   void dispose() {
-    _titleTextController.dispose();
-    _emailTextController.dispose();
-    _commentTextController.dispose();
+    this._titleTextController.dispose();
+    this._emailTextController.dispose();
+    this._commentTextController.dispose();
     super.dispose();
   }
 
-  Widget _titleField() {
-    return Container(
-      padding:EdgeInsets.only(left: 16, right: 16, top: 2, bottom: 5),
-      decoration:BoxDecoration(
-        shape: BoxShape.rectangle,
-        color: Theme.of(context).scaffoldBackgroundColor,
-      ),
-      child: TextFormField(
-        controller: _titleTextController,
-        decoration: InputDecoration(
-          hintText: 'Title',
-          hintStyle: TextStyle(fontSize: 15.5),
-          border: InputBorder.none,
-        ),
-        validator: (value) {
-          if (value.isEmpty) {
-            return 'Please enter some text';
-          }
-          return null;
-        },
+  /// Cleans controllers' text.
+  void clean() {
+    this._titleTextController.clear();
+    this._emailTextController.clear();
+    this._commentTextController.clear();
+  }
+
+  /// Disables the submit button.
+  void disable() {
+    setState(() => this._isButtonDisabled = true);
+  }
+
+  /// Submit button handler.
+  void buttonHandler(BuildContext ctx) async {
+
+    if (_formKey.currentState.validate()) {
+
+      final int response = await this.handler();
+      final String text = response == 1 
+      ? 'Feedback sent'
+      : 'There was an error';
+    
+      this.clean();
+      this.disable();
+
+      Scaffold
+      .of(ctx)
+      .showSnackBar(
+        SnackBar(
+          content: Text(text, style: TextStyle(color: Colors.white)), 
+          backgroundColor: AppColors.snackBar,
+        )
+      );
+    }
+  }
+  
+  /// Title widger.
+  Widget _title() {
+    return Text(
+      'Send Feedback', 
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 32
       )
     );
   }
 
-  Widget _emailField() {
-    return Container(
-      padding:EdgeInsets.only(left: 16, right: 16, top: 2, bottom: 5),
-      decoration:BoxDecoration(
-        shape: BoxShape.rectangle,
-        color: Theme.of(context).scaffoldBackgroundColor,
-      ),
-      child: TextFormField(
-                controller: _emailTextController,
-
-        decoration: InputDecoration(
-          hintText: 'Email (optional)',
-          hintStyle: TextStyle(fontSize: 15.5),
-          border: InputBorder.none,
-        ),
-      )
-    );
-  }
-
-  Widget _comentField() {
-    return Container(
-      padding:EdgeInsets.only(left: 16, right: 16, top: 2, bottom: 5),
-      decoration:BoxDecoration(
-        shape: BoxShape.rectangle,
-        color: Theme.of(context).scaffoldBackgroundColor,
-      ),
-      child: TextFormField(
-                controller: _commentTextController,
-
-          keyboardType: TextInputType.multiline,
-          maxLines: 5,
-        decoration: InputDecoration(
-          hintText: 'Comment',
-          hintStyle: TextStyle(fontSize: 15.5),
-          border: InputBorder.none,
-        ),
-        validator: (value) {
-          if (value.isEmpty) {
-            return 'Please enter some text';
-          }
-          return null;
-        },
-      )
-    );
-  }
-
+  /// Main Function
   @override
   Widget build(BuildContext context) {
 
@@ -141,45 +118,27 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 child: ListView(
                   children: <Widget>[
                     SizedBox(height: 40),
-                    Text(
-                      'Send Feedback', 
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 32
-                      )
-                    ),
+                    this._title(),
 
                     SizedBox(height: 40),
-                    this._titleField(),
+                    FieldManager(text: 'Title', controller: _titleTextController),
+                    
                     SizedBox(height: 20),
-                    this._emailField(),
-                    SizedBox(height: 20),
-                    this._comentField(),
+                    FieldManager(text: 'Email (optional)', controller: _emailTextController, isRequired: false),
 
                     SizedBox(height: 20),
-                    MaterialButton(
+                    FieldManager(text: 'Comment', controller: _commentTextController, maxLines: 5),
+
+                    SizedBox(height: 20),
+                    
+                     MaterialButton(
                       height: 50,
-                      child: Text('Submit' ),
+                      child: Text('Submit'),
                       color: AppColors.indigo,
-                      onPressed: () {
-
-                        if (_formKey.currentState.validate()) {
-
-                          print(this._titleTextController.text);
-
-
-                          final Text content = Text(
-                            'Feedback sent!',
-                            style: TextStyle(
-                              color: Colors.white
-                            ),
-                          );
-
-                          Scaffold
-                          .of(ctx)
-                          .showSnackBar(SnackBar(content: content, backgroundColor: AppColors.snackBar));
-                        }
-                      },
+                      disabledColor: AppColors.kIndigoAccent,
+                      onPressed: this._isButtonDisabled 
+                      ? null 
+                      : () => this.buttonHandler(ctx),
                     )
                   ],
                 ),

@@ -58,6 +58,24 @@
         }
     },
 
+    "feedback": {
+        "title": "Comentarios",
+
+        "section_title": "Enviar comentarios",
+    
+        "form": {
+            "title": "Título",
+            "email": "Correo (opcional)",
+            "comment": "Comentarios",
+            "button": "Enviar"
+        },
+
+        "message": {
+            "error": "Hubo un error inesperado",
+            "success": "Se han enviado comentarios"
+        }
+    },
+
     "saved": {
         "section_title": "Palabras Favoritas",
 

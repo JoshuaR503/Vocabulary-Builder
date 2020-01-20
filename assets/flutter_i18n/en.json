@@ -35,6 +35,24 @@
         }
     },
 
+    "feedback": {
+        "title": "Feedback",
+        "section_title": "Send Feedback",
+    
+        "form": {
+            "title": "Title",
+            "email": "Email (optional)",
+            "comment": "Comment",
+            "button": "Submit"
+        },
+        
+
+        "message": {
+            "error": "There was an unknown error",
+            "success": "Feedback has been sent"
+        }
+    },
+
     "settings": {
         "section_title": "Settings",
 

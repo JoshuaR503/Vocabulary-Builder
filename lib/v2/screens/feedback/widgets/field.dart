@@ -35,6 +35,7 @@ class FieldManager extends StatelessWidget {
           hintStyle: TextStyle(fontSize: 15.5),
           border: InputBorder.none,
         ),
+        
 
         validator: (value) {
 

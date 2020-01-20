@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:vocabulary_builder/v2/config/colors.dart';
 import 'package:vocabulary_builder/v2/repositories/feedback/feedback_client.dart';
 import 'package:vocabulary_builder/v2/screens/feedback/helpers/platform.dart';
 import 'package:vocabulary_builder/v2/screens/feedback/widgets/field.dart';
 
-// TODO: Translate
 class FeedbackScreen extends StatefulWidget {
   @override
   _FeedbackScreenState createState() => _FeedbackScreenState();
@@ -64,13 +64,14 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
   /// Submit button handler.
   void buttonHandler(BuildContext ctx) async {
+    FocusScope.of(context).unfocus();
 
     if (_formKey.currentState.validate()) {
-
       final int response = await this.handler();
+
       final String text = response == 1 
-      ? 'Feedback sent'
-      : 'There was an error';
+      ? FlutterI18n.translate(context, 'feedback.form.success')
+      : FlutterI18n.translate(context, 'feedback.form.error'); 
     
       this.clean();
       this.disable();
@@ -89,7 +90,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   /// Title widger.
   Widget _title() {
     return Text(
-      'Send Feedback', 
+      FlutterI18n.translate(context, 'feedback.section_title'), 
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 32
@@ -104,7 +105,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.indigo,
-        title: Text('Feedback'),
+        title: Text(FlutterI18n.translate(context, 'feedback.title'), ),
       ),
 
       body: Builder(
@@ -114,6 +115,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Form(
+                
                 key: _formKey,
                 child: ListView(
                   children: <Widget>[
@@ -121,19 +123,30 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     this._title(),
 
                     SizedBox(height: 40),
-                    FieldManager(text: 'Title', controller: _titleTextController),
+                    FieldManager(
+                      text: FlutterI18n.translate(context, 'feedback.form.title'), 
+                      controller: _titleTextController
+                    ),
                     
                     SizedBox(height: 20),
-                    FieldManager(text: 'Email (optional)', controller: _emailTextController, isRequired: false),
+                    FieldManager(
+                      text: FlutterI18n.translate(context, 'feedback.form.email'), 
+                      controller: _emailTextController, 
+                      isRequired: false
+                    ),
 
                     SizedBox(height: 20),
-                    FieldManager(text: 'Comment', controller: _commentTextController, maxLines: 5),
+                    FieldManager(
+                      text: FlutterI18n.translate(context, 'feedback.form.comment'), 
+                      controller: _commentTextController, 
+                      maxLines: 5
+                    ),
 
                     SizedBox(height: 20),
                     
                      MaterialButton(
                       height: 50,
-                      child: Text('Submit'),
+                      child: Text( FlutterI18n.translate(context, 'feedback.form.button')),
                       color: AppColors.indigo,
                       disabledColor: AppColors.kIndigoAccent,
                       onPressed: this._isButtonDisabled 
